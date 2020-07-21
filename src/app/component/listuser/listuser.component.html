@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<style>
+  /* Thick red border */
+  hr.new1 {
+    border: 1px solid gray;
+  }
+</style>
+
+<body>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Datos generales</h3>
+        
+        <div class="row">
+            <!--/span-->
+            <div class="col-sm-1 col-md-2">
+                <div class="form-group">
+                  <label class="control-label col-form-label">Cliente</label>
+                  <div class="input-group">
+                        <select id="cliente" class="form-control" [(ngModel)]="comboCliente" name="cliente" (change)="cambioCliente(comboCliente.client_identity)"> 
+                            <option [ngValue]="cliente" *ngFor="let cliente of clientes" >{{cliente.commercial_name}}</option> 
+                        </select> 
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <div class="col-sm-1 col-md-2">
+                <div class="form-group">
+                  <label class="control-label col-form-label">Cliente Sucursal</label>
+                  <div class="input-group">
+                        <select id="sucursal" class="form-control" [(ngModel)]="comboSucursal" (change)="cambioSucursal(comboSucursal.branch_client_id)"> 
+                            <option [ngValue]="sucursal" *ngFor="let sucursal of sucursales" >{{sucursal.business_name}}</option> 
+                        </select> 
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <div class="col-sm-1 col-md-2">
+                <div class="form-group">
+                  <label class="control-label col-form-label"></label>
+                </div>
+            </div>
+            <!--/span-->
+            <div class="col-sm-1 col-md-4">
+            <button class="btn btn-rounded btn-info" (click)="document()">Administrar documentos Activo</button>
+            </div>
+            <!--/span-->
+            <div class="col-sm-1 col-md-2">
+            <button class="btn btn-rounded btn-success">Portal Activo</button>
+            </div>
+        </div>
+
+        <hr class="new1">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-md-flex align-items-center">
+                            <div>
+                                <h4 class="card-title">Lista Usuarios</h4>
+                            </div>
+                            <!-- Boton Nuevo Usuario -->
+                            <div class="ml-auto d-flex no-block align-items-center" *ngIf="bButtonNewUser">
+                                <div class="dl">
+                                    <button class="btn btn-rounded btn-info" (click)="newUser(comboCliente.client_identity,comboSucursal.branch_client_id)">Nuevo Usuario</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Filtro Lista de Usuarios -->    
+                        <form class="form-inline md-form form-sm mt-0 w-50 m-b-10" *ngIf="bButtonNewUser">
+                            <input #search class="form-control form-control-sm ml-3 w-100 mainLoginInput"  type="text" placeholder="Buscar" aria-label="Search" (keyup)="updateFilter(search.value)"> 
+                        </form>
+
+                        <!-- Smart Table  -->
+                        <div class="table table-responsive smart-table" *ngIf="bButtonNewUser">
+                            <ng2-smart-table 
+                                [settings]="settingsUsers" 
+                                [source]="users">
+                            </ng2-smart-table>
+                        </div>
+                        
+                        <!--
+                        <div class="table-responsive">
+                            <table class="table no-wrap v-middle">
+                                <thead>
+                                    <tr class="border-0 bg-light">
+                                        <th class="border-0">#</th>
+                                        <th class="border-0">Usuario</th>
+                                        <th class="border-0">Nombre</th>
+                                        <th class="border-0">Puesto</th>
+                                        <th class="border-0">Fecha Creacion</th>
+                                        <th class="border-0">Estatus</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let user of users; let i = index">
+                                        <td class="blue-grey-text  text-darken-4 font-medium">{{ i + 1 }}</td>
+                                        <td>
+                                            <div class="d-flex no-block align-items-center">
+                                                <div class="m-r-10">
+                                                    <img src="assets/images/users/d1.jpg" alt="user" class="rounded-circle" width="45" />
+                                                </div>
+                                                <div class="">
+                                                    <h5 class="m-b-0 font-16 font-medium" >{{user.name}}</h5>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>{{user.middlename}}</td>
+                                        <td>{{user.position}}</td>
+                                        <td>{{user.creation_date}}</td>
+                                        <td>
+                                            <div *ngIf="user.status == 1">
+                                                <i class="fa fa-circle text-success" data-toggle="tooltip" data-placement="top" title="In Progress"></i>
+                                            </div>
+                                            <div *ngIf="user.status == 0">
+                                                <i class="fa fa-circle text-danger" data-toggle="tooltip" data-placement="top" title="In Progress"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                        -->
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

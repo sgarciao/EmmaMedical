@@ -1,0 +1,48 @@
+.icons_style{
+    color:red;
+    text-align: center;
+    align-content: center;
+}
+
+.select-style{
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.button-styles{
+    width: 80px;
+}
+.align-center{
+    padding-left: 0%;
+    background-color: red;
+}
+
+.check-box-align{
+    margin-left: 0;
+    position: absolute;
+    top: 50%;
+    background-color: white;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.file-upload{
+    margin-left: 2%;
+    vertical-align: center;
+    text-align: center;
+    width: 96%;
+}
+
+
+/*******************************************************************/
+.refresh-button{
+    text-align: right;
+}
+
+.icon-refresh{
+    width: 25px;
+    height: 25px;
+    cursor:pointer;
+}
+/*******************************************************************/

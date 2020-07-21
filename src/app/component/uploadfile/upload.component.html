@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+  /* Thick red border */
+  hr.new1 {
+    border: 1px solid gray;
+  }
+</style>
+
+<body>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Documentos</h3>
+        <div class="row">
+          <div class="col-sm-1 col-md-2">
+            <div class="form-group">
+              <label class="control-label col-form-label">Mes</label>
+              <select class="form-control">
+                <option>Choose Your Option</option>
+                <option>Desiging</option>
+                <option>Development</option>
+                <option>Videography</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-1 col-md-2">
+            <div class="form-group">
+              <label class="control-label col-form-label">Ano</label>
+              <select class="form-control">
+                <option>Choose Your Option</option>
+                <option>Desiging</option>
+                <option>Development</option>
+                <option>Videography</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-10 col-md-5">
+            <div class="form-group">
+              <label class="control-label col-form-label">Cliente</label>
+              <select class="form-control">
+                <option>Choose Your Option</option>
+                <option>Desiging</option>
+                <option>Development</option>
+                <option>Videography</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-10 col-md-5">
+            <div class="form-group">
+              <label class="control-label col-form-label">Sucursal</label>
+              <select class="form-control">
+                <option>Choose Your Option</option>
+                <option>Desiging</option>
+                <option>Development</option>
+                <option>Videography</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <hr class="new1">
+        <h4 class="card-title">Carga Archivos</h4>
+        <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+          <ngb-panel title="Carpeta Operativa">
+            <ng-template ngbPanelContent>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="card">
+
+                    <div class="table-responsive">
+                      <table class="table v-middle">
+                        <thead>
+                        <tr class="bg-light">
+                          <th class="border-top-0">Folder</th>
+                          <th class="border-top-0"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <div class="m-r-10">
+                                <a class="btn btn-circle btn-info text-white">EA</a>
+                              </div>
+                              <div class="">
+                                <h4 class="m-b-0 font-16">Documentos Oficiales</h4>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <angular-file-uploader #afu1 [resetUpload]=resetUpload1 [config]="afuConfig1" class="afuc">
+                            </angular-file-uploader>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <div class="m-r-10">
+                                <a class="btn btn-circle btn-orange text-white">MA</a>
+                              </div>
+                              <div class="">
+                                <h4 class="m-b-0 font-16">Plan de Trabajo</h4>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <angular-file-uploader #afu1 [resetUpload]=resetUpload1 [config]="afuConfig1" class="afuc">
+                            </angular-file-uploader>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <div class="m-r-10">
+                                <a class="btn btn-circle btn-success text-white">MP</a>
+                              </div>
+                              <div class="">
+                                <h4 class="m-b-0 font-16">Personal Operativo</h4>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <angular-file-uploader #afu1 [resetUpload]=resetUpload1 [config]="afuConfig1" class="afuc">
+                            </angular-file-uploader>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <div class="m-r-10">
+                                <a class="btn btn-circle btn-purple text-white">AA</a>
+                              </div>
+                              <div class="">
+                                <h4 class="m-b-0 font-16">Formacion Tecnica</h4>
+                              </div>
+                            </div>
+                          </td>
+
+                          <td>
+                            <angular-file-uploader #afu1 [resetUpload]=resetUpload1 [config]="afuConfig1" class="afuc">
+                            </angular-file-uploader>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel>
+            <ng-template ngbPanelTitle>
+              <span> Reportes </span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="card">
+
+                    <div class="table-responsive">
+                      <table class="table v-middle">
+                        <thead>
+                        <tr class="bg-light">
+                          <th class="border-top-0"></th>
+                          <th class="border-top-0"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <div class="">
+                                <h4 class="m-b-0 font-16"></h4>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <angular-file-uploader #afu1 [resetUpload]=resetUpload1 [config]="afuConfig1" class="afuc">
+                            </angular-file-uploader>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel>
+            <ng-template ngbPanelTitle>
+              <span> Certificados de Servicios </span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="card">
+
+                    <div class="table-responsive">
+                      <table class="table v-middle">
+                        <thead>
+                        <tr class="bg-light">
+                          <th class="border-top-0"></th>
+                          <th class="border-top-0"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <div class="">
+                                <h4 class="m-b-0 font-16"></h4>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <angular-file-uploader #afu1 [resetUpload]=resetUpload1 [config]="afuConfig1" class="afuc">
+                            </angular-file-uploader>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel>
+            <ng-template ngbPanelTitle>
+              <span> Encuestas </span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="card">
+
+                    <div class="table-responsive">
+                      <table class="table v-middle">
+                        <thead>
+                        <tr class="bg-light">
+                          <th class="border-top-0"></th>
+                          <th class="border-top-0"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <div class="">
+                                <h4 class="m-b-0 font-16"></h4>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <angular-file-uploader #afu1 [resetUpload]=resetUpload1 [config]="afuConfig1" class="afuc">
+                            </angular-file-uploader>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+
+        </ngb-accordion>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+:host /deep/ .user-name-app{
+    margin-left: 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+:host /deep/ .user-branch-offine{
+    font-size: small;
+    margin-left: 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.user-name-content{
+    width: 190px;
+}
+
+.user-foto{
+    width: 190px;
+}

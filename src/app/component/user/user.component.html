@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<style>
+  /* Thick red border */
+  hr.new1 {
+    border: 1px solid gray;
+  }
+</style>
+
+<body>
+    
+
+<!-- Row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card ">
+            
+            <div action="#" class="form-horizontal">
+                <div class="form-body">
+                    <div class="card-body">
+                        <h4 class="card-title">Nuevo Usuario</h4>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-1 col-md-2">
+                                <div class="form-group">
+                                  <label class="control-label col-form-label">Nombre</label>
+                                  <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="ti-user"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" [(ngModel)]="nameUser" class="form-control" id="name" placeholder="Ej. Ricardo">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-sm-1 col-md-2">
+                                <div class="form-group">
+                                  <label class="control-label col-form-label">Apellido Paterno</label>
+                                  <div class="input-group">
+                                        <div class="input-group-prepend">
+                                        </div>
+                                        <input type="text" [(ngModel)]="middlenameUser" class="form-control" id="middlename" placeholder="Ej. Villareal">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-sm-1 col-md-2">
+                                <div class="form-group">
+                                  <label class="control-label col-form-label">Apellido Materno</label>
+                                  <div class="input-group">
+                                        <input type="text" [(ngModel)]="lastnameUser" class="form-control" id="lastname" placeholder="Ej. Cid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="row">
+                            <div class="col-sm-1 col-md-2">
+                                <div class="form-group">
+                                    <label class="control-label col-form-label">Puesto Posicion</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="ti-briefcase"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" [(ngModel)]="positionUser" class="form-control" id="position" placeholder="Ej. Gerente">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-sm-1 col-md-2">
+                                <div class="form-group">
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-sm-1 col-md-2">
+                                <div class="form-group">
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <!--/span-->
+                        <div class="row">
+                            <!--/span-->
+                            <div class="col-sm-1 col-md-2">
+                                <div class="form-group">
+                                    <label class="control-label col-form-label">Usuario</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="ti-user"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" [(ngModel)]="usernameUser" class="form-control" id="user_name" placeholder="Ej. ironman">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-sm-1 col-md-2">
+                                <div class="form-group">
+                                    <label class="control-label col-form-label">Contrasena</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="ti-lock"></i>
+                                            </span>
+                                        </div>
+                                        <input type="password" [(ngModel)]="passwordUser" class="form-control" id="password" placeholder="contrasena">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-sm-1 col-md-2">
+                                <div class="form-group">
+                                    <label class="control-label col-form-label">Confirmar Contrasena</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="ti-lock"></i>
+                                            </span>
+                                        </div>
+                                        <input type="password" [(ngModel)]="repasswordUser" class="form-control" id="repassword" placeholder="confirma">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="row">
+                            <div class="col-sm-1 col-md-2">
+                                    <div class="form-group">
+                                        <label class="control-label col-form-label">Correo</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="ti-email"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" [(ngModel)]="emailUser" class="form-control" id="email" placeholder="Ej. trvs@gmail.com">
+                                        </div>
+                                    </div>
+                                </div>
+                            <!--/span-->
+                            <div class="col-sm-1 col-md-2">
+                                <div class="form-group">
+                                    <label class="control-label col-form-label">Activar Notificaciones</label>
+                                    <div class="input-group">
+                                        <input type="checkbox" [(ngModel)]="notificationUser" class="" id="notification" value="check">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-sm-1 col-md-2">
+                                <div class="form-group">
+                                    <label class="control-label col-form-label">Usuario Activo</label>
+                                    <div class="input-group">
+                                        <input type="checkbox" [(ngModel)]="activeUser" class="" id="isactive" value="check">
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="card-body">
+                            <div class="text-left">
+                                <button type="submit" class="btn btn-info" (click)="save()">Guardar</button>
+                                <button type="button" class="btn btn-dark" (click)="cancel()">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Row -->
+</body>
+</html>

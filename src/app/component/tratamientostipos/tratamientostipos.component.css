@@ -1,0 +1,52 @@
+.round-nash{
+    background-color: #A53D59;
+}
+
+.round-ash{
+    background-color: #A6793D;
+}
+.round-vhb{
+    background-color: #B86DAD;
+}
+
+.round-vhc{
+    background-color: #CC81C1;
+}
+.round-hai{
+    background-color:#9A4F8F;
+}
+
+.round-hcc{
+    background-color:#4E8E99;
+}
+.round-alf{
+    background-color:#12525D;
+}
+
+.card-style{
+    cursor: pointer;
+}
+
+.title_main{
+    font-size: medium;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: black;
+  }
+  
+.regresar{
+    color: blue;
+    font-size: small;
+    cursor: pointer;
+  }
+  
+  .image_back{
+    width: 25px;
+    height: 25px;
+    margin-right: 2px;
+    cursor: pointer;
+  }
+  
+  .content_back{
+    text-align: right;
+  }

@@ -1,0 +1,73 @@
+.sts-container {
+    overflow-y: scroll;
+    position: relative;
+    /* scroll container also needs a fixed/defined height */
+  }
+  .sts-container .sts-row {
+    position: absolute;
+  }
+  .sts-container .sts-bottom-anchor {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+  }
+
+  .width-smart-table{
+      width: 1000px;
+      background-color: teal;
+  }
+
+.col-custom{
+  width: 50%;
+  overflow-x: hidden;
+}
+.table-container{
+  width: 1500px;
+  height: 500px;
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+
+.tools{
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.tools-align{
+  text-align: right;
+  display: block;
+}
+.tools-content{
+  border-style: none none solid none;
+  border-width: 1px;
+  border-bottom: teal;
+  background-color: rgb(216, 224, 224);
+  padding-bottom: 1px;
+}
+.content-table{
+  margin-top: 2px;
+}
+.title_main{
+  font-size: medium;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: black;
+}
+
+.regresar{
+  color: blue;
+  font-size: small;
+  cursor: pointer;
+}
+
+.image_back{
+  width: 25px;
+  height: 25px;
+  margin-right: 2px;
+  cursor: pointer;
+}
+
+.content_back{
+  text-align: right;
+}

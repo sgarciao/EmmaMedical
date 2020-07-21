@@ -1,0 +1,170 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card ">
+            <div class = "row">
+                <div class = "col-lg-12">
+                    <div class ="row align-items-center">
+                        <div class = "col-lg-10">
+                           <span class="title_main"> {{title_entity}}</span>
+                        </div>
+                        <div class = "col-lg-2 content_back">
+                            <img src="https://img.icons8.com/flat_round/64/000000/circled-left.png" 
+                            (click)="regresar()" class="image_back"/> 
+                            <span (click)="regresar()"  class="regresar">Regresar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row -->
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row p-t-10 p-b-10">
+                            <!-- Column -->
+                            <div class="col p-r-0">
+                                <h1 class="font-light">NASH</h1>
+                                <h6 class="text-muted">Tratamientos NASH</h6>
+                            </div>
+                            <!-- Column -->
+                            <div class="col text-right align-self-center">
+                                <div class="round align-self-center round-nash card-style" (click)="selectTreatment(1)">
+                                    <i class="ti-wallet"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body ">
+                        <div class="row p-t-10 p-b-10">
+                            <!-- Column -->
+                            <div class="col p-r-0">
+                                <h1 class="font-light">ASH</h1>
+                                <h6 class="text-muted">Tratamientos ASH</h6>
+                            </div>
+                            <!-- Column -->
+                            <div class="col text-right align-self-center card-style" (click)="selectTreatment(2)">
+                                <div class="round align-self-center round-ash">
+                                    <i class="ti-wallet"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body ">
+                        <div class="row p-t-10 p-b-10">
+                            <!-- Column -->
+                            <div class="col p-r-0">
+                                <h1 class="font-light">VHB</h1>
+                                <h6 class="text-muted">Tratamientos VHB</h6>
+                            </div>
+                            <!-- Column -->
+                            <div class="col text-right align-self-center card-style" (click)="selectTreatment(3)">
+                                <div class="round align-self-center round-vhb">
+                                    <i class="ti-wallet"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body ">
+                        <div class="row p-t-10 p-b-10">
+                            <!-- Column -->
+                            <div class="col p-r-0">
+                                <h1 class="font-light">VHC</h1>
+                                <h6 class="text-muted">Tratamientos VHC</h6>
+                            </div>
+                            <!-- Column -->
+                            <div class="col text-right align-self-center card-style" (click)="selectTreatment(4)">
+                                <div class="round align-self-center round-vhc">
+                                    <i class="ti-wallet"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body ">
+                        <div class="row p-t-10 p-b-10">
+                            <!-- Column -->
+                            <div class="col p-r-0">
+                                <h1 class="font-light">HAI</h1>
+                                <h6 class="text-muted">Tratamientos HAI</h6>
+                            </div>
+                            <!-- Column -->
+                            <div class="col text-right align-self-center card-style" (click)="selectTreatment(5)">
+                                <div class="round align-self-center round-hai">
+                                    <i class="ti-wallet"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+              <!-- Column -->
+              <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body ">
+                        <div class="row p-t-10 p-b-10">
+                            <!-- Column -->
+                            <div class="col p-r-0">
+                                <h1 class="font-light">HCC</h1>
+                                <h6 class="text-muted">Tratamientos HCC</h6>
+                            </div>
+                            <!-- Column -->
+                            <div class="col text-right align-self-center card-style" (click)="selectTreatment(6)">
+                                <div class="round align-self-center round-hcc">
+                                    <i class="ti-wallet"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+              <!-- Column -->
+              <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body ">
+                        <div class="row p-t-10 p-b-10">
+                            <!-- Column -->
+                            <div class="col p-r-0">
+                                <h1 class="font-light">ALF</h1>
+                                <h6 class="text-muted">Tratamientos ALF</h6>
+                            </div>
+                            <!-- Column -->
+                            <div class="col text-right align-self-center card-style" (click)="selectTreatment(7)">
+                                <div class="round align-self-center round-alf">
+                                    <i class="ti-wallet"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+    </div>
+</div>

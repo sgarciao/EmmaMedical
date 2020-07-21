@@ -1,0 +1,364 @@
+<!-- Row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card ">
+            <div class = "row">
+                <div class = "col-lg-12">
+                    <div class ="row align-items-center">
+                        <div class = "col-lg-10">
+                           <span class="title_main"> {{title_entity}}</span>
+                        </div>
+                        <div class = "col-lg-2 content_back">
+                            <img src="https://img.icons8.com/flat_round/64/000000/circled-left.png" 
+                            (click)="regresar()" class="image_back"/> 
+                            <span (click)="regresar()"  class="regresar">Regresar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="card ">   
+            <ngb-tabset type="pills" class="custom-pills">
+                <!-- TAB -->
+                <ngb-tab title="Reportes {{title_tab}}" >
+                    <ng-template ngbTabContent>
+                        <!-- ============================================================== -->
+                        <!-- place order / Exchange -->
+                        <!-- ============================================================== -->
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="card">
+                                    <div class="card-body bg-light">
+                                        <div class="row">
+                                            <div class="col-md-3" [hidden]="visiblebuttons">
+                                                <div class="form-group">
+                                                    <label for="pais">Pais</label>
+                                                    <select 
+                                                    [(ngModel)] = "countries"
+                                                    id="pais" class="custom-select mr-sm-1 select-style"> 
+                                                        <option 
+                                                        *ngFor="let o1 of optionsCOuntries" 
+                                                        >{{o1.name}}
+                                                    </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3" [hidden]= "visiblebuttons">
+                                                <div class="form-group" >
+                                                    <label for="estado">Estado</label>
+                                                    <select 
+                                                    [(ngModel)] = "states"
+                                                    id="estado" class="custom-select mr-sm-1 select-style"> 
+                                                        <option 
+                                                        *ngFor="let o2 of optionsStates" 
+                                                        >{{o2.name}}
+                                                    </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3" [hidden]="visiblebuttons">
+                                                <div class="form-group">
+                                                    <label for="hospital">Hospital</label>
+                                                    <select 
+                                                    [(ngModel)] = "hospitals"
+                                                    id="hospital" class="custom-select mr-sm-1 select-style"> 
+                                                        <option 
+                                                        *ngFor="let o3 of optionsHospitals" 
+                                                        >{{o3.name}}
+                                                    </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Fecha Inicio</label>
+                                                    <input type="date" [(ngModel)]="start_date" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Fecha Fin</label>
+                                                    <input type="date" [(ngModel)]="end_date" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <button type="button" class="btn btn-success btn-success mr-1" >Buscar</button>
+                                                <button type="button" class="btn btn-warnin btn-warning">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- Tables -->
+                        <!-- ============================================================== -->
+                        <div class="row" [hidden]="nashTableVisible">
+                            <div class="col-sm-12">		
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row tools-content">
+                                            <div class="col-md-10"></div>
+                                            <div class="col-md-2 tools-align">
+                                                <img src="https://img.icons8.com/flat_round/64/000000/recurring-appointment.png" class="tools"/>
+                                                <img src="https://img.icons8.com/color/48/000000/export-excel.png" class="tools"/>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center content-table">
+                                            <div class="col-md-6">  
+                                                <h4 class="card-title">Tratamientos NASH</h4>
+                                                <h5 class="card-subtitle">Datos recopilados sobre tratamientos NASH</h5>
+                                            </div>
+                                            <div class="col-md-4">
+                                            </div>
+                                            <div class="col-md-2 refresh-button align-items-center">
+                                            </div>
+                                         </div>
+                                        <!-- Smart Table  -->
+                                        <div class="table  table-responsive smart-table">
+                                            <ng2-smart-table 
+                                                [settings]="settingsListTreatmentsNASH" 
+                                                    [source]="documents"
+                                                    (custom)="onCustomActionArchivos(content,modalConfirmarBorrar,$event)">
+                                            </ng2-smart-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ============================================================== -->
+                        <!-- Tables -->
+                        <!-- ============================================================== -->
+                        <div class="row" [hidden]="ashTableVisible">
+                            <div class="col-sm-12">		
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row tools-content">
+                                            <div class="col-md-10"></div>
+                                            <div class="col-md-2 tools-align">
+                                                <img src="https://img.icons8.com/flat_round/64/000000/recurring-appointment.png" class="tools"/>
+                                                <img src="https://img.icons8.com/color/48/000000/export-excel.png" class="tools"/>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center">
+                                            <div class="col-md-6">  
+                                                <h4 class="card-title">Tratamientos ASH</h4>
+                                                <h5 class="card-subtitle">Datos recopilados sobre tratamientos ASH</h5>
+                                            </div>
+                                            <div class="col-md-4">
+                                            </div>
+                                            <div class="col-md-2 refresh-button align-items-center">
+                                            </div>
+                                         </div>
+                                        <!-- Smart Table  -->
+                                        <div class="table  table-responsive smart-table">
+                                            <ng2-smart-table 
+                                                [settings]="settingsListTreatmentsASH" 
+                                                    [source]="documents"
+                                                    (custom)="onCustomActionArchivos(content,modalConfirmarBorrar,$event)">
+                                            </ng2-smart-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ============================================================== -->
+                        <!-- Tables -->
+                        <!-- ============================================================== -->
+                        <div class="row" [hidden]="vhbTableVisible">
+                            <div class="col-sm-12">		
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row tools-content">
+                                            <div class="col-md-10"></div>
+                                            <div class="col-md-2 tools-align">
+                                                <img src="https://img.icons8.com/flat_round/64/000000/recurring-appointment.png" class="tools"/>
+                                                <img src="https://img.icons8.com/color/48/000000/export-excel.png" class="tools"/>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center">
+                                            <div class="col-md-6">  
+                                                <h4 class="card-title">Tratamientos VHC</h4>
+                                                <h5 class="card-subtitle">Datos recopilados sobre tratamientos VHC</h5>
+                                            </div>
+                                            <div class="col-md-4">
+                                            </div>
+                                            <div class="col-md-2 refresh-button align-items-center">
+                                            </div>
+                                         </div>
+                                        <!-- Smart Table  -->
+                                        <div class="table  table-responsive smart-table">
+                                            <ng2-smart-table 
+                                                [settings]="settingsListTreatmentsVHC" 
+                                                    [source]="documents"
+                                                    (custom)="onCustomActionArchivos(content,modalConfirmarBorrar,$event)">
+                                            </ng2-smart-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                         <!-- ============================================================== -->
+                        <!-- Tables -->
+                        <!-- ============================================================== -->
+                        <div class="row" [hidden]="vhcTableVisible">
+                            <div class="col-sm-12">		
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row tools-content">
+                                            <div class="col-md-10"></div>
+                                            <div class="col-md-2 tools-align">
+                                                <img src="https://img.icons8.com/flat_round/64/000000/recurring-appointment.png" class="tools"/>
+                                                <img src="https://img.icons8.com/color/48/000000/export-excel.png" class="tools"/>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center">
+                                            <div class="col-md-6">  
+                                                <h4 class="card-title">Tratamientos VHC</h4>
+                                                <h5 class="card-subtitle">Datos recopilados sobre tratamientos VHC</h5>
+                                            </div>
+                                            <div class="col-md-4">
+                                            </div>
+                                            <div class="col-md-2 refresh-button align-items-center">
+                                            </div>
+                                         </div>
+                                        <!-- Smart Table  -->
+                                        <div class="table  table-responsive smart-table">
+                                            <ng2-smart-table 
+                                                [settings]="settingsListTreatmentsVHC" 
+                                                    [source]="documents"
+                                                    (custom)="onCustomActionArchivos(content,modalConfirmarBorrar,$event)">
+                                            </ng2-smart-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ============================================================== -->
+                        <!-- Tables -->
+                        <!-- ============================================================== -->
+                        <div class="row" [hidden]="haiTableVisible">
+                            <div class="col-sm-12">		
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row tools-content">
+                                            <div class="col-md-10"></div>
+                                            <div class="col-md-2 tools-align">
+                                                <img src="https://img.icons8.com/flat_round/64/000000/recurring-appointment.png" class="tools"/>
+                                                <img src="https://img.icons8.com/color/48/000000/export-excel.png" class="tools"/>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center">
+                                            <div class="col-md-6">  
+                                                <h4 class="card-title">Tratamientos HAI</h4>
+                                                <h5 class="card-subtitle">Datos recopilados sobre tratamientos HAI</h5>
+                                            </div>
+                                            <div class="col-md-4">
+                                            </div>
+                                            <div class="col-md-2 refresh-button align-items-center">
+                                            </div>
+                                         </div>
+                                        <!-- Smart Table  -->
+                                        <div class="table  table-responsive smart-table">
+                                            <ng2-smart-table 
+                                                [settings]="settingsListTreatmentsHAI" 
+                                                    [source]="documents"
+                                                    (custom)="onCustomActionArchivos(content,modalConfirmarBorrar,$event)">
+                                            </ng2-smart-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ============================================================== -->
+                        <!-- Tables -->
+                        <!-- ============================================================== -->
+                        <div class="row" [hidden]="hccTableVisible">
+                            <div class="col-sm-12">		
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row tools-content">
+                                            <div class="col-md-10"></div>
+                                            <div class="col-md-2 tools-align">
+                                                <img src="https://img.icons8.com/flat_round/64/000000/recurring-appointment.png" class="tools"/>
+                                                <img src="https://img.icons8.com/color/48/000000/export-excel.png" class="tools"/>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center">
+                                            <div class="col-md-6">  
+                                                <h4 class="card-title">Tratamientos HCC</h4>
+                                                <h5 class="card-subtitle">Datos recopilados sobre tratamientos HCC</h5>
+                                            </div>
+                                            <div class="col-md-4">
+                                            </div>
+                                            <div class="col-md-2 refresh-button align-items-center">
+                                            </div>
+                                         </div>
+                                        <!-- Smart Table  -->
+                                        <div class="table  table-responsive smart-table">
+                                            <ng2-smart-table 
+                                                [settings]="settingsListTreatmentsHCC" 
+                                                    [source]="documents"
+                                                    (custom)="onCustomActionArchivos(content,modalConfirmarBorrar,$event)">
+                                            </ng2-smart-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ============================================================== -->
+                        <!-- Tables -->
+                        <!-- ============================================================== -->
+                        <div class="row" [hidden]="alfTableVisible">
+                            <div class="col-sm-12">		
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row tools-content">
+                                            <div class="col-md-10"></div>
+                                            <div class="col-md-2 tools-align">
+                                                <img src="https://img.icons8.com/flat_round/64/000000/recurring-appointment.png" class="tools"/>
+                                                <img src="https://img.icons8.com/color/48/000000/export-excel.png" class="tools"/>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center">
+                                            <div class="col-md-6">  
+                                                <h4 class="card-title">Tratamientos ALF</h4>
+                                                <h5 class="card-subtitle">Datos recopilados sobre tratamientos ALF</h5>
+                                            </div>
+                                            <div class="col-md-4">
+                                            </div>
+                                            <div class="col-md-2 refresh-button align-items-center">
+                                            </div>
+                                         </div>
+                                        <!-- Smart Table  -->
+                                        <div class="table  table-responsive smart-table">
+                                            <ng2-smart-table 
+                                                [settings]="settingsListTreatmentsALF" 
+                                                    [source]="documents"
+                                                    (custom)="onCustomActionArchivos(content,modalConfirmarBorrar,$event)">
+                                            </ng2-smart-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </ng-template>
+                   
+                </ngb-tab>
+                
+        </ngb-tabset>
+        </div>
+    </div>
+</div>
+<!-- End Row -->

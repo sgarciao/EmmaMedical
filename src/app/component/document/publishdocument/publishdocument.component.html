@@ -1,0 +1,302 @@
+<!-- Row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card ">   
+            <div class="form-body">
+                <div class="card-body">
+                    
+                </div>
+            </div>
+            <ngb-tabset type="pills" class="custom-pills">
+                <!-- TAB -->
+                <ngb-tab title="Publicación De Documentos">
+                    <ng-template ngbTabContent>
+                        <!-- ============================================================== -->
+                        <!-- place order / Exchange -->
+                        <!-- ============================================================== -->
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="card">
+                                    <div class="card-body bg-light">
+                                        <div class="row" >
+                                                <div class="col-md-4">
+                                                    <div class="form-group has-success" >
+                                                        <label _ngcontent-nod-c304="">            
+                                                            <input _ngcontent-nod-c304="" ng-checked="checkbox_status" 
+                                                            type="checkbox" 
+                                                            value="checkbox_value" 
+                                                            (change) = "checkUploadFilesByZonesAndRoutes()"> Publicación de Documentos por Zona / Ruta 
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4" [hidden]="visibleCombosZonesAndRoutes" >
+                                                <div class="form-group has-success" >
+                                                    <label class="control-label">Zona</label>
+                                                    <select id="zonaU" class="custom-select form-control-sm select-style" 
+                                                    [(ngModel)]="comboZonasU" 
+                                                    name="zonaU" 
+                                                    (change)="cambioZonas(1, comboZonasU.zone_id)"> 
+                                                        <option [ngValue]="zonaU" *ngFor="let zonaU of zonesU" >{{zonaU.description}}</option> 
+                                                    </select> 
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4" [hidden]="visibleCombosZonesAndRoutes">
+                                                <div class="form-group has-success">
+                                                    <label class="control-label">Ruta</label>
+                                                    <select id="rutaU" class="custom-select form-control-sm select-style" 
+                                                    [(ngModel)]="comboRutasU" 
+                                                    name="rutaU" 
+                                                    (change)="cambioRutasU(comboZonasU.zone_id, comboRutasU.route_id)"
+                                                    [disabled]="disableRutasCombo"> 
+                                                        <option [ngValue]="rutaU" *ngFor="let rutaU of rutasU" >{{rutaU.description}}</option> 
+                                                    </select> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4" [hidden]="visibleCombosZonesAndRoutes">
+                                                <div class="form-group has-success">
+                                                    <label class="control-label">Existen {{numSucursales}} sucursales. <span (click)="verSucursales(ModalListaSucursalesZonaRuta)">Ver sucursales</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4" [hidden]="visibleCombosCustomerAndbranches">
+                                                <div class="form-group has-success">
+                                                    <label class="control-label">Cliente</label>
+                                                    <select id="clienteU" class="custom-select  form-control-sm select-style" 
+                                                    [(ngModel)]="comboClienteU" 
+                                                    name="clienteU" 
+                                                    (change)="cambioClienteU(comboClienteU.client_identity)" 
+                                                    [disabled]="visibleCombosCustomerAndbranches"> 
+                                                        <option [ngValue]="clienteU" *ngFor="let clienteU of clientesU" >{{clienteU.commercial_name}}</option> 
+                                                    </select> 
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-4" [hidden]="visibleCombosCustomerAndbranches">
+                                                <div class="form-group">
+                                                    <label class="control-label">Sucursal</label>
+                                                    <select id="sucursalU" class="custom-select mr-sm-1 select-style" 
+                                                    [(ngModel)]="comboSucursalU" 
+                                                    name="sucursalU" 
+                                                    [disabled] = "disableSucursalCombo"
+                                                    (change)="cambioSucursal()"> 
+                                                        <option [ngValue]="sucursalU" *ngFor="let sucursalU of sucursalesU" >{{sucursalU.business_name}}</option> 
+                                                    </select> 
+                                                </div>
+                                            </div>
+    
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Folders</label>
+                                                    <select id="folderU" class="custom-select form-control-sm select-style" 
+                                                    [(ngModel)]="comboFolderU" 
+                                                    name="folderU"
+                                                    [disabled]="disableFoldersCombo"
+                                                    (change)="cambioFolders($event)"> 
+                                                        <option [ngValue]="folderU" *ngFor="let folderU of foldersU" >{{folderU.brief_description}}</option> 
+                                                    </select> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                                <input type="file" 
+                                                                accept = "application/pdf" 
+                                                                [(ngModel)] = "nombreFile" 
+                                                                (change)="OnSelectedFile($event)" 
+                                                                multiple  
+                                                                (click)="validaInputDocumento($event)" 
+                                                                #inputFile 
+                                                                class="custom-file-input" id="inputGroupFile01"
+                                                                [disabled]="disableSelectFile"
+                                                                class="custom-file-input" 
+                                                                id="customFile" 
+                                                                name="filename"
+                                                                >
+                                                                <label 
+                                                                class="custom-file-label file-upload" 
+                                                                for="customFile">Seleccione los archivos</label>   
+                                                </div>  
+                                                <div class="form-group">
+                                                    <button type="button" (click)="onUpload()" class="btn btn-sm btn-success button-styles" [disabled]="disabledBUttonSubir">Subir</button>
+                                                    <button class="btn btn-danger" (click)="reset()"  class="btn btn-sm btn-warning button-styles" [disabled] = "disableReiniciar">Reiniciar</button>
+                                                    </div>
+                                                </div>
+                                            </div>    
+                                           
+                                            <div class="row" >
+                                                <div class="col-md-4" >
+                                                    <!--<p><ngb-progressbar *ngIf="progressBar.visible" [showValue]="progressBar.showValue" [type]="progressBar.type" [value]="progressBar.value" [max]="progressBar.max" [height]="progressBar.height" [striped]="progressBar.striped" [animated]="progressBar.animated"></ngb-progressbar></p>-->
+                                                    <ngb-alert *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true" [type]="alert.type" >{{ alert.message }}</ngb-alert>
+                                                </div>
+                                                <div class="col-md-4" [hidden]="progres_spinner">
+                                                    <div class="spinner-border text-success" role="status" >
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- Tables -->
+                        <!-- ============================================================== -->
+                        <div class="row" [hidden]="visibleCombosCustomerAndbranches">
+                            <div class="col-sm-12">		
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-6">
+                                                <h4 class="card-title">Lista Archivos</h4>
+                                                <h5 class="card-subtitle">Documentos nuevos</h5>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <ngb-alert *ngIf="!staticAlertClosed2" 
+                                                (close)="staticAlertClosed2 = true" 
+                                                [type]="alert_2.type" >{{ alert_2.message }}</ngb-alert>
+                                            </div>
+                                            <div class="col-md-2 refresh-button align-items-center">
+                                                <img src="https://img.icons8.com/officel/16/000000/refresh.png" 
+                                                class = "icon-refresh"
+                                                [hidden] = "refresh_files_button" (click) = "refreshFileList()"/>
+                                                <div class="spinner-border text-success" role="status" [hidden]="progres_spinner_refresh_files">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
+                                         </div>
+                                        <!-- Smart Table  -->
+                                        <div class="table table-responsive smart-table">
+                                            <ng2-smart-table 
+                                                [settings]="settingsDocuments" 
+                                                [source]="documents"
+                                                (custom)="onCustomActionArchivos(content,modalConfirmarBorrar,$event)">
+                                            </ng2-smart-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ============================================================== -->
+                        <!-- Tables -->
+                        <!-- ============================================================== -->
+                        <div class="row" [hidden]="visibleCombosZonesAndRoutes">
+                            <div class="col-sm-12">		
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <h4 class="card-title">Lista clientes y sucursales por zona / ruta</h4>
+                                                <h5 class="card-subtitle">La siguiente lista es de las sucursales a las cuales se les envió el archivo</h5>
+                                            </div>
+                                    </div>
+                                        <!-- Smart Table  -->
+                                        <div class="table table-responsive smart-table">
+                                            <ng2-smart-table 
+                                                [settings]="settingsDocumentsZoneRoute" 
+                                                [source]="sucursales"
+                                                (custom)="onCustomActionArchivosZonasRutas(content, modalConfirmarBorrar, $event)">
+                                            </ng2-smart-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                   
+                </ngb-tab>
+                
+                <!-- MODAL LISTA DE ARCHIVOS -->
+                <ng-template #ModalListaSucursalesZonaRuta let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Sucursales para la ruta {{comboRutasU.description}}</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-12">		
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <h4 class="card-title">Lista Sucursales</h4>
+                                            <h5 class="card-subtitle">Sucursales a las que se enviará el documento</h5>
+                                        </div>
+                                     </div>
+                                    <!-- Smart Table  -->
+                                    <div class="table table-responsive smart-table">
+                                        <ng2-smart-table 
+                                        [settings]="settingsDocumentsByZoneAndRoute" 
+                                        [source]="sucursalesTable"
+                                            (custom)="onCustomActionSucursalesUncheck($event)">
+                                        </ng2-smart-table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div>
+                            Sucursales {{sucursalesU}}
+                        </div>-->
+                    </div>  
+                </ng-template>
+
+                <!-- MODAL SUCURSALES POR ZONA RUTA -->
+                <ng-template #ModalListaDeArchivos let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Sucursales para la ruta {{comboRutasU.description}}</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-md-4" [hidden]="visibleCombosZonesAndRoutes">
+                            <div class="form-group has-success">
+                                <label class="control-label">Existen {{numSucursales}} sucursales</label>
+                                <select id = "sucursalU" class="custom-select  form-control-sm select-style" 
+                                [(ngModel)] = "comboSucursalU" 
+                                name = "sucursalU" 
+                                multiple data-actions-box="true"
+                                [disabled] = "disableSucursalesVista"> 
+                                    <option [ngValue]="sucursalU" *ngFor="let sucursalU of sucursalesU" >{{sucursalU.customer_branch_name}}</option> 
+                                </select>
+                            </div>
+                        </div>
+                    </div>  
+                </ng-template>
+                <!-- MODAL -->
+                <ng-template #content let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Open File</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <iframe id="mypdf" >Wrong...</iframe>
+                        <!--<object type="application/pdf" [data]="cleanURL(urlFile)" width="100%" height="500" style="height: 85vh;">No Support</object>-->
+                    </div>  
+                </ng-template>
+                <!-- MODAL -->
+                <ng-template #modalConfirmarBorrar let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Eliminar Documento</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Seguro que quieres eliminar el archivo?
+                        <button type="button" (click)="borrarDocumento()" class="btn btn-primary" >Si</button>
+                        <button type="button" (click)="d('Cross click')" class="btn btn-danger">No</button>
+                    </div>  
+                </ng-template>
+        </ngb-tabset>
+        </div>
+    </div>
+</div>
+<!-- End Row -->

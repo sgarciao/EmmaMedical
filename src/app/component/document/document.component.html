@@ -1,0 +1,487 @@
+<!-- Row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card ">   
+            <div class="form-body">
+                <div class="card-body">
+                    
+                </div>
+            </div>
+            <ngb-tabset type="pills" class="custom-pills">
+                <!-- TAB -->
+                <ngb-tab title="Nuevos">
+                    <ng-template ngbTabContent>
+                        <!-- ============================================================== -->
+                        <!-- place order / Exchange -->
+                        <!-- ============================================================== -->
+                        <div class="row">
+                            <!-- Buscar Documentos -->
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="card">
+                                        <div class="card-body bg-light text-center">
+                                            <!--/row-->
+                                            <div class="row">
+                                           <!------------------------------------------------------->
+                                           <!--<ng-template #rt let-r="result" let-t="term">
+                                            <img [src]="'https://img.icons8.com/color/48/000000/company.png'" class="mr-1" style="width: 16px">
+                                            <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+                                           </ng-template>
+                                           <label for="typeahead-template">Search for a state:</label>
+                                            <input
+                                                id="typeahead-template"
+                                                type="text"
+                                                class="form-control"
+                                                [(ngModel)]="model"
+                                                [ngbTypeahead]="search"
+                                                (focus)="focus$.next($any($event).target.value)"
+                                                (click)="click$.next($any($event).target.value)"
+                                                #instance="ngbTypeahead" 
+                                                [resultTemplate]="rt"
+                                                [inputFormatter]="formatter"
+                                            />
+                                            <hr>
+                                            <pre>Model: {{ model | json }}</pre>-->
+                                            <!--    <ng-template #rt let-r="result" let-t="term">
+                                                    <img [src]="'https://img.icons8.com/color/48/000000/company.png'" class="mr-1" style="width: 16px">
+                                                    <ngb-highlight [result]="r.commercial_name" [term]="t"></ngb-highlight>
+                                                </ng-template>
+                                                <div class="col-md-4">
+                                                    <label for="typeahead-template">Search for a customer:</label>
+                                                    <input 
+                                                    id="typeahead-template" 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    [(ngModel)]="model" 
+                                                    [ngbTypeahead]="search" 
+                                                    #instance="ngbTypeahead" 
+                                                    [resultTemplate]="rt"
+                                                    [inputFormatter]="formatter" 
+            
+                                                    (selectItem)="cambioCliente2($event)"
+                                                    />-->
+                                           
+                                                   <!-- <pre>Model: {{ model | json }}</pre>
+                                               </div>-->
+                                           <!-------------------------------------------------------->
+                                           
+                                                <div class="col-md-4">
+                                                    <div class="form-group has-success">
+                                                        <label class="control-label">Cliente</label>
+                                                        <select id="cliente" class="custom-select mr-sm-2" [(ngModel)]="comboCliente" name="cliente" (change)="cambioCliente(comboCliente.client_identity)" required> 
+                                                            <option [ngValue]="cliente" *ngFor="let cliente of clientes" >{{cliente.commercial_name}}</option> 
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Sucursal</label>
+                                                        <select id="sucursal" class="custom-select mr-sm-2" [(ngModel)]="comboSucursal" name="sucursal" [disabled]="disabledComboSucursal"> 
+                                                            <option [ngValue]="sucursal" *ngFor="let sucursal of sucursales" >{{sucursal.business_name}}</option> 
+                                                        </select>     
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Folders</label>
+                                                        <select id="folder" class="custom-select mr-sm-2" [(ngModel)]="comboFolder" name="folder" required> 
+                                                            <option [ngValue]="folder" *ngFor="let folder of folders" >{{folder.brief_description}}</option> 
+                                                        </select>                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/row-->
+                                            <div class="row">
+                                                <!--/span-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Fecha Inicio</label>
+                                                        <input type="date" [(ngModel)]="start_date" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Fecha Fin</label>
+                                                        <input type="date" [(ngModel)]="end_date" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        <label>&nbsp;</label>
+                                                        <div class="input-group">
+                                                            <button class="btn btn-info" 
+                                                            (click)="buscar(comboCliente.client_identity,comboSucursal.branch_client_id,comboFolder.id)">Buscar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <ngb-alert *ngIf="!staticAlertClosedBuscar" 
+                                                    (close)="staticAlertClosedBuscar = true" 
+                                                    [type]="alertBuscar.type" >{{ alertBuscar.message }}</ngb-alert>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- Tables -->
+                        <!-- ============================================================== -->
+                        <div class="row">
+                            <div class="col-sm-12">		
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h4 class="card-title">Lista Archivos</h4>
+                                                <h5 class="card-subtitle">Documentos nuevos</h5>
+                                            </div>
+                                    </div>
+                                        <!-- Smart Table  -->
+                                        <div class="table table-responsive smart-table">
+                                            <ng2-smart-table 
+                                                [settings]="settingsDocuments" 
+                                                [source]="documents"
+                                                (custom)="onCustomActionArchivos(content,content2,content3,modalConfirmarBorrar, $event)">
+                                            </ng2-smart-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <!-- TAB -->
+                <ngb-tab title="Pendientes">
+                    <ng-template ngbTabContent>
+                        <div class="card">
+                            <div class="card-body bg-light text-center">
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group has-success">
+                                            <label class="control-label">Cliente</label>
+                                            <select id="clienteP" class="custom-select mr-sm-2" [(ngModel)]="comboClienteP" 
+                                            name="clienteP" 
+                                            (change) = "cambioClienteP(comboClienteP.client_identity)"> 
+                                                <option [ngValue]="clienteP" *ngFor="let clienteP of clientesP" >{{clienteP.commercial_name}}</option> 
+                                            </select> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Sucursal</label>
+                                            <select id="sucursalP" class="custom-select mr-sm-2" [(ngModel)]="comboSucursalP" name="sucursalP"  [disabled]="disabledComboSucursalP"> 
+                                                <option [ngValue]="sucursalP" *ngFor="let sucursalP of sucursalesP" >{{sucursalP.business_name}}</option> 
+                                            </select> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Folders</label>
+                                            <select id="folderP" class="custom-select mr-sm-2" [(ngModel)]="comboFolderP" name="folderP"> 
+                                                <option [ngValue]="folderP" *ngFor="let folderP of foldersP" >{{folderP.brief_description}}</option> 
+                                            </select> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/row-->
+                                <div class="row"><!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Fecha Inicio</label>
+                                            <input type="date" [(ngModel)]="start_dateP" class="form-control">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Fecha Fin</label>
+                                            <input type="date" [(ngModel)]="end_dateP" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <label>&nbsp;</label>
+                                            <div class = "button-group">
+                                                <button class="btn btn-success" (click)="buscarPendientes(comboClienteP.client_identity,comboSucursalP.branch_client_id,comboFolderP.id)">Buscar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class = "col-md-3">
+                                        <ngb-alert *ngIf="!staticAlertClosedPendientes" (close)="staticAlertClosedPendientes = true" [type]="alertPendientes.type" >{{ alertPendientes.message }}</ngb-alert>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- Tables -->
+                        <!-- ============================================================== -->
+                        <div class="row">
+                            <div class="col-sm-12">		
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Lista Archivos</h4>
+                                        <h5 class="card-subtitle">Documentos Pendientes</h5>
+                                        <!-- Smart Table  -->
+                                        <div class="table table-responsive smart-table">
+                                            <ng2-smart-table 
+                                                [settings]="settingsDocumentsP" 
+                                                [source]="documentsP"
+                                                (custom)="onCustomActionArchivos(content,content2,content3,modalConfirmarBorrar, $event)"
+                                            >
+                                            </ng2-smart-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <!-- TAB -->
+                <ngb-tab title="Aprobados">
+                    <ng-template ngbTabContent>
+                        <div class="card">
+                            <div class="card-body bg-light text-center">
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group has-success">
+                                            <label class="control-label">Cliente</label>
+                                            <select id="clienteA" class="custom-select mr-sm-2" [(ngModel)]="comboClienteA" name="clienteA" (change)="cambioClienteA(comboClienteA.client_identity)"> 
+                                                <option [ngValue]="clienteA" *ngFor="let clienteA of clientesA" >{{clienteA.commercial_name}}</option> 
+                                            </select> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Sucursal</label>
+                                            <select id="sucursalA" class="custom-select mr-sm-2" [(ngModel)]="comboSucursalA" name="sucursalA" [disabled]="disabledComboSucursalA"> 
+                                                <option [ngValue]="sucursalA" *ngFor="let sucursalA of sucursalesA" >{{sucursalA.business_name}}</option> 
+                                            </select> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Folders</label>
+                                            <select id="folderA" class="custom-select mr-sm-2" [(ngModel)]="comboFolderA" name="folderA"> 
+                                                <option [ngValue]="folderA" *ngFor="let folderA of foldersA" >{{folderA.brief_description}}</option> 
+                                            </select> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Fecha Inicio</label>
+                                            <input type="date" [(ngModel)]="start_dateA" class="form-control">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Fecha Fin</label>
+                                            <input type="date" [(ngModel)]="end_dateA" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <label>&nbsp;</label>
+                                            <div class="input-group">
+                                                <button class="btn btn-info" (click)="buscarAprobados(comboClienteA.client_identity,comboSucursalA.branch_client_id,comboFolderA.id)">Buscar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <ngb-alert *ngIf="!staticAlertClosedAprobados" 
+                                        (close)="staticAlertClosedAprobados = true"
+                                         [type]="alertAprobados.type" >{{ alertAprobados.message }}</ngb-alert>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- Tables -->
+                        <!-- ============================================================== -->
+                        <div class="row">
+                            <div class="col-sm-12">		
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Lista Archivos</h4>
+                                        <h5 class="card-subtitle">Documentos Aprobados</h5>
+                                        <!-- Smart Table  -->
+                                        <div class="table table-responsive smart-table">
+                                            <ng2-smart-table 
+                                                [settings]="settingsDocumentsA" 
+                                                [source]="documentsA"
+                                                (custom)="onCustomActionArchivos(content,content2,content3,modalConfirmarBorrar, $event)"
+                                            >
+                                            </ng2-smart-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <!-- TAB -->
+                <ngb-tab title="Rechazados">
+                    <ng-template ngbTabContent>
+                        <div class="card">
+                            <div class="card-body bg-light text-center">
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Cliente</label>
+                                            <select id="clienteR" class="custom-select mr-sm-2" [(ngModel)]="comboClienteR" name="clienteR" (change)="cambioClienteR(comboClienteR.client_identity)"> 
+                                                <option [ngValue]="clienteR" *ngFor="let clienteR of clientesR" >{{clienteR.commercial_name}}</option> 
+                                            </select> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Sucursal</label>
+                                            <select id="sucursalR" class="custom-select mr-sm-2" [(ngModel)]="comboSucursalR" name="sucursalR" [disabled]="disabledComboSucursalR"> 
+                                                <option [ngValue]="sucursalR" *ngFor="let sucursalR of sucursalesR" >{{sucursalR.business_name}}</option> 
+                                            </select> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Folders</label>
+                                            <select id="folderR" class="custom-select mr-sm-2" [(ngModel)]="comboFolderR" name="folderR"> 
+                                                <option [ngValue]="folderR" *ngFor="let folderR of foldersR" >{{folderR.brief_description}}</option> 
+                                            </select> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Fecha Inicio</label>
+                                            <input type="date" [(ngModel)]="start_dateR" class="form-control">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Fecha Fin</label>
+                                            <input type="date" [(ngModel)]="end_dateR" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <label>&nbsp;</label>
+                                            <div class="input-group">
+                                                <button class="btn btn-info" (click)="buscarRechazados(comboClienteR.client_identity,comboSucursalR.branch_client_id,comboFolderR.id)">Buscar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <ngb-alert *ngIf="!staticAlertClosedRechazados" (close)="staticAlertClosedRechazados = true" [type]="alertRechazados.type" >{{ alertRechazados.message }}</ngb-alert>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- Tables -->
+                        <!-- ============================================================== -->
+                        <div class="row">
+                            <div class="col-sm-12">		
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Lista Archivos</h4>
+                                        <h5 class="card-subtitle">Documentos Rechazados</h5>
+                                        <!-- Smart Table  -->
+                                        <div class="table table-responsive smart-table">
+                                            <ng2-smart-table 
+                                                [settings]="settingsDocumentsR" 
+                                                [source]="documentsR"
+                                                (custom)="onCustomActionArchivos(content,content2,content3,modalConfirmarBorrar,$event)"
+                                            >
+                                            </ng2-smart-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <!-- MODAL -->
+                <ng-template #content let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Open File</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <iframe id="mypdf" >Wrong...</iframe>
+                    </div> 
+                </ng-template>
+                <!-- MODAL -->
+                <ng-template #content2 let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Motivo de Rechazo</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{rechazoMotivo}}
+                    </div>  
+                </ng-template>
+                <!-- MODAL -->
+                <ng-template #content3 let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Actualizar Archivo</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <input type="file" [(ngModel)]="nombreFileRechazados" (change)="OnSelectedFileRechazados($event)" #inputFile>
+                                    <button type="button" (click)="onUploadRechazados()" class="btn btn-primary">Upload</button>
+                                    <button class="btn btn-danger" (click)="resetRechazados()">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p><ngb-progressbar *ngIf="progressBarR.visible" [showValue]="progressBarR.showValue" [type]="progressBarR.type" [value]="progressBarR.value" [max]="progressBarR.max" [height]="progressBarR.height" [striped]="progressBarR.striped" [animated]="progressBarR.animated"></ngb-progressbar></p>
+                                <ngb-alert *ngIf="!staticAlertClosedR" (close)="staticAlertClosedR = true" [type]="alert.type" >{{ alert.message }}</ngb-alert>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="button" *ngIf="!staticAlertClosedRButton" (click)="cerrarModalRechazados()" class="btn btn-primary">Aceptar</button>
+                            </div>
+                        </div>
+                    </div>  
+                </ng-template>
+                <!-- MODAL -->
+                <ng-template #modalConfirmarBorrar let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Eliminar Documento</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Seguro que quieres eliminar el archivo?
+                        <button type="button" (click)="borrarDocumento()" class="btn btn-primary">Si</button>
+                        <button type="button" (click)="d('Cross click')" class="btn btn-danger">No</button>
+                    </div>  
+                </ng-template>
+        </ngb-tabset>
+        </div>
+    </div>
+</div>
+<!-- End Row -->
