@@ -11,12 +11,12 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Publicación De documentos',
+      title: 'Tratamientos',
       menu: [
         { 
-          value: 0, title: 'Configuración',
+          value: 0, title: 'Tratamientos',
           submenu: [
-            { value: 2, title: 'Publicación De documentos', url: '/publishDocument' }
+            { value: 2, title: 'Tratamientos', url: '/treatments' }
           ]
         },
       ]
