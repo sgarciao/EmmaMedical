@@ -16,6 +16,7 @@ export class TratamientosComponent implements OnInit {
   haiTableVisible = true;
   hccTableVisible = true;
   alfTableVisible = true;
+  tohTableVisible = true;
 
   countries: string;
   states: string;
@@ -121,6 +122,7 @@ export class TratamientosComponent implements OnInit {
 
   settingsListTreatmentsNASH = tableData.settingsListTreatmentsNASH;
   settingsListTreatmentsASH = tableData.settingsListTreatmentsASH;
+  settingsListTreatmentsVHC = tableData.settingsListTreatmentsVHC;
   settingsListTreatmentsVHB = tableData.settingsListTreatmentsVHB;
   settingsListTreatmentsHAI = tableData.settingsListTreatmentsHAI;
   settingsListTreatmentsHCC = tableData.settingsListTreatmentsHCC;
@@ -280,6 +282,16 @@ export class TratamientosComponent implements OnInit {
       this.haiTableVisible = true;
       this.hccTableVisible = true;
       this.alfTableVisible = false;
+    }
+    if (localStorage.getItem('treatment_type') == '8'){
+      this.title_tab = 'TOH';
+      this.nashTableVisible = true; 
+      this.ashTableVisible = true;
+      this.vhbTableVisible = true;
+      this.vhcTableVisible = true;
+      this.haiTableVisible = true;
+      this.hccTableVisible = true;
+      this.tohTableVisible = false;
     }
     console.log("Item " + localStorage.getItem('treatment_type'));
   }

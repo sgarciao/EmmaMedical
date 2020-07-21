@@ -30,6 +30,9 @@ export class TratamientostiposComponent implements OnInit {
     if (type == 7){
       localStorage.setItem('treatment_type', '7');
     }
+    if (type == 8){
+      localStorage.setItem('treatment_type', '8');
+    }
     this.router.navigate(['/treatments']);
   }
   backPage(){

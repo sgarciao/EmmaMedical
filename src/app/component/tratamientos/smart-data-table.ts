@@ -46,8 +46,8 @@ export let settingsListTreatmentsNASH = {
       width: '10%',
       type: 'html'
     },
-    HIPERTRIGLISERIDEMIA : {
-      title: 'HIPERTRIGLISERIDEMIA',
+    HIPERTRIGLICERIDEMIA : {
+      title: 'HIPERTRIGLICERIDEMIA',
       filter: true,
       width: '10%',
       type: 'html'

@@ -184,8 +184,8 @@
                                         </div>
                                         <div class="row align-items-center">
                                             <div class="col-md-6">  
-                                                <h4 class="card-title">Tratamientos VHC</h4>
-                                                <h5 class="card-subtitle">Datos recopilados sobre tratamientos VHC</h5>
+                                                <h4 class="card-title">Tratamientos VHB</h4>
+                                                <h5 class="card-subtitle">Datos recopilados sobre tratamientos VHB</h5>
                                             </div>
                                             <div class="col-md-4">
                                             </div>
@@ -195,7 +195,7 @@
                                         <!-- Smart Table  -->
                                         <div class="table  table-responsive smart-table">
                                             <ng2-smart-table 
-                                                [settings]="settingsListTreatmentsVHC" 
+                                                [settings]="settingsListTreatmentsVHB" 
                                                     [source]="documents"
                                                     (custom)="onCustomActionArchivos(content,modalConfirmarBorrar,$event)">
                                             </ng2-smart-table>
@@ -334,6 +334,44 @@
                                             <div class="col-md-6">  
                                                 <h4 class="card-title">Tratamientos ALF</h4>
                                                 <h5 class="card-subtitle">Datos recopilados sobre tratamientos ALF</h5>
+                                            </div>
+                                            <div class="col-md-4">
+                                            </div>
+                                            <div class="col-md-2 refresh-button align-items-center">
+                                            </div>
+                                         </div>
+                                        <!-- Smart Table  -->
+                                        <div class="table  table-responsive smart-table">
+                                            <ng2-smart-table 
+                                                [settings]="settingsListTreatmentsALF" 
+                                                    [source]="documents"
+                                                    (custom)="onCustomActionArchivos(content,modalConfirmarBorrar,$event)">
+                                            </ng2-smart-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- ============================================================== -->
+                        <!-- Tables -->
+                        <!-- ============================================================== -->
+                        <div class="row" [hidden]="tohTableVisible">
+                            <div class="col-sm-12">		
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row tools-content">
+                                            <div class="col-md-10"></div>
+                                            <div class="col-md-2 tools-align">
+                                                <img src="https://img.icons8.com/flat_round/64/000000/recurring-appointment.png" class="tools"/>
+                                                <img src="https://img.icons8.com/color/48/000000/export-excel.png" class="tools"/>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center">
+                                            <div class="col-md-6">  
+                                                <h4 class="card-title">Tratamientos TOH</h4>
+                                                <h5 class="card-subtitle">Datos recopilados sobre tratamientos TOH</h5>
                                             </div>
                                             <div class="col-md-4">
                                             </div>
