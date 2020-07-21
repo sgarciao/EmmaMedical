@@ -14,32 +14,14 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Treatments Types',
+      title: 'Tratamientos',
       menu: [
-        {
-          value: 1, title: 'Carpeta operativa',
+        { 
+          value: 0, title: 'Tratamientos',
           submenu: [
-            { value: 1, title: 'Documentos oficiales', url: '/document' },
-            { value: 2, title: 'Plan de trabajo', url: '/document' },
-            { value: 3, title: 'Personal operativo', url: '/document' },
-            { value: 4, title: 'Información técnica', url: '/document' }
+            { value: 2, title: 'Tratamientos', url: '/treatments-types' }
           ]
         },
-        {
-          value: 3, title: 'Reportes',
-          submenu: [
-            { value: 1, title: 'Análisis de tendencia', url: '/document' },
-            { value: 2, title: 'Reporte de monitoreo y control de roedores e insectos rastreros', url: '/document' },
-            { value: 3, title: 'Reporte de inspección y aplicación de plaguicidas', url: '/document' },
-            { value: 4, title: 'Reporte de monitoreo y control de insectos voladores', url: '/document' }
-          ]
-        },
-        {
-          value: 4, title: 'Certificados',
-          submenu: [
-            { value: 1, title: 'Servicios', url: '/document' }
-          ]
-        }
       ]
     },
     component: TratamientostiposComponent
