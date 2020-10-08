@@ -28,7 +28,7 @@ export class AuthService {
     }).do((authResult: any) => {
       sessionStorage.setItem('access_token', authResult.data.access_token);
       sessionStorage.setItem('refresh_token', authResult.data.refresh_token);
-     
+      localStorage.setItem('customer', authResult.data.user_data.user_id);
       if (authResult.code == '200') {
         let i = '';
         this.router.navigate(['/options']);
