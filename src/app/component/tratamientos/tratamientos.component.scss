@@ -1,0 +1,27 @@
+:host /deep/ .row_update{
+    background-color: cadetblue;
+  }
+
+  :host /deep/ .row_get{
+    background-color: white;
+  }
+
+  :host /deep/ .row_new{
+    background-color: #57BAA0;
+  }
+  :host /deep/ .row_sem_red{
+    visibility: hidden;
+  }
+  
+  :host /deep/ .row_sem_red_visible{
+    visibility: visible;
+  }
+
+  :host /deep/ .row_sem_green_hidden{
+    visibility: hidden;
+  }
+  
+  :host /deep/ .row_sem_green_visible{
+    visibility: visible;
+  }
+ 

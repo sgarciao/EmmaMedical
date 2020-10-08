@@ -25,7 +25,8 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
-              "src/assets/scss/style.scss"
+              "src/assets/scss/style.scss",
+              "src/theming.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js"

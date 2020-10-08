@@ -19,7 +19,7 @@ export class AuthService {
         language_id: '1'
       }
     });
-    return this.httpClient.post('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/customer-portal/login',
+    return this.httpClient.post('http://emamedical-dev.us-east-2.elasticbeanstalk.com/v1/ema-medical/medical/login',
     params,
     {
       headers: new HttpHeaders({
@@ -29,44 +29,9 @@ export class AuthService {
       sessionStorage.setItem('access_token', authResult.data.access_token);
       sessionStorage.setItem('refresh_token', authResult.data.refresh_token);
      
-      localStorage.setItem('customer', authResult.data.user_data.user_id);
-      
-      localStorage.setItem('esEmpleado', authResult.data.user_data.is_employee);
-      localStorage.setItem('company1_id', authResult.data.branch_office.company1_id);
-      localStorage.setItem('company_branch_id', authResult.data.branch_office.company_branch_id);
-      localStorage.setItem('user_name_prof', username);
-      console.log(username + ">>>>>>>>> ");
       if (authResult.code == '200') {
         let i = '';
-        if(authResult.data.user_data.is_employee == 1){
-          localStorage.setItem('user', authResult.data.user_data.user_detail.name 
-          + ' '
-          + authResult.data.user_data.user_detail.middle_name
-          + ' '
-          + authResult.data.user_data.user_detail.last_name);
-          console.log(i);
-          i = '/home';
-          localStorage.setItem('branch_office_name', 'Asociación Mexicana de Hepatología');
-          localStorage.setItem('user_type_medical', 'user_1');
-        } else if (authResult.data.user_data.is_employee == 0 ) {
-          console.log(i);
-          i = '/options';
-          if (username=='pemex'){
-            localStorage.setItem('branch_office_name', 'PEMEX');
-            localStorage.setItem('entidad_name', 'PEMEX');  
-            localStorage.setItem('entidad_id', '1');
-
-            
-            localStorage.setItem('customerBranchId', authResult.data.branch_office.id);
-            localStorage.setItem('customerBranch', 'Pemex');
-            localStorage.setItem('user', 'PEMEX');
-            localStorage.setItem('user_type_medical', 'user_0');
-          }
-        } else {
-          console.log('No tiene permisos');
-          i = '/login';
-        }
-        this.router.navigate([i]);
+        this.router.navigate(['/options']);
       }
     })
     .shareReplay();

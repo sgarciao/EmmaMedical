@@ -1,31 +1,59 @@
+export let settingsExample = {
+  columns: {
+    id: {
+      title: 'ID'
+    },
+    name: {
+      title: 'Full Name'
+    },
+    username: {
+      title: 'User Name'
+    },
+    email: {
+      title: 'Email'
+    }
+  }
+};
 
 export let settingsListTreatmentsNASH = {
-  hideSubHeader: true,
-  defaultStyle: false,
+  hideSubHeader: false,
+  defaultStyle: true,
   width: '100px',
+ /* mode: '',*/  
+  delete: {
+    confirmDelete: true
+  },
+  add: {
+    confirmCreate: true
+  },
+  edit: {
+    confirmSave: true
+  }
+  ,
+
   columns: {
     short_name:{
       title: 'Iniciales del Paciente',
       filter: true,
-      width: '30%',
+      width: '50px',
       type: 'html'
     },
     birth_date: {
       title: 'F. Nacimiento',
       filter: true,
-      width: '30%',
+      width: '40px',
       type: 'html'
     },
     gender: {
       title: 'Género',
       filter: true,
-      width: '10%',
+      width: '10px',
       type: 'html'
     },
     child_stadium: {
       title: 'ESTADIO DE CHILD',
       filter: true,
-      width: '10%',
+      width: '10px',
       type: 'html'
     },
     mellitus_diabetes: {
@@ -82,14 +110,14 @@ export let settingsListTreatmentsNASH = {
     sw : {
       title: 'SW  (kPa)',
       filter: true,
-      width: '10%',
+      width: '40px',
       type: 'html'
     }
     , 
     fin_4 : {
       title: 'FIN - 4',
       filter: true,
-      width: '10%',
+      width: '40px',
       type: 'html'
     }
     , 
@@ -224,14 +252,14 @@ export let settingsListTreatmentsNASH = {
     }
   },
   actions: {
-    add: false,
-    edit: false,
-    delete: false,
-    columnTitle: "",
-    custom: [
-              { name: 'viewFileP', title: '<img src="https://e1-cln-ema-store.s3.amazonaws.com/images/icons/Oxygen-Icons.org-Oxygen-Mimetypes-application-pdf.ico"  width="22px" height="22px" />', width: '100px'}],      
-    position:  'right',
+    add: true,
+    edit: true,
+    delete: true,
+    columnTitle: "Actions",
+    custom: [],      
+    position:  'left',
   },
+ 
   attr: { class: 'fixed_header' },
   pager: { perPage: 10, totalKey: 100, float: 'right;' }
   };
@@ -988,14 +1016,14 @@ export let settingsListTreatmentsASH = {
       hideSubHeader: true,
       defaultStyle: false,
       width: '100px',
-      columns: {
+    columns: {
       short_name:{
       title: 'Iniciales del Paciente',
       filter: true,
       width: '30%',
       type: 'html'
       },
-      birth_date: {
+    birth_date: {
       title: 'F. Nacimiento',
       filter: true,
       width: '30%',
