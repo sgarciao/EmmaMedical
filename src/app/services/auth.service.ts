@@ -41,14 +41,10 @@ export class AuthService {
     const params = new HttpParams({
       fromObject: {
         token: access_token,
-        refresh_token: refresh_token,
-        company_id: localStorage.getItem('company1_id'),
-        company_branch_id: localStorage.getItem('company_branch_id'),
-        customer_id: localStorage.getItem('customerBranchId'),
-        customer_branch_id: localStorage.getItem('customerBranch')
+        refresh_token: refresh_token
       }
     });
-    return this.httpClient.post('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/customer-portal/refresh-token',
+    return this.httpClient.post('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-medical/medical/refresh-token',
     params,
     {
       headers: new HttpHeaders({
