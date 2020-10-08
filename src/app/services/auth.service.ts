@@ -64,7 +64,7 @@ export class AuthService {
         user_id: localStorage.getItem('customer')
       }
     });
-    return this.httpClient.post('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/both/logout', 
+    return this.httpClient.post('http://emamedical-dev.us-east-2.elasticbeanstalk.com/v1/ema-medical/medical/logout', 
               params,
               {
                headers: new HttpHeaders({
