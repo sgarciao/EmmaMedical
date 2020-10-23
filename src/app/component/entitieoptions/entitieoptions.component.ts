@@ -1,14 +1,50 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { trim } from 'jquery';
+import { menuModelList } from 'src/app/model/menuModel';
+import { MenuService } from 'src/app/services/menu.service';
+
+
+
 
 @Component({
   selector: 'app-entitieoptions',
   templateUrl: './entitieoptions.component.html',
-  styleUrls: ['./entitieoptions.component.css']
+  styleUrls: ['./entitieoptions.component.css'],
+  providers: [MenuService]
 })
+
 export class EntitieoptionsComponent implements OnInit {
   title_entity: string;
-  constructor( private router:         Router) { }
+  menuListd: menuModelList[] = [];
+
+  constructor( private router:         Router,
+               private menu: MenuService) { 
+
+                this.menu.obtenerMenus().subscribe( (e: any) => {
+                  console.log("menu");
+                  console.log(e);                
+
+                  e.data.map( (e: any) => {
+
+                   const menu = new menuModelList;
+
+                   menu.module_id = e.module_id;
+                   menu.module = e.module;
+                   menu.module_icon = trim(e.icon);
+
+                   this.menuListd.push(menu);
+
+                  });
+
+                });
+
+                console.log(this.menuListd)
+
+  }
+  
+  
+
   hiddeRegresar = false;
   visibleBUttons = false;
 
