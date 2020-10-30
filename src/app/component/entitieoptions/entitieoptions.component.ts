@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-<<<<<<< HEAD
 import { optionsModel } from 'src/app/model/optionsModel';
 import { OptionspageService } from 'src/app/services/optionspage.service';
 import { trim } from 'jquery';
