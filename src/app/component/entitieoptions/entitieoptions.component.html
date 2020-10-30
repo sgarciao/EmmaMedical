@@ -23,6 +23,7 @@
             <div class="col-12">
                 <div class="row">
 
+
                     <div class="col-lg-3 col-md-6" *ngFor="let options of optionsList">
                         <div class="card bg-primary">
 
@@ -92,6 +93,9 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
+=======
+                    <div class="col-lg-3 col-md-6" *ngFor="let menu of menuListd">
+>>>>>>> f349db99a431ad922e070be8d8ed22797739b313
                         <div class="card bg-info">
                             <div class="card-body">
                                 <div id="myCarousel3" class="carousel slide" data-ride="carousel">-->
@@ -100,10 +104,10 @@
                                         
                                         <div class="carousel-item active flex-column">
                                             <span class="material-icons wihte100 font-icon">
-                                                supervisor_account
+                                                {{menu.module_icon}}
                                                 </span>
                                             <br/><br/>
-                                            <h3 class="text-white font-medium">Especialistas</h3>
+                                            <h3 class="text-white font-medium">{{menu.module}}</h3>
                                             <div class="button-options-content">
                                                 <button class="btn bg-light b-0 waves-effect waves-light m-t-15 button-options" >Ver</button>
                                             </div>
@@ -114,31 +118,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card bg-success">
-                            <div class="card-body">
-                                <div id="myCarousel3" class="carousel slide" data-ride="carousel">-->
-                                    <!-- Carousel items -->
-                                    <!--<div class="carousel-inner">
-                                        
-                                        <div class="carousel-item active flex-column">
-                                            <span class="material-icons font-icon wihte100">
-                                                medical_services
-                                                </span>
-                                            <br/>
-                                            <br/>
-                                            <h3 class="text-white font-medium">Tratamientos</h3>
-                                            <div class="button-options-content">
-                                                <button class="btn bg-light b-0 waves-effect waves-light m-t-15 button-options" 
-                                                (click)="OpenTreatments(1)">Ver</button>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
 
                 </div>
             </div>

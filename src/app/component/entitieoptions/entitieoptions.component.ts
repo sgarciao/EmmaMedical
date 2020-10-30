@@ -1,22 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+<<<<<<< HEAD
 import { optionsModel } from 'src/app/model/optionsModel';
 import { OptionspageService } from 'src/app/services/optionspage.service';
+import { trim } from 'jquery';
+import { menuModelList } from 'src/app/model/menuModel';
+import { MenuService } from 'src/app/services/menu.service';
+
+
 
 @Component({
   selector: 'app-entitieoptions',
   templateUrl: './entitieoptions.component.html',
   styleUrls: ['./entitieoptions.component.css'], 
   providers:[OptionspageService]
+
 })
+
 export class EntitieoptionsComponent implements OnInit {
   title_entity: string;
+
   optionsList: optionsModel[] = [];
 
   constructor( 
     private router:         Router, 
     private optionsService: OptionspageService,
     ) { }
+
+  menuListd: menuModelList[] = [];
+
+  
+  
   hiddeRegresar = false;
   visibleBUttons = false;
  /* optionsList = [
