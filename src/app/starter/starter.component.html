@@ -4,11 +4,33 @@
       <br>
       <!-- Row -->
       <div class="row" >
-        
+
+        <div class="col-lg-3 col-md-6" *ngFor="let entities of entitesOptions">
+          <!-- Card -->
+          <div class="card">
+            <div class="image-icon-entities-content">
+              <img class="card-img-top image-icon-entities" src="{{entities.icon}}" alt="Card image cap">
+            </div>
+            <div class="card-body">
+              <div class ="row">
+                <div class="col-sm-8">
+                  <p class="card-title">{{entities.entity_name}} </p>
+                </div>
+                <div class="col-sm-3">
+                  <input type="button" 
+                  class="btn btn-primary" 
+                  value="Ver detalles" 
+                  (click)="OpenPage(1, entities.entity_id, entities.entity_name)" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
           <!-- column -->
-          <div class="col-lg-3 col-md-6">
+          <!--<div class="col-lg-3 col-md-6">-->
               <!-- Card -->
-              <div class="card">
+              <!--<div class="card">
                   <div class="image-icon-entities-content">
                     <img class="card-img-top image-icon-entities" src="https://e1-cln-ema-store.s3.amazonaws.com/ema_medical/entidades/PEMEX.png" alt="Card image cap">
                   </div>
@@ -21,17 +43,17 @@
                       <div class="col-sm-3">
                         <input type="button" class="btn btn-primary" value="Ver detalles" (click)="OpenPage(1, 1)" />
                       </div>
-                    </div>
+                    </div>-->
                      <!-- <p class="card-text">Información sobre los datos de investigación de institución PEMEX.</p>-->
-                  </div>
-              </div>
+                  <!--</div>
+              </div>-->
               <!-- Card -->
-          </div>
+          <!--</div>-->
           <!-- column -->
           <!-- column -->
-          <div class="col-lg-3 col-md-6">
+         <!-- <div class="col-lg-3 col-md-6">-->
               <!-- Card -->
-              <div class="card">
+              <!--<div class="card">
                 <div class="image-icon-entities-content">
                   <img class="card-img-top image-icon-entities" src="https://e1-cln-ema-store.s3.amazonaws.com/ema_medical/entidades/IMSS.png" alt="Card image cap">
                 </div>
@@ -45,14 +67,14 @@
                       </div>
                     </div>
                   </div>
-              </div>
+              </div>-->
               <!-- Card -->
-          </div>
+          <!--</div>-->
           <!-- column -->
            <!-- column -->
-           <div class="col-lg-3 col-md-6">
+          <!--<div class="col-lg-3 col-md-6">-->
             <!-- Card -->
-            <div class="card">
+            <!--<div class="card">
               <div class="image-icon-entities-content">
                 <img class="card-img-top image-icon-entities" src="https://e1-cln-ema-store.s3.amazonaws.com/ema_medical/entidades/ISSSTE_OK.jpg" alt="Card image cap">
               </div>
@@ -66,14 +88,14 @@
                     </div>
                   </div>
                 </div>
-            </div>
+          </div>-->
             <!-- Card -->
-          </div>
+          <!--</div>-->
            <!-- column -->
              <!-- column -->
-             <div class="col-lg-3 col-md-6">
+             <!--<div class="col-lg-3 col-md-6">-->
               <!-- Card -->
-              <div class="card">
+              <!--<div class="card">
                 <div class="image-icon-entities-content">
                   <img class="card-img-top image-icon-entities" src="https://e1-cln-ema-store.s3.amazonaws.com/ema_medical/entidades/SEDENA_OK.png" alt="Card image cap">
                 </div>
@@ -87,14 +109,15 @@
                       </div>
                     </div>
                   </div>
-              </div>
+              </div>-->
               <!-- Card -->
-            </div>
-             <!-- column -->
-              <!-- column -->
-              <div class="col-lg-3 col-md-6">
+          <!--</div>-->
+          <!-- column -->
+          
+          <!-- column -->
+          <!--<div class="col-lg-3 col-md-6">-->
                 <!-- Card -->
-                <div class="card">
+                <!--<div class="card">
                   <div class="image-icon-entities-content">
                     <img class="card-img-top image-icon-entities" src="https://e1-cln-ema-store.s3.amazonaws.com/ema_medical/entidades/SSA_OK.png" alt="Card image cap">
                   </div>
@@ -108,14 +131,14 @@
                         </div>
                       </div>
                     </div>
-                </div>
+                </div>-->
                 <!-- Card -->
-              </div>
+          <!--</div>-->
                <!-- column -->
                   <!-- column -->
-           <div class="col-lg-3 col-md-6">
+          <!--<div class="col-lg-3 col-md-6">-->
             <!-- Card -->
-            <div class="card">
+            <!--<div class="card">
               <div class="image-icon-entities-content">
                 <img class="card-img-top image-icon-entities" src="https://e1-cln-ema-store.s3.amazonaws.com/ema_medical/entidades/ISSEMYM_.png" alt="Card image cap">
               </div>
@@ -129,14 +152,14 @@
                     </div>
                   </div>
                 </div>
-            </div>
+            </div>-->
             <!-- Card -->
-          </div>
+          <!--</div>-->
            <!-- column -->
               <!-- column -->
-              <div class="col-lg-3 col-md-6">
+              <!--<div class="col-lg-3 col-md-6">-->
                 <!-- Card -->
-                <div class="card">
+                <!--<div class="card">
                   <div class="image-icon-entities-content">
                     <img class="card-img-top image-icon-entities" src="https://e1-cln-ema-store.s3.amazonaws.com/ema_medical/entidades/ISSTEP_OK.png" alt="Card image cap">
                   </div>
@@ -150,14 +173,14 @@
                         </div>
                       </div>
                     </div>
-                </div>
+                </div>-->
                 <!-- Card -->
-              </div>
+              <!--</div>-->
                <!-- column -->
                  <!-- column -->
-              <div class="col-lg-3 col-md-6">
+              <!--<div class="col-lg-3 col-md-6">-->
                 <!-- Card -->
-                <div class="card">
+                <!--<div class="card">
                   <div class="image-icon-entities-content">
                     <img class="card-img-top image-icon-entities" src="https://e1-cln-ema-store.s3.amazonaws.com/ema_medical/entidades/privadas-general.png" alt="Card image cap">
                   </div>
@@ -171,14 +194,14 @@
                         </div>
                       </div>
                     </div>
-                </div>
+                </div>-->
                 <!-- Card -->
-              </div>
+              <!--</div>-->
                <!-- column -->
                     <!-- column -->
-           <div class="col-lg-3 col-md-6">
+           <!--<div class="col-lg-3 col-md-6">-->
             <!-- Card -->
-            <div class="card">
+            <!--<div class="card">
               <div class="image-icon-entities-content">
                 <img class="card-img-top image-icon-entities" src="https://e1-cln-ema-store.s3.amazonaws.com/ema_medical/entidades/logo_hospital_civil_de_guadalajara_gde.jpg" alt="Card image cap">
               </div>
@@ -192,9 +215,9 @@
                     </div>
                   </div>
                 </div>
-            </div>
+            </div>-->
             <!-- Card -->
-          </div>
+          <!--</div>-->
            <!-- column -->
       </div>
       <!-- Row -->

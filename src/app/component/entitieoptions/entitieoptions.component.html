@@ -23,8 +23,9 @@
             <div class="col-12">
                 <div class="row">
 
-                    <div class="col-lg-3 col-md-6" [hidden]="visibleBUttons">
+                    <div class="col-lg-3 col-md-6" *ngFor="let options of optionsList">
                         <div class="card bg-primary">
+
                             <div class="card-body">
                                 <div id="myCarousel2" class="carousel slide vert" data-ride="carousel">
                                     <!-- Carousel items -->
@@ -33,9 +34,53 @@
                                             local_hospital
                                             </span>
                                         <div class="carousel-item active flex-column">
-                                            <i class="icon-hospital text-white font-icon"></i>
+                                            <i class="{{options.icon}}"></i>-->
                                             <!--<i class="ti-apple font-20 text-white"></i>-->
                                             <br/><br/>
+                                            <h3 class="text-white font-medium">{{options.description}}</h3>
+                                            <div class="button-options-content">
+                                                <button class="btn bg-light b-0 waves-effect waves-light m-t-15 button-options" 
+                                                (click)="OpenTreatments(options.options_id)">Ver</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Card -->
+                        <!--<div class="card">
+                          <div class="image-icon-entities-content">
+                            <img class="card-img-top image-icon-entities" src="{{options.icon}}" alt="Card image cap">
+                          </div>
+                          <div class="card-body">
+                            <div class ="row">
+                              <div class="col-sm-8">
+                                <p class="card-title">{{options.name}} </p>
+                              </div>
+                              <div class="col-sm-3">
+                                <input type="button" class="btn btn-primary" value="Ver detalles" (click)="OpenPage(1, 2)" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>-->
+
+                    <!--<div class="col-lg-3 col-md-6" [hidden]="visibleBUttons">
+                        <div class="card bg-primary">
+                            <div class="card-body">
+                                <div id="myCarousel2" class="carousel slide vert" data-ride="carousel">-->
+                                    <!-- Carousel items -->
+                                    <!--<div class="carousel-inner" >
+                                        <span class="material-icons font-icon wihte100">
+                                            local_hospital
+                                            </span>
+                                        <div class="carousel-item active flex-column">
+                                            <i class="icon-hospital text-white font-icon"></i>-->
+                                            <!--<i class="ti-apple font-20 text-white"></i>-->
+                                            <!--<br/><br/>
                                             <h3 class="text-white font-medium">Hospitales</h3>
                                             <div class="text-white m-t-10 button-options-content">
                                                 <button class="btn bg-light b-0 waves-effect waves-light m-t-15 button-options" >Ver</button>
@@ -49,9 +94,9 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="card bg-info">
                             <div class="card-body">
-                                <div id="myCarousel3" class="carousel slide" data-ride="carousel">
+                                <div id="myCarousel3" class="carousel slide" data-ride="carousel">-->
                                     <!-- Carousel items -->
-                                    <div class="carousel-inner">
+                                    <!--<div class="carousel-inner">
                                         
                                         <div class="carousel-item active flex-column">
                                             <span class="material-icons wihte100 font-icon">
@@ -72,9 +117,9 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="card bg-success">
                             <div class="card-body">
-                                <div id="myCarousel3" class="carousel slide" data-ride="carousel">
+                                <div id="myCarousel3" class="carousel slide" data-ride="carousel">-->
                                     <!-- Carousel items -->
-                                    <div class="carousel-inner">
+                                    <!--<div class="carousel-inner">
                                         
                                         <div class="carousel-item active flex-column">
                                             <span class="material-icons font-icon wihte100">
@@ -93,8 +138,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
                 </div>
             </div>
-        
+        </div>

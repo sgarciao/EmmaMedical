@@ -355,8 +355,8 @@ export class TratamientosComponent implements OnInit {
           nashData.treatment = "TRATAMIENTO";
           ///nashData.creation_user_id = ;
           //nashData.creation_user_name = ;
-          nashData.creation_date = "Fecha de registro";
-          nashData.creation_time = "Hora de registro";
+        //  nashData.creation_date = "Fecha de registro";
+         // nashData.creation_time = "Hora de registro";
           //nashData.modification_user_name = r.modification_user_name;
           //nashData.modification_date = r.modification_date;
           //nashData.modification_time = r.modification_time;
@@ -923,18 +923,44 @@ export class TratamientosComponent implements OnInit {
           console.log(this.NAHSRecordCreate);
     }
   }
+  getHospitalsList(entity_id){
+    console.log("Id de entidad " + entity_id);
+    if (entity_id == 1){
+      this.optionsHospitals = this.optionsHospitalesPEMEX;
+    }else if (entity_id == 2){
+      this.optionsHospitals = this.optionsHospitalesIMSS;
+    }else if (entity_id == 3){
+      this.optionsHospitals = this.optionsHospitalesISSSTE;
+    }else if (entity_id == 4){
+      this.optionsHospitals = this.optionsHospitalesSEDENA;
+    }else if (entity_id == 5){
+      this.optionsHospitals = this.optionsHospitalesSSA;
+    }else if (entity_id == 6){
+      this.optionsHospitals = this.optionsHospitalesISSEMYM;
+    }else if (entity_id == 7){
+      this.optionsHospitals = this.optionsHospitalesISSSTEP;
+    }else if (entity_id == 8){
+      this.optionsHospitals = this.optionsHospitalesPRIVADAS;
+    }else if (entity_id == 9){
+      this.optionsHospitals = this.optionsHospitalesGuadalajara;
+    }
+    
+  }
   //////////////////////////////////////////////////
   ngOnInit() {
     ///////
+    
     this.create_flag = false;
     this.update_flag = false;
     /////////////////////////////
 
     this.indiceNash = 0;
     this.getDataNASH();
+    let entity_id = localStorage.getItem("entidad_id");
+    this.getHospitalsList(entity_id);
     ///////////////
-    if (localStorage.getItem('treatment_type') == '1'){
-      this.title_tab = 'NASH';
+    this.title_tab = localStorage.getItem('treatment_code');
+    if (localStorage.getItem('treatment_type') == '4'){
       this.nashTableVisible = false; 
       this.ashTableVisible = true;
       this.vhbTableVisible = true;
@@ -943,8 +969,7 @@ export class TratamientosComponent implements OnInit {
       this.hccTableVisible = true;
       this.alfTableVisible = true;
     }
-    if (localStorage.getItem('treatment_type') == '2'){
-      this.title_tab = 'ASH';
+    if (localStorage.getItem('treatment_type') == '5'){
       this.nashTableVisible = true; 
       this.ashTableVisible = false;
       this.vhbTableVisible = true;
@@ -953,8 +978,7 @@ export class TratamientosComponent implements OnInit {
       this.hccTableVisible = true;
       this.alfTableVisible = true;
     }
-    if (localStorage.getItem('treatment_type') == '3'){
-      this.title_tab = 'VHB';
+    if (localStorage.getItem('treatment_type') == '6'){
       this.nashTableVisible = true; 
       this.ashTableVisible = true;
       this.vhbTableVisible = false;
@@ -963,8 +987,7 @@ export class TratamientosComponent implements OnInit {
       this.hccTableVisible = true;
       this.alfTableVisible = true;
     }
-    if (localStorage.getItem('treatment_type') == '4'){
-      this.title_tab = 'VHC';
+    if (localStorage.getItem('treatment_type') == '7'){
       this.nashTableVisible = true; 
       this.ashTableVisible = true;
       this.vhbTableVisible = true;
@@ -973,8 +996,7 @@ export class TratamientosComponent implements OnInit {
       this.hccTableVisible = true;
       this.alfTableVisible = true;
     }
-    if (localStorage.getItem('treatment_type') == '5'){
-      this.title_tab = 'HAI';
+    if (localStorage.getItem('treatment_type') == '1'){
       this.nashTableVisible = true; 
       this.ashTableVisible = true;
       this.vhbTableVisible = true;
@@ -983,8 +1005,7 @@ export class TratamientosComponent implements OnInit {
       this.hccTableVisible = true;
       this.alfTableVisible = true;
     }
-    if (localStorage.getItem('treatment_type') == '6'){
-      this.title_tab = 'HCC';
+    if (localStorage.getItem('treatment_type') == '2'){
       this.nashTableVisible = true; 
       this.ashTableVisible = true;
       this.vhbTableVisible = true;
@@ -993,8 +1014,7 @@ export class TratamientosComponent implements OnInit {
       this.hccTableVisible = false;
       this.alfTableVisible = true;
     }
-    if (localStorage.getItem('treatment_type') == '7'){
-      this.title_tab = 'ALF';
+    if (localStorage.getItem('treatment_type') == '3'){
       this.nashTableVisible = true; 
       this.ashTableVisible = true;
       this.vhbTableVisible = true;
@@ -1004,7 +1024,6 @@ export class TratamientosComponent implements OnInit {
       this.alfTableVisible = false;
     }
     if (localStorage.getItem('treatment_type') == '8'){
-      this.title_tab = 'TOH';
       this.nashTableVisible = true; 
       this.ashTableVisible = true;
       this.vhbTableVisible = true;
@@ -1013,7 +1032,6 @@ export class TratamientosComponent implements OnInit {
       this.hccTableVisible = true;
       this.tohTableVisible = false;
     }
-    console.log("Item " + localStorage.getItem('treatment_type'));
   }
   regresar(){
     console.log("back page");

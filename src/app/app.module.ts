@@ -28,7 +28,8 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http'; 
 import { BasicAuthInterceptor } from './factory/interceptor';
-import { AuthService } from './services/auth.service' ;
+import { AuthService } from './services/auth.service';
+import { Loginv1Component } from './login/loginv1/loginv1/loginv1.component' ;
 
 
 
@@ -49,7 +50,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NavigationComponent,
     BreadcrumbComponent,
     SidebarComponent,
-    LoginComponent
+    LoginComponent,
+    Loginv1Component
   ],
   imports: [
     CommonModule,

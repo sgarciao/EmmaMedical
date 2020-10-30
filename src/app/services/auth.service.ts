@@ -31,7 +31,7 @@ export class AuthService {
       localStorage.setItem('customer', authResult.data.user_data.user_id);
       if (authResult.code == '200') {
         let i = '';
-        this.router.navigate(['/options']);
+        this.router.navigate(['/home']);
       }
     })
     .shareReplay();
@@ -72,16 +72,9 @@ export class AuthService {
               })}).do((data) => {
                   sessionStorage.removeItem('access_token');
                   sessionStorage.removeItem('refresh_token');
-                  localStorage.removeItem('customer');
-                  localStorage.removeItem('customerBranch');
                   localStorage.removeItem('user');
-                  localStorage.removeItem('branch_office_name');
                   localStorage.removeItem('menu');
                   localStorage.removeItem('submenu');
-                  localStorage.removeItem('esEmpleado');
-                  localStorage.removeItem('company1_id');
-                  localStorage.removeItem('company_branch_id');
-                  localStorage.removeItem('customerBranchId');
                   //Se elimina menu
                   localStorage.removeItem('titleMenu');
                   this.router.navigate(['/login']);
