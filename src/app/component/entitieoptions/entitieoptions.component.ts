@@ -18,7 +18,8 @@ import { MenuService } from 'src/app/services/menu.service';
 
 export class EntitieoptionsComponent implements OnInit {
   title_entity: string;
-
+  role_id: number;
+  entity_id: number;
   optionsList: optionsModel[] = [];
 
   constructor( 
@@ -39,7 +40,7 @@ export class EntitieoptionsComponent implements OnInit {
   ]*/
 
   getOptionsForPage(){
-    this.optionsService.getOptionsInPage(1,1).subscribe((res_data:any)=>{
+    this.optionsService.getOptionsInPage(this.role_id,this.entity_id).subscribe((res_data:any)=>{
       if (res_data.code==200){
         this.optionsList = [];
         res_data.data.map((r)=>{
@@ -71,6 +72,8 @@ export class EntitieoptionsComponent implements OnInit {
     }
   }
   ngOnInit() {
+    this.entity_id = Number(localStorage.getItem('entidad_id'));
+    this.role_id = Number(localStorage.getItem('role_id'));
     if (localStorage.getItem('user_type_medical') == 'user_0'){
        this.visibleBUttons=true;
     }else{

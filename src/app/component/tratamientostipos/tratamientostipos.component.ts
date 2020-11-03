@@ -11,6 +11,8 @@ import { TreatmentsoptionsService } from 'src/app/services/treatmentsoptions.ser
 })
 export class TratamientostiposComponent implements OnInit {
   title_entity:string;
+  role_id: number;
+  entity_id: number;
   treatmentsOptions: treatmentsOptionsModel[]=[];
 
   constructor(
@@ -41,7 +43,7 @@ export class TratamientostiposComponent implements OnInit {
   }
 
   getTreatmentsOptionsFnct(){
-    this.treatmentsOptService.getTreatmentsOptionsInPage(1,1).subscribe((res_data:any)=>{
+    this.treatmentsOptService.getTreatmentsOptionsInPage(this.role_id,this.entity_id).subscribe((res_data:any)=>{
       if (res_data.code==200){
         this.treatmentsOptions = [];
         res_data.data.map((r)=>{
@@ -65,7 +67,9 @@ export class TratamientostiposComponent implements OnInit {
     });
   }
   ngOnInit() {
-    
+    this.entity_id = Number(localStorage.getItem('entidad_id'));
+    this.role_id = Number(localStorage.getItem('role_id'));
+
     this.title_entity = localStorage.getItem('entidad_name');
     this.getTreatmentsOptionsFnct();
   }

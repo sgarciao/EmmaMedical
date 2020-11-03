@@ -29,6 +29,7 @@ import { entitiesModel } from '../model/entitiesOptionsModel';
 export class StarterComponent implements OnInit {
 ////////////////////////////////////////////////////////////////////////
 displayHTMLCard: string;
+role_id: string;
 entitesOptions: entitiesModel[]=[];
 entitiesContent: [{
  entitie_id: number,
@@ -53,7 +54,7 @@ entitiesList = [
 /**////////////////////////////////////////////////////////////////// */
  
   readEntities(){
-    this.entitiesService.getEntitiesOptionsInPage(1).subscribe((res_data:any)=>{
+    this.entitiesService.getEntitiesOptionsInPage(this.role_id).subscribe((res_data:any)=>{
       if (res_data.code==200){
         this.entitesOptions = [];
         res_data.data.map((r)=>{
@@ -94,10 +95,12 @@ entitiesList = [
   
     }
     ngOnInit(){
-      this.readEntities();
+      
       this.displayHTMLCard = '';
       
       this.printDiv();
+      this.role_id = localStorage.getItem('role_id');
+      this.readEntities();
     }
     OpenPage(page, entity_id, entity_desc){
       localStorage.setItem('entidad_name', entity_desc);
