@@ -62,7 +62,8 @@
                                                     <label for="hospital">Hospital</label>
                                                     <select 
                                                     [(ngModel)] = "hospitals_id"
-                                                    id="hospital" class="custom-select mr-sm-1 select-style"> 
+                                                    id="hospital" class="custom-select mr-sm-1 select-style"
+                                                    (ngModelChange)="changeHospital()"> 
                                                         <option 
                                                         *ngFor="let o3 of optionsHospitals" 
                                                         >{{o3.hospital_name}}

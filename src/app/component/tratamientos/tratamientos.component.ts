@@ -433,11 +433,14 @@ export class TratamientosComponent implements OnInit {
     this.save_disabled = true;
     this.save_enabled = false;
   }
-  
+  changeHospital(){
+    
+  }
   getDataNASH(){
     this.progres_spinner_refresh_nash_treatment = false;
     this.hidden_update_btn  = true;
-    this.nashTreatmentService.getNASHTreatment().subscribe((resp_data_get:any) => {
+    this.hospital_id = 0;
+    this.nashTreatmentService.getNASHTreatment(this.hospital_id).subscribe((resp_data_get:any) => {
       
       this.NAHSRecordEstilo = [];
       this.NAHSRecordEstiloExcel = [];
