@@ -29,12 +29,6 @@ export class TratamientosComponent implements OnInit {
   save_enabled = true;///not visible
   save_disabled = false;/////button visible
 
-  //////combos
-  comboHospital = {} as hospitalsModel;
-  todosComboHospital = {
-    hospital_id: 0,
-	  hospital_name: 'Todos'
-  };
   //////////////////////////
   settingsExample = tableData.settingsExample;
 
@@ -53,7 +47,7 @@ export class TratamientosComponent implements OnInit {
   hospitals: string;
   title_entity: string;
 
-  comboHospital    = {} as hospitalModel;
+  
   //////////////////////TABLE
   
   
@@ -946,13 +940,12 @@ export class TratamientosComponent implements OnInit {
   getHospitalsListApi(entity_id){
     this.hospitalsService.getHospitalsList(this.role_id, entity_id).subscribe((res_data:any)=>{
       if (res_data.code==200){
-        this.optionsHospitals = res_data.data.map((r)=>{
+        res_data.data.map((r)=>{
           const dato = {} as hospitalsModel;
           dato.hospital_id = r.hospital_id;
           dato.hospital_name = r.hospital_name;
-          return dato;
-        });
-        this.optionsHospitals.unshift(this.todosComboHospital);
+          this.optionsHospitals.push(dato);
+        }); 
       }else{
 
       }
