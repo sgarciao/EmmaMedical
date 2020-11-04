@@ -61,11 +61,11 @@
                                                 <div class="form-group">
                                                     <label for="hospital">Hospital</label>
                                                     <select 
-                                                    [(ngModel)] = "hospitals"
+                                                    [(ngModel)] = "hospitals_id"
                                                     id="hospital" class="custom-select mr-sm-1 select-style"> 
                                                         <option 
                                                         *ngFor="let o3 of optionsHospitals" 
-                                                        >{{o3.name}}
+                                                        >{{o3.hospital_name}}
                                                     </option>
                                                     </select>
                                                 </div>
@@ -229,6 +229,7 @@
                                                                                 <th scope="col">VARICES</th>
                                                                                 <th scope="col">HEPATOCARCINOMA</th>
                                                                                 <th scope="col">TRATAMIENTO</th>
+                                                                                <th scope="col">HOSPITAL</th>
                                                                                 <th scope="col">FECHA REGISTRO</th>
                                                                                 <th scope="col">HORA REGISTRO</th>
                                                                                 <th scope="col">USUARIO</th>  
@@ -445,6 +446,17 @@
                                                                             <option value="4"> {{treatment.treatment}}  Vit E </option>
                                                                             <option value="5"> {{treatment.treatment}}  Otras </option>
                                                                         </select>
+                                                                    </td>
+                                                                    <td class = "rows-style">	
+                                                                        <select 
+                                                                        [(ngModel)] = "treatment.hospitals_id"
+                                                                        id="hospital" class="custom-select mr-sm-1 select-style"
+                                                                        (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)"> 
+                                                                            <option 
+                                                                            *ngFor="let o3 of optionsHospitals" 
+                                                                            >{{o3.hospital_name}}
+                                                                        </option>
+                                                                        </select>		
                                                                     </td>
                                                                     <td class = "rows-style">	
                                                                         <input type="date" class="form-control"	[(ngModel)]="treatment.creation_date" id="creation_date" disabled>		

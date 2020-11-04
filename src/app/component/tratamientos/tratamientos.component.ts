@@ -5,6 +5,8 @@ import { nashTratment, nashTratmentHeader, nashTreatmentData } from 'src/app/mod
 import { NashtreatmentService } from 'src/app/services/nashtreatment.service';
 
 import { NotifierService } from 'angular-notifier';
+import { HospitalsService } from 'src/app/services/hospitals.service';
+import { hospitalsModel } from 'src/app/model/hospitalsModel';
 
 @Component({
   selector: 'app-tratamientos',
@@ -13,6 +15,9 @@ import { NotifierService } from 'angular-notifier';
 })
 export class TratamientosComponent implements OnInit {
   ////////////////////////
+  role_id:number;
+  hospital_id:number;
+  entity_id:number;
   hidden_controls = true;
   hidden_maximize = true;
   hidden_minimize = false;
@@ -158,7 +163,8 @@ export class TratamientosComponent implements OnInit {
   
   constructor( 
       private router:         Router,
-      private nashTreatmentService: NashtreatmentService
+      private nashTreatmentService: NashtreatmentService,
+      private hospitalsService: HospitalsService
       ) {
           this.alert_2 = {
             id: 1,
@@ -441,6 +447,8 @@ export class TratamientosComponent implements OnInit {
 
           const nashData = {} as nashTratment;
           const nashDataExcel = {} as nashTratment;
+          nashData.entity_id = r.entity_id;
+          nashData.hospital_id = r.hospital_id;
           nashData.active_green_sem = "row_sem_green_visible";
 
           nashData.active_red_sem = "row_sem_red";///initial value
@@ -793,11 +801,13 @@ export class TratamientosComponent implements OnInit {
   }
 
   updateRecordNASH(id, column_name, treatment, i){
-    
+    console.log("Hospital id " + treatment.hospital_id);
     if (id != null){
       this.update_flag = true;
       const nashData = {} as nashTratment;
       
+      nashData.hospital_id = treatment.hospital_id;
+      nashData.entity_id = this.entity_id;
       nashData.research_nash_id = id;
       
       nashData.date_begin = treatment.date_begin;
@@ -923,6 +933,21 @@ export class TratamientosComponent implements OnInit {
           console.log(this.NAHSRecordCreate);
     }
   }
+
+  getHospitalsListApi(entity_id){
+    this.hospitalsService.getHospitalsList(this.role_id, entity_id).subscribe((res_data:any)=>{
+      if (res_data.code==200){
+        res_data.data.map((r)=>{
+          const dato = {} as hospitalsModel;
+          dato.hospital_id = r.hospital_id;
+          dato.hospital_name = r.hospital_name;
+          this.optionsHospitals.push(dato);
+        }); 
+      }else{
+
+      }
+    });
+  }
   getHospitalsList(entity_id){
     console.log("Id de entidad " + entity_id);
     if (entity_id == 1){
@@ -949,7 +974,7 @@ export class TratamientosComponent implements OnInit {
   //////////////////////////////////////////////////
   ngOnInit() {
     ///////
-    
+    this.role_id = Number(localStorage.getItem('role_id'));
     this.create_flag = false;
     this.update_flag = false;
     /////////////////////////////
@@ -957,7 +982,7 @@ export class TratamientosComponent implements OnInit {
     this.indiceNash = 0;
     this.getDataNASH();
     let entity_id = localStorage.getItem("entidad_id");
-    this.getHospitalsList(entity_id);
+    this.getHospitalsListApi(entity_id);
     ///////////////
     this.title_tab = localStorage.getItem('treatment_code');
     if (localStorage.getItem('treatment_type') == '4'){
