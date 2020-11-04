@@ -61,10 +61,10 @@
                                                 <div class="form-group">
                                                     <label for="hospital">Hospital</label>
                                                     <select 
-                                                    [(ngModel)] = "hospitals_id"
+                                                    [(ngModel)] = "comboHospital"
                                                     id="hospital" class="custom-select mr-sm-1 select-style"
                                                     (ngModelChange)="changeHospital()"> 
-                                                        <option 
+                                                        <option [ngValue]="o3"
                                                         *ngFor="let o3 of optionsHospitals" 
                                                         >{{o3.hospital_name}}
                                                     </option>
