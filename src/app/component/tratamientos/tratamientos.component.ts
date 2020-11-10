@@ -9,6 +9,7 @@ import { HospitalsService } from 'src/app/services/hospitals.service';
 import { hospitalsModel } from 'src/app/model/hospitalsModel';
 import { vhcTreatmentData, vhcTreatmentModel } from 'src/app/model/vhcTreatmentsModel';
 import { VhctreatmentService } from 'src/app/services/vhctreatment.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-tratamientos',
@@ -17,6 +18,12 @@ import { VhctreatmentService } from 'src/app/services/vhctreatment.service';
 })
 export class TratamientosComponent implements OnInit {
   ////////////////////////
+  pipe = new DatePipe('en-US');
+  today = new Date();
+  strDate = '';
+  start_date  : string;
+  end_date    : string;
+
   role_id:number;
   hospital_id:number;
   entity_id:number;
@@ -103,6 +110,7 @@ export class TratamientosComponent implements OnInit {
 
   ]
   optionsHospitals = [];
+  optionsHospitalsSelected = [];
   optionsHospitalesPEMEX = [
     { name: "Hospital Central Nacional Pemex Norte", value: 1 },
     { name: "Hospital Central Nacional Sur de Alta Especialidad Pemex Picacho", value: 2 }
@@ -394,8 +402,13 @@ export class TratamientosComponent implements OnInit {
     const nashData = {} as nashTratment;
     console.log("Evento crear ");
     console.log(event);
-    nashData.date_begin = "2020-08-28";
-    nashData.date_end = "2020-08-28";
+    this.strDate = this.pipe.transform(this.today, 'yyyy-MM-dd');
+    this.start_date = this.strDate;
+    this.end_date = this.strDate;
+    nashData.date_begin = this.strDate;
+    nashData.date_end = this.strDate;
+    
+    nashData.hospital_id = this.comboHospital.hospital_id;
     //nashData.research_nash_id = this.indiceNash;
     nashData.month_execution = 9;
     /*nashData.short_name = "AMH";
@@ -458,218 +471,229 @@ export class TratamientosComponent implements OnInit {
     this.progres_spinner_refresh_nash_treatment = false;
     this.hidden_update_btn  = true;
     this.hospital_id = (this.comboHospital.hospital_id != undefined)?this.comboHospital.hospital_id:0;
-    console.log('buscar Hospital id-->',this.hospital_id);
-    this.nashTreatmentService.getNASHTreatment(this.hospital_id).subscribe((resp_data_get:any) => {
+    
+    this.nashTreatmentService.getNASHTreatment(this.hospital_id, this.start_date, this.end_date).subscribe((resp_data_get:any) => {
       
       this.NAHSRecordEstilo = [];
       this.NAHSRecordEstiloExcel = [];
       if (resp_data_get.code == 200){
         console.log(">> " + resp_data_get.data.data);
-        resp_data_get.data.data.map((r) => {
+        if (resp_data_get.data.data.length > 0){
+          resp_data_get.data.data.map((r) => {
 
-          const nashData = {} as nashTratment;
-          const nashDataExcel = {} as nashTratment;
-          nashData.entity_id = r.entity_id;
-          nashData.hospital_id = r.hospital_id;
-          nashData.active_green_sem = "row_sem_green_visible";
+            const nashData = {} as nashTratment;
+            const nashDataExcel = {} as nashTratment;
+            nashData.entity_id = r.entity_id;
+            console.log("-----------------" + r.hospital_id);
+            nashData.hospital_id = r.hospital_id;
+            nashData.active_green_sem = "row_sem_green_visible";
 
-          nashData.active_red_sem = "row_sem_red";///initial value
+            nashData.active_red_sem = "row_sem_red";///initial value
 
-          nashData.date_begin = r.date_begin;
-          nashData.date_end = r.date_end;
-          nashData.research_nash_id = r.research_nash_id;
-          nashData.month_execution = r.month_execution;
-          nashData.short_name = r.short_name;
-          nashData.birth_date = r.birth_date;
-          nashData.gender = r.gender;
-          if (r.gender=="" || r.gender == null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
+            nashData.date_begin = r.date_begin;
+            nashData.date_end = r.date_end;
+            nashData.research_nash_id = r.research_nash_id;
+            nashData.month_execution = r.month_execution;
+            nashData.short_name = r.short_name;
+            nashData.birth_date = r.birth_date;
+            nashData.gender = r.gender;
+            if (r.gender=="" || r.gender == null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
 
-          nashData.child_stadium = r.child_stadium;
-          if (r.child_stadium=="" || r.child_stadium==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.mellitus_diabetes = r.mellitus_diabetes;
-          if (r.mellitus_diabetes=="" || r.mellitus_diabetes==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.hypertension = r.hypertension;
-          if (r.hypertension=="" || r.hypertension==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.HIPERCOLESTEROLEMIA = r.HIPERCOLESTEROLEMIA;
-          if (r.HIPERCOLESTEROLEMIA=="" || r.HIPERCOLESTEROLEMIA==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.HIPERTRIGLICERIDEMIA = r.HIPERTRIGLICERIDEMIA;
-          if (r.HIPERTRIGLICERIDEMIA=="" || r.HIPERTRIGLICERIDEMIA==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.weight = r.weight;
-          if (r.weight=="" || r.weight==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.size = r.size;
-          if (r.size=="" || r.size==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.fibroscan = r.fibroscan;
-          if (r.fibroscan=="" || r.fibroscan==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.fribrotest = r.fribrotest;
-          if (r.fribrotest=="" || r.fribrotest==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.sw = r.sw;
-          if (r.sw=="" || r.sw==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.fin_4 = r.fin_4;
-          if (r.fin_4=="" || r.fin_4==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.Hb1A1c = r.Hb1A1c;
-          if (r.Hb1A1c=="" || r.Hb1A1c==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.i_homma = r.i_homma;
-          if(r.i_homma=="" || r.i_homma==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.imc = r.imc;
-          if (r.imc=="" || r.imc==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.waist = r.waist;
-          if (r.waist=="" || r.waist==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.hip = r.hip;
-          if (r.hip=="" || r.hip==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.hg = r.hg;
-          if (r.hg=="" || r.hg==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.leukocytes = r.leukocytes;
-          if (r.leukocytes=="" || r.leukocytes==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.platelets = r.platelets;
-          if (r.platelets=="" || r.platelets==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.alt_tgp = r.alt_tgp;
-          if (r.alt_tgp=="" || r.alt_tgp==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.ast_tgo = r.ast_tgo;
-          if (r.ast_tgo=="" || r.ast_tgo==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.fa = r.fa;
-          if (r.fa=="" || r.fa==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.ggt = r.ggt;
-          if (r.ggt=="" || r.ggt==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.albu = r.albu;
-          if (r.albu=="" || r.albu==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.tp_irn = r.tp_irn;
-          if (r.tp_irn=="" || r.tp_irn==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.bt = r.bt;
-          if (r.bt=="" || r.bt==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.bd = r.bd;
-          if (r.bd=="" || r.bd==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.bi = r.bi;
-          if (r.bi=="" ||  r.bi==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.ascitis = r.ascitis;
-          if (r.ascitis=="" || r.ascitis==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.encephalopathy = r.encephalopathy;
-          if (r.encephalopathy=="" || r.encephalopathy==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.varicose_veins = r.varicose_veins;
-          if (r.varicose_veins=="" || r.varicose_veins==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.hepatocarcinoma = r.hepatocarcinoma;
-          if (r.hepatocarcinoma=="" || r.hepatocarcinoma==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          nashData.treatment = r.treatment;
-          if (r.treatment=="" || r.treatment==null){
-            nashData.active_red_sem = "row_sem_red_visible";
-            nashData.active_green_sem = "row_sem_green_hidden";
-          }
-          
-          nashData.creation_user_id = r.creation_user_id;
-          nashData.creation_user_name = r.creation_user_name;
-          nashData.creation_date = r.creation_date;
-          nashData.creation_time = r.creation_time;
-          nashData.modification_user_name = r.modification_user_name;
-          nashData.modification_date = r.modification_date;
-          nashData.modification_time = r.modification_time;
-          nashData.status = r.status;
-          
-          nashData.row_color = "row_get";// Nuevos" treatment.row_color;"
-          this.NAHSRecordEstilo.push(nashData);
-          
-          this.NAHSRecordEstiloExcel.push(this.getExcelData(nashData));
+            nashData.child_stadium = r.child_stadium;
+            if (r.child_stadium=="" || r.child_stadium==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.mellitus_diabetes = r.mellitus_diabetes;
+            if (r.mellitus_diabetes=="" || r.mellitus_diabetes==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.hypertension = r.hypertension;
+            if (r.hypertension=="" || r.hypertension==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.HIPERCOLESTEROLEMIA = r.HIPERCOLESTEROLEMIA;
+            if (r.HIPERCOLESTEROLEMIA=="" || r.HIPERCOLESTEROLEMIA==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.HIPERTRIGLICERIDEMIA = r.HIPERTRIGLICERIDEMIA;
+            if (r.HIPERTRIGLICERIDEMIA=="" || r.HIPERTRIGLICERIDEMIA==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.weight = r.weight;
+            if (r.weight=="" || r.weight==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.size = r.size;
+            if (r.size=="" || r.size==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.fibroscan = r.fibroscan;
+            if (r.fibroscan=="" || r.fibroscan==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.fribrotest = r.fribrotest;
+            if (r.fribrotest=="" || r.fribrotest==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.sw = r.sw;
+            if (r.sw=="" || r.sw==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.fin_4 = r.fin_4;
+            if (r.fin_4=="" || r.fin_4==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.Hb1A1c = r.Hb1A1c;
+            if (r.Hb1A1c=="" || r.Hb1A1c==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.i_homma = r.i_homma;
+            if(r.i_homma=="" || r.i_homma==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.imc = r.imc;
+            if (r.imc=="" || r.imc==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.waist = r.waist;
+            if (r.waist=="" || r.waist==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.hip = r.hip;
+            if (r.hip=="" || r.hip==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.hg = r.hg;
+            if (r.hg=="" || r.hg==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.leukocytes = r.leukocytes;
+            if (r.leukocytes=="" || r.leukocytes==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.platelets = r.platelets;
+            if (r.platelets=="" || r.platelets==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.alt_tgp = r.alt_tgp;
+            if (r.alt_tgp=="" || r.alt_tgp==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.ast_tgo = r.ast_tgo;
+            if (r.ast_tgo=="" || r.ast_tgo==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.fa = r.fa;
+            if (r.fa=="" || r.fa==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.ggt = r.ggt;
+            if (r.ggt=="" || r.ggt==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.albu = r.albu;
+            if (r.albu=="" || r.albu==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.tp_irn = r.tp_irn;
+            if (r.tp_irn=="" || r.tp_irn==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.bt = r.bt;
+            if (r.bt=="" || r.bt==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.bd = r.bd;
+            if (r.bd=="" || r.bd==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.bi = r.bi;
+            if (r.bi=="" ||  r.bi==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.ascitis = r.ascitis;
+            if (r.ascitis=="" || r.ascitis==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.encephalopathy = r.encephalopathy;
+            if (r.encephalopathy=="" || r.encephalopathy==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.varicose_veins = r.varicose_veins;
+            if (r.varicose_veins=="" || r.varicose_veins==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.hepatocarcinoma = r.hepatocarcinoma;
+            if (r.hepatocarcinoma=="" || r.hepatocarcinoma==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            nashData.treatment = r.treatment;
+            if (r.treatment=="" || r.treatment==null){
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+            
+            nashData.creation_user_id = r.creation_user_id;
+            nashData.creation_user_name = r.creation_user_name;
+            nashData.creation_date = r.creation_date;
+            nashData.creation_time = r.creation_time;
+            nashData.modification_user_name = r.modification_user_name;
+            nashData.modification_date = r.modification_date;
+            nashData.modification_time = r.modification_time;
+            nashData.status = r.status;
+            
+            nashData.row_color = "row_get";// Nuevos" treatment.row_color;"
+            this.NAHSRecordEstilo.push(nashData);
+            
+            this.NAHSRecordEstiloExcel.push(this.getExcelData(nashData));
+            this.hidden_update_btn  = false;
+            this.progres_spinner_refresh_nash_treatment = true;
+            
+          });
+        }else{
+          this.staticAlertClosed2 = false;
+          this.alert_2.type = 'warning';
+          this.alert_2.message = 'No se encontraron datos. Intente incrementando el rango de fechas o cambiando parámetros de busqueda.';
+          this.reset();  
           this.hidden_update_btn  = false;
           this.progres_spinner_refresh_nash_treatment = true;
-          
-        });
+
+        }
       }else{
         this.staticAlertClosed2 = false;
         this.alert_2.type = 'danger';
@@ -959,17 +983,23 @@ export class TratamientosComponent implements OnInit {
   getHospitalsListApi(entity_id){
     this.hospitalsService.getHospitalsList(this.role_id, entity_id).subscribe((res_data:any)=>{
       if (res_data.code==200){
-        this.optionsHospitals = res_data.data.map((r)=>{
+        let hosp = res_data.data.map((r)=>{
           const dato = {} as hospitalsModel;
           dato.hospital_id = r.hospital_id;
           dato.hospital_name = r.hospital_name;
           return dato;
         });
+        this.optionsHospitalsSelected = res_data.data;
+        console.log(this.optionsHospitalsSelected);
+
+        this.optionsHospitals = hosp;
+       
         const dato = {} as hospitalsModel;
         dato.hospital_id = 0;
         dato.hospital_name = 'Todos';
         this.optionsHospitals.unshift(dato);
         this.comboHospital = dato;
+        
       }else{
 
       }
@@ -1000,19 +1030,24 @@ export class TratamientosComponent implements OnInit {
   }
   //////////////////////////////////////////////////
   ngOnInit() {
+    this.strDate = this.pipe.transform(this.today, 'yyyy-MM-dd');
+    this.start_date = this.strDate;
+    this.end_date = this.strDate;
+    console.log("date " + this.strDate);
     ///////
     this.role_id = Number(localStorage.getItem('role_id'));
     this.create_flag = false;
     this.update_flag = false;
     /////////////////////////////
 
-    this.indiceNash = 0;
-    this.getDataNASH();
     let entity_id = localStorage.getItem("entidad_id");
     this.getHospitalsListApi(entity_id);
     ///////////////
     this.title_tab = localStorage.getItem('treatment_code');
     if (localStorage.getItem('treatment_type') == '4'){
+      this.indiceNash = 0;
+      this.getDataNASH();
+  
       this.nashTableVisible = false; 
       this.ashTableVisible = true;
       this.vhbTableVisible = true;
@@ -1040,6 +1075,9 @@ export class TratamientosComponent implements OnInit {
       this.alfTableVisible = true;
     }
     if (localStorage.getItem('treatment_type') == '7'){
+      this.indiceNash = 0;
+      this.getVHCData();
+  
       this.nashTableVisible = true; 
       this.ashTableVisible = true;
       this.vhbTableVisible = true;
@@ -1349,251 +1387,259 @@ export class TratamientosComponent implements OnInit {
     this.progres_spinner_refresh_vhc_treatment = false;
     this.hidden_update_btn  = true;
     this.hospital_id = 0;
-    this.vhcTreatmentService.getVHCTreatment(this.hospital_id).subscribe((resp_data_get:any) => {
+    this.vhcTreatmentService.getVHCTreatment(this.hospital_id, this.start_date, this.end_date).subscribe((resp_data_get:any) => {
       
       this.VHCRecordEstilo = [];
       this.VHCRecordEstiloExcel = [];
       if (resp_data_get.code == 200){
-        resp_data_get.data.data.map((r) => {
-          const vhcData = {} as vhcTreatmentModel;
-          const vhcDataExcel = {} as vhcTreatmentModel;
-          vhcData.MD_entity_id = r.MD_entity_id;
-          vhcData.MD_hospital_id = r.MD_hospital_id;
-          vhcData.active_green_sem = "row_sem_green_visible";
+        if (resp_data_get.data.data.length >0){
+          resp_data_get.data.data.map((r) => {
+            const vhcData = {} as vhcTreatmentModel;
+            const vhcDataExcel = {} as vhcTreatmentModel;
+            vhcData.MD_entity_id = r.MD_entity_id;
+            vhcData.MD_hospital_id = r.MD_hospital_id;
+            vhcData.active_green_sem = "row_sem_green_visible";
 
-          vhcData.active_red_sem = "row_sem_red";///initial value
+            vhcData.active_red_sem = "row_sem_red";///initial value
 
-          vhcData.research_date_begin = r.research_date_begin;
-          vhcData.research_date_end = r.research_date_end;
-          vhcData.research_vhc_id = r.research_vhc_id;
-          vhcData.month_execution = r.month_execution;
-          vhcData.initials = r.initials;
-          vhcData.birthdate	 = r.birthdate;
-          vhcData.gender = r.gender;
-          if (r.gender=="" || r.gender == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
+            vhcData.research_date_begin = r.research_date_begin;
+            vhcData.research_date_end = r.research_date_end;
+            vhcData.research_vhc_id = r.research_vhc_id;
+            vhcData.month_execution = r.month_execution;
+            vhcData.initials = r.initials;
+            vhcData.birthdate	 = r.birthdate;
+            vhcData.gender = r.gender;
+            if (r.gender=="" || r.gender == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
 
-          vhcData.estadio_child = r.estadio_child;
-          if (r.estadio_child=="" || r.estadio_child==null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.v_esofagicas = r.v_esofagicas;
-          if (r.v_esofagicas=="" || r.v_esofagicas==null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.genotipo = r.genotipo;
-          if (r.genotipo == "" || r.genotipo == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.cv_inicial = r.cv_inicial;
-          if (r.cv_inicial == "" || r.cv_inicial == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.log_inicial = r.log_inicial;
-          if (r.log_inicial == "" || r.log_inicial == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.cv_s12 = r.cv_s12;
-          if (r.cv_s12 == "" || r.cv_s12 == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.log_s12 = r.log_s12;
-          if (r.log_s12 == "" || r.log_s12 == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.cv_s24 = r.cv_s24;
-          if (r.cv_s24 == "" || r.cv_s24 == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.log_rvs24 = r.log_rvs24;
-          if (r.log_rvs24 == "" || r.log_rvs24 == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.hb_inicial = r.hb_inicial;
-          if (r.hb_inicial == "" || r.hb_inicial == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.hb_final = r.hb_final;
-          if (r.hb_final == "" || r.hb_final == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.leuc_inicial = r.leuc_inicial;
-          if (r.leuc_inicial == "" || r.leuc_inicial == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.leuc_final = r.leuc_final;
-          if (r.leuc_final == "" || r.leuc_final == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.plaq_inicial = r.plaq_inicial;
-          if (r.plaq_inicial == "" || r.plaq_inicial == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.plaq_final = r.plaq_final;
-          if (r.plaq_final == "" || r.plaq_final == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.bt_inicial = r.bt_inicial;
-          if (r.bt_inicial == "" || r.bt_inicial == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.bt_final = r.bt_final;
-          if (r.bt_final == "" || r.bt_final == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.tgo_inicial = r.tgo_inicial;
-          if (r.tgo_inicial == "" || r.tgo_inicial == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.tgo_final = r.tgo_final;
-          if (r.tgo_final == "" || r.tgo_final == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.tgp_final = r.tgp_final;
-          if (r.tgp_final == "" || r.tgp_final == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.tgp_inicial = r.tgp_inicial;
-          if (r.tgp_inicial == "" || r.tgp_inicial == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.albu_inicial = r.albu_inicial;
-          if (r.albu_inicial == "" || r.albu_inicial == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.albu_final = r.albu_final;
-          if (r.albu_final == "" || r.albu_final == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.inr_inicial = r.inr_inicial;
-          if (r.inr_inicial == "" || r.inr_inicial == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.inr_final = r.inr_final;
-          if (r.inr_final == "" || r.inr_final == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.creatinina_inicial = r.creatinina_inicial;
-          if (r.creatinina_inicial == "" || r.creatinina_inicial == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.creatinina_final = r.creatinina_final;
-          if (r.creatinina_final == "" || r.creatinina_final == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.ascitis = r.ascitis;
-          if (r.ascitis == "" || r.ascitis == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.encefalopatia = r.encefalopatia;
-          if (r.encefalopatia == "" || r.encefalopatia == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.hepatocarcinoma = r.hepatocarcinoma;
-          if (r.hepatocarcinoma == "" || r.hepatocarcinoma == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.tratamiento = r.tratamiento;
-          if (r.tratamiento == "" || r.tratamiento == null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.efecto_adverso = r.efecto_adverso;
-          if (r.efecto_adverso=="" || r.efecto_adverso==null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
+            vhcData.estadio_child = r.estadio_child;
+            if (r.estadio_child=="" || r.estadio_child==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.v_esofagicas = r.v_esofagicas;
+            if (r.v_esofagicas=="" || r.v_esofagicas==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.genotipo = r.genotipo;
+            if (r.genotipo == "" || r.genotipo == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.cv_inicial = r.cv_inicial;
+            if (r.cv_inicial == "" || r.cv_inicial == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.log_inicial = r.log_inicial;
+            if (r.log_inicial == "" || r.log_inicial == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.cv_s12 = r.cv_s12;
+            if (r.cv_s12 == "" || r.cv_s12 == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.log_s12 = r.log_s12;
+            if (r.log_s12 == "" || r.log_s12 == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.cv_s24 = r.cv_s24;
+            if (r.cv_s24 == "" || r.cv_s24 == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.log_rvs24 = r.log_rvs24;
+            if (r.log_rvs24 == "" || r.log_rvs24 == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.hb_inicial = r.hb_inicial;
+            if (r.hb_inicial == "" || r.hb_inicial == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.hb_final = r.hb_final;
+            if (r.hb_final == "" || r.hb_final == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.leuc_inicial = r.leuc_inicial;
+            if (r.leuc_inicial == "" || r.leuc_inicial == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.leuc_final = r.leuc_final;
+            if (r.leuc_final == "" || r.leuc_final == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.plaq_inicial = r.plaq_inicial;
+            if (r.plaq_inicial == "" || r.plaq_inicial == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.plaq_final = r.plaq_final;
+            if (r.plaq_final == "" || r.plaq_final == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.bt_inicial = r.bt_inicial;
+            if (r.bt_inicial == "" || r.bt_inicial == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.bt_final = r.bt_final;
+            if (r.bt_final == "" || r.bt_final == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.tgo_inicial = r.tgo_inicial;
+            if (r.tgo_inicial == "" || r.tgo_inicial == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.tgo_final = r.tgo_final;
+            if (r.tgo_final == "" || r.tgo_final == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.tgp_final = r.tgp_final;
+            if (r.tgp_final == "" || r.tgp_final == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.tgp_inicial = r.tgp_inicial;
+            if (r.tgp_inicial == "" || r.tgp_inicial == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.albu_inicial = r.albu_inicial;
+            if (r.albu_inicial == "" || r.albu_inicial == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.albu_final = r.albu_final;
+            if (r.albu_final == "" || r.albu_final == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.inr_inicial = r.inr_inicial;
+            if (r.inr_inicial == "" || r.inr_inicial == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.inr_final = r.inr_final;
+            if (r.inr_final == "" || r.inr_final == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.creatinina_inicial = r.creatinina_inicial;
+            if (r.creatinina_inicial == "" || r.creatinina_inicial == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.creatinina_final = r.creatinina_final;
+            if (r.creatinina_final == "" || r.creatinina_final == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.ascitis = r.ascitis;
+            if (r.ascitis == "" || r.ascitis == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.encefalopatia = r.encefalopatia;
+            if (r.encefalopatia == "" || r.encefalopatia == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.hepatocarcinoma = r.hepatocarcinoma;
+            if (r.hepatocarcinoma == "" || r.hepatocarcinoma == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.tratamiento = r.tratamiento;
+            if (r.tratamiento == "" || r.tratamiento == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.efecto_adverso = r.efecto_adverso;
+            if (r.efecto_adverso=="" || r.efecto_adverso==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
 
-          vhcData.descripcion_adverso = r.descripcion_adverso;
-          if (r.descripcion_adverso=="" || r.descripcion_adverso==null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.severidad_efecto_adverso = r.severidad_efecto_adverso;
-          if (r.severidad_efecto_adverso=="" || r.severidad_efecto_adverso==null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.accion_tomada = r.accion_tomada;
-          if (r.accion_tomada=="" || r.accion_tomada==null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.child_inicial = r.child_inicial;
-          if (r.child_inicial=="" || r.child_inicial==null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.child_final = r.child_final;
-          if (r.child_final=="" || r.child_final==null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
+            vhcData.descripcion_adverso = r.descripcion_adverso;
+            if (r.descripcion_adverso=="" || r.descripcion_adverso==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.severidad_efecto_adverso = r.severidad_efecto_adverso;
+            if (r.severidad_efecto_adverso=="" || r.severidad_efecto_adverso==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.accion_tomada = r.accion_tomada;
+            if (r.accion_tomada=="" || r.accion_tomada==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.child_inicial = r.child_inicial;
+            if (r.child_inicial=="" || r.child_inicial==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.child_final = r.child_final;
+            if (r.child_final=="" || r.child_final==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
 
-          vhcData.meld_inicial = r.meld_inicial;
-          if (r.meld_inicial=="" || r.meld_inicial==null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.meld_final = r.meld_final;
-          if (r.meld_final=="" || r.meld_final==null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.comentarios = r.comentarios;
-          if (r.comentarios=="" || r.comentarios==null){
-            vhcData.active_red_sem = "row_sem_red_visible";
-            vhcData.active_green_sem = "row_sem_green_hidden";
-          }
-          vhcData.creation_userid = r.creation_userid;
-          vhcData.creation_username = r.creation_username;
-          vhcData.creation_date = r.creation_date;
-          vhcData.creation_time = r.creation_time;
-          vhcData.modification_username = r.modification_username;
-          vhcData.modification_date = r.modification_date;
-          vhcData.modification_time = r.modification_time;
-          vhcData.status = r.status;
-          
-          vhcData.row_color = "row_get";// Nuevos" treatment.row_color;"
-          this.VHCRecordEstilo.push(vhcData);
-          
-          //this.VHCRecordEstiloExcel.push(this.getExcelData(vhcData));
+            vhcData.meld_inicial = r.meld_inicial;
+            if (r.meld_inicial=="" || r.meld_inicial==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.meld_final = r.meld_final;
+            if (r.meld_final=="" || r.meld_final==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.comentarios = r.comentarios;
+            if (r.comentarios=="" || r.comentarios==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.creation_userid = r.creation_userid;
+            vhcData.creation_username = r.creation_username;
+            vhcData.creation_date = r.creation_date;
+            vhcData.creation_time = r.creation_time;
+            vhcData.modification_username = r.modification_username;
+            vhcData.modification_date = r.modification_date;
+            vhcData.modification_time = r.modification_time;
+            vhcData.status = r.status;
+            
+            vhcData.row_color = "row_get";// Nuevos" treatment.row_color;"
+            this.VHCRecordEstilo.push(vhcData);
+            
+            //this.VHCRecordEstiloExcel.push(this.getExcelData(vhcData));
+            this.hidden_update_btn  = false;
+            this.progres_spinner_refresh_vhc_treatment = true;  
+          });
+        }else{
+          this.staticAlertClosed2 = false;
+          this.alert_2.type = 'Warning';
+          this.alert_2.message = 'No se encontraron datos. Intente aumentando el rango de fechas o cambiando los parámetros de búsqueda';
+          this.reset();
+          this.progres_spinner_refresh_vhc_treatment = true;
           this.hidden_update_btn  = false;
-          this.progres_spinner_refresh_nash_treatment = true;
-          
-        });
+        }
       }else{
         this.staticAlertClosed2 = false;
         this.alert_2.type = 'danger';
@@ -1610,7 +1656,7 @@ export class TratamientosComponent implements OnInit {
       this.alert_2.type = 'danger';
       this.alert_2.message = 'Hubo un error al obtener la información.';
       this.reset();
-      this.progres_spinner_refresh_nash_treatment = true;
+      this.progres_spinner_refresh_vhc_treatment = true;
       this.hidden_update_btn  = false;
     });
   }

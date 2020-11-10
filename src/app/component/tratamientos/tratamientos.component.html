@@ -447,14 +447,14 @@
                                                                     </td>
                                                                     <td class = "rows-style">	
                                                                         <select 
-                                                                        [(ngModel)] = "treatment.hospitals_id"
-                                                                        id="hospital" class="custom-select mr-sm-1 select-style"
-                                                                        (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)"> 
+                                                                        [(ngModel)]="treatment.hospital_id"
+                                                                            (change) ="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)" 
+                                                                            class="custom-select mr-sm-1 select-style" >
                                                                             <option 
-                                                                            *ngFor="let o3 of optionsHospitals" 
-                                                                            >{{o3.hospital_name}}
-                                                                        </option>
-                                                                        </select>		
+                                                                                *ngFor="let hospitales_ of optionsHospitalsSelected" 
+                                                                                value="{{hospitales_.hospital_id}}">{{hospitales_.hospital_name}}</option>
+                                                                       </select>
+
                                                                     </td>
                                                                     <td class = "rows-style">	
                                                                         <input type="date" class="form-control"	[(ngModel)]="treatment.creation_date" id="creation_date" disabled>		
@@ -559,7 +559,7 @@
                             <div class="col-sm-12">		
                                 <div class="card">
                                     <div class="card-body">
-                                       
+                                       <!--
                                         <div class="row align-items-center">
                                             <div class="col-md-6">  
                                                 <h4 class="card-title">Tratamientos VHC</h4>
@@ -569,7 +569,7 @@
                                             </div>
                                             <div class="col-md-2 refresh-button align-items-center">
                                             </div>
-                                         </div>
+                                         </div>-->
                                          <div class="col-md-12 table-controls">
                                             <div class="row">
                                                 <div class="col-md-6">

@@ -17,9 +17,12 @@ import { of } from 'rxjs/observable/of';
 export class NashtreatmentService {
 
   constructor(private httpClient : HttpClient) { }
-  getNASHTreatment(hospital_id) {
+  getNASHTreatment(hospital_id, start_date, end_date) {
     return this.httpClient
-    .get('http://emamedical-dev.us-east-2.elasticbeanstalk.com/v1/ema-medical/treatment/nash/'+hospital_id).
+    .get('http://emamedical-dev.us-east-2.elasticbeanstalk.com/v1/ema-medical/treatment/nash/' 
+    + hospital_id 
+    + '/' + start_date 
+    + '/' + end_date).
     map(data => data);
   }
 
