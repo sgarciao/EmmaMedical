@@ -173,7 +173,7 @@ export class TratamientosComponent implements OnInit {
   VHCRecord: vhcTreatmentModel[] = [];
   VHCRecordEstilo: vhcTreatmentModel[] = [];
   VHCRecordEstiloExcel: vhcTreatmentModel[] = [];
-  
+  VHCRecordExcel: vhcTreatmentModel[]=[];
   VHCRecordCreate: vhcTreatmentModel[] = [];
   VHCRecordUpdate: vhcTreatmentModel[] = [];
   
@@ -1028,6 +1028,20 @@ export class TratamientosComponent implements OnInit {
     }
     
   }
+  /////////////////////Searcher
+  serchByHospitalIDAndDate(){
+    if (localStorage.getItem('treatment_type') == '4'){
+      this.getDataNASH();
+    }else if(localStorage.getItem('treatment_type') == '5'){
+
+    }else if(localStorage.getItem('treatment_type') == '6'){
+
+    }else if(localStorage.getItem('treatment_type') == '7'){
+      this.getVHCData();
+    }else if(localStorage.getItem('treatment_type') == '8'){
+
+    }
+  }
   //////////////////////////////////////////////////
   ngOnInit() {
     this.strDate = this.pipe.transform(this.today, 'yyyy-MM-dd');
@@ -1134,7 +1148,7 @@ export class TratamientosComponent implements OnInit {
   //////////////////////////////////////_____________________________________VHC
   
   guardarRegistroVHC(){
-    this.progres_spinner_refresh_nash_treatment = false;
+    this.progres_spinner_refresh_vhc_treatment = false;
     this.hidden_update_btn  = true;
     
     if (this.create_flag){
@@ -1143,11 +1157,12 @@ export class TratamientosComponent implements OnInit {
         return e1 != null;
       });
       this.vhcTreatmentService.saveVHCTreatment(this.data_vhc_).subscribe((resp_data:any)=>{
+        if (resp_data.http_code == null){
         if(resp_data.code == 200){
           this.VHCRecord = [];
           this.VHCRecordCreate = [];
           this.create_flag = false;
-          this.progres_spinner_refresh_nash_treatment = true;
+          this.progres_spinner_refresh_vhc_treatment = true;
           
           this.getVHCData();
           
@@ -1164,9 +1179,17 @@ export class TratamientosComponent implements OnInit {
           this.alert_2.type = 'danger';
           this.alert_2.message = 'No se pudo guardar la información, intente nuevamente.';
           this.reset();
-          this.progres_spinner_refresh_nash_treatment = true;
+          this.progres_spinner_refresh_vhc_treatment = true;
           this.hidden_update_btn  = false;
         }
+      }else{
+        this.staticAlertClosed2 = false;
+        this.alert_2.type = 'danger';
+        this.alert_2.message = 'Hubo un error al intentar guardar la información.';
+        this.reset();
+        this.progres_spinner_refresh_vhc_treatment = true;
+        this.hidden_update_btn  = false;
+      }
       }, err=>{
         this.staticAlertClosed2 = false;
         this.alert_2.type = 'danger';
@@ -1221,26 +1244,41 @@ export class TratamientosComponent implements OnInit {
     this.hidden_update_btn  = true;
     //this.indiceNash = (Number(this.indiceNash) + 1);
     const vhcData = {} as vhcTreatmentModel;
-    console.log("Evento crear ");
-    console.log(event);
-    vhcData.research_date_begin = "2020-08-28";
-    vhcData.research_date_end = "2020-08-28";
-    //nashData.research_nash_id = this.indiceNash;
-    vhcData.month_execution = 9;
-    vhcData.row_color = "row_new";
-    vhcData.status = 1;
-    vhcData.active_red_sem = "row_sem_red_visible";
-    vhcData.active_green_sem = "row_sem_green_hidden";
+    
+    this.strDate = this.pipe.transform(this.today, 'yyyy-MM-dd');
+    this.start_date = this.strDate;
+    this.end_date = this.strDate;
+    if (this.comboHospital.hospital_id == 0){
+      this.minimizeScreen();
+      this.staticAlertClosed2 = false;
+      this.alert_2.type = 'Warning';
+      this.alert_2.message = 'Debe seleccionar un hospital';
+      this.reset();
+      this.progres_spinner_refresh_vhc_treatment = true;
+      this.hidden_update_btn  = false;
+    
+    }else{
+      this.maximizeScreen();
+      vhcData.MD_hospital_id = this.comboHospital.hospital_id;
+      vhcData.research_date_begin = this.strDate;
+      vhcData.research_date_end = this.strDate;
+      //nashData.research_nash_id = this.indiceNash;
+      vhcData.month_execution = 9;
+      vhcData.row_color = "row_new";
+      vhcData.status = 1;
+      vhcData.active_red_sem = "row_sem_red_visible";
+      vhcData.active_green_sem = "row_sem_green_hidden";
 
-    this.VHCRecord.push(vhcData);
-    this.progres_spinner_refresh_vhc_treatment = true;
-    this.hidden_update_btn  = false;
-    this.save_disabled_vhc = true;
-    this.save_enabled_vhc = false;
+      this.VHCRecord.push(vhcData);
+      this.progres_spinner_refresh_vhc_treatment = true;
+      this.hidden_update_btn  = false;
+      this.save_disabled_vhc = true;
+      this.save_enabled_vhc = false;
+    }
   }
 
   updateRecordVHC(id, column_name, treatment, i){
-    console.log("Hospital id " + treatment.hospital_id);
+    console.log("Actualizando " + id);
     if (id != null){
       this.update_flag = true;
       const vhcData = {} as vhcTreatmentModel;
@@ -1314,14 +1352,16 @@ export class TratamientosComponent implements OnInit {
       vhcData.modification_time = treatment.modification_time;
       vhcData.status = treatment.status;
       vhcData.row_color = "row_update";// Nuevos" treatment.row_color;"
+
+      console.log("COlor: " + vhcData.row_color);
       this.VHCRecordUpdate[id] = vhcData;
           //this.NAHSRecord[i] = vhcData;
       treatment.row_color = vhcData.row_color; 
           //console.log(this.NAHSRecord[i]); 
           //console.log(this.NAHSRecordUpdate);
           //console.log("Actualizando.." + id + " " + column_name);
-      this.save_disabled = true;
-      this.save_enabled = false;
+      this.save_disabled_vhc = true;
+      this.save_enabled_vhc = false;
     }else{
       this.create_flag = true;
       const vhcData = {} as vhcTreatmentModel;
@@ -1387,6 +1427,7 @@ export class TratamientosComponent implements OnInit {
     this.progres_spinner_refresh_vhc_treatment = false;
     this.hidden_update_btn  = true;
     this.hospital_id = 0;
+    
     this.vhcTreatmentService.getVHCTreatment(this.hospital_id, this.start_date, this.end_date).subscribe((resp_data_get:any) => {
       
       this.VHCRecordEstilo = [];
@@ -1627,7 +1668,7 @@ export class TratamientosComponent implements OnInit {
             
             vhcData.row_color = "row_get";// Nuevos" treatment.row_color;"
             this.VHCRecordEstilo.push(vhcData);
-            
+            this.VHCRecord = this.VHCRecordEstilo;
             //this.VHCRecordEstiloExcel.push(this.getExcelData(vhcData));
             this.hidden_update_btn  = false;
             this.progres_spinner_refresh_vhc_treatment = true;  
@@ -1648,8 +1689,8 @@ export class TratamientosComponent implements OnInit {
         this.progres_spinner_refresh_vhc_treatment = true;
         this.hidden_update_btn  = false;  
       }
-      this.NAHSRecordExcel = this.NAHSRecordEstiloExcel;
-      this.NAHSRecord = this.NAHSRecordEstilo;
+      this.VHCRecordExcel = this.VHCRecordEstiloExcel;
+      this.VHCRecord = this.VHCRecordEstilo;
       
     }, err=>{
       this.staticAlertClosed2 = false;
