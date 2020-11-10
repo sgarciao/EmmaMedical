@@ -64,10 +64,7 @@
                                                     [(ngModel)] = "comboHospital"
                                                     id="hospital" class="custom-select mr-sm-1 select-style"
                                                     (ngModelChange)="changeHospital()"> 
-                                                        <option [ngValue]="o3"
-                                                        *ngFor="let o3 of optionsHospitals" 
-                                                        >{{o3.hospital_name}}
-                                                    </option>
+                                                        <option [ngValue]="o3" *ngFor="let o3 of optionsHospitals" >{{o3.hospital_name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -86,7 +83,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-4">
-                                                <button type="button" class="btn btn-success btn-success mr-1" >Buscar</button>
+                                                <button  (click)="getDataNASH()" type="button" class="btn btn-success btn-success mr-1" >Buscar</button>
                                                 <button type="button" class="btn btn-warnin btn-warning">Cancel</button>
                                             </div>
                                             <div class="col-md-6">

@@ -35,6 +35,7 @@ export class TratamientosComponent implements OnInit {
   save_enabled_vhc = true;///not visible
   save_disabled_vhc = false;/////button visible
 
+  comboHospital = {} as hospitalsModel;
   //////////////////////////
   settingsExample = tableData.settingsExample;
 
@@ -456,7 +457,8 @@ export class TratamientosComponent implements OnInit {
   getDataNASH(){
     this.progres_spinner_refresh_nash_treatment = false;
     this.hidden_update_btn  = true;
-    this.hospital_id = 0;
+    this.hospital_id = (this.comboHospital.hospital_id != undefined)?this.comboHospital.hospital_id:0;
+    console.log('buscar Hospital id-->',this.hospital_id);
     this.nashTreatmentService.getNASHTreatment(this.hospital_id).subscribe((resp_data_get:any) => {
       
       this.NAHSRecordEstilo = [];
@@ -957,12 +959,17 @@ export class TratamientosComponent implements OnInit {
   getHospitalsListApi(entity_id){
     this.hospitalsService.getHospitalsList(this.role_id, entity_id).subscribe((res_data:any)=>{
       if (res_data.code==200){
-        res_data.data.map((r)=>{
+        this.optionsHospitals = res_data.data.map((r)=>{
           const dato = {} as hospitalsModel;
           dato.hospital_id = r.hospital_id;
           dato.hospital_name = r.hospital_name;
-          this.optionsHospitals.push(dato);
-        }); 
+          return dato;
+        });
+        const dato = {} as hospitalsModel;
+        dato.hospital_id = 0;
+        dato.hospital_name = 'Todos';
+        this.optionsHospitals.unshift(dato);
+        this.comboHospital = dato;
       }else{
 
       }
