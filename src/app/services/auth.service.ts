@@ -45,7 +45,7 @@ export class AuthService {
         refresh_token: refresh_token
       }
     });
-    return this.httpClient.post('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-medical/medical/refresh-token',
+    return this.httpClient.post('http://emamedical-dev.us-east-2.elasticbeanstalk.com/v1/ema-medical/medical/refresh-token',
     params,
     {
       headers: new HttpHeaders({

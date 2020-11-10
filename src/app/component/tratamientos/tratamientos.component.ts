@@ -982,24 +982,27 @@ export class TratamientosComponent implements OnInit {
 
   getHospitalsListApi(entity_id){
     this.hospitalsService.getHospitalsList(this.role_id, entity_id).subscribe((res_data:any)=>{
-      if (res_data.code==200){
+      if (res_data.code == 200){
         let hosp = res_data.data.map((r)=>{
           const dato = {} as hospitalsModel;
           dato.hospital_id = r.hospital_id;
           dato.hospital_name = r.hospital_name;
           return dato;
         });
+        
         this.optionsHospitalsSelected = res_data.data;
-        console.log(this.optionsHospitalsSelected);
-
         this.optionsHospitals = hosp;
-       
+
+       if (res_data.data.length > 1 ){
         const dato = {} as hospitalsModel;
         dato.hospital_id = 0;
         dato.hospital_name = 'Todos';
         this.optionsHospitals.unshift(dato);
         this.comboHospital = dato;
-        
+       }else{
+        this.comboHospital = hosp;
+        console.log(this.comboHospital);
+       }
       }else{
 
       }
@@ -1195,7 +1198,7 @@ export class TratamientosComponent implements OnInit {
         this.alert_2.type = 'danger';
         this.alert_2.message = 'Hubo un error al intentar guardar la información.';
         this.reset();
-        this.progres_spinner_refresh_nash_treatment = true;
+        this.progres_spinner_refresh_vhc_treatment = true;
         this.hidden_update_btn  = false;
       });
     }
@@ -1340,7 +1343,8 @@ export class TratamientosComponent implements OnInit {
       vhcData.accion_tomada = treatment.accion_tomada;
       vhcData.child_inicial = treatment.child_inicial;
       vhcData.child_final = treatment.status;
-      vhcData.meld_inicial = treatment.meld_final;
+      vhcData.meld_inicial = treatment.meld_inicial;
+      vhcData.meld_final = treatment.meld_final;
       vhcData.comentarios = treatment.comentarios;
       vhcData.creation_userid = treatment.creation_userid;
       vhcData.creation_username = treatment.creation_username;
@@ -1408,6 +1412,7 @@ export class TratamientosComponent implements OnInit {
       vhcData.child_inicial = treatment.child_inicial;
       vhcData.child_final = treatment.status;
       vhcData.meld_inicial = treatment.meld_final;
+      vhcData.meld_final = treatment.meld_final;
       vhcData.comentarios = treatment.comentarios;
       vhcData.creation_userid = treatment.creation_userid;
       vhcData.creation_username = treatment.creation_username;
@@ -1426,7 +1431,7 @@ export class TratamientosComponent implements OnInit {
   getVHCData(){
     this.progres_spinner_refresh_vhc_treatment = false;
     this.hidden_update_btn  = true;
-    this.hospital_id = 0;
+    this.hospital_id = this.comboHospital.hospital_id;
     
     this.vhcTreatmentService.getVHCTreatment(this.hospital_id, this.start_date, this.end_date).subscribe((resp_data_get:any) => {
       
@@ -1435,8 +1440,10 @@ export class TratamientosComponent implements OnInit {
       if (resp_data_get.code == 200){
         if (resp_data_get.data.data.length >0){
           resp_data_get.data.data.map((r) => {
+           
             const vhcData = {} as vhcTreatmentModel;
             const vhcDataExcel = {} as vhcTreatmentModel;
+
             vhcData.MD_entity_id = r.MD_entity_id;
             vhcData.MD_hospital_id = r.MD_hospital_id;
             vhcData.active_green_sem = "row_sem_green_visible";
@@ -1454,7 +1461,16 @@ export class TratamientosComponent implements OnInit {
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
-
+            vhcData.cirrosis = r.cirrosis;
+            if (r.cirrosis=="" || r.cirrosis==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.tx_date_begin = r.tx_date_begin;
+            if (r.tx_date_begin=="" || r.tx_date_begin==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
             vhcData.estadio_child = r.estadio_child;
             if (r.estadio_child=="" || r.estadio_child==null){
               vhcData.active_red_sem = "row_sem_red_visible";
@@ -1631,11 +1647,11 @@ export class TratamientosComponent implements OnInit {
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
-            vhcData.child_inicial = r.child_inicial;
+            /*vhcData.child_inicial = r.child_inicial;
             if (r.child_inicial=="" || r.child_inicial==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
-            }
+            }*/
             vhcData.child_final = r.child_final;
             if (r.child_final=="" || r.child_final==null){
               vhcData.active_red_sem = "row_sem_red_visible";
