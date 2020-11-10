@@ -7,6 +7,8 @@ import { NashtreatmentService } from 'src/app/services/nashtreatment.service';
 import { NotifierService } from 'angular-notifier';
 import { HospitalsService } from 'src/app/services/hospitals.service';
 import { hospitalsModel } from 'src/app/model/hospitalsModel';
+import { vhcTreatmentData, vhcTreatmentModel } from 'src/app/model/vhcTreatmentsModel';
+import { VhctreatmentService } from 'src/app/services/vhctreatment.service';
 
 @Component({
   selector: 'app-tratamientos',
@@ -28,6 +30,10 @@ export class TratamientosComponent implements OnInit {
   progres_spinner_refresh_nash_treatment= true;
   save_enabled = true;///not visible
   save_disabled = false;/////button visible
+  //////////////////////VHC
+  progres_spinner_refresh_vhc_treatment= true;
+  save_enabled_vhc = true;///not visible
+  save_disabled_vhc = false;/////button visible
 
   //////////////////////////
   settingsExample = tableData.settingsExample;
@@ -153,6 +159,16 @@ export class TratamientosComponent implements OnInit {
   
   NAHSRecordCreate: nashTratment[] = [];
   NAHSRecordUpdate: nashTratment[] = [];
+  ////////////
+  data_vhc_ =  {} as vhcTreatmentData;
+  VHCRecord: vhcTreatmentModel[] = [];
+  VHCRecordEstilo: vhcTreatmentModel[] = [];
+  VHCRecordEstiloExcel: vhcTreatmentModel[] = [];
+  
+  VHCRecordCreate: vhcTreatmentModel[] = [];
+  VHCRecordUpdate: vhcTreatmentModel[] = [];
+  
+  
   create_flag: boolean;
   update_flag: boolean;
 
@@ -164,6 +180,7 @@ export class TratamientosComponent implements OnInit {
   constructor( 
       private router:         Router,
       private nashTreatmentService: NashtreatmentService,
+      private vhcTreatmentService: VhctreatmentService,
       private hospitalsService: HospitalsService
       ) {
           this.alert_2 = {
@@ -1069,6 +1086,531 @@ export class TratamientosComponent implements OnInit {
   reset(){
     setTimeout(() => (this.staticAlertClosed2 = true), 1000);
   }
+  //////////////////////////////////////_____________________________________VHC
+  
+  guardarRegistroVHC(){
+    this.progres_spinner_refresh_nash_treatment = false;
+    this.hidden_update_btn  = true;
+    
+    if (this.create_flag){
+      console.log("Guardando...");
+      this.data_vhc_.data = this.VHCRecordCreate.filter(function(e1){
+        return e1 != null;
+      });
+      this.vhcTreatmentService.saveVHCTreatment(this.data_vhc_).subscribe((resp_data:any)=>{
+        if(resp_data.code == 200){
+          this.VHCRecord = [];
+          this.VHCRecordCreate = [];
+          this.create_flag = false;
+          this.progres_spinner_refresh_nash_treatment = true;
+          
+          this.getVHCData();
+          
+          this.save_enabled = true;
+          this.save_disabled = false;
+
+          this.staticAlertClosed2 = false;
+          this.alert_2.type = 'success';
+          this.alert_2.message = 'Datos guardados correctamente.';
+          this.reset();
+          this.hidden_update_btn  = false;
+        }else{
+          this.staticAlertClosed2 = false;
+          this.alert_2.type = 'danger';
+          this.alert_2.message = 'No se pudo guardar la información, intente nuevamente.';
+          this.reset();
+          this.progres_spinner_refresh_nash_treatment = true;
+          this.hidden_update_btn  = false;
+        }
+      }, err=>{
+        this.staticAlertClosed2 = false;
+        this.alert_2.type = 'danger';
+        this.alert_2.message = 'Hubo un error al intentar guardar la información.';
+        this.reset();
+        this.progres_spinner_refresh_nash_treatment = true;
+        this.hidden_update_btn  = false;
+      });
+    }
+    if (this.update_flag){
+      console.log("Guardando...");
+      this.data_vhc_.data = this.VHCRecordUpdate.filter(function(e1){
+        return e1 != null;
+      });
+
+      console.log(this.data_);
+      this.vhcTreatmentService.updateVHCTreatment(this.data_vhc_).subscribe((resp_data:any)=>{
+      console.log(resp_data);
+      
+      if (resp_data.code == 200){
+        this.NAHSRecord = [];
+        this.NAHSRecordUpdate = [];
+        this.update_flag = false;
+        this.progres_spinner_refresh_vhc_treatment = true;
+        this.getVHCData();
+        this.hidden_update_btn  = false;
+
+        this.staticAlertClosed2 = false;
+        this.alert_2.type = 'success';
+        this.alert_2.message = 'Datos actualizados correctamente.';
+        this.reset();
+      }else{
+        this.staticAlertClosed2 = false;
+        this.alert_2.type = 'danger';
+        this.alert_2.message = 'Hubo un error al actualizar la información.';
+        this.reset();
+        this.progres_spinner_refresh_vhc_treatment = true;
+        this.hidden_update_btn  = false;  
+      }
+    }, err=>{
+      this.staticAlertClosed2 = false;
+      this.alert_2.type = 'danger';
+      this.alert_2.message = 'Hubo un error al intentar actualizar la información.';
+      this.reset();
+      this.progres_spinner_refresh_vhc_treatment = true;
+      this.hidden_update_btn  = false;
+    });
+    }
+  }
+  agregarNuevoRegistroVHC(event){
+    this.progres_spinner_refresh_vhc_treatment = false;
+    this.hidden_update_btn  = true;
+    //this.indiceNash = (Number(this.indiceNash) + 1);
+    const vhcData = {} as vhcTreatmentModel;
+    console.log("Evento crear ");
+    console.log(event);
+    vhcData.research_date_begin = "2020-08-28";
+    vhcData.research_date_end = "2020-08-28";
+    //nashData.research_nash_id = this.indiceNash;
+    vhcData.month_execution = 9;
+    vhcData.row_color = "row_new";
+    vhcData.status = 1;
+    vhcData.active_red_sem = "row_sem_red_visible";
+    vhcData.active_green_sem = "row_sem_green_hidden";
+
+    this.VHCRecord.push(vhcData);
+    this.progres_spinner_refresh_vhc_treatment = true;
+    this.hidden_update_btn  = false;
+    this.save_disabled_vhc = true;
+    this.save_enabled_vhc = false;
+  }
+
+  updateRecordVHC(id, column_name, treatment, i){
+    console.log("Hospital id " + treatment.hospital_id);
+    if (id != null){
+      this.update_flag = true;
+      const vhcData = {} as vhcTreatmentModel;
+      
+      vhcData.MD_hospital_id = treatment.MD_hospital_id;
+      vhcData.MD_entity_id = this.entity_id;
+      vhcData.research_vhc_id = id;
+      
+      vhcData.month_execution = treatment.month_execution;
+      vhcData.initials = treatment.initials;
+      
+      
+      if (treatment.birthdate === "null" || treatment.birthdate === null || treatment.birthdate === '' ){
+        console.log("birthday nulo: " + vhcData.birthdate);
+      }else{
+        vhcData.birthdate = treatment.birthdate;
+        console.log("birthday no nulo: " + vhcData.birthdate);
+        
+      }
+      vhcData.gender = treatment.gender;
+      vhcData.diagnostic_date	 = treatment.diagnostic_date;
+      vhcData.tx_date_begin = treatment.tx_date_begin;
+      vhcData.cirrosis = treatment.cirrosis;
+      vhcData.estadio_child = treatment.estadio_child;
+      vhcData.v_esofagicas = treatment.v_esofagicas;
+      vhcData.genotipo = treatment.genotipo;
+      vhcData.cv_inicial = treatment.cv_inicial;
+      vhcData.log_inicial = treatment.log_inicial;
+      vhcData.cv_s12 = treatment.cv_s12;
+      vhcData.log_s12 = treatment.log_s12;
+      vhcData.cv_s24 = treatment.cv_s24;
+      vhcData.log_rvs24 = treatment.log_rvs24;
+      vhcData.hb_inicial = treatment.hb_inicial;
+      vhcData.hb_final = treatment.hb_final;
+      vhcData.leuc_inicial = treatment.leuc_inicial;
+      vhcData.leuc_final = treatment.leuc_final;
+      vhcData.plaq_inicial = treatment.plaq_inicial;
+      vhcData.plaq_final = treatment.plaq_final;
+      vhcData.bt_inicial = treatment.bt_inicial;
+      vhcData.bt_final = treatment.bt_final;
+      vhcData.tgo_inicial = treatment.tgo_inicial;
+      vhcData.tgo_final = treatment.tgo_final;
+      vhcData.tgp_final = treatment.tgp_final;
+      vhcData.tgp_inicial = treatment.tgp_inicial;
+      vhcData.albu_inicial = treatment.albu_inicial;
+      vhcData.albu_final = treatment.albu_final;
+      vhcData.inr_inicial = treatment.inr_inicial;
+      vhcData.inr_final = treatment.inr_final;
+      vhcData.creatinina_inicial = treatment.creatinina_inicial;
+      vhcData.creatinina_final = treatment.creatinina_final;
+      vhcData.ascitis = treatment.ascitis;
+      vhcData.hepatocarcinoma = treatment.hepatocarcinoma;
+      vhcData.encefalopatia = treatment.encefalopatia;
+      vhcData.hepatocarcinoma = treatment.hepatocarcinoma;
+      vhcData.tratamiento = treatment.tratamiento;
+      vhcData.efecto_adverso = treatment.efecto_adverso;
+      vhcData.descripcion_adverso	 = treatment.descripcion_adverso;
+      vhcData.severidad_efecto_adverso = treatment.severidad_efecto_adverso;
+      vhcData.accion_tomada = treatment.accion_tomada;
+      vhcData.child_inicial = treatment.child_inicial;
+      vhcData.child_final = treatment.status;
+      vhcData.meld_inicial = treatment.meld_final;
+      vhcData.comentarios = treatment.comentarios;
+      vhcData.creation_userid = treatment.creation_userid;
+      vhcData.creation_username = treatment.creation_username;
+      vhcData.creation_date = treatment.creation_date;
+      vhcData.creation_time = treatment.creation_time;
+      vhcData.modification_userid = treatment.modification_userid;
+      vhcData.modification_username = treatment.modification_username;
+      vhcData.modification_date = treatment.modification_date;
+      vhcData.modification_time = treatment.modification_time;
+      vhcData.status = treatment.status;
+      vhcData.row_color = "row_update";// Nuevos" treatment.row_color;"
+      this.VHCRecordUpdate[id] = vhcData;
+          //this.NAHSRecord[i] = vhcData;
+      treatment.row_color = vhcData.row_color; 
+          //console.log(this.NAHSRecord[i]); 
+          //console.log(this.NAHSRecordUpdate);
+          //console.log("Actualizando.." + id + " " + column_name);
+      this.save_disabled = true;
+      this.save_enabled = false;
+    }else{
+      this.create_flag = true;
+      const vhcData = {} as vhcTreatmentModel;
+      vhcData.gender = treatment.gender;
+      vhcData.diagnostic_date	 = treatment.diagnostic_date;
+      vhcData.tx_date_begin = treatment.tx_date_begin;
+      vhcData.cirrosis = treatment.cirrosis;
+      vhcData.estadio_child = treatment.estadio_child;
+      vhcData.v_esofagicas = treatment.v_esofagicas;
+      vhcData.genotipo = treatment.genotipo;
+      vhcData.cv_inicial = treatment.cv_inicial;
+      vhcData.log_inicial = treatment.log_inicial;
+      vhcData.cv_s12 = treatment.cv_s12;
+      vhcData.log_s12 = treatment.log_s12;
+      vhcData.cv_s24 = treatment.cv_s24;
+      vhcData.log_rvs24 = treatment.log_rvs24;
+      vhcData.hb_inicial = treatment.hb_inicial;
+      vhcData.hb_final = treatment.hb_final;
+      vhcData.leuc_inicial = treatment.leuc_inicial;
+      vhcData.leuc_final = treatment.leuc_final;
+      vhcData.plaq_inicial = treatment.plaq_inicial;
+      vhcData.plaq_final = treatment.plaq_final;
+      vhcData.bt_inicial = treatment.bt_inicial;
+      vhcData.bt_final = treatment.bt_final;
+      vhcData.tgo_inicial = treatment.tgo_inicial;
+      vhcData.tgo_final = treatment.tgo_final;
+      vhcData.tgp_final = treatment.tgp_final;
+      vhcData.tgp_inicial = treatment.tgp_inicial;
+      vhcData.albu_inicial = treatment.albu_inicial;
+      vhcData.albu_final = treatment.albu_final;
+      vhcData.inr_inicial = treatment.inr_inicial;
+      vhcData.inr_final = treatment.inr_final;
+      vhcData.creatinina_inicial = treatment.creatinina_inicial;
+      vhcData.creatinina_final = treatment.creatinina_final;
+      vhcData.ascitis = treatment.ascitis;
+      vhcData.hepatocarcinoma = treatment.hepatocarcinoma;
+      vhcData.encefalopatia = treatment.encefalopatia;
+      vhcData.hepatocarcinoma = treatment.hepatocarcinoma;
+      vhcData.tratamiento = treatment.tratamiento;
+      vhcData.efecto_adverso = treatment.efecto_adverso;
+      vhcData.descripcion_adverso	 = treatment.descripcion_adverso;
+      vhcData.severidad_efecto_adverso = treatment.severidad_efecto_adverso;
+      vhcData.accion_tomada = treatment.accion_tomada;
+      vhcData.child_inicial = treatment.child_inicial;
+      vhcData.child_final = treatment.status;
+      vhcData.meld_inicial = treatment.meld_final;
+      vhcData.comentarios = treatment.comentarios;
+      vhcData.creation_userid = treatment.creation_userid;
+      vhcData.creation_username = treatment.creation_username;
+      vhcData.creation_date = treatment.creation_date;
+      vhcData.creation_time = treatment.creation_time;
+      vhcData.modification_userid = treatment.modification_userid;
+      vhcData.modification_username = treatment.modification_username;
+      vhcData.modification_date = treatment.modification_date;
+      vhcData.modification_time = treatment.modification_time;
+      vhcData.status = treatment.status;
+      vhcData.row_color = "row_new";// Nuevos" treatment.row_color;"
+      this.VHCRecordCreate[i] = this.VHCRecord[i]; 
+    }
+  }
+
+  getVHCData(){
+    this.progres_spinner_refresh_vhc_treatment = false;
+    this.hidden_update_btn  = true;
+    this.hospital_id = 0;
+    this.vhcTreatmentService.getVHCTreatment(this.hospital_id).subscribe((resp_data_get:any) => {
+      
+      this.VHCRecordEstilo = [];
+      this.VHCRecordEstiloExcel = [];
+      if (resp_data_get.code == 200){
+        resp_data_get.data.data.map((r) => {
+          const vhcData = {} as vhcTreatmentModel;
+          const vhcDataExcel = {} as vhcTreatmentModel;
+          vhcData.MD_entity_id = r.MD_entity_id;
+          vhcData.MD_hospital_id = r.MD_hospital_id;
+          vhcData.active_green_sem = "row_sem_green_visible";
+
+          vhcData.active_red_sem = "row_sem_red";///initial value
+
+          vhcData.research_date_begin = r.research_date_begin;
+          vhcData.research_date_end = r.research_date_end;
+          vhcData.research_vhc_id = r.research_vhc_id;
+          vhcData.month_execution = r.month_execution;
+          vhcData.initials = r.initials;
+          vhcData.birthdate	 = r.birthdate;
+          vhcData.gender = r.gender;
+          if (r.gender=="" || r.gender == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+
+          vhcData.estadio_child = r.estadio_child;
+          if (r.estadio_child=="" || r.estadio_child==null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.v_esofagicas = r.v_esofagicas;
+          if (r.v_esofagicas=="" || r.v_esofagicas==null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.genotipo = r.genotipo;
+          if (r.genotipo == "" || r.genotipo == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.cv_inicial = r.cv_inicial;
+          if (r.cv_inicial == "" || r.cv_inicial == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.log_inicial = r.log_inicial;
+          if (r.log_inicial == "" || r.log_inicial == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.cv_s12 = r.cv_s12;
+          if (r.cv_s12 == "" || r.cv_s12 == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.log_s12 = r.log_s12;
+          if (r.log_s12 == "" || r.log_s12 == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.cv_s24 = r.cv_s24;
+          if (r.cv_s24 == "" || r.cv_s24 == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.log_rvs24 = r.log_rvs24;
+          if (r.log_rvs24 == "" || r.log_rvs24 == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.hb_inicial = r.hb_inicial;
+          if (r.hb_inicial == "" || r.hb_inicial == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.hb_final = r.hb_final;
+          if (r.hb_final == "" || r.hb_final == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.leuc_inicial = r.leuc_inicial;
+          if (r.leuc_inicial == "" || r.leuc_inicial == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.leuc_final = r.leuc_final;
+          if (r.leuc_final == "" || r.leuc_final == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.plaq_inicial = r.plaq_inicial;
+          if (r.plaq_inicial == "" || r.plaq_inicial == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.plaq_final = r.plaq_final;
+          if (r.plaq_final == "" || r.plaq_final == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.bt_inicial = r.bt_inicial;
+          if (r.bt_inicial == "" || r.bt_inicial == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.bt_final = r.bt_final;
+          if (r.bt_final == "" || r.bt_final == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.tgo_inicial = r.tgo_inicial;
+          if (r.tgo_inicial == "" || r.tgo_inicial == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.tgo_final = r.tgo_final;
+          if (r.tgo_final == "" || r.tgo_final == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.tgp_final = r.tgp_final;
+          if (r.tgp_final == "" || r.tgp_final == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.tgp_inicial = r.tgp_inicial;
+          if (r.tgp_inicial == "" || r.tgp_inicial == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.albu_inicial = r.albu_inicial;
+          if (r.albu_inicial == "" || r.albu_inicial == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.albu_final = r.albu_final;
+          if (r.albu_final == "" || r.albu_final == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.inr_inicial = r.inr_inicial;
+          if (r.inr_inicial == "" || r.inr_inicial == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.inr_final = r.inr_final;
+          if (r.inr_final == "" || r.inr_final == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.creatinina_inicial = r.creatinina_inicial;
+          if (r.creatinina_inicial == "" || r.creatinina_inicial == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.creatinina_final = r.creatinina_final;
+          if (r.creatinina_final == "" || r.creatinina_final == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.ascitis = r.ascitis;
+          if (r.ascitis == "" || r.ascitis == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.encefalopatia = r.encefalopatia;
+          if (r.encefalopatia == "" || r.encefalopatia == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.hepatocarcinoma = r.hepatocarcinoma;
+          if (r.hepatocarcinoma == "" || r.hepatocarcinoma == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.tratamiento = r.tratamiento;
+          if (r.tratamiento == "" || r.tratamiento == null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.efecto_adverso = r.efecto_adverso;
+          if (r.efecto_adverso=="" || r.efecto_adverso==null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+
+          vhcData.descripcion_adverso = r.descripcion_adverso;
+          if (r.descripcion_adverso=="" || r.descripcion_adverso==null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.severidad_efecto_adverso = r.severidad_efecto_adverso;
+          if (r.severidad_efecto_adverso=="" || r.severidad_efecto_adverso==null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.accion_tomada = r.accion_tomada;
+          if (r.accion_tomada=="" || r.accion_tomada==null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.child_inicial = r.child_inicial;
+          if (r.child_inicial=="" || r.child_inicial==null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.child_final = r.child_final;
+          if (r.child_final=="" || r.child_final==null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+
+          vhcData.meld_inicial = r.meld_inicial;
+          if (r.meld_inicial=="" || r.meld_inicial==null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.meld_final = r.meld_final;
+          if (r.meld_final=="" || r.meld_final==null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.comentarios = r.comentarios;
+          if (r.comentarios=="" || r.comentarios==null){
+            vhcData.active_red_sem = "row_sem_red_visible";
+            vhcData.active_green_sem = "row_sem_green_hidden";
+          }
+          vhcData.creation_userid = r.creation_userid;
+          vhcData.creation_username = r.creation_username;
+          vhcData.creation_date = r.creation_date;
+          vhcData.creation_time = r.creation_time;
+          vhcData.modification_username = r.modification_username;
+          vhcData.modification_date = r.modification_date;
+          vhcData.modification_time = r.modification_time;
+          vhcData.status = r.status;
+          
+          vhcData.row_color = "row_get";// Nuevos" treatment.row_color;"
+          this.VHCRecordEstilo.push(vhcData);
+          
+          //this.VHCRecordEstiloExcel.push(this.getExcelData(vhcData));
+          this.hidden_update_btn  = false;
+          this.progres_spinner_refresh_nash_treatment = true;
+          
+        });
+      }else{
+        this.staticAlertClosed2 = false;
+        this.alert_2.type = 'danger';
+        this.alert_2.message = 'Hubo un error al obtener la información.';
+        this.reset();
+        this.progres_spinner_refresh_vhc_treatment = true;
+        this.hidden_update_btn  = false;  
+      }
+      this.NAHSRecordExcel = this.NAHSRecordEstiloExcel;
+      this.NAHSRecord = this.NAHSRecordEstilo;
+      
+    }, err=>{
+      this.staticAlertClosed2 = false;
+      this.alert_2.type = 'danger';
+      this.alert_2.message = 'Hubo un error al obtener la información.';
+      this.reset();
+      this.progres_spinner_refresh_nash_treatment = true;
+      this.hidden_update_btn  = false;
+    });
+  }
+  updateTableRecordsVHC(){
+      this.getVHCData();
+  }
+  ///////////////////////////////////////____________________________________END VHC
 }
 
 export class country{

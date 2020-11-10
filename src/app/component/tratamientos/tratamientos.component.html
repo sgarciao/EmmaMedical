@@ -579,20 +579,20 @@
                                                     <figure class="content-tools">
                                                         <img src="https://img.icons8.com/color/48/000000/new-by-copy.png" 
                                                         title="Nuevo registro"
-                                                        (click) = "agregarNuevoRegistro($event)" class="tools"/>
+                                                        (click) = "agregarNuevoRegistroVHC($event)" class="tools"/>
                                                         <figcaption class="tool-text">Nuevo</figcaption>
                                                     </figure>
                                                     <figure class="content-tools">
                                                         <img src="https://img.icons8.com/ios-filled/50/000000/save.png"
                                                         title="Guardar"
                                                         class="save_disabled_btn"
-                                                        [hidden] = "save_disabled"
+                                                        [hidden] = "save_disabled_vhc"
                                                         />
 
                                                         <img src="https://img.icons8.com/fluent/48/000000/save.png"
                                                         title="Guardar"
-                                                        (click)="guardarRegistro()"
-                                                        [hidden] = "save_enabled"
+                                                        (click)="guardarRegistroVHC()"
+                                                        [hidden] = "save_enabled_vhc"
                                                         class="tools"/>
                                                         
                                                          <figcaption class="tool-text">Guardar</figcaption>
@@ -609,12 +609,12 @@
 
                                                     <figure class="content-tools">
                                                         <div class="spinner-border text-success icon_tools" role="status" 
-                                                            [hidden]="progres_spinner_refresh_nash_treatment">
+                                                            [hidden]="progres_spinner_refresh_vhc_treatment">
                                                             <span class="sr-only tools">Loading...</span>
                                                         </div>
                                                         <img src="https://img.icons8.com/flat_round/64/000000/recurring-appointment.png" 
                                                         title="Actualizar"
-                                                        (click)="updateTableRecordsNash()"
+                                                        (click)="updateTableRecordsVHC()"
                                                         [hidden]="hidden_update_btn"
                                                         class="tools"/>
                                                         <figcaption class="tool-text">Actualizar</figcaption>
@@ -646,265 +646,343 @@
                                                     <tr>
                                                         <th scope="col">ESTATUS</th>
                                                         <th scope="col">INICIALES</th>
-                                                                        <th scope="col">FECHA NACIMIENTO</th>
-                                                                        <th scope="col">GÉNERO</th>
-                                                                        <th scope="col">ESTADIO DE CHILD</th>
-                                                                        <th scope="col">DIABETES MELLITUS</th>
-                                                                        <th scope="col">HIPERTENSIÓN</th>
-                                                                        <th scope="col">HIPERCOLESTEROLEMIA</th>
-                                                                        <th scope="col">HIPERTRIGLICERIDEMIA</th>
-                                                                        <th scope="col">PESO (kg)</th>
-                                                                        <th scope="col">TALLA (cm)</th>
-                                                                        <th scope="col">FIBROSCAN</th>
-                                                                        <th scope="col">FIBROTEST</th>
-                                                                        <th scope="col">SW  (kPa)</th>
-                                                                        <th scope="col">FIN - 4</th>
-                                                                        <th scope="col">Hb1A1c</th>
-                                                                        <th scope="col">I. de HOMMA</th>
-                                                                        <th scope="col">IMC</th>
-                                                                        <th scope="col">CINTURA (cm)</th>
-                                                                        <th scope="col">CADERA (cm)</th>
-                                                                        <th scope="col">HG</th>
-                                                                        <th scope="col">LEUCOCITOS</th>
-                                                                        <th scope="col">PLAQUETAS</th>
-                                                                        <th scope="col">ALT / TGP</th>
-                                                                        <th scope="col">AST / TGO</th>
-                                                                        <th scope="col">FA</th>
-                                                                        <th scope="col">GGT</th>
-                                                                        <th scope="col">ALBU</th>
-                                                                        <th scope="col">TP / INR</th>
-                                                                        <th scope="col">BT</th>
-                                                                        <th scope="col">BD</th>
-                                                                        <th scope="col">BI</th>
-                                                                        <th scope="col">ASCITIS</th>
-                                                                        <th scope="col">ENCEFALOPATIA</th>
-                                                                        <th scope="col">VARICES</th>
-                                                                        <th scope="col">HEPATOCARCINOMA</th>
-                                                                        <th scope="col">TRATAMIENTO</th>
-                                                                        <th scope="col">FECHA REGISTRO</th>
-                                                                        <th scope="col">HORA REGISTRO</th>
-                                                                        <th scope="col">USUARIO</th>  
+                                                        <th scope="col">FECHA NACIMIENTO</th>
+                                                        <th scope="col">GÉNERO</th>
+                                                        <th scope="col">FECHA DE INICIO DE TX</th>
+                                                        <th scope="col">CIRROSIS</th>
+                                                        <th scope="col">ESTADIO CHILD (PUNTAJE)</th>
+                                                        <th scope="col">V. ESOFÁGICAS</th>
+                                                        <th scope="col">GENOTIPO</th>
+                                                        <th scope="col">CV INICIAL</th>
+                                                        <th scope="col">LOG INICIAL</th>
+                                                        <th scope="col">CV S12</th>
+                                                        <th scope="col">LOG S12</th>
+                                                        <th scope="col">CV S 24</th>
+                                                        <th scope="col">LOG RVS 24</th>
+                                                        <th scope="col">HB INICIAL</th>
+                                                        <th scope="col">HB FINAL</th>
+                                                        <th scope="col">LEUC INICIAL</th>
+                                                        <th scope="col">LEUC FINAL</th>
+                                                        <th scope="col">PLAQ INICIAL</th>
+                                                        <th scope="col">PLAQ FINAL</th>
+                                                        <th scope="col">BT INICIAL</th>
+                                                        <th scope="col">BT FINAl</th>
+                                                        <th scope="col">TGO INICIAL</th>
+                                                        <th scope="col">TGO FINAL</th>
+                                                        <th scope="col">TGP INICIAL</th>
+                                                        <th scope="col">TGP FINAL</th>
+                                                        <th scope="col">ALBU INICIAL</th>
+                                                        <th scope="col">ALBU FINAL</th>
+                                                        <th scope="col">INR INICIAL</th>
+                                                        <th scope="col">INR FINAL</th>
+                                                        <th scope="col">CREATINA INICIAL</th>
+                                                        <th scope="col">CREATINA FINAL</th>
+                                                        <th scope="col">ASCITIS</th>
+                                                        <th scope="col">ENCEFALOPATIA</th>
+                                                        <th scope="col">HEPATOCARSINOMA</th>
+                                                        <th scope="col">TRATAMIENTO</th>
+                                                        <th scope="col">EFECTO ADVERSO</th>
+                                                        <th scope="col">CUAL/DESCRIBIR</th>
+                                                        <th scope="col">SEVERIDAD DEL EFECTO ADVERSO</th>
+                                                        <th scope="col">ACCIÓN TOMADA</th>
+                                                        <th scope="col">CHILD FINAL</th>
+                                                        <th scope="col">MELD INICIAL</th>
+                                                        <th scope="col">MELD FINAL</th>
+                                                        <th scope="col">COMENTARIOS</th>
+                                                        <th scope="col">HOSPITAL</th>
+                                                        <th scope="col">FECHA REGISTRO</th>
+                                                        <th scope="col">HORA REGISTRO</th>
+                                                        <th scope="col">USUARIO</th>  
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr  *ngFor="let treatment of NAHSRecord; let i = index" class="{{treatment.row_color}}">
+                                                    <tr  *ngFor="let treatmentvhc of VHCRecord; let i = index" class="{{treatmentvhc.row_color}}">
                                                             <td class = "rows-style">
-                                                                <img src="https://img.icons8.com/emoji/48/000000/green-circle-emoji.png" class="tools {{treatment.active_green_sem}}" title="Ok..."/>
-                                                                <img src="https://img.icons8.com/emoji/48/000000/red-circle-emoji.png" class="tools {{treatment.active_red_sem}}" title="Campos vacíos..."/>
-                                                                
+                                                                <img src="https://img.icons8.com/emoji/48/000000/green-circle-emoji.png" 
+                                                                class="tools {{treatmentvhc.active_green_sem}}" title="Ok..."/>
+                                                                <img src="https://img.icons8.com/emoji/48/000000/red-circle-emoji.png" 
+                                                                class="tools {{treatmentvhc.active_red_sem}}" title="Campos vacíos..."/>
                                                             </td>
                                                             <td class = "rows-style">	
-                                                                <input type="text" class="form-control"	[(ngModel)]="treatment.short_name" id="short_name"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)"
+                                                                <input type="text" class="form-control"	
+                                                                [(ngModel)]="treatmentvhc.initials" id="initials"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.initials, treatmentvhc, i)"
                                                                 >		
                                                             </td>
                                                             <td class = "rows-style">	
-                                                                <input type="date" class="form-control"	[(ngModel)]="treatment.birth_date" id="birth_date"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">	
+                                                                <input type="date" class="form-control"	
+                                                                [(ngModel)]="treatmentvhc.birthdate" id="birthdate"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.birthdate, treatmentvhc, i)">	
                                                             </td>
                                                             <td class = "rows-style">
                                                                 <select 
-                                                                    [(ngModel)] = "treatment.gender"
-                                                                    id="hospital" class="custom-select mr-sm-1 select-style"
-                                                                    (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)"> 
-                                                                    <option value="1"> {{treatment.gender}}  Hombre </option>
-                                                                    <option value="2"> {{treatment.gender}}  Mujer </option>
-                                                                    <option value="3"> {{treatment.gender}}  Otro </option>
+                                                                    [(ngModel)] = "treatmentvhc.gender"
+                                                                    id="gender" class="custom-select mr-sm-1 select-style"
+                                                                    (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.gender, treatmentvhc, i)"> 
+                                                                    <option value="1"> {{treatmentvhc.gender}}  Hombre </option>
+                                                                    <option value="2"> {{treatmentvhc.gender}}  Mujer </option>
+                                                                    <option value="3"> {{treatmentvhc.gender}}  Otro </option>
                                                                 </select>	
                                                             </td>
                                                             <td class = "rows-style">	
-                                                                <select 
-                                                                    [(ngModel)]="treatment.child_stadium"
-                                                                    id="hospital" class="custom-select mr-sm-1 select-style"
-                                                                    (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)"> 
-                                                                    <option value="1"> {{treatment.child_stadium}}  A (de 5 a 6) </option>
-                                                                    <option value="2"> {{treatment.child_stadium}}  B (de 7 a 9) </option>
-                                                                    <option value="3"> {{treatment.child_stadium}}  C (más de 10) </option>
-                                                                </select>
+                                                                <input type="date" class="form-control"	
+                                                                [(ngModel)]="treatmentvhc.tx_date_begin" id="tx_date_begin"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.tx_date_begin, treatmentvhc, i)">	
                                                             </td>
                                                             <td class = "rows-style">	
                                                                 <select 
-                                                                    [(ngModel)]="treatment.mellitus_diabetes" id="mellitus_diabetes"
+                                                                    [(ngModel)]="treatmentvhc.cirrosis" id="cirrosis"
                                                                     class="custom-select mr-sm-1 select-style"
-                                                                    (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)"> 
-                                                                    <option value="1"> {{treatment.mellitus_diabetes}}  Si </option>
-                                                                    <option value="2"> {{treatment.mellitus_diabetes}}  No </option>
+                                                                    (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.short_name, treatmentvhc, i)"> 
+                                                                    <option value="1"> {{treatmentvhc.cirrosis}}  Si </option>
+                                                                    <option value="2"> {{treatmentvhc.cirrosis}}  No </option>
                                                                 </select>
                                                             </td>
                                                             <td class = "rows-style">	
                                                                 <select 
-                                                                [(ngModel)]="treatment.hypertension" id="hypertension"
-                                                                    class="custom-select mr-sm-1 select-style"
-                                                                    (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)"> 
-                                                                    <option value="1"> {{treatment.hypertension}}  Si </option>
-                                                                    <option value="2"> {{treatment.hypertension}}  No </option>
+                                                                    [(ngModel)]="treatmentvhc.estadio_child"
+                                                                    id="estadio_child" class="custom-select mr-sm-1 select-style"
+                                                                    (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.estadio_child, treatmentvhc, i)"> 
+                                                                    <option value="1"> {{treatmentvhc.estadio_child}}  A (de 5 a 6) </option>
+                                                                    <option value="2"> {{treatmentvhc.estadio_child}}  B (de 7 a 9) </option>
+                                                                    <option value="3"> {{treatmentvhc.estadio_child}}  C (más de 10) </option>
                                                                 </select>
                                                             </td>
                                                             <td class = "rows-style">	
                                                                 <select 
-                                                                    [(ngModel)]="treatment.HIPERCOLESTEROLEMIA" id="HIPERCOLESTEROLEMIA"
+                                                                    [(ngModel)]="treatmentvhc.v_esofagicas" id="v_esofagicas"
                                                                     class="custom-select mr-sm-1 select-style"
-                                                                    (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)"> 
-                                                                    <option value="1"> {{treatment.HIPERCOLESTEROLEMIA}}  Si </option>
-                                                                    <option value="2"> {{treatment.HIPERCOLESTEROLEMIA}}  No </option>
+                                                                    (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.v_esofagicas, treatmentvhc, i)"> 
+                                                                    <option value="1"> {{treatmentvhc.v_esofagicas}}  Si </option>
+                                                                    <option value="2"> {{treatmentvhc.v_esofagicas}}  No </option>
+                                                                </select>
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.genotipo" id="genotipo"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.genotipo, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.cv_inicial" id="cv_inicial"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.cv_inicial, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.log_inicial" id="log_inicial"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.log_inicial, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.cv_s12" id="cv_s12"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.cv_s12, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.log_s12" id="log_s12"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.log_s12, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.cv_s24" id="cv_s24"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.cv_s24, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.log_rvs24" id="log_rvs24"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.log_rvs24, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.hb_inicial" id="hb_inicial"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.hb_inicial, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.hb_final" id="hb_final"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.hb_final, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.leuc_inicial" id="leuc_inicial"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.leuc_inicial, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.leuc_final" id="leuc_final"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.leuc_final, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.plaq_inicial" id="plaq_inicial"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.plaq_inicial, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.plaq_final" id="plaq_final"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.plaq_final, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.bt_inicial" id="bt_inicial"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.bt_inicial, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.bt_final" id="bt_final"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.bt_final, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.tgo_inicial" id="tgo_inicial"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.tgo_inicial, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.tgo_final" id="tgo_final"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.tgo_final, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.tgp_inicial" id="tgp_inicial"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.tgp_final, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.tgp_final" id="tgp_final"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.tgp_final, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.albu_inicial" id="albu_inicial"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.albu_inicial, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.albu_final" id="albu_final"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.albu_final, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.inr_inicial" id="inr_inicial"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.inr_inicial, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.inr_final" id="inr_final"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.genotipo, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.creatinina_inicial" id="creatinina_inicial"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.creatinina_inicial, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.creatinina_final" id="creatinina_final"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.creatinina_final, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">	
+                                                                <select 
+                                                                    [(ngModel)]="treatmentvhc.ascitis" id="ascitis"
+                                                                    class="custom-select mr-sm-1 select-style"
+                                                                    (ngModelChange)="updateRecordNASH(treatmentvhc.research_nash_id, treatmentvhc.ascitis, treatmentvhc, i)"> 
+                                                                    <option value="1"> {{treatmentvhc.ascitis}}  Si </option>
+                                                                    <option value="2"> {{treatmentvhc.ascitis}}  No </option>
+                                                                </select>
+                                                            </td>
+                                                            
+                                                            <td class = "rows-style">	
+                                                                <select 
+                                                                [(ngModel)]="treatmentvhc.encefalopatia" id="encefalopatia"
+                                                                    class="custom-select mr-sm-1 select-style"
+                                                                    (ngModelChange)="updateRecordNASH(treatmentvhc.research_nash_id, treatmentvhc.encefalopatia, treatmentvhc, i)"> 
+                                                                    <option value="1"> {{treatmentvhc.encefalopatia}}  Si </option>
+                                                                    <option value="2"> {{treatmentvhc.encefalopatia}}  No </option>
+                                                                </select>
+                                                            </td>
+
+                                                            <td class = "rows-style">	
+                                                                <select 
+                                                                [(ngModel)]="treatmentvhc.hepatocarcinoma" id="hepatocarcinoma"
+                                                                    class="custom-select mr-sm-1 select-style"
+                                                                    (ngModelChange)="updateRecordNASH(treatmentvhc.research_nash_id, treatmentvhc.hepatocarcinoma, treatmentvhc, i)"> 
+                                                                    <option value="1"> {{treatmentvhc.hepatocarcinoma}}  Si </option>
+                                                                    <option value="2"> {{treatmentvhc.hepatocarcinoma}}  No </option>
                                                                 </select>
                                                             </td>
                                                             <td class = "rows-style">	
                                                                 <select 
-                                                                [(ngModel)]="treatment.HIPERTRIGLICERIDEMIA" id="HIPERTRIGLICERIDEMIA"
+                                                                    [(ngModel)]="treatmentvhc.tratamiento" id="tratamiento"
                                                                     class="custom-select mr-sm-1 select-style"
-                                                                    (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)"> 
-                                                                    <option value="1"> {{treatment.HIPERTRIGLICERIDEMIA}}  Si </option>
-                                                                    <option value="2"> {{treatment.HIPERTRIGLICERIDEMIA}}  No </option>
+                                                                    (ngModelChange)="updateRecordNASH(treatmentvhc.research_nash_id, treatmentvhc.short_name, treatmentvhc, i)"> 
+                                                                    <option value="1"> {{treatmentvhc.tratamiento}}  Epclusa </option>
+                                                                    <option value="2"> {{treatmentvhc.tratamiento}}  Mavyret </option>
+                                                                    <option value="3"> {{treatmentvhc.tratamiento}}  Daklinza </option>
+                                                                    <option value="4"> {{treatmentvhc.tratamiento}}  Viekira </option>
+                                                                    <option value="5"> {{treatmentvhc.tratamiento}}  Peg Interferon </option>
                                                                 </select>
                                                             </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" step="any"  class="form-control"	[(ngModel)]="treatment.weight" id="weight"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" step="any" class="form-control"	[(ngModel)]="treatment.size" id="size"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" class="form-control"	[(ngModel)]="treatment.fibroscan" id="fibroscan"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" class="form-control"	[(ngModel)]="treatment.fribrotest" id="fribrotest"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" step="any" class="form-control"	[(ngModel)]="treatment.sw" id="sw"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" class="form-control"	[(ngModel)]="treatment.fin_4" id="fin_4"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" class="form-control"	[(ngModel)]="treatment.Hb1A1c" id="Hb1A1c"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" class="form-control"	[(ngModel)]="treatment.i_homma" id="i_homma"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" class="form-control"	[(ngModel)]="treatment.imc" id="imc" 
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" step="any" class="form-control"	[(ngModel)]="treatment.waist" id="waist"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" step="any" class="form-control"	[(ngModel)]="treatment.hip" id="hip"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number"  class="form-control"	[(ngModel)]="treatment.hg" id="hg"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" step="any"  class="form-control"	[(ngModel)]="treatment.leukocytes" id="leukocytes"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" step="any" class="form-control"	[(ngModel)]="treatment.platelets" id="platelets"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" step="any" class="form-control"	[(ngModel)]="treatment.alt_tgp" id="alt_tgp"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" step="any" class="form-control"	[(ngModel)]="treatment.ast_tgo" id="ast_tgo"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" step="any" class="form-control"	[(ngModel)]="treatment.fa" id="fa"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" step="any" class="form-control"	[(ngModel)]="treatment.ggt" id="ggt"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" step="any" class="form-control"	[(ngModel)]="treatment.albu" id="albu"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" step="any" class="form-control"	[(ngModel)]="treatment.tp_irn" id="tp_irn"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" step="any" class="form-control"	[(ngModel)]="treatment.bt" id="bt"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" step="any" class="form-control"	[(ngModel)]="treatment.bd" id="bd"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.bd, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="number" step="any" class="form-control"	[(ngModel)]="treatment.bi" id="bi"
-                                                                (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.bi, treatment, i)">		
-                                                            </td>
-                                                            <td class = "rows-style">	
+                                                            <td class = "rows-style">
                                                                 <select 
-                                                                    [(ngModel)]="treatment.ascitis" id="ascitis"
+                                                                [(ngModel)]="treatmentvhc.efecto_adverso" id="efecto_adverso"
                                                                     class="custom-select mr-sm-1 select-style"
-                                                                    (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.ascitis, treatment, i)"> 
-                                                                    <option value="1"> {{treatment.ascitis}}  Si </option>
-                                                                    <option value="2"> {{treatment.ascitis}}  No </option>
+                                                                    (ngModelChange)="updateRecordNASH(treatmentvhc.research_nash_id, treatmentvhc.efecto_adverso, treatmentvhc, i)"> 
+                                                                    <option value="1"> {{treatmentvhc.efecto_adverso}}  Si </option>
+                                                                    <option value="2"> {{treatmentvhc.efecto_adverso}}  No </option>
                                                                 </select>
                                                             </td>
-                                                            <td class = "rows-style">	
-                                                                <select 
-                                                                [(ngModel)]="treatment.encephalopathy" id="encephalopathy"
-                                                                    class="custom-select mr-sm-1 select-style"
-                                                                    (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.encephalopathy, treatment, i)"> 
-                                                                    <option value="1"> {{treatment.encephalopathy}}  Si </option>
-                                                                    <option value="2"> {{treatment.encephalopathy}}  No </option>
-                                                                </select>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control description_long"	[(ngModel)]="treatmentvhc.descripcion_adverso" id="descripcion_adverso"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.descripcion_adverso, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.severidad_efecto_adverso" id="severidad_efecto_adverso"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.severidad_efecto_adverso, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control description_long"	[(ngModel)]="treatmentvhc.accion_tomada" id="accion_tomada"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.accion_tomada, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.child_final" id="child_final"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.child_final, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.meld_inicial" id="meld_inicial"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.meld_inicial, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control"	[(ngModel)]="treatmentvhc.meld_final" id="meld_final"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.meld_final, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control description_long"	[(ngModel)]="treatmentvhc.comentarios" id="comentarios"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.comentarios, treatmentvhc, i)"
+                                                                >
+                                                            </td>
+                                                            <td class = "rows-style">
+                                                                <input type="text" class="form-control "	[(ngModel)]="treatmentvhc.MD_hospital" id="MD_hospital"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_nash_id, treatmentvhc.MD_hospital, treatmentvhc, i)"
+                                                                disabled>
                                                             </td>
                                                             <td class = "rows-style">	
-                                                                <select 
-                                                                    [(ngModel)]="treatment.varicose_veins" id="varicose_veins"
-                                                                    class="custom-select mr-sm-1 select-style"
-                                                                    (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)"> 
-                                                                    <option value="1"> {{treatment.varicose_veins}}  Si </option>
-                                                                    <option value="2"> {{treatment.varicose_veins}}  No </option>
-                                                                </select>
+                                                                <input type="date" class="form-control"	[(ngModel)]="treatmentvhc.creation_date" id="creation_date" disabled>		
                                                             </td>
                                                             <td class = "rows-style">	
-                                                                <select 
-                                                                    [(ngModel)]="treatment.hepatocarcinoma" id="hepatocarcinoma"
-                                                                    class="custom-select mr-sm-1 select-style"
-                                                                    (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)"> 
-                                                                    <option value="1"> {{treatment.hepatocarcinoma}}  Si </option>
-                                                                    <option value="2"> {{treatment.hepatocarcinoma}}  No </option>
-                                                                </select>
+                                                                <input type="time" class="form-control"	[(ngModel)]="treatmentvhc.creation_time" id="creation_time" disabled>		
                                                             </td>
-                                                            <td class = "rows-style">	
-                                                                <select 
-                                                                    [(ngModel)]="treatment.treatment" id="treatment"
-                                                                    class="custom-select mr-sm-1 select-style"
-                                                                    (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)"> 
-                                                                    <option value="1"> {{treatment.treatment}}  Metformin </option>
-                                                                    <option value="2"> {{treatment.treatment}}  Pioglitazona </option>
-                                                                    <option value="3"> {{treatment.treatment}}  UDCA </option>
-                                                                    <option value="4"> {{treatment.treatment}}  Vit E </option>
-                                                                    <option value="5"> {{treatment.treatment}}  Otras </option>
-                                                                </select>
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="date" class="form-control"	[(ngModel)]="treatment.creation_date" id="creation_date" disabled>		
-                                                            </td>
-                                                            <td class = "rows-style">	
-                                                                <input type="time" class="form-control"	[(ngModel)]="treatment.creation_time" id="creation_time" disabled>		
-                                                            </td>
-                                                            <td class = "rows-style">	<input type="bumber" class="form-control"	[(ngModel)]="treatment.creation_user_name" id="creation_user_name" disabled>		</td>
+                                                            <td class = "rows-style">	<input type="bumber" class="form-control"	
+                                                                [(ngModel)]="treatmentvhc.creation_username" id="creation_username" disabled>		</td>
+                                                            <!---////////////////////-->
+                                                            
+                                                           
                                                     </tr>
                                                 </tbody>
                                             </table>
