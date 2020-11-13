@@ -1000,8 +1000,7 @@ export class TratamientosComponent implements OnInit {
         this.optionsHospitals.unshift(dato);
         this.comboHospital = dato;
        }else{
-        this.comboHospital = hosp;
-        console.log(this.comboHospital);
+        this.comboHospital = hosp[0];
        }
       }else{
 
