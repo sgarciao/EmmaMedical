@@ -979,7 +979,11 @@ export class TratamientosComponent implements OnInit {
         this.optionsHospitals.unshift(dato);
         this.comboHospital = dato;
        }else{
+//<<<<<<< HEAD
         this.comboHospital = hosp;
+//=======
+  //      this.comboHospital = hosp[0];
+//>>>>>>> 3c823d24a38d39f4cdadc423b6bff1f7b45b6360
        }
       }else{
 
