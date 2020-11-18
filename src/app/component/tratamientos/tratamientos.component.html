@@ -106,16 +106,16 @@
                             <div class="col-sm-12">		
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="row align-items-center content-table">
+                                        <!--<div class="row align-items-center content-table">
                                             <div class="col-md-6">  
                                                 <h4 class="card-title">Tratamientos NASH</h4>
-                                                <!--<h5 class="card-subtitle">Datos recopilados sobre tratamientos NASH</h5>-->
+                                                <h5 class="card-subtitle">Datos recopilados sobre tratamientos NASH</h5>
                                             </div>
                                             <div class="col-md-4">
                                             </div>
                                             <div class="col-md-2 refresh-button align-items-center">
                                             </div>
-                                         </div>
+                                         </div>-->
                                         <div>
                                         <div class="row">
                                             <div class="col-md-12 table-controls">
@@ -450,7 +450,8 @@
                                                                         <select 
                                                                         [(ngModel)]="treatment.hospital_id"
                                                                             (change) ="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)" 
-                                                                            class="custom-select mr-sm-1 select-style" >
+                                                                            class="custom-select mr-sm-1 select-style" 
+                                                                            disabled>
                                                                             <option 
                                                                                 *ngFor="let hospitales_ of optionsHospitalsSelected" 
                                                                                 value="{{hospitales_.hospital_id}}">{{hospitales_.hospital_name}}</option>
@@ -598,7 +599,7 @@
                                                     <figure class="content-tools">
                                                         <img src="https://img.icons8.com/color/48/000000/export-excel.png"
                                                         title="Exportar"
-                                                        (click)="exportExcel()"
+                                                        (click)="exportExcelVHC()"
                                                          class="tools"/>
                                                         <figcaption class="tool-text">Exportar</figcaption>
                                                     </figure>

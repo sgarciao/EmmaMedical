@@ -7,7 +7,7 @@ import { NashtreatmentService } from 'src/app/services/nashtreatment.service';
 import { NotifierService } from 'angular-notifier';
 import { HospitalsService } from 'src/app/services/hospitals.service';
 import { hospitalsModel } from 'src/app/model/hospitalsModel';
-import { vhcTreatmentData, vhcTreatmentModel } from 'src/app/model/vhcTreatmentsModel';
+import { vhcTreatmentData, vhcTreatmentModel, vhcTreatmentModelHeader } from 'src/app/model/vhcTreatmentsModel';
 import { VhctreatmentService } from 'src/app/services/vhctreatment.service';
 import { DatePipe } from '@angular/common';
 
@@ -173,16 +173,21 @@ export class TratamientosComponent implements OnInit {
   VHCRecord: vhcTreatmentModel[] = [];
   VHCRecordEstilo: vhcTreatmentModel[] = [];
   VHCRecordEstiloExcel: vhcTreatmentModel[] = [];
-  VHCRecordExcel: vhcTreatmentModel[]=[];
+  
   VHCRecordCreate: vhcTreatmentModel[] = [];
   VHCRecordUpdate: vhcTreatmentModel[] = [];
-  
+
+  VHCRecordExcel: vhcTreatmentModel[]=[];
+  VHCRecordHeader = {} as vhcTreatmentModelHeader;
   
   create_flag: boolean;
   update_flag: boolean;
 
   NAHSRecordExcel: nashTratment[] = [];
   NAHSRecordHeader = {} as nashTratmentHeader;
+
+  
+
   
   indiceNash: number;
   
@@ -407,62 +412,28 @@ export class TratamientosComponent implements OnInit {
     this.end_date = this.strDate;
     nashData.date_begin = this.strDate;
     nashData.date_end = this.strDate;
-    
-    nashData.hospital_id = this.comboHospital.hospital_id;
-    //nashData.research_nash_id = this.indiceNash;
-    nashData.month_execution = 9;
-    /*nashData.short_name = "AMH";
-    nashData.birth_date = "1988-03-29";
-    nashData.gender = 1;
-    nashData.child_stadium = 1;
-    nashData.mellitus_diabetes = 1;
-    nashData.hypertension = 1;
-    nashData.HIPERCOLESTEROLEMIA = 1;
-    nashData.HIPERTRIGLICERIDEMIA = 1;
-    nashData.weight = 0.0;
-    nashData.size = 0.0;
-    nashData.fibroscan = 0.0;
-    nashData.fribrotest = 0.0;
-    nashData.sw = 0;
-    nashData.fin_4 = 1;
-    nashData.Hb1A1c = 1;
-    nashData.i_homma = 1;
-    nashData.imc = 1;
-    nashData.waist = 1;
-    nashData.hip = 1;
-    nashData.hg = 1;
-    nashData.leukocytes = 1;
-    nashData.platelets = 1;
-    nashData.alt_tgp = 1;
-    nashData.fa = 1;
-    nashData.ggt = 1;
-    nashData.albu = 1;
-    nashData.tp_irn = 1;
-    nashData.bt = 1;
-    nashData.bd = 1;
-    nashData.bi = 1;
-    nashData.ascitis = 1;
-    nashData.encephalopathy = 1;
-    nashData.varicose_veins = 1;
-    nashData.hepatocarcinoma = 1;
-    nashData.treatment = 1;
-    nashData.creation_user_id = 1;
-    nashData.creation_user_name = "pemex";
-    nashData.creation_date = "2020-09-16";
-    nashData.creation_time = "16:57:00";
-    nashData.modification_user_name = "";
-    nashData.modification_date = "";
-    nashData.modification_time = "";*/
-    nashData.row_color = "row_new";
-    nashData.status = 1;
-    nashData.active_red_sem = "row_sem_red_visible";
-    nashData.active_green_sem = "row_sem_green_hidden";
+    if (this.comboHospital.hospital_id == 0){
+      this.minimizeScreen();
+      this.staticAlertClosed2 = false;
+      this.alert_2.type = 'warning';
+      this.alert_2.message = 'Debe seleccionar un hospital';
+      this.reset();
+    }else{
+      this.maximizeScreen();
+      nashData.hospital_id = this.comboHospital.hospital_id;
+      //nashData.research_nash_id = this.indiceNash;
+      nashData.month_execution = 9;
+      nashData.row_color = "row_new";
+      nashData.status = 1;
+      nashData.active_red_sem = "row_sem_red_visible";
+      nashData.active_green_sem = "row_sem_green_hidden";
 
-    this.NAHSRecord.push(nashData);
-    this.progres_spinner_refresh_nash_treatment = true;
-    this.hidden_update_btn  = false;
-    this.save_disabled = true;
-    this.save_enabled = false;
+      this.NAHSRecord.push(nashData);
+      this.progres_spinner_refresh_nash_treatment = true;
+      this.hidden_update_btn  = false;
+      this.save_disabled = true;
+      this.save_enabled = false;
+    }
   }
   changeHospital(){
     
@@ -477,7 +448,7 @@ export class TratamientosComponent implements OnInit {
       this.NAHSRecordEstilo = [];
       this.NAHSRecordEstiloExcel = [];
       if (resp_data_get.code == 200){
-        console.log(">> " + resp_data_get.data.data);
+        console.log(">> " + resp_data_get.data.data.length);
         if (resp_data_get.data.data.length > 0){
           resp_data_get.data.data.map((r) => {
 
@@ -686,6 +657,9 @@ export class TratamientosComponent implements OnInit {
             
           });
         }else{
+            
+          console.log("NO se encontraron datos.");
+          this.minimizeScreen();
           this.staticAlertClosed2 = false;
           this.alert_2.type = 'warning';
           this.alert_2.message = 'No se encontraron datos. Intente incrementando el rango de fechas o cambiando parámetros de busqueda.';
@@ -784,6 +758,8 @@ export class TratamientosComponent implements OnInit {
           this.alert_2.message = 'Datos guardados correctamente.';
           this.reset();
           this.hidden_update_btn  = false;
+          this.save_disabled = false;
+          this.save_enabled = true;
         }else{
           this.staticAlertClosed2 = false;
           this.alert_2.type = 'danger';
@@ -823,6 +799,8 @@ export class TratamientosComponent implements OnInit {
         this.alert_2.type = 'success';
         this.alert_2.message = 'Datos actualizados correctamente.';
         this.reset();
+        this.save_disabled = false;
+          this.save_enabled = true;
       }else{
         this.staticAlertClosed2 = false;
         this.alert_2.type = 'danger';
@@ -981,6 +959,7 @@ export class TratamientosComponent implements OnInit {
   }
 
   getHospitalsListApi(entity_id){
+    console.log("Get hospitals... ");
     this.hospitalsService.getHospitalsList(this.role_id, entity_id).subscribe((res_data:any)=>{
       if (res_data.code == 200){
         let hosp = res_data.data.map((r)=>{
@@ -1001,7 +980,6 @@ export class TratamientosComponent implements OnInit {
         this.comboHospital = dato;
        }else{
         this.comboHospital = hosp;
-        console.log(this.comboHospital);
        }
       }else{
 
@@ -1057,8 +1035,9 @@ export class TratamientosComponent implements OnInit {
     this.update_flag = false;
     /////////////////////////////
 
-    let entity_id = localStorage.getItem("entidad_id");
-    this.getHospitalsListApi(entity_id);
+    let entity_id_ = localStorage.getItem("entidad_id");
+    this.entity_id = Number(entity_id_);
+    this.getHospitalsListApi(entity_id_);
     ///////////////
     this.title_tab = localStorage.getItem('treatment_code');
     if (localStorage.getItem('treatment_type') == '4'){
@@ -1146,10 +1125,167 @@ export class TratamientosComponent implements OnInit {
   }
 
   reset(){
-    setTimeout(() => (this.staticAlertClosed2 = true), 1000);
+    setTimeout(() => (this.staticAlertClosed2 = true), 2000);
   }
   //////////////////////////////////////_____________________________________VHC
-  
+  exportCSVFileVHC(headers, items, fileTitle) {
+      if (headers) {
+          items.unshift(headers);
+      }
+      // Convert Object to JSON
+      
+      var jsonObject = JSON.stringify(items);
+      var csv = this.convertToCSV(jsonObject);
+      var exportedFilenmae = fileTitle + '.csv' || 'export.csv';
+      var blob = new Blob([csv], { type: 'text/csv;charset=unicode;' });
+      if (navigator.msSaveBlob) { // IE 10+
+          navigator.msSaveBlob(blob, exportedFilenmae);
+      } else {
+          var link = document.createElement("a");
+          if (link.download !== undefined) { // feature detection
+              // Browsers that support HTML5 download attribute
+              var url = URL.createObjectURL(blob);
+              link.setAttribute("href", url);
+              link.setAttribute("download", exportedFilenmae);
+              link.style.visibility = 'hidden';
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+          }
+      }
+  }
+  convertToCSVVHC(objArray) {
+    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    var str = '';
+
+    for (var i = 0; i < array.length; i++) {
+        var line = '';
+        for (var index in array[i]) {
+            if (line != '') line += ','
+
+            line += array[i][index];
+        }
+
+        str += line + '\r\n';
+    }
+
+    return str;
+  }
+  exportExcelVHC(){
+    this.createHeaderVHC();
+    this.exportCSVFileVHC(this.VHCRecordHeader, this.VHCRecordExcel, "VHC Treatment");
+  }
+  createHeaderVHC(){
+    this.VHCRecordHeader = {}  as vhcTreatmentModelHeader;
+    const vhcData = {} as vhcTreatmentModelHeader;
+          //vhcData.date_begin = "Fecha de inicio";
+          //vhcData.date_end = "Fecha Fin";
+          //vhcData.research_vhc_id = "ID";
+          //vhcData.month_execution = "Mes de ejecución";
+          vhcData.research_vhc_id = "INICIALES";//relacionar iniciales
+          vhcData.birthdate = "F. DE NACIMIENTO";
+          vhcData.gender = "GENERO";
+          vhcData.tx_date_begin = "FECHA INICIO DE TX"; //F. Inicio de Tx
+          vhcData.cirrosis = "CIRROSIS"; //Cirrosis 
+          vhcData.estadio_child = "ESTADIO CHILD (PUNTAJE)"; //Estadio Child (Puntaje)
+          vhcData.v_esofagicas = "V. ESOFÁGICAS"; //V. Esofágicas
+          vhcData.genotipo = "GENOTIPO"; //Genotipo
+          vhcData.cv_inicial = "CV INICIAL"; //CV Inicial
+          vhcData.log_inicial = "LOG INICIAL";//Log Inicial
+          vhcData.cv_s12 = "CV S12"; //CV S12
+          vhcData.log_s12 = "LOG S12";//Log S12
+          vhcData.cv_s24 = "CV S 24";//CV S 24
+          vhcData.log_rvs24 = "LOG RVS 24"; //Log RVS 24
+          vhcData.hb_inicial = "HB INICIAL"; // HB Inicial
+          vhcData.hb_final = "HB FINAL"; //Hb final
+          vhcData.leuc_inicial = "LEUC INICIAL";//Leuc Inicial
+          vhcData.leuc_final = "LEUC FINAL"; //Leuc final
+          vhcData.plaq_inicial = "PLAQ INICIAL";//Plaq Inicial
+          vhcData.plaq_final = "PLAQ FINAL"; //Plaq Final
+          vhcData.bt_inicial = "BT INICIAL";//BT Inicial
+          vhcData.bt_final = "BT FINAL"; //BT Final
+          vhcData.tgo_inicial = "TGO INICIAL";//TGO Inicial
+          vhcData.tgo_final = "TGO FINAL"; //TGO Final
+          vhcData.tgp_inicial = "TGP INICIAL";//TGP Inicial
+          vhcData.tgp_final = "TGP FINAL";//TGP Final
+          vhcData.albu_inicial = "ALBU INICIAL";// ALBU inicial
+          vhcData.albu_final = "ALBU FINAL";//ALBU final 
+          vhcData.inr_inicial = "INR INICIAL";//INR Inicial
+          vhcData.inr_final = "INR FINAL";//INR Final
+          vhcData.creatinina_inicial = "CREATINA INICIAL";//Creat Inicial
+          vhcData.creatinina_final = "CREATINA FINAL";//Creatinina Final
+          vhcData.ascitis = "ASCITIS";//ASCITIS 
+          vhcData.encefalopatia = "ENCEFALOPATIA";//ENCEFALOPATIA
+          vhcData.hepatocarcinoma = "HEPATOCARSINOMA";//HEPATOCARSINOMA
+          vhcData.tratamiento = "TRATAMIENTO";//TRATAMIENTO
+          vhcData.efecto_adverso = "EFECTO ADVERSO";//Efecto Adverso 
+          vhcData.descripcion_adverso = "CUAL/ DESCRIBIR";//Cual/describir
+          vhcData.severidad_efecto_adverso = "SEVERIDAD DEL EFECTO ADVERSO";//Severidad del Efecto Adverso 
+          vhcData.accion_tomada = "ACCIÓN TOMADA";//Acción Tomada 
+          vhcData.child_final = "CHILD FINAL";//Child Final
+          vhcData.meld_inicial = "MELD INICIAL";//MELD inicial
+          vhcData.meld_final = "MELD FINAL"; //MELD final
+          vhcData.comentarios = "COMENTARIOS";//Comentarios
+          ///vhcData.creation_user_id = ;
+          //vhcData.creation_user_name = ;
+        //  vhcData.creation_date = "Fecha de registro";
+         // vhcData.creation_time = "Hora de registro";
+          //vhcData.modification_user_name = r.modification_user_name;
+          //vhcData.modification_date = r.modification_date;
+          //vhcData.modification_time = r.modification_time;
+          //vhcData.status = r.status;
+          this.VHCRecordHeader = vhcData;
+  }
+  getExcelDataVHC(vhcData: vhcTreatmentModel){
+    const vhcDataExcel = {} as vhcTreatmentModel;
+
+    vhcDataExcel.research_vhc_id = vhcData.research_vhc_id;//relacionar iniciales
+    vhcDataExcel.birthdate = vhcData.birthdate;
+    vhcDataExcel.gender = vhcData.gender;
+    vhcDataExcel.tx_date_begin = vhcData.tx_date_begin; //F. Inicio de Tx
+    vhcDataExcel.cirrosis = vhcData.cirrosis; //Cirrosis 
+    vhcDataExcel.estadio_child = vhcData.estadio_child; //Estadio Child (Puntaje)
+    vhcDataExcel.v_esofagicas = vhcData.v_esofagicas; //V. Esofágicas
+    vhcDataExcel.genotipo = vhcData.genotipo; //Genotipo
+    vhcDataExcel.cv_inicial = vhcData.cv_inicial; //CV Inicial
+    vhcDataExcel.log_inicial = vhcData.log_inicial;//Log Inicial
+    vhcDataExcel.cv_s12 = vhcData.cv_s12; //CV S12
+    vhcDataExcel.log_s12 = vhcData.log_s12;//Log S12
+    vhcDataExcel.cv_s24 = vhcData.cv_s24;//CV S 24
+    vhcDataExcel.log_rvs24 = vhcData.log_rvs24; //Log RVS 24
+    vhcDataExcel.hb_inicial =vhcData.hb_inicial; // HB Inicial
+    vhcDataExcel.hb_final = vhcData.hb_final; //Hb final
+    vhcDataExcel.leuc_inicial = vhcData.leuc_inicial;//Leuc Inicial
+    vhcDataExcel.leuc_final = vhcData.leuc_final; //Leuc final
+    vhcDataExcel.plaq_inicial = vhcData.plaq_inicial;//Plaq Inicial
+    vhcDataExcel.plaq_final = vhcData.plaq_final; //Plaq Final
+    vhcDataExcel.bt_inicial = vhcData.bt_inicial;//BT Inicial
+    vhcDataExcel.bt_final = vhcData.bt_final; //BT Final
+    vhcDataExcel.tgo_inicial = vhcData.tgo_inicial;//TGO Inicial
+    vhcDataExcel.tgo_final = vhcData.tgo_final; //TGO Final
+    vhcDataExcel.tgp_inicial = vhcData.tgp_inicial;//TGP Inicial
+    vhcDataExcel.tgp_final = vhcData.tgp_final;//TGP Final
+    vhcDataExcel.albu_inicial = vhcData.albu_inicial;// ALBU inicial
+    vhcDataExcel.albu_final = vhcData.albu_final;//ALBU final 
+    vhcDataExcel.inr_inicial = vhcData.inr_inicial;//INR Inicial
+    vhcDataExcel.inr_final = vhcData.inr_final;//INR Final
+    vhcDataExcel.creatinina_inicial = vhcData.creatinina_inicial;//Creat Inicial
+    vhcDataExcel.creatinina_final = vhcData.creatinina_final;//Creatinina Final
+    vhcDataExcel.ascitis = vhcData.ascitis;//ASCITIS 
+    vhcDataExcel.encefalopatia = vhcData.encefalopatia;//ENCEFALOPATIA
+    vhcDataExcel.hepatocarcinoma = vhcData.hepatocarcinoma;//HEPATOCARSINOMA
+    vhcDataExcel.tratamiento = vhcData.tratamiento;//TRATAMIENTO
+    vhcDataExcel.efecto_adverso = vhcData.efecto_adverso;//Efecto Adverso 
+    vhcDataExcel.descripcion_adverso = vhcData.descripcion_adverso;//Cual/describir
+    vhcDataExcel.severidad_efecto_adverso = vhcData.severidad_efecto_adverso;//Severidad del Efecto Adverso 
+    vhcDataExcel.accion_tomada = vhcData.accion_tomada;//Acción Tomada 
+    vhcDataExcel.child_final = vhcData.child_final;//Child Final
+    vhcDataExcel.meld_inicial = vhcData.meld_inicial;//MELD inicial
+    vhcDataExcel.meld_final = vhcData.meld_final; //MELD final
+    vhcDataExcel.comentarios = vhcData.comentarios;//Comentarios
+
+    return vhcDataExcel;
+  }
   guardarRegistroVHC(){
     this.progres_spinner_refresh_vhc_treatment = false;
     this.hidden_update_btn  = true;
@@ -1169,14 +1305,14 @@ export class TratamientosComponent implements OnInit {
           
           this.getVHCData();
           
-          this.save_enabled = true;
-          this.save_disabled = false;
-
           this.staticAlertClosed2 = false;
           this.alert_2.type = 'success';
           this.alert_2.message = 'Datos guardados correctamente.';
           this.reset();
           this.hidden_update_btn  = false;
+          console.log("Disable button for save...");
+          this.save_disabled_vhc = false;
+          this.save_enabled_vhc = true;
         }else{
           this.staticAlertClosed2 = false;
           this.alert_2.type = 'danger';
@@ -1184,6 +1320,9 @@ export class TratamientosComponent implements OnInit {
           this.reset();
           this.progres_spinner_refresh_vhc_treatment = true;
           this.hidden_update_btn  = false;
+
+          this.save_disabled_vhc = false;
+          this.save_enabled_vhc = true;
         }
       }else{
         this.staticAlertClosed2 = false;
@@ -1224,6 +1363,9 @@ export class TratamientosComponent implements OnInit {
         this.alert_2.type = 'success';
         this.alert_2.message = 'Datos actualizados correctamente.';
         this.reset();
+        
+        this.save_disabled_vhc = false;
+        this.save_enabled_vhc = true;
       }else{
         this.staticAlertClosed2 = false;
         this.alert_2.type = 'danger';
@@ -1254,7 +1396,7 @@ export class TratamientosComponent implements OnInit {
     if (this.comboHospital.hospital_id == 0){
       this.minimizeScreen();
       this.staticAlertClosed2 = false;
-      this.alert_2.type = 'Warning';
+      this.alert_2.type = 'warning';
       this.alert_2.message = 'Debe seleccionar un hospital';
       this.reset();
       this.progres_spinner_refresh_vhc_treatment = true;
@@ -1263,6 +1405,7 @@ export class TratamientosComponent implements OnInit {
     }else{
       this.maximizeScreen();
       vhcData.MD_hospital_id = this.comboHospital.hospital_id;
+      vhcData.MD_entity_id = this.entity_id;
       vhcData.research_date_begin = this.strDate;
       vhcData.research_date_end = this.strDate;
       //nashData.research_nash_id = this.indiceNash;
@@ -1431,7 +1574,8 @@ export class TratamientosComponent implements OnInit {
   getVHCData(){
     this.progres_spinner_refresh_vhc_treatment = false;
     this.hidden_update_btn  = true;
-    this.hospital_id = this.comboHospital.hospital_id;
+    
+    this.hospital_id = (this.comboHospital.hospital_id != undefined)?this.comboHospital.hospital_id:0;
     
     this.vhcTreatmentService.getVHCTreatment(this.hospital_id, this.start_date, this.end_date).subscribe((resp_data_get:any) => {
       
@@ -1685,11 +1829,13 @@ export class TratamientosComponent implements OnInit {
             vhcData.row_color = "row_get";// Nuevos" treatment.row_color;"
             this.VHCRecordEstilo.push(vhcData);
             this.VHCRecord = this.VHCRecordEstilo;
-            //this.VHCRecordEstiloExcel.push(this.getExcelData(vhcData));
+            this.VHCRecordEstiloExcel.push(this.getExcelDataVHC(vhcData));
             this.hidden_update_btn  = false;
             this.progres_spinner_refresh_vhc_treatment = true;  
           });
         }else{
+          console.log("Minimizar");
+          this.minimizeScreen();
           this.staticAlertClosed2 = false;
           this.alert_2.type = 'Warning';
           this.alert_2.message = 'No se encontraron datos. Intente aumentando el rango de fechas o cambiando los parámetros de búsqueda';
