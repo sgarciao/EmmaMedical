@@ -43,6 +43,7 @@ export class TratamientosComponent implements OnInit {
   save_disabled_vhc = false;/////button visible
 
   comboHospital = {} as hospitalsModel;
+  status_id = 1;
   //////////////////////////
   settingsExample = tableData.settingsExample;
 
@@ -442,8 +443,8 @@ export class TratamientosComponent implements OnInit {
     this.progres_spinner_refresh_nash_treatment = false;
     this.hidden_update_btn  = true;
     this.hospital_id = (this.comboHospital.hospital_id != undefined)?this.comboHospital.hospital_id:0;
-    
-    this.nashTreatmentService.getNASHTreatment(this.hospital_id, this.start_date, this.end_date).subscribe((resp_data_get:any) => {
+    //hospital_id, role_id,entity_id,treatment_id,status_id, start_date, end_date
+    this.nashTreatmentService.getNASHTreatment(this.hospital_id, this.role_id, this.entity_id, 4, this.status_id, this.start_date, this.end_date).subscribe((resp_data_get:any) => {
       
       this.NAHSRecordEstilo = [];
       this.NAHSRecordEstiloExcel = [];
@@ -1580,8 +1581,8 @@ export class TratamientosComponent implements OnInit {
     this.hidden_update_btn  = true;
     
     this.hospital_id = (this.comboHospital.hospital_id != undefined)?this.comboHospital.hospital_id:0;
-    
-    this.vhcTreatmentService.getVHCTreatment(this.hospital_id, this.start_date, this.end_date).subscribe((resp_data_get:any) => {
+    //hospital_id, role_id,entity_id,treatment_id,status_id, start_date, end_date
+    this.vhcTreatmentService.getVHCTreatment(this.hospital_id, this.role_id, this.entity_id, 7, this.status_id,this.start_date, this.end_date).subscribe((resp_data_get:any) => {
       
       this.VHCRecordEstilo = [];
       this.VHCRecordEstiloExcel = [];

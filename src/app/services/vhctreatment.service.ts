@@ -18,12 +18,16 @@ import { of } from 'rxjs/observable/of';
 export class VhctreatmentService {
 
   constructor(private httpClient : HttpClient) { }
-  getVHCTreatment(hospital_id, start_date, end_date) {
+  getVHCTreatment(hospital_id, role_id,entity_id,treatment_id,status_id, start_date, end_date) {
     return this.httpClient
     .get('http://emamedical-dev.us-east-2.elasticbeanstalk.com/v1/ema-medical/treatment/vhc/'
-    + hospital_id + '/' 
-    + start_date + '/' 
-    + end_date).
+    + hospital_id 
+    + '/' + role_id 
+    + '/' + entity_id
+    + '/' + treatment_id
+    + '/' + status_id
+    + '/' + start_date 
+    + '/' + end_date).
     map(data => data);
   }
 
