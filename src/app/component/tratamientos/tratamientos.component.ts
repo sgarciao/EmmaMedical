@@ -10,11 +10,15 @@ import { hospitalsModel } from 'src/app/model/hospitalsModel';
 import { vhcTreatmentData, vhcTreatmentModel, vhcTreatmentModelHeader } from 'src/app/model/vhcTreatmentsModel';
 import { VhctreatmentService } from 'src/app/services/vhctreatment.service';
 import { DatePipe } from '@angular/common';
+import { TagPlaceholder } from '@angular/compiler/src/i18n/i18n_ast';
+import { StatesService } from 'src/app/services/states.service';
+import { EntitiesService } from 'src/app/services/entities.service';
 
 @Component({
   selector: 'app-tratamientos',
   templateUrl: './tratamientos.component.html',
-  styleUrls: ['./tratamientos.component.css','./tratamientos.component.scss']
+  styleUrls: ['./tratamientos.component.css','./tratamientos.component.scss'],
+  providers:[StatesService]
 })
 export class TratamientosComponent implements OnInit {
   ////////////////////////
@@ -62,10 +66,10 @@ export class TratamientosComponent implements OnInit {
   hospitals: string;
   title_entity: string;
 
-  
+
   //////////////////////TABLE
-  
-  
+
+
   /////////////////////////////
   optionsValues = [
     { name: "Opción 1", value: 1, column_name: "1" },
@@ -84,34 +88,35 @@ export class TratamientosComponent implements OnInit {
     { name: "Colima", value: 6 },
     { name: "Chiapas", value: 7 },
     { name: "Chihuahua", value: 8 },
-    { name: "Ciudad de México", value: 9 }, 
+    { name: "Ciudad de México", value: 9 },
     { name: "Durango", value: 10 },
-    { name: "Guanajuato", value: 11 }, 
-    { name: "Guerrero", value: 12 }, 
-    { name: "Hidalgo", value: 13 }, 
-    { name: "Jalisco", value: 14 }, 
-    { name: "Estado de México", value: 15 }, 
-    { name: "Michoacán de Ocampo", value: 16 }, 
-    { name: "Morelos", value: 17 }, 
-    { name: "Nayarit", value: 18 }, 
-    { name: "Nuevo León", value: 19 }, 
-    { name: "Oaxaca", value: 20 }, 
-    { name: "Puebla", value: 21 }, 
-    { name: "Querétaro", value: 22 }, 
-    { name: "	Quintana Roo", value: 23 }, 
-    { name: "San Luis Potosí", value: 24 }, 
-    { name: "Sinaloa", value: 25 }, 
-    { name: "Sonora", value: 26 }, 
-    { name: "Tabasco", value: 27 }, 
-    { name: "Tamaulipas", value: 28 }, 
-    { name: "Tlaxcala", value: 29 }, 
-    { name: "Veracruz de Ignacio de la Llave", value: 30 }, 
-    { name: "Yucatán", value: 31 }, 
-    { name: "Zacatecas", value: 32 } 
+    { name: "Guanajuato", value: 11 },
+    { name: "Guerrero", value: 12 },
+    { name: "Hidalgo", value: 13 },
+    { name: "Jalisco", value: 14 },
+    { name: "Estado de México", value: 15 },
+    { name: "Michoacán de Ocampo", value: 16 },
+    { name: "Morelos", value: 17 },
+    { name: "Nayarit", value: 18 },
+    { name: "Nuevo León", value: 19 },
+    { name: "Oaxaca", value: 20 },
+    { name: "Puebla", value: 21 },
+    { name: "Querétaro", value: 22 },
+    { name: "	Quintana Roo", value: 23 },
+    { name: "San Luis Potosí", value: 24 },
+    { name: "Sinaloa", value: 25 },
+    { name: "Sonora", value: 26 },
+    { name: "Tabasco", value: 27 },
+    { name: "Tamaulipas", value: 28 },
+    { name: "Tlaxcala", value: 29 },
+    { name: "Veracruz de Ignacio de la Llave", value: 30 },
+    { name: "Yucatán", value: 31 },
+    { name: "Zacatecas", value: 32 }
 
   ]
   optionsHospitals = [];
   optionsHospitalsSelected = [];
+  statesList = [];
   optionsHospitalesPEMEX = [
     { name: "Hospital Central Nacional Pemex Norte", value: 1 },
     { name: "Hospital Central Nacional Sur de Alta Especialidad Pemex Picacho", value: 2 }
@@ -120,8 +125,8 @@ export class TratamientosComponent implements OnInit {
   optionsHospitalesIMSS = [
     { name: "Centro Médico Nacional Siglo XXI", value: 1 },
     { name: "Centro Médico Nacional La Raza", value: 2 },
-    { name: "Centro Médico Nacional de Occidente", value: 3 }, 
-    { name: "Unidad Médica de Alta Especialidad Puebla", value: 4 }, 
+    { name: "Centro Médico Nacional de Occidente", value: 3 },
+    { name: "Unidad Médica de Alta Especialidad Puebla", value: 4 },
     { name: "Unidad Médica de Alta Especialidad No. 25", value: 5 }
   ]
 
@@ -131,7 +136,7 @@ export class TratamientosComponent implements OnInit {
     { name: "ISSSTE - Hospital Regional Dr. Valentín Gómez Farías", value: 2 },
     { name: "ISSSTE - Hospital Regional Adolfo López Mateos", value: 2 }
   ]
-  
+
   optionsHospitalesSEDENA = [
     { name: "SEDENA - Hospital Central Militar", value: 1 },
     { name: "SEDENA - Universidad del Ejército y Fuerzas Aéreas (Colegio Militar)", value: 2 }
@@ -152,8 +157,8 @@ export class TratamientosComponent implements OnInit {
   ]
   optionsHospitalesPRIVADAS = [
     { name: "Médica Sur", value: 1 },
-    { name: "Hospital Español", value: 2 }, 
-    { name: "Hospital Angeles del Carmen", value: 3 }, 
+    { name: "Hospital Español", value: 2 },
+    { name: "Hospital Angeles del Carmen", value: 3 },
     { name: "Hospital San José Tec Salud", value: 4 }
   ]
 
@@ -166,7 +171,7 @@ export class TratamientosComponent implements OnInit {
   NAHSRecord: nashTratment[] = [];
   NAHSRecordEstilo: nashTratment[] = [];
   NAHSRecordEstiloExcel: nashTratment[] = [];
-  
+
   NAHSRecordCreate: nashTratment[] = [];
   NAHSRecordUpdate: nashTratment[] = [];
   ////////////
@@ -174,29 +179,30 @@ export class TratamientosComponent implements OnInit {
   VHCRecord: vhcTreatmentModel[] = [];
   VHCRecordEstilo: vhcTreatmentModel[] = [];
   VHCRecordEstiloExcel: vhcTreatmentModel[] = [];
-  
+
   VHCRecordCreate: vhcTreatmentModel[] = [];
   VHCRecordUpdate: vhcTreatmentModel[] = [];
 
   VHCRecordExcel: vhcTreatmentModel[]=[];
   VHCRecordHeader = {} as vhcTreatmentModelHeader;
-  
+
   create_flag: boolean;
   update_flag: boolean;
 
   NAHSRecordExcel: nashTratment[] = [];
   NAHSRecordHeader = {} as nashTratmentHeader;
 
-  
 
-  
+
+
   indiceNash: number;
-  
-  constructor( 
+
+  constructor(
       private router:         Router,
       private nashTreatmentService: NashtreatmentService,
       private vhcTreatmentService: VhctreatmentService,
-      private hospitalsService: HospitalsService
+      private hospitalsService: HospitalsService,
+      private statesService: EntitiesService
       ) {
           this.alert_2 = {
             id: 1,
@@ -248,7 +254,7 @@ export class TratamientosComponent implements OnInit {
   }];
   ///////////////////////////GET VALUES
   getValuesForColumns(){
-    
+
   }
   editRow(){
 
@@ -257,7 +263,7 @@ export class TratamientosComponent implements OnInit {
   ///////////////////////////EVENTS IN TABLE
   /*
   onCreateConfirm(event): any {
-    
+
     //if (window.confirm('Are you sure you want to save?')) {
       //call to remote api, remember that you have to await this
       event.confirm.resolve(event.newData);
@@ -266,12 +272,12 @@ export class TratamientosComponent implements OnInit {
       event.confirm.reject();
     }*/
 /*
-  }  
+  }
   onEditConfirm(event){
-    
+
     event.confirm.resolve(event.newData);
     console.log("Event in edit  " + event.newData.short_name);
-  }  
+  }
   onDeleteConfirm($event: any) {
     if (window.confirm('Are you sure you want to delete?')) {
       console.log("Event in Delete  " + $event.data.short_name);
@@ -285,13 +291,23 @@ export class TratamientosComponent implements OnInit {
     this.hidden_controls = true;
     this.hidden_maximize = true;
     this.hidden_minimize = false;
-    
+
   }
   minimizeScreen(){
-
     this.hidden_controls = false;
     this.hidden_maximize = false;
     this.hidden_minimize = true;
+  }
+
+  getStates(){
+    let country_id=1;
+    this.statesService.getStatesByCountry(country_id).subscribe((resp_data_get:any) => {
+      console.log("----------States");
+      console.log(resp_data_get);
+      if (resp_data_get.code==200){
+        this.statesList = resp_data_get.data;
+      }
+    });
   }
   ///////////////////////////////////ADD NEW RECORD
   exportCSVFile(headers, items, fileTitle) {
@@ -302,7 +318,7 @@ export class TratamientosComponent implements OnInit {
       }
 
       // Convert Object to JSON
-      
+
       var jsonObject = JSON.stringify(items);
 
       var csv = this.convertToCSV(jsonObject);
@@ -437,7 +453,7 @@ export class TratamientosComponent implements OnInit {
     }
   }
   changeHospital(){
-    
+
   }
   getDataNASH(){
     this.progres_spinner_refresh_nash_treatment = false;
@@ -445,7 +461,7 @@ export class TratamientosComponent implements OnInit {
     this.hospital_id = (this.comboHospital.hospital_id != undefined)?this.comboHospital.hospital_id:0;
     //hospital_id, role_id,entity_id,treatment_id,status_id, start_date, end_date
     this.nashTreatmentService.getNASHTreatment(this.hospital_id, this.role_id, this.entity_id, 4, this.status_id, this.start_date, this.end_date).subscribe((resp_data_get:any) => {
-      
+
       this.NAHSRecordEstilo = [];
       this.NAHSRecordEstiloExcel = [];
       if (resp_data_get.code == 200){
@@ -639,7 +655,7 @@ export class TratamientosComponent implements OnInit {
               nashData.active_red_sem = "row_sem_red_visible";
               nashData.active_green_sem = "row_sem_green_hidden";
             }
-            
+
             nashData.creation_user_id = r.creation_user_id;
             nashData.creation_user_name = r.creation_user_name;
             nashData.creation_date = r.creation_date;
@@ -648,23 +664,23 @@ export class TratamientosComponent implements OnInit {
             nashData.modification_date = r.modification_date;
             nashData.modification_time = r.modification_time;
             nashData.status = r.status;
-            
+
             nashData.row_color = "row_get";// Nuevos" treatment.row_color;"
             this.NAHSRecordEstilo.push(nashData);
-            
+
             this.NAHSRecordEstiloExcel.push(this.getExcelData(nashData));
             this.hidden_update_btn  = false;
             this.progres_spinner_refresh_nash_treatment = true;
-            
+
           });
         }else{
-            
+
           console.log("NO se encontraron datos.");
           this.minimizeScreen();
           this.staticAlertClosed2 = false;
           this.alert_2.type = 'warning';
           this.alert_2.message = 'No se encontraron datos. Intente incrementando el rango de fechas o cambiando parámetros de busqueda.';
-          this.reset();  
+          this.reset();
           this.hidden_update_btn  = false;
           this.progres_spinner_refresh_nash_treatment = true;
 
@@ -675,11 +691,11 @@ export class TratamientosComponent implements OnInit {
         this.alert_2.message = 'Hubo un error al obtener la información.';
         this.reset();
         this.progres_spinner_refresh_nash_treatment = true;
-        this.hidden_update_btn  = false;  
+        this.hidden_update_btn  = false;
       }
       this.NAHSRecordExcel = this.NAHSRecordEstiloExcel;
       this.NAHSRecord = this.NAHSRecordEstilo;
-      
+
     }, err=>{
       this.staticAlertClosed2 = false;
       this.alert_2.type = 'danger';
@@ -734,7 +750,7 @@ export class TratamientosComponent implements OnInit {
   guardarRegistro(){
     this.progres_spinner_refresh_nash_treatment = false;
     this.hidden_update_btn  = true;
-    
+
     if (this.create_flag){
       console.log("Guardando...");
       this.data_.data = this.NAHSRecordCreate.filter(function(e1){
@@ -748,9 +764,9 @@ export class TratamientosComponent implements OnInit {
           this.NAHSRecordCreate = [];
           this.create_flag = false;
           this.progres_spinner_refresh_nash_treatment = true;
-          
+
           this.getDataNASH();
-          
+
           this.save_enabled = true;
           this.save_disabled = false;
 
@@ -787,7 +803,7 @@ export class TratamientosComponent implements OnInit {
       console.log(this.data_);
       this.nashTreatmentService.updateNASHTreatment(this.data_).subscribe((resp_data:any)=>{
       console.log(resp_data);
-      
+
       if (resp_data.code == 200){
         this.NAHSRecord = [];
         this.NAHSRecordUpdate = [];
@@ -808,7 +824,7 @@ export class TratamientosComponent implements OnInit {
         this.alert_2.message = 'Hubo un error al actualizar la información.';
         this.reset();
         this.progres_spinner_refresh_nash_treatment = true;
-        this.hidden_update_btn  = false;  
+        this.hidden_update_btn  = false;
       }
     }, err=>{
       this.staticAlertClosed2 = false;
@@ -819,7 +835,7 @@ export class TratamientosComponent implements OnInit {
       this.hidden_update_btn  = false;
     });
     }
-    
+
   }
   updateTableRecordsNash(){
     this.getDataNASH();
@@ -830,24 +846,24 @@ export class TratamientosComponent implements OnInit {
     if (id != null){
       this.update_flag = true;
       const nashData = {} as nashTratment;
-      
+
       nashData.hospital_id = treatment.hospital_id;
       nashData.entity_id = this.entity_id;
       nashData.research_nash_id = id;
-      
+
       nashData.date_begin = treatment.date_begin;
       nashData.date_end = treatment.date_end;
       nashData.research_nash_id = treatment.research_nash_id;
       nashData.month_execution = treatment.month_execution;
       nashData.short_name = treatment.short_name;
-      
-      
+
+
       if (treatment.birth_date === "null" || treatment.birth_date === null || treatment.birth_date === '' ){
         console.log("birthday nulo: " + nashData.birth_date);
       }else{
         nashData.birth_date = treatment.birth_date;
         console.log("birthday no nulo: " + nashData.birth_date);
-        
+
       }
       nashData.gender = treatment.gender;
       nashData.child_stadium = treatment.child_stadium;
@@ -894,8 +910,8 @@ export class TratamientosComponent implements OnInit {
       nashData.row_color = "row_update";// Nuevos" treatment.row_color;"
       this.NAHSRecordUpdate[id] = nashData;
           //this.NAHSRecord[i] = nashData;
-      treatment.row_color = nashData.row_color; 
-          //console.log(this.NAHSRecord[i]); 
+      treatment.row_color = nashData.row_color;
+          //console.log(this.NAHSRecord[i]);
           //console.log(this.NAHSRecordUpdate);
           //console.log("Actualizando.." + id + " " + column_name);
       this.save_disabled = true;
@@ -954,7 +970,7 @@ export class TratamientosComponent implements OnInit {
           nashData.modification_time = treatment.modification_time;
           nashData.status = treatment.status;
           nashData.row_color = "row_new";// Nuevos" treatment.row_color;"
-          this.NAHSRecordCreate[i] = this.NAHSRecord[i]; 
+          this.NAHSRecordCreate[i] = this.NAHSRecord[i];
           console.log(this.NAHSRecordCreate);
     }
   }
@@ -969,7 +985,7 @@ export class TratamientosComponent implements OnInit {
           dato.hospital_name = r.hospital_name;
           return dato;
         });
-        
+
         this.optionsHospitalsSelected = res_data.data;
         this.optionsHospitals = hosp;
 
@@ -1012,7 +1028,7 @@ export class TratamientosComponent implements OnInit {
     }else if (entity_id == 9){
       this.optionsHospitals = this.optionsHospitalesGuadalajara;
     }
-    
+
   }
   /////////////////////Searcher
   serchByHospitalIDAndDate(){
@@ -1030,6 +1046,7 @@ export class TratamientosComponent implements OnInit {
   }
   //////////////////////////////////////////////////
   ngOnInit() {
+    this.getStates();
     this.strDate = this.pipe.transform(this.today, 'yyyy-MM-dd');
     this.start_date = this.strDate;
     this.end_date = this.strDate;
@@ -1048,8 +1065,8 @@ export class TratamientosComponent implements OnInit {
     if (localStorage.getItem('treatment_type') == '4'){
       this.indiceNash = 0;
       this.getDataNASH();
-  
-      this.nashTableVisible = false; 
+
+      this.nashTableVisible = false;
       this.ashTableVisible = true;
       this.vhbTableVisible = true;
       this.vhcTableVisible = true;
@@ -1058,7 +1075,7 @@ export class TratamientosComponent implements OnInit {
       this.alfTableVisible = true;
     }
     if (localStorage.getItem('treatment_type') == '5'){
-      this.nashTableVisible = true; 
+      this.nashTableVisible = true;
       this.ashTableVisible = false;
       this.vhbTableVisible = true;
       this.vhcTableVisible = true;
@@ -1067,7 +1084,7 @@ export class TratamientosComponent implements OnInit {
       this.alfTableVisible = true;
     }
     if (localStorage.getItem('treatment_type') == '6'){
-      this.nashTableVisible = true; 
+      this.nashTableVisible = true;
       this.ashTableVisible = true;
       this.vhbTableVisible = false;
       this.vhcTableVisible = true;
@@ -1078,8 +1095,8 @@ export class TratamientosComponent implements OnInit {
     if (localStorage.getItem('treatment_type') == '7'){
       this.indiceNash = 0;
       this.getVHCData();
-  
-      this.nashTableVisible = true; 
+
+      this.nashTableVisible = true;
       this.ashTableVisible = true;
       this.vhbTableVisible = true;
       this.vhcTableVisible = false;
@@ -1088,7 +1105,7 @@ export class TratamientosComponent implements OnInit {
       this.alfTableVisible = true;
     }
     if (localStorage.getItem('treatment_type') == '1'){
-      this.nashTableVisible = true; 
+      this.nashTableVisible = true;
       this.ashTableVisible = true;
       this.vhbTableVisible = true;
       this.vhcTableVisible = true;
@@ -1097,7 +1114,7 @@ export class TratamientosComponent implements OnInit {
       this.alfTableVisible = true;
     }
     if (localStorage.getItem('treatment_type') == '2'){
-      this.nashTableVisible = true; 
+      this.nashTableVisible = true;
       this.ashTableVisible = true;
       this.vhbTableVisible = true;
       this.vhcTableVisible = true;
@@ -1106,7 +1123,7 @@ export class TratamientosComponent implements OnInit {
       this.alfTableVisible = true;
     }
     if (localStorage.getItem('treatment_type') == '3'){
-      this.nashTableVisible = true; 
+      this.nashTableVisible = true;
       this.ashTableVisible = true;
       this.vhbTableVisible = true;
       this.vhcTableVisible = true;
@@ -1115,7 +1132,7 @@ export class TratamientosComponent implements OnInit {
       this.alfTableVisible = false;
     }
     if (localStorage.getItem('treatment_type') == '8'){
-      this.nashTableVisible = true; 
+      this.nashTableVisible = true;
       this.ashTableVisible = true;
       this.vhbTableVisible = true;
       this.vhcTableVisible = true;
@@ -1138,7 +1155,7 @@ export class TratamientosComponent implements OnInit {
           items.unshift(headers);
       }
       // Convert Object to JSON
-      
+
       var jsonObject = JSON.stringify(items);
       var csv = this.convertToCSV(jsonObject);
       var exportedFilenmae = fileTitle + '.csv' || 'export.csv';
@@ -1189,48 +1206,55 @@ export class TratamientosComponent implements OnInit {
           //vhcData.month_execution = "Mes de ejecución";
           vhcData.research_vhc_id = "INICIALES";//relacionar iniciales
           vhcData.birthdate = "F. DE NACIMIENTO";
+          vhcData.age = "EDAD";
           vhcData.gender = "GENERO";
-          vhcData.tx_date_begin = "FECHA INICIO DE TX"; //F. Inicio de Tx
-          vhcData.cirrosis = "CIRROSIS"; //Cirrosis 
-          vhcData.estadio_child = "ESTADIO CHILD (PUNTAJE)"; //Estadio Child (Puntaje)
-          vhcData.v_esofagicas = "V. ESOFÁGICAS"; //V. Esofágicas
-          vhcData.genotipo = "GENOTIPO"; //Genotipo
-          vhcData.cv_inicial = "CV INICIAL"; //CV Inicial
-          vhcData.log_inicial = "LOG INICIAL";//Log Inicial
-          vhcData.cv_s12 = "CV S12"; //CV S12
-          vhcData.log_s12 = "LOG S12";//Log S12
-          vhcData.cv_s24 = "CV S 24";//CV S 24
-          vhcData.log_rvs24 = "LOG RVS 24"; //Log RVS 24
-          vhcData.hb_inicial = "HB INICIAL"; // HB Inicial
-          vhcData.hb_final = "HB FINAL"; //Hb final
-          vhcData.leuc_inicial = "LEUC INICIAL";//Leuc Inicial
-          vhcData.leuc_final = "LEUC FINAL"; //Leuc final
-          vhcData.plaq_inicial = "PLAQ INICIAL";//Plaq Inicial
-          vhcData.plaq_final = "PLAQ FINAL"; //Plaq Final
-          vhcData.bt_inicial = "BT INICIAL";//BT Inicial
-          vhcData.bt_final = "BT FINAL"; //BT Final
-          vhcData.tgo_inicial = "TGO INICIAL";//TGO Inicial
-          vhcData.tgo_final = "TGO FINAL"; //TGO Final
-          vhcData.tgp_inicial = "TGP INICIAL";//TGP Inicial
-          vhcData.tgp_final = "TGP FINAL";//TGP Final
-          vhcData.albu_inicial = "ALBU INICIAL";// ALBU inicial
-          vhcData.albu_final = "ALBU FINAL";//ALBU final 
-          vhcData.inr_inicial = "INR INICIAL";//INR Inicial
-          vhcData.inr_final = "INR FINAL";//INR Final
-          vhcData.creatinina_inicial = "CREATINA INICIAL";//Creat Inicial
-          vhcData.creatinina_final = "CREATINA FINAL";//Creatinina Final
-          vhcData.ascitis = "ASCITIS";//ASCITIS 
-          vhcData.encefalopatia = "ENCEFALOPATIA";//ENCEFALOPATIA
-          vhcData.hepatocarcinoma = "HEPATOCARSINOMA";//HEPATOCARSINOMA
-          vhcData.tratamiento = "TRATAMIENTO";//TRATAMIENTO
-          vhcData.efecto_adverso = "EFECTO ADVERSO";//Efecto Adverso 
-          vhcData.descripcion_adverso = "CUAL/ DESCRIBIR";//Cual/describir
-          vhcData.severidad_efecto_adverso = "SEVERIDAD DEL EFECTO ADVERSO";//Severidad del Efecto Adverso 
-          vhcData.accion_tomada = "ACCIÓN TOMADA";//Acción Tomada 
-          vhcData.child_final = "CHILD FINAL";//Child Final
-          vhcData.meld_inicial = "MELD INICIAL";//MELD inicial
-          vhcData.meld_final = "MELD FINAL"; //MELD final
-          vhcData.comentarios = "COMENTARIOS";//Comentarios
+          vhcData.state = "ESTADO DE LA REPÚBLICA";
+          vhcData.year = "AÑO DE DX DE VHC";
+          vhcData.transmission_mechanism = "MECANISMO DE TRANSMISIÓN";
+          vhcData.comorbilidades = "COMORBILIDADES"
+          vhcData.manif_extrahepaticas = "MANIFESTACIONES EXTRAHEPATICAS";
+          vhcData.grado_fibrosis_hepatica="GRADO DE FIBROSIS HEPATICA";
+          vhcData.cirrosis = "CIRROSIS";
+          vhcData.estado_cirrosis_compensada = "ESTADO DE CIRROSIS COMPENSADA O DESCOMPENSADA";
+          vhcData.cirrosis_descompensada = "CIRROSIS DESCOMPENSADA";
+          vhcData.child_inicial = "ESTADIO CHILD INICIAL (PUNTAJE)";
+          vhcData.meld_inicial = "MELD (INICIAL)";
+          vhcData.esofagicas = "V. ESOFÁGICAS";
+          vhcData.estado_inicial= "ESTADO INICIAL";
+          vhcData.tipo_tx_previo = "TIPO DE TX PREVIO";
+          vhcData.year_inicio_tx_add = "AÑO DE INICIO DE TX DE ADD";
+          vhcData.esquema_tratamiento = "ESQUEMA DE TRATAMIENTO";
+          vhcData.tiempo_tratamiento_meses = "TIEMPO DE TRATAMIENTO EN MESES";
+          vhcData.rvs = "RVS";
+          vhcData.cv_inicial  = "CV INICIAL";
+          vhcData.log_inicial = "LOG INICIAL";
+          vhcData.cv_rvs12 = "CV RVS12";
+          vhcData.log_rvs12 = "LOG RVS12";
+          vhcData.funcion_renal = "FUNCIÓN RENAL (FILTRACIÓN GLOMERULAR) PRETRATAMIENTO";
+          vhcData.hb_inicial = "HB INICIAL";
+          vhcData.hb_final = "HB FINAL";
+          vhcData.leucocitos_inicial = "LEUCOCITOS INICIAL";
+          vhcData.leucocitos_final = "LEUCOCITOS FINAL";
+          vhcData.plaquetas_inicial = "PLAQUETAS INICIAL";
+          vhcData.plaquetas_final = "PLAQUETAS FINAL";
+          vhcData.creatinina_inicial = "CREATINA INICIAL";
+          vhcData.creatinina_final = "CREATINA FINAL";
+          vhcData.tgo_inicial = "TGO INICIAL";
+          vhcData.tgo_final = "TGO FINAL";
+          vhcData.tgp_inicial = "TGP INICIAL";
+          vhcData.tgp_final = "TGP FINAL";
+          vhcData.alumina_inicial = "ALUMINA INICIAL";
+          vhcData.alumina_final = "ALUMINA FINAL";
+          vhcData.inr_inicial = "INR INICIAL";
+          vhcData.inr_final = "INR FINAL";
+          vhcData.bt_inicial = "BT INICIAL";
+          vhcData.bt_final = "BT FINAL";
+          vhcData.efecto_adverso = "EFECTO ADVERSO";
+          vhcData.descripcion_adverso = "CUAL/DESCRIBIR";
+          vhcData.accion_tomada = "ACCIÓN TOMADA";
+          vhcData.child_final = "CHILD FINAL";
+          vhcData.meld_final = "MELD FINAL";
+          vhcData.comentarios = "COMENTARIOS";
           ///vhcData.creation_user_id = ;
           //vhcData.creation_user_name = ;
         //  vhcData.creation_date = "Fecha de registro";
@@ -1245,56 +1269,67 @@ export class TratamientosComponent implements OnInit {
     const vhcDataExcel = {} as vhcTreatmentModel;
 
     vhcDataExcel.research_vhc_id = vhcData.research_vhc_id;//relacionar iniciales
-    vhcDataExcel.birthdate = vhcData.birthdate;
-    vhcDataExcel.gender = vhcData.gender;
-    vhcDataExcel.tx_date_begin = vhcData.tx_date_begin; //F. Inicio de Tx
-    vhcDataExcel.cirrosis = vhcData.cirrosis; //Cirrosis 
-    vhcDataExcel.estadio_child = vhcData.estadio_child; //Estadio Child (Puntaje)
-    vhcDataExcel.v_esofagicas = vhcData.v_esofagicas; //V. Esofágicas
-    vhcDataExcel.genotipo = vhcData.genotipo; //Genotipo
-    vhcDataExcel.cv_inicial = vhcData.cv_inicial; //CV Inicial
-    vhcDataExcel.log_inicial = vhcData.log_inicial;//Log Inicial
-    vhcDataExcel.cv_s12 = vhcData.cv_s12; //CV S12
-    vhcDataExcel.log_s12 = vhcData.log_s12;//Log S12
-    vhcDataExcel.cv_s24 = vhcData.cv_s24;//CV S 24
-    vhcDataExcel.log_rvs24 = vhcData.log_rvs24; //Log RVS 24
-    vhcDataExcel.hb_inicial =vhcData.hb_inicial; // HB Inicial
-    vhcDataExcel.hb_final = vhcData.hb_final; //Hb final
-    vhcDataExcel.leuc_inicial = vhcData.leuc_inicial;//Leuc Inicial
-    vhcDataExcel.leuc_final = vhcData.leuc_final; //Leuc final
-    vhcDataExcel.plaq_inicial = vhcData.plaq_inicial;//Plaq Inicial
-    vhcDataExcel.plaq_final = vhcData.plaq_final; //Plaq Final
-    vhcDataExcel.bt_inicial = vhcData.bt_inicial;//BT Inicial
-    vhcDataExcel.bt_final = vhcData.bt_final; //BT Final
-    vhcDataExcel.tgo_inicial = vhcData.tgo_inicial;//TGO Inicial
-    vhcDataExcel.tgo_final = vhcData.tgo_final; //TGO Final
-    vhcDataExcel.tgp_inicial = vhcData.tgp_inicial;//TGP Inicial
-    vhcDataExcel.tgp_final = vhcData.tgp_final;//TGP Final
-    vhcDataExcel.albu_inicial = vhcData.albu_inicial;// ALBU inicial
-    vhcDataExcel.albu_final = vhcData.albu_final;//ALBU final 
-    vhcDataExcel.inr_inicial = vhcData.inr_inicial;//INR Inicial
-    vhcDataExcel.inr_final = vhcData.inr_final;//INR Final
-    vhcDataExcel.creatinina_inicial = vhcData.creatinina_inicial;//Creat Inicial
-    vhcDataExcel.creatinina_final = vhcData.creatinina_final;//Creatinina Final
-    vhcDataExcel.ascitis = vhcData.ascitis;//ASCITIS 
-    vhcDataExcel.encefalopatia = vhcData.encefalopatia;//ENCEFALOPATIA
-    vhcDataExcel.hepatocarcinoma = vhcData.hepatocarcinoma;//HEPATOCARSINOMA
-    vhcDataExcel.tratamiento = vhcData.tratamiento;//TRATAMIENTO
-    vhcDataExcel.efecto_adverso = vhcData.efecto_adverso;//Efecto Adverso 
-    vhcDataExcel.descripcion_adverso = vhcData.descripcion_adverso;//Cual/describir
-    vhcDataExcel.severidad_efecto_adverso = vhcData.severidad_efecto_adverso;//Severidad del Efecto Adverso 
-    vhcDataExcel.accion_tomada = vhcData.accion_tomada;//Acción Tomada 
-    vhcDataExcel.child_final = vhcData.child_final;//Child Final
-    vhcDataExcel.meld_inicial = vhcData.meld_inicial;//MELD inicial
-    vhcDataExcel.meld_final = vhcData.meld_final; //MELD final
-    vhcDataExcel.comentarios = vhcData.comentarios;//Comentarios
+    let birt_D = "";
+    if (vhcData.birthdate!=null){
+      birt_D = vhcData.birthdate;
+    }
+    vhcDataExcel.birthdate = birt_D;
+    vhcDataExcel.age = vhcData.age == null ? 0: vhcData.age; //Edad
+    vhcDataExcel.gender = vhcData.gender == null ? 0: vhcData.gender;//Género
+    vhcDataExcel.state = vhcData.state == null ? 0: vhcData.state;//estado de la republica
+    vhcDataExcel.year = vhcData.year == null ? 0: vhcData.year;//Año de dx de vhc
+    vhcDataExcel.transmission_mechanism = vhcData.transmission_mechanism==null ? 0:vhcData.transmission_mechanism; //mecanismo de trasmision
+    vhcDataExcel.comorbilidades = vhcData.comorbilidades==null ? 0: vhcData.comorbilidades;//Comorbilidades
+    vhcDataExcel.manif_extrahepaticas = vhcData.manif_extrahepaticas == null? 0: vhcData.manif_extrahepaticas;//manifesaciones extrahepaticas
+    vhcDataExcel.grado_fibrosis_hepatica =  vhcData.grado_fibrosis_hepatica == null ? 0: vhcData.grado_fibrosis_hepatica;//grado de fibrosis hepatica
+    vhcDataExcel.cirrosis = vhcData.cirrosis == null ? 0: vhcData.cirrosis;//Cirrosis (Si o No)
+    vhcDataExcel.estado_cirrosis_compensada = vhcData.estado_cirrosis_compensada == null ? 0: vhcData.estado_cirrosis_compensada;//Estado de la cirrosis compensada o descompensadabgt5-
+    vhcDataExcel.cirrosis_descompensada = vhcData.cirrosis_descompensada == null ?0: vhcData.cirrosis_descompensada;//Cirrosis Descompensada
+    vhcDataExcel.child_inicial = vhcData.child_inicial == null ? 0: vhcData.child_inicial;//Estadio Child Inicial(Puntaje)
+    vhcDataExcel.meld_inicial = vhcData.meld_inicial==null ?0: vhcData.meld_inicial;//MELD ( Inicial)
+    vhcDataExcel.esofagicas = vhcData.esofagicas==null? 0: vhcData.esofagicas;//V. Esofágicas (Si o No)
+    vhcDataExcel.estado_inicial = vhcData.estado_inicial==null ? 0: vhcData.estado_inicial;//Estado inicial
+    vhcDataExcel.tipo_tx_previo = vhcData.tipo_tx_previo==null ? 0: vhcData.tipo_tx_previo;//Tipo de tx previo
+    vhcDataExcel.year_inicio_tx_add = vhcData.year_inicio_tx_add == null ? 0: vhcData.year_inicio_tx_add;//Año de Inicio de tx de ADD
+    vhcDataExcel.esquema_tratamiento = vhcData.esquema_tratamiento==null ? 0: vhcData.esquema_tratamiento;//Esquema de-tratamientot5
+    vhcDataExcel.tiempo_tratamiento_meses = vhcData.tiempo_tratamiento_meses==null ? 0: vhcData.tiempo_tratamiento_meses;//Tiempo de tratamiento en meses
+    vhcDataExcel.rvs = vhcData.rvs == null ? 0: vhcData.rvs;//RVS (si o no)
+    vhcDataExcel.cv_inicial = vhcData.cv_inicial==null ? 0: vhcData.cv_inicial;//CV Inicial
+    vhcDataExcel.log_inicial = vhcData.log_inicial==null? 0: vhcData.log_inicial;//Log Inicial
+    vhcDataExcel.cv_rvs12 = vhcData.cv_rvs12==null ? 0: vhcData.cv_rvs12;//CV RVS12
+    vhcDataExcel.log_rvs12 = vhcData.log_rvs12 == null? 0: vhcData.log_rvs12;//Log RVS 12
+    vhcDataExcel.funcion_renal = vhcData.funcion_renal== null?0: vhcData.funcion_renal;//Funcion renal (filtracion glomerular) pretratameinto
+    vhcDataExcel.hb_inicial = vhcData.hb_inicial == null ?0: vhcData.hb_inicial;//HB Inicial
+    vhcDataExcel.hb_final = vhcData.hb_final == null ? 0: vhcData.hb_final;//Hb final
+    vhcDataExcel.leucocitos_inicial = vhcData.leucocitos_inicial == null ? 0: vhcData.leucocitos_inicial;//leucocios inicial
+    vhcDataExcel.leucocitos_final = vhcData.leucocitos_final==null ? 0:vhcData.leucocitos_final;//leucocitos final
+    vhcDataExcel.plaquetas_inicial = vhcData.plaquetas_inicial == null? 0: vhcData.plaquetas_inicial;//Plaq Inicial
+    vhcDataExcel.plaquetas_final = vhcData.plaquetas_final == null ? 0: vhcData.plaquetas_final;//Plaq Final
+    vhcDataExcel.creatinina_inicial = vhcData.creatinina_inicial==null? 0: vhcData.creatinina_inicial;//creatinia inicial
+    vhcDataExcel.creatinina_final = vhcData.creatinina_final==null? 0: vhcData.creatinina_final;//Creatinina final
+    vhcDataExcel.tgo_inicial = vhcData.tgo_inicial==null? 0: vhcData.tgo_inicial;//TGO Inicial
+    vhcDataExcel.tgo_final = vhcData.tgo_final==null ? 0: vhcData.tgo_final;//TGO Final
+    vhcDataExcel.tgp_inicial = vhcData.tgp_inicial==null ? 0: vhcData.tgp_inicial;//TGP Inicial
+    vhcDataExcel.tgp_final = vhcData.tgp_final==null ? 0: vhcData.tgp_final;//TGP Final
+    vhcDataExcel.alumina_inicial = vhcData.alumina_inicial==null ? 0: vhcData.alumina_inicial;//alumina inicial
+    vhcDataExcel.alumina_final = vhcData.alumina_final==null? 0: vhcData.alumina_final;//albumina final
+    vhcDataExcel.inr_inicial = vhcData.inr_inicial==null?0: vhcData.inr_inicial;//INR Inicial
+    vhcDataExcel.inr_final = vhcData.inr_final==null ? 0: vhcData.inr_final;  //INR Final
+    vhcDataExcel.bt_inicial = vhcData.bt_inicial == null? 0: vhcData.bt_inicial;//BT inicial
+    vhcDataExcel.bt_final = vhcData.bt_final == null ? 0: vhcData.bt_final;//BT final
+    vhcDataExcel.efecto_adverso = vhcData.efecto_adverso==null?0: vhcData.efecto_adverso;//Efecto Adverso Si/No
+    vhcDataExcel.descripcion_adverso = vhcData.descripcion_adverso==null?0: vhcData.descripcion_adverso;//Cual/describir
+    vhcDataExcel.accion_tomada = vhcData.accion_tomada == null ? 0: vhcData.accion_tomada;//Acción Tomada
+    vhcDataExcel.child_final = vhcData.child_final==null?0: vhcData.child_final;//Child Final
+    vhcDataExcel.meld_final = vhcData.meld_final== null? 0: vhcData.meld_final;//MELD finall
+    vhcDataExcel.comentarios = vhcData.comentarios ==null? "" : vhcData.comentarios;//Comentarios
 
     return vhcDataExcel;
   }
   guardarRegistroVHC(){
     this.progres_spinner_refresh_vhc_treatment = false;
     this.hidden_update_btn  = true;
-    
+
     if (this.create_flag){
       console.log("Guardando...");
       this.data_vhc_.data = this.VHCRecordCreate.filter(function(e1){
@@ -1307,9 +1342,9 @@ export class TratamientosComponent implements OnInit {
           this.VHCRecordCreate = [];
           this.create_flag = false;
           this.progres_spinner_refresh_vhc_treatment = true;
-          
+
           this.getVHCData();
-          
+
           this.staticAlertClosed2 = false;
           this.alert_2.type = 'success';
           this.alert_2.message = 'Datos guardados correctamente.';
@@ -1355,7 +1390,7 @@ export class TratamientosComponent implements OnInit {
       console.log(this.data_);
       this.vhcTreatmentService.updateVHCTreatment(this.data_vhc_).subscribe((resp_data:any)=>{
       console.log(resp_data);
-      
+
       if (resp_data.code == 200){
         this.NAHSRecord = [];
         this.NAHSRecordUpdate = [];
@@ -1368,7 +1403,7 @@ export class TratamientosComponent implements OnInit {
         this.alert_2.type = 'success';
         this.alert_2.message = 'Datos actualizados correctamente.';
         this.reset();
-        
+
         this.save_disabled_vhc = false;
         this.save_enabled_vhc = true;
       }else{
@@ -1377,7 +1412,7 @@ export class TratamientosComponent implements OnInit {
         this.alert_2.message = 'Hubo un error al actualizar la información.';
         this.reset();
         this.progres_spinner_refresh_vhc_treatment = true;
-        this.hidden_update_btn  = false;  
+        this.hidden_update_btn  = false;
       }
     }, err=>{
       this.staticAlertClosed2 = false;
@@ -1394,7 +1429,7 @@ export class TratamientosComponent implements OnInit {
     this.hidden_update_btn  = true;
     //this.indiceNash = (Number(this.indiceNash) + 1);
     const vhcData = {} as vhcTreatmentModel;
-    
+
     this.strDate = this.pipe.transform(this.today, 'yyyy-MM-dd');
     this.start_date = this.strDate;
     this.end_date = this.strDate;
@@ -1406,7 +1441,7 @@ export class TratamientosComponent implements OnInit {
       this.reset();
       this.progres_spinner_refresh_vhc_treatment = true;
       this.hidden_update_btn  = false;
-    
+
     }else{
       this.maximizeScreen();
       vhcData.MD_hospital_id = this.comboHospital.hospital_id;
@@ -1433,67 +1468,73 @@ export class TratamientosComponent implements OnInit {
     if (id != null){
       this.update_flag = true;
       const vhcData = {} as vhcTreatmentModel;
-      
+
       vhcData.MD_hospital_id = treatment.MD_hospital_id;
       vhcData.MD_entity_id = this.entity_id;
       vhcData.research_vhc_id = id;
-      
+
       vhcData.month_execution = treatment.month_execution;
       vhcData.initials = treatment.initials;
-      
-      
+
+
       if (treatment.birthdate === "null" || treatment.birthdate === null || treatment.birthdate === '' ){
         console.log("birthday nulo: " + vhcData.birthdate);
       }else{
         vhcData.birthdate = treatment.birthdate;
         console.log("birthday no nulo: " + vhcData.birthdate);
-        
+
       }
-      vhcData.gender = treatment.gender;
-      vhcData.diagnostic_date	 = treatment.diagnostic_date;
-      vhcData.tx_date_begin = treatment.tx_date_begin;
-      vhcData.cirrosis = treatment.cirrosis;
-      vhcData.estadio_child = treatment.estadio_child;
-      vhcData.v_esofagicas = treatment.v_esofagicas;
-      vhcData.genotipo = treatment.genotipo;
-      vhcData.cv_inicial = treatment.cv_inicial;
-      vhcData.log_inicial = treatment.log_inicial;
-      vhcData.cv_s12 = treatment.cv_s12;
-      vhcData.log_s12 = treatment.log_s12;
-      vhcData.cv_s24 = treatment.cv_s24;
-      vhcData.log_rvs24 = treatment.log_rvs24;
-      vhcData.hb_inicial = treatment.hb_inicial;
-      vhcData.hb_final = treatment.hb_final;
-      vhcData.leuc_inicial = treatment.leuc_inicial;
-      vhcData.leuc_final = treatment.leuc_final;
-      vhcData.plaq_inicial = treatment.plaq_inicial;
-      vhcData.plaq_final = treatment.plaq_final;
-      vhcData.bt_inicial = treatment.bt_inicial;
-      vhcData.bt_final = treatment.bt_final;
-      vhcData.tgo_inicial = treatment.tgo_inicial;
-      vhcData.tgo_final = treatment.tgo_final;
-      vhcData.tgp_final = treatment.tgp_final;
-      vhcData.tgp_inicial = treatment.tgp_inicial;
-      vhcData.albu_inicial = treatment.albu_inicial;
-      vhcData.albu_final = treatment.albu_final;
-      vhcData.inr_inicial = treatment.inr_inicial;
-      vhcData.inr_final = treatment.inr_final;
-      vhcData.creatinina_inicial = treatment.creatinina_inicial;
-      vhcData.creatinina_final = treatment.creatinina_final;
-      vhcData.ascitis = treatment.ascitis;
-      vhcData.hepatocarcinoma = treatment.hepatocarcinoma;
-      vhcData.encefalopatia = treatment.encefalopatia;
-      vhcData.hepatocarcinoma = treatment.hepatocarcinoma;
-      vhcData.tratamiento = treatment.tratamiento;
-      vhcData.efecto_adverso = treatment.efecto_adverso;
-      vhcData.descripcion_adverso	 = treatment.descripcion_adverso;
-      vhcData.severidad_efecto_adverso = treatment.severidad_efecto_adverso;
-      vhcData.accion_tomada = treatment.accion_tomada;
-      vhcData.child_inicial = treatment.child_inicial;
-      vhcData.child_final = treatment.status;
-      vhcData.meld_inicial = treatment.meld_inicial;
-      vhcData.meld_final = treatment.meld_final;
-      vhcData.comentarios = treatment.comentarios;
+      vhcData.age = treatment.age; //Edad
+      vhcData.gender = treatment.gender;//Género
+      vhcData.state = treatment.state;//estado de la republica
+      vhcData.year = treatment.year;//Año de dx de vhc
+      vhcData.transmission_mechanism = treatment.transmission_mechanism; //mecanismo de trasmision
+      vhcData.comorbilidades = treatment.comorbilidades;//Comorbilidades
+      vhcData.manif_extrahepaticas = treatment.manif_extrahepaticas;//manifesaciones extrahepaticas
+      vhcData.grado_fibrosis_hepatica =  treatment.grado_fibrosis_hepatica;//grado de fibrosis hepatica
+      vhcData.cirrosis = treatment.cirrosis;//Cirrosis (Si o No)
+      vhcData.estado_cirrosis_compensada = treatment.estado_cirrosis_compensada//Estado de la cirrosis compensada o descompensadabgt5-
+      vhcData.cirrosis_descompensada = treatment.cirrosis_descompensada;//Cirrosis Descompensada
+      vhcData.child_inicial = treatment.child_inicial;//Estadio Child Inicial(Puntaje)
+      vhcData.meld_inicial = treatment.meld_inicial;//MELD ( Inicial)
+      vhcData.esofagicas = treatment.esofagicas;//V. Esofágicas (Si o No)
+      vhcData.estado_inicial = treatment.estado_inicial;//Estado inicial
+      vhcData.tipo_tx_previo = treatment.tipo_tx_previo;//Tipo de tx previo
+      vhcData.year_inicio_tx_add = treatment.year_inicio_tx_add;//Año de Inicio de tx de ADD
+      vhcData.esquema_tratamiento = treatment.esquema_tratamiento;//Esquema de-tratamientot5
+      vhcData.tiempo_tratamiento_meses = treatment.tiempo_tratamiento_meses;//Tiempo de tratamiento en meses
+      vhcData.rvs = treatment.rvs;//RVS (si o no)
+      vhcData.cv_inicial = treatment.cv_inicial;//CV Inicial
+      vhcData.log_inicial = treatment.log_inicial;//Log Inicial
+      vhcData.cv_rvs12 = treatment.cv_rvs12;//CV RVS12
+      vhcData.log_rvs12 = treatment.log_rvs12;//Log RVS 12
+      vhcData.funcion_renal = treatment.funcion_renal;//Funcion renal (filtracion glomerular) pretratameinto
+      vhcData.hb_inicial = treatment.hb_inicial;//HB Inicial
+      vhcData.hb_final = treatment.hb_final;//Hb final
+      vhcData.leucocitos_inicial = treatment.leucocitos_inicial;//leucocios inicial
+      vhcData.leucocitos_final = treatment.leucocitos_final;//leucocitos final
+      vhcData.plaquetas_inicial = treatment.plaquetas_inicial;//Plaq Inicial
+      vhcData.plaquetas_final = treatment.plaquetas_final;//Plaq Final
+      vhcData.creatinina_inicial = treatment.creatinina_inicial;//creatinia inicial
+      vhcData.creatinina_final = treatment.creatinina_final;//Creatinina final
+      vhcData.creatinina_final = treatment.creatinina_final;//Creatinina final
+      vhcData.tgo_inicial = treatment.tgo_inicial;//TGO Inicial
+      vhcData.tgo_final = treatment.tgo_final;//TGO Final
+      vhcData.tgp_inicial = treatment.tgp_inicial;//TGP Inicial
+      vhcData.tgp_final = treatment.tgp_final;//TGP Final
+      vhcData.alumina_inicial = treatment.alumina_inicial;//alumina inicial
+      vhcData.alumina_final = treatment.alumina_final;//albumina final
+      vhcData.inr_inicial = treatment.inr_inicial;//INR Inicial
+      vhcData.inr_final = treatment.inr_final;  //INR Final
+      vhcData.bt_inicial = treatment.bt_inicial;//BT inicial
+      vhcData.bt_final = treatment.bt_final;//BT final
+      vhcData.efecto_adverso = treatment.efecto_adverso;//Efecto Adverso Si/No
+      vhcData.descripcion_adverso = treatment.descripcion_adverso;//Cual/describir
+      vhcData.accion_tomada = treatment.accion_tomada;//Acción Tomada
+      vhcData.child_final = treatment.child_final;//Child Final
+      vhcData.meld_final = treatment.meld_final;//MELD finall
+      vhcData.comentarios = treatment.comentarios;//Comentarios
+
       vhcData.creation_userid = treatment.creation_userid;
       vhcData.creation_username = treatment.creation_username;
       vhcData.creation_date = treatment.creation_date;
@@ -1502,14 +1543,15 @@ export class TratamientosComponent implements OnInit {
       vhcData.modification_username = treatment.modification_username;
       vhcData.modification_date = treatment.modification_date;
       vhcData.modification_time = treatment.modification_time;
+
       vhcData.status = treatment.status;
       vhcData.row_color = "row_update";// Nuevos" treatment.row_color;"
 
       console.log("COlor: " + vhcData.row_color);
       this.VHCRecordUpdate[id] = vhcData;
           //this.NAHSRecord[i] = vhcData;
-      treatment.row_color = vhcData.row_color; 
-          //console.log(this.NAHSRecord[i]); 
+      treatment.row_color = vhcData.row_color;
+          //console.log(this.NAHSRecord[i]);
           //console.log(this.NAHSRecordUpdate);
           //console.log("Actualizando.." + id + " " + column_name);
       this.save_disabled_vhc = true;
@@ -1517,51 +1559,59 @@ export class TratamientosComponent implements OnInit {
     }else{
       this.create_flag = true;
       const vhcData = {} as vhcTreatmentModel;
-      vhcData.gender = treatment.gender;
-      vhcData.diagnostic_date	 = treatment.diagnostic_date;
-      vhcData.tx_date_begin = treatment.tx_date_begin;
-      vhcData.cirrosis = treatment.cirrosis;
-      vhcData.estadio_child = treatment.estadio_child;
-      vhcData.v_esofagicas = treatment.v_esofagicas;
-      vhcData.genotipo = treatment.genotipo;
-      vhcData.cv_inicial = treatment.cv_inicial;
-      vhcData.log_inicial = treatment.log_inicial;
-      vhcData.cv_s12 = treatment.cv_s12;
-      vhcData.log_s12 = treatment.log_s12;
-      vhcData.cv_s24 = treatment.cv_s24;
-      vhcData.log_rvs24 = treatment.log_rvs24;
-      vhcData.hb_inicial = treatment.hb_inicial;
-      vhcData.hb_final = treatment.hb_final;
-      vhcData.leuc_inicial = treatment.leuc_inicial;
-      vhcData.leuc_final = treatment.leuc_final;
-      vhcData.plaq_inicial = treatment.plaq_inicial;
-      vhcData.plaq_final = treatment.plaq_final;
-      vhcData.bt_inicial = treatment.bt_inicial;
-      vhcData.bt_final = treatment.bt_final;
-      vhcData.tgo_inicial = treatment.tgo_inicial;
-      vhcData.tgo_final = treatment.tgo_final;
-      vhcData.tgp_final = treatment.tgp_final;
-      vhcData.tgp_inicial = treatment.tgp_inicial;
-      vhcData.albu_inicial = treatment.albu_inicial;
-      vhcData.albu_final = treatment.albu_final;
-      vhcData.inr_inicial = treatment.inr_inicial;
-      vhcData.inr_final = treatment.inr_final;
-      vhcData.creatinina_inicial = treatment.creatinina_inicial;
-      vhcData.creatinina_final = treatment.creatinina_final;
-      vhcData.ascitis = treatment.ascitis;
-      vhcData.hepatocarcinoma = treatment.hepatocarcinoma;
-      vhcData.encefalopatia = treatment.encefalopatia;
-      vhcData.hepatocarcinoma = treatment.hepatocarcinoma;
-      vhcData.tratamiento = treatment.tratamiento;
-      vhcData.efecto_adverso = treatment.efecto_adverso;
-      vhcData.descripcion_adverso	 = treatment.descripcion_adverso;
-      vhcData.severidad_efecto_adverso = treatment.severidad_efecto_adverso;
-      vhcData.accion_tomada = treatment.accion_tomada;
-      vhcData.child_inicial = treatment.child_inicial;
-      vhcData.child_final = treatment.status;
-      vhcData.meld_inicial = treatment.meld_final;
-      vhcData.meld_final = treatment.meld_final;
-      vhcData.comentarios = treatment.comentarios;
+
+
+      vhcData.age = treatment.age; //Edad
+      vhcData.gender = treatment.gender;//Género
+      vhcData.state = treatment.state;//estado de la republica
+      vhcData.year = treatment.year;//Año de dx de vhc
+      vhcData.transmission_mechanism = treatment.transmission_mechanism; //mecanismo de trasmision
+      vhcData.comorbilidades = treatment.comorbilidades;//Comorbilidades
+      vhcData.manif_extrahepaticas = treatment.manif_extrahepaticas;//manifesaciones extrahepaticas
+      vhcData.grado_fibrosis_hepatica =  treatment.grado_fibrosis_hepatica;//grado de fibrosis hepatica
+      vhcData.cirrosis = treatment.cirrosis;//Cirrosis (Si o No)
+      vhcData.estado_cirrosis_compensada = treatment.estado_cirrosis_compensada//Estado de la cirrosis compensada o descompensadabgt5-
+      vhcData.cirrosis_descompensada = treatment.cirrosis_descompensada;//Cirrosis Descompensada
+      vhcData.child_inicial = treatment.child_inicial;//Estadio Child Inicial(Puntaje)
+      vhcData.meld_inicial = treatment.meld_inicial;//MELD ( Inicial)
+      vhcData.esofagicas = treatment.esofagicas;//V. Esofágicas (Si o No)
+      vhcData.estado_inicial = treatment.estado_inicial;//Estado inicial
+      vhcData.tipo_tx_previo = treatment.tipo_tx_previo;//Tipo de tx previo
+      vhcData.year_inicio_tx_add = treatment.year_inicio_tx_add;//Año de Inicio de tx de ADD
+      vhcData.esquema_tratamiento = treatment.esquema_tratamiento;//Esquema de-tratamientot5
+      vhcData.tiempo_tratamiento_meses = treatment.tiempo_tratamiento_meses;//Tiempo de tratamiento en meses
+      vhcData.rvs = treatment.rvs;//RVS (si o no)
+      vhcData.cv_inicial = treatment.cv_inicial;//CV Inicial
+      vhcData.log_inicial = treatment.log_inicial;//Log Inicial
+      vhcData.cv_rvs12 = treatment.cv_rvs12;//CV RVS12
+      vhcData.log_rvs12 = treatment.log_rvs12;//Log RVS 12
+      vhcData.funcion_renal = treatment.funcion_renal;//Funcion renal (filtracion glomerular) pretratameinto
+      vhcData.hb_inicial = treatment.hb_inicial;//HB Inicial
+      vhcData.hb_final = treatment.hb_final;//Hb final
+      vhcData.leucocitos_inicial = treatment.leucocitos_inicial;//leucocios inicial
+      vhcData.leucocitos_final = treatment.leucocitos_final;//leucocitos final
+      vhcData.plaquetas_inicial = treatment.plaquetas_inicial;//Plaq Inicial
+      vhcData.plaquetas_final = treatment.plaquetas_final;//Plaq Final
+      vhcData.creatinina_inicial = treatment.creatinina_inicial;//creatinia inicial
+      vhcData.creatinina_final = treatment.creatinina_final;//Creatinina final
+      vhcData.creatinina_final = treatment.creatinina_final;//Creatinina final
+      vhcData.tgo_inicial = treatment.tgo_inicial;//TGO Inicial
+      vhcData.tgo_final = treatment.tgo_final;//TGO Final
+      vhcData.tgp_inicial = treatment.tgp_inicial;//TGP Inicial
+      vhcData.tgp_final = treatment.tgp_final;//TGP Final
+      vhcData.alumina_inicial = treatment.alumina_inicial;//alumina inicial
+      vhcData.alumina_final = treatment.alumina_final;//albumina final
+      vhcData.inr_inicial = treatment.inr_inicial;//INR Inicial
+      vhcData.inr_final = treatment.inr_final;  //INR Final
+      vhcData.bt_inicial = treatment.bt_inicial;//BT inicial
+      vhcData.bt_final = treatment.bt_final;//BT final
+      vhcData.efecto_adverso = treatment.efecto_adverso;//Efecto Adverso Si/No
+      vhcData.descripcion_adverso = treatment.descripcion_adverso;//Cual/describir
+      vhcData.accion_tomada = treatment.accion_tomada;//Acción Tomada
+      vhcData.child_final = treatment.child_final;//Child Final
+      vhcData.meld_final = treatment.meld_final;//MELD finall
+      vhcData.comentarios = treatment.comentarios;//Comentarios
+
       vhcData.creation_userid = treatment.creation_userid;
       vhcData.creation_username = treatment.creation_username;
       vhcData.creation_date = treatment.creation_date;
@@ -1572,24 +1622,24 @@ export class TratamientosComponent implements OnInit {
       vhcData.modification_time = treatment.modification_time;
       vhcData.status = treatment.status;
       vhcData.row_color = "row_new";// Nuevos" treatment.row_color;"
-      this.VHCRecordCreate[i] = this.VHCRecord[i]; 
+      this.VHCRecordCreate[i] = this.VHCRecord[i];
     }
   }
 
   getVHCData(){
     this.progres_spinner_refresh_vhc_treatment = false;
     this.hidden_update_btn  = true;
-    
+
     this.hospital_id = (this.comboHospital.hospital_id != undefined)?this.comboHospital.hospital_id:0;
     //hospital_id, role_id,entity_id,treatment_id,status_id, start_date, end_date
     this.vhcTreatmentService.getVHCTreatment(this.hospital_id, this.role_id, this.entity_id, 7, this.status_id,this.start_date, this.end_date).subscribe((resp_data_get:any) => {
-      
+
       this.VHCRecordEstilo = [];
       this.VHCRecordEstiloExcel = [];
       if (resp_data_get.code == 200){
         if (resp_data_get.data.data.length >0){
           resp_data_get.data.data.map((r) => {
-           
+
             const vhcData = {} as vhcTreatmentModel;
             const vhcDataExcel = {} as vhcTreatmentModel;
 
@@ -1603,225 +1653,259 @@ export class TratamientosComponent implements OnInit {
             vhcData.research_date_end = r.research_date_end;
             vhcData.research_vhc_id = r.research_vhc_id;
             vhcData.month_execution = r.month_execution;
-            vhcData.initials = r.initials;
-            vhcData.birthdate	 = r.birthdate;
-            vhcData.gender = r.gender;
-            if (r.gender=="" || r.gender == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.cirrosis = r.cirrosis;
-            if (r.cirrosis=="" || r.cirrosis==null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.tx_date_begin = r.tx_date_begin;
-            if (r.tx_date_begin=="" || r.tx_date_begin==null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.estadio_child = r.estadio_child;
-            if (r.estadio_child=="" || r.estadio_child==null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.v_esofagicas = r.v_esofagicas;
-            if (r.v_esofagicas=="" || r.v_esofagicas==null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.genotipo = r.genotipo;
-            if (r.genotipo == "" || r.genotipo == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.cv_inicial = r.cv_inicial;
-            if (r.cv_inicial == "" || r.cv_inicial == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.log_inicial = r.log_inicial;
-            if (r.log_inicial == "" || r.log_inicial == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.cv_s12 = r.cv_s12;
-            if (r.cv_s12 == "" || r.cv_s12 == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.log_s12 = r.log_s12;
-            if (r.log_s12 == "" || r.log_s12 == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.cv_s24 = r.cv_s24;
-            if (r.cv_s24 == "" || r.cv_s24 == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.log_rvs24 = r.log_rvs24;
-            if (r.log_rvs24 == "" || r.log_rvs24 == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.hb_inicial = r.hb_inicial;
-            if (r.hb_inicial == "" || r.hb_inicial == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.hb_final = r.hb_final;
-            if (r.hb_final == "" || r.hb_final == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.leuc_inicial = r.leuc_inicial;
-            if (r.leuc_inicial == "" || r.leuc_inicial == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.leuc_final = r.leuc_final;
-            if (r.leuc_final == "" || r.leuc_final == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.plaq_inicial = r.plaq_inicial;
-            if (r.plaq_inicial == "" || r.plaq_inicial == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.plaq_final = r.plaq_final;
-            if (r.plaq_final == "" || r.plaq_final == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.bt_inicial = r.bt_inicial;
-            if (r.bt_inicial == "" || r.bt_inicial == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.bt_final = r.bt_final;
-            if (r.bt_final == "" || r.bt_final == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.tgo_inicial = r.tgo_inicial;
-            if (r.tgo_inicial == "" || r.tgo_inicial == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.tgo_final = r.tgo_final;
-            if (r.tgo_final == "" || r.tgo_final == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.tgp_final = r.tgp_final;
-            if (r.tgp_final == "" || r.tgp_final == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.tgp_inicial = r.tgp_inicial;
-            if (r.tgp_inicial == "" || r.tgp_inicial == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.albu_inicial = r.albu_inicial;
-            if (r.albu_inicial == "" || r.albu_inicial == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.albu_final = r.albu_final;
-            if (r.albu_final == "" || r.albu_final == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.inr_inicial = r.inr_inicial;
-            if (r.inr_inicial == "" || r.inr_inicial == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.inr_final = r.inr_final;
-            if (r.inr_final == "" || r.inr_final == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.creatinina_inicial = r.creatinina_inicial;
-            if (r.creatinina_inicial == "" || r.creatinina_inicial == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.creatinina_final = r.creatinina_final;
-            if (r.creatinina_final == "" || r.creatinina_final == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.ascitis = r.ascitis;
-            if (r.ascitis == "" || r.ascitis == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.encefalopatia = r.encefalopatia;
-            if (r.encefalopatia == "" || r.encefalopatia == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.hepatocarcinoma = r.hepatocarcinoma;
-            if (r.hepatocarcinoma == "" || r.hepatocarcinoma == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.tratamiento = r.tratamiento;
-            if (r.tratamiento == "" || r.tratamiento == null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.efecto_adverso = r.efecto_adverso;
-            if (r.efecto_adverso=="" || r.efecto_adverso==null){
+
+            vhcData.initials = r.initials; //Iniciales
+            if (r.initials=="" || r.initials==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
 
-            vhcData.descripcion_adverso = r.descripcion_adverso;
-            if (r.descripcion_adverso=="" || r.descripcion_adverso==null){
+            vhcData.age = r.age; //Edad
+            if (r.age=="" || r.age==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
-            vhcData.severidad_efecto_adverso = r.severidad_efecto_adverso;
-            if (r.severidad_efecto_adverso=="" || r.severidad_efecto_adverso==null){
+            vhcData.gender = r.gender;//Género
+            if (r.gender=="" || r.gender==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
-            vhcData.accion_tomada = r.accion_tomada;
-            if (r.accion_tomada=="" || r.accion_tomada==null){
+            vhcData.state = r.state;//estado de la republica
+            if (r.state=="" || r.state==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
-            /*vhcData.child_inicial = r.child_inicial;
-            if (r.child_inicial=="" || r.child_inicial==null){
+            vhcData.year = r.year;//Año de dx de vhc
+            if (r.year=="" || r.year==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
-            }*/
-            vhcData.child_final = r.child_final;
-            if (r.child_final=="" || r.child_final==null){
+            }
+            vhcData.transmission_mechanism = r.transmission_mechanism; //mecanismo de trasmision
+            if (r.transmission_mechanism =="" || r.transmission_mechanism==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.comorbilidades = r.comorbilidades;//Comorbilidades
+            if (r.comorbilidades =="" || r.comorbilidades==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.manif_extrahepaticas = r.manif_extrahepaticas;//manifesaciones extrahepaticas
+            if (r.manif_extrahepaticas =="" || r.manif_extrahepaticas==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.grado_fibrosis_hepatica =  r.grado_fibrosis_hepatica;//grado de fibrosis hepatica
+            if (r.grado_fibrosis_hepatica =="" || r.grado_fibrosis_hepatica==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.cirrosis = r.cirrosis;//Cirrosis (Si o No)
+            if (r.cirrosis =="" || r.cirrosis==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.estado_cirrosis_compensada = r.estado_cirrosis_compensada//Estado de la cirrosis compensada o descompensadabgt5-
+            if (r.estado_cirrosis_compensada =="" || r.estado_cirrosis_compensada==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.cirrosis_descompensada = r.cirrosis_descompensada;//Cirrosis Descompensada
+            if (r.cirrosis_descompensada =="" || r.cirrosis_descompensada==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.child_inicial = r.child_inicial;//Estadio Child Inicial(Puntaje)
+            if (r.child_inicial =="" || r.child_inicial==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.meld_inicial = r.meld_inicial;//MELD ( Inicial)
+            if (r.meld_inicial =="" || r.meld_inicial==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.esofagicas = r.esofagicas;//V. Esofágicas (Si o No)
+            if (r.esofagicas =="" || r.esofagicas==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.estado_inicial = r.estado_inicial;//Estado inicial
+            if (r.estado_inicial =="" || r.estado_inicial==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.tipo_tx_previo = r.tipo_tx_previo;//Tipo de tx previo
+            if (r.tipo_tx_previo =="" || r.tipo_tx_previo==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.year_inicio_tx_add = r.year_inicio_tx_add;//Año de Inicio de tx de ADD
+            if (r.year_inicio_tx_add =="" || r.year_inicio_tx_add==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.esquema_tratamiento = r.esquema_tratamiento;//Esquema de-tratamientot5
+            if (r.esquema_tratamiento =="" || r.esquema_tratamiento==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.tiempo_tratamiento_meses = r.tiempo_tratamiento_meses;//Tiempo de tratamiento en meses
+            if (r.tiempo_tratamiento_meses =="" || r.tiempo_tratamiento_meses==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.rvs = r.rvs;//RVS (si o no)
+            if (r.rvs =="" || r.rvs==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.cv_inicial = r.cv_inicial;//CV Inicial
+            if (r.cv_inicial =="" || r.cv_inicial==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.log_inicial = r.log_inicial;//Log Inicial
+            if (r.log_inicial =="" || r.log_inicial==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.cv_rvs12 = r.cv_rvs12;//CV RVS12
+            if (r.cv_rvs12 =="" || r.cv_rvs12==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.log_rvs12 = r.log_rvs12;//Log RVS 12
+            if (r.log_rvs12 =="" || r.log_rvs12==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.funcion_renal = r.funcion_renal;//Funcion renal (filtracion glomerular) pretratameinto
+            if (r.funcion_renal =="" || r.funcion_renal==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.hb_inicial = r.hb_inicial;//HB Inicial
+            if (r.hb_inicial =="" || r.hb_inicial==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.hb_final = r.hb_final;//Hb final
+            if (r.hb_final =="" || r.hb_final==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.leucocitos_inicial = r.leucocitos_inicial;//leucocios inicial
+            if (r.leucocitos_inicial =="" || r.leucocitos_inicial==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.leucocitos_final = r.leucocitos_final;//leucocitos final
+            if (r.leucocitos_final =="" || r.leucocitos_final==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.plaquetas_inicial = r.plaquetas_inicial;//Plaq Inicial
+            if (r.plaquetas_inicial =="" || r.plaquetas_inicial==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.plaquetas_final = r.plaquetas_final;//Plaq Final
+            if (r.plaquetas_final =="" || r.plaquetas_final==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.creatinina_inicial = r.creatinina_inicial;//creatinia inicial
+            if (r.creatinina_inicial =="" || r.creatinina_inicial==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.creatinina_final = r.creatinina_final;//Creatinina final
+            if (r.creatinina_final =="" || r.creatinina_final==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.tgo_inicial = r.tgo_inicial;//TGO Inicial
+            if (r.tgo_inicial =="" || r.tgo_inicial==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.tgo_final = r.tgo_final;//TGO Final
+            if (r.tgo_final =="" || r.tgo_final==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.tgp_inicial = r.tgp_inicial;//TGP Inicial
+            if (r.tgp_inicial =="" || r.tgp_inicial==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.tgp_final = r.tgp_final;//TGP Final
+            if (r.tgp_final =="" || r.tgp_final==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.alumina_inicial = r.alumina_inicial;//alumina inicial
+            if (r.alumina_inicial =="" || r.alumina_inicial==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.alumina_final = r.alumina_final;//albumina final
+            if (r.alumina_final =="" || r.alumina_final==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.inr_inicial = r.inr_inicial;//INR Inicial
+            if (r.inr_inicial =="" || r.inr_inicial==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.inr_final = r.inr_final;  //INR Final
+            if (r.inr_final =="" || r.inr_final==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.bt_inicial = r.bt_inicial;//BT inicial
+            if (r.bt_inicial =="" || r.bt_inicial==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.bt_final = r.bt_final;//BT final
+            if (r.bt_final =="" || r.bt_final==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.efecto_adverso = r.efecto_adverso;//Efecto Adverso Si/No
+            if (r.efecto_adverso =="" || r.efecto_adverso==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.descripcion_adverso = r.descripcion_adverso;//Cual/describir
+            if (r.descripcion_adverso =="" || r.descripcion_adverso==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.accion_tomada = r.accion_tomada;//Acción Tomada
+            if (r.accion_tomada =="" || r.accion_tomada==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.child_final = r.child_final;//Child Final
+            if (r.child_final =="" || r.child_final==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.meld_final = r.meld_final;//MELD finall
+            if (r.meld_final =="" || r.meld_final==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.comentarios = r.comentarios;//Comentarios
+            if (r.comentarios =="" || r.comentarios==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
 
-            vhcData.meld_inicial = r.meld_inicial;
-            if (r.meld_inicial=="" || r.meld_inicial==null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.meld_final = r.meld_final;
-            if (r.meld_final=="" || r.meld_final==null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.comentarios = r.comentarios;
-            if (r.comentarios=="" || r.comentarios==null){
-              vhcData.active_red_sem = "row_sem_red_visible";
-              vhcData.active_green_sem = "row_sem_green_hidden";
-            }
             vhcData.creation_userid = r.creation_userid;
             vhcData.creation_username = r.creation_username;
             vhcData.creation_date = r.creation_date;
@@ -1830,13 +1914,13 @@ export class TratamientosComponent implements OnInit {
             vhcData.modification_date = r.modification_date;
             vhcData.modification_time = r.modification_time;
             vhcData.status = r.status;
-            
+
             vhcData.row_color = "row_get";// Nuevos" treatment.row_color;"
             this.VHCRecordEstilo.push(vhcData);
             this.VHCRecord = this.VHCRecordEstilo;
             this.VHCRecordEstiloExcel.push(this.getExcelDataVHC(vhcData));
             this.hidden_update_btn  = false;
-            this.progres_spinner_refresh_vhc_treatment = true;  
+            this.progres_spinner_refresh_vhc_treatment = true;
           });
         }else{
           console.log("Minimizar");
@@ -1854,11 +1938,11 @@ export class TratamientosComponent implements OnInit {
         this.alert_2.message = 'Hubo un error al obtener la información.';
         this.reset();
         this.progres_spinner_refresh_vhc_treatment = true;
-        this.hidden_update_btn  = false;  
+        this.hidden_update_btn  = false;
       }
       this.VHCRecordExcel = this.VHCRecordEstiloExcel;
       this.VHCRecord = this.VHCRecordEstilo;
-      
+
     }, err=>{
       this.staticAlertClosed2 = false;
       this.alert_2.type = 'danger';
