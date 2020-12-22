@@ -12,7 +12,7 @@ declare var $: any;
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss'] 
+  styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements AfterViewInit {
   @Output() toggleSidebar = new EventEmitter<void>();
@@ -23,9 +23,9 @@ export class NavigationComponent implements AfterViewInit {
   //////////////DATOS DE USUARIO
   username:               string;
   branch_office_name:     string;
-  
+  uname_s: string;
   constructor(
-    private modalService: NgbModal, 
+    private modalService: NgbModal,
     private service: AuthService) {}
 
   // This is for Notifications
@@ -98,9 +98,9 @@ export class NavigationComponent implements AfterViewInit {
     return false;
   }
   ngOnInit(){
-   
+    this.uname_s = sessionStorage.getItem("user_name_show");
     this.username = localStorage.getItem('user');
-
+    console.log("Usuario.... " + this.username);
     if (this.username != null || this.username == ""){
       if (this.username.length > 23 ){
         this.username = this.username.substring(0, 23) + '...';
@@ -111,6 +111,6 @@ export class NavigationComponent implements AfterViewInit {
     this.branch_office_name = localStorage.getItem('branch_office_name');
   }
   ngAfterViewInit() {
-    
+
   }
 }

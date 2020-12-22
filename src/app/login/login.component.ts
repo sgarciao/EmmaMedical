@@ -22,13 +22,14 @@ export class LoginComponent {
     this.recoverform = !this.recoverform;
   }
   check(uname: string, p: string) {
+    sessionStorage.setItem("user_name_show", uname);
     //Validar
-    this.ennableInputs = true; 
+    this.ennableInputs = true;
     this.ennableSpinner = false;
     if(uname.length > 0 && p.length > 0) {
           const output = this.authService.login(uname, p).subscribe( (res: any) => {
             if (res.code  != '200') {
-             
+
               this.msg = 'Usuario o contraseña incorrecto';
               this.ennableSpinner = true;
               this.ennableInputs = false;
