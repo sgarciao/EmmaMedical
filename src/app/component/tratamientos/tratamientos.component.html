@@ -677,18 +677,18 @@
                                                         <th scope="col">LEUCOCITOS FINAL</th>
                                                         <th scope="col">PLAQUETA INICIAL</th>
                                                         <th scope="col">PLAQUETA FINAl</th>
-                                                        <th scope="col">CREATINA INICIAL</th>
-                                                        <th scope="col">CREATINA FINAL</th>
+                                                        <th scope="col">CREATINE INICIAL</th>
+                                                        <th scope="col">CREATINE FINAL</th>
                                                         <th scope="col">TGO INICIAL</th>
                                                         <th scope="col">TGO FINAL</th>
                                                         <th scope="col">TGP INICIAL</th>
                                                         <th scope="col">TGP FINAl</th>
-                                                        <th scope="col">ALUMINA INICIAL</th>
-                                                        <th scope="col">ALUMINA FINAL</th>
+                                                        <th scope="col">ALBUMINA INICIAL</th>
+                                                        <th scope="col">ALBUMINA FINAL</th>
                                                         <th scope="col">INR INICIAL</th>
                                                         <th scope="col">INR FINAL</th>
                                                         <th scope="col">BT INICIAL</th>
-                                                        <th scope="col">BT FINAl</th>
+                                                        <th scope="col">BT FINAL</th>
                                                         <th scope="col">EFECTO ADVERSO</th>
                                                         <th scope="col">CUAL/DESCRIBIR</th>
                                                         <th scope="col">ACCIÓN TOMADA</th>
@@ -731,9 +731,9 @@
                                                                 [(ngModel)] = "treatmentvhc.gender"
                                                                 id="gender" class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.gender, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.gender}}  Hombre </option>
-                                                                <option value="2"> {{treatmentvhc.gender}}  Mujer </option>
-                                                                <option value="3"> {{treatmentvhc.gender}}  Otro </option>
+                                                                <option value="1"> 1  Hombre </option>
+                                                                <option value="2"> 2  Mujer </option>
+                                                                <option value="3"> 3  Otro </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -756,16 +756,16 @@
                                                                 [(ngModel)]="treatmentvhc.transmission_mechanism" id="transmission_mechanism"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.transmission_mechanism, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.transmission_mechanism}}  Trasfusion de Sangre o Hemoderivados </option>
-                                                                <option value="2"> {{treatmentvhc.transmission_mechanism}}  Drogas IV </option>
-                                                                <option value="3"> {{treatmentvhc.transmission_mechanism}}  Hemodiálisis </option>
-                                                                <option value="4"> {{treatmentvhc.transmission_mechanism}}  Perinatal</option>
-                                                                <option value="5"> {{treatmentvhc.transmission_mechanism}}  Transmisión Sexual </option>
-                                                                <option value="6"> {{treatmentvhc.transmission_mechanism}}  Tatuaje </option>
-                                                                <option value="7"> {{treatmentvhc.transmission_mechanism}}  Piercing </option>
-                                                                <option value="8"> {{treatmentvhc.transmission_mechanism}}  Cirugías </option>
-                                                                <option value="9"> {{treatmentvhc.transmission_mechanism}}  Procedimientos Odontológicos </option>
-                                                                <option value="10"> {{treatmentvhc.transmission_mechanism}}  Desconocida </option>
+                                                                <option value="1"> 1  Trasfusion de Sangre o Hemoderivados </option>
+                                                                <option value="2"> 2  Drogas IV </option>
+                                                                <option value="3"> 3  Hemodiálisis </option>
+                                                                <option value="4"> 4  Perinatal</option>
+                                                                <option value="5"> 5  Transmisión Sexual </option>
+                                                                <option value="6"> 6  Tatuaje </option>
+                                                                <option value="7"> 7  Piercing </option>
+                                                                <option value="8"> 8  Cirugías </option>
+                                                                <option value="9"> 9  Procedimientos Odontológicos </option>
+                                                                <option value="10"> 10  Desconocida </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -773,13 +773,13 @@
                                                                 [(ngModel)]="treatmentvhc.comorbilidades" id="comorbilidades"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.comorbilidades, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.comorbilidades}}  DM </option>
-                                                                <option value="2"> {{treatmentvhc.comorbilidades}}  HTA </option>
-                                                                <option value="3"> {{treatmentvhc.comorbilidades}}  Obesidad </option>
-                                                                <option value="4"> {{treatmentvhc.comorbilidades}}  Hipertiroidismo </option>
-                                                                <option value="5"> {{treatmentvhc.comorbilidades}}  Sindrome Metabólico </option>
-                                                                <option value="6"> {{treatmentvhc.comorbilidades}}  Cardiopatía </option>
-                                                                <option value="7"> {{treatmentvhc.comorbilidades}}  Otros </option>
+                                                                <option value="1"> 1  DM </option>
+                                                                <option value="2"> 2  HTA </option>
+                                                                <option value="3"> 3  Obesidad </option>
+                                                                <option value="4"> 4  Hipertiroidismo </option>
+                                                                <option value="5"> 5  Sindrome Metabólico </option>
+                                                                <option value="6"> 6  Cardiopatía </option>
+                                                                <option value="7"> 7  Otros </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -787,12 +787,12 @@
                                                                 [(ngModel)]="treatmentvhc.manif_extrahepaticas" id="manif_extrahepaticas"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.manif_extrahepaticas, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.manif_extrahepaticas}}  Ninguna </option>
-                                                                <option value="2"> {{treatmentvhc.manif_extrahepaticas}}  Glomerulopatías </option>
-                                                                <option value="3"> {{treatmentvhc.manif_extrahepaticas}}  Crioglobulinemia </option>
-                                                                <option value="4"> {{treatmentvhc.manif_extrahepaticas}}  Vasculitis </option>
-                                                                <option value="5"> {{treatmentvhc.manif_extrahepaticas}}  Porfiria </option>
-                                                                <option value="6"> {{treatmentvhc.manif_extrahepaticas}}  Linfoma </option>
+                                                                <option value="1"> 1  Ninguna </option>
+                                                                <option value="2"> 2  Glomerulopatías </option>
+                                                                <option value="3"> 3  Crioglobulinemia </option>
+                                                                <option value="4"> 4  Vasculitis </option>
+                                                                <option value="5"> 5  Porfiria </option>
+                                                                <option value="6"> 6  Linfoma </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -800,11 +800,11 @@
                                                                 [(ngModel)]="treatmentvhc.grado_fibrosis_hepatica" id="grado_fibrosis_hepatica"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.grado_fibrosis_hepatica, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.grado_fibrosis_hepatica}}  F0 </option>
-                                                                <option value="2"> {{treatmentvhc.grado_fibrosis_hepatica}}  F1 </option>
-                                                                <option value="3"> {{treatmentvhc.grado_fibrosis_hepatica}}  F2 </option>
-                                                                <option value=4> {{treatmentvhc.grado_fibrosis_hepatica}}  F3 </option>
-                                                                <option value="5"> {{treatmentvhc.grado_fibrosis_hepatica}}  F4 </option>
+                                                                <option value="1"> 1  F0 </option>
+                                                                <option value="2"> 2  F1 </option>
+                                                                <option value="3"> 3  F2 </option>
+                                                                <option value="4"> 4  F3 </option>
+                                                                <option value="5"> 5  F4 </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -812,8 +812,8 @@
                                                                 [(ngModel)]="treatmentvhc.cirrosis" id="cirrosis"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.cirrosis, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.cirrosis}}  Si </option>
-                                                                <option value="2"> {{treatmentvhc.cirrosis}}  No </option>
+                                                                <option value="1"> 1  Si </option>
+                                                                <option value="2"> 2  No </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -821,8 +821,8 @@
                                                                 [(ngModel)]="treatmentvhc.estado_cirrosis_compensada" id="estado_cirrosis_compensada"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.estado_cirrosis_compensada, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.estado_cirrosis_compensada}} Compensada  </option>
-                                                                <option value="2"> {{treatmentvhc.estado_cirrosis_compensada}} Descompensada </option>
+                                                                <option value="1"> 1 Compensada  </option>
+                                                                <option value="2"> 2 Descompensada </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -830,11 +830,11 @@
                                                                 [(ngModel)]="treatmentvhc.cirrosis_descompensada" id="cirrosis_descompensada"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.cirrosis_descompensada, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.cirrosis_descompensada}} Hemorragia Variceal  </option>
-                                                                <option value="2"> {{treatmentvhc.cirrosis_descompensada}} Ascitis </option>
-                                                                <option value="3"> {{treatmentvhc.cirrosis_descompensada}} Encefalopatía </option>
-                                                                <option value="4"> {{treatmentvhc.cirrosis_descompensada}} Sindrome Hepatorenal </option>
-                                                                <option value="5"> {{treatmentvhc.cirrosis_descompensada}} Hepatocarcinoma </option>
+                                                                <option value="1"> 1 Hemorragia Variceal  </option>
+                                                                <option value="2"> 2 Ascitis </option>
+                                                                <option value="3"> 3 Encefalopatía </option>
+                                                                <option value="4"> 4 Sindrome Hepatorenal </option>
+                                                                <option value="5"> 5 Hepatocarcinoma </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -842,9 +842,9 @@
                                                                 [(ngModel)]="treatmentvhc.child_inicial" id="child_inicial"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.child_inicial, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.child_inicial}} 1A  </option>
-                                                                <option value="2"> {{treatmentvhc.child_inicial}} 2B  </option>
-                                                                <option value="3"> {{treatmentvhc.child_inicial}} 3C  </option>
+                                                                <option value="1"> 1 1A  </option>
+                                                                <option value="2"> 2 2B  </option>
+                                                                <option value="3"> 3 3C  </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -857,9 +857,9 @@
                                                                 [(ngModel)]="treatmentvhc.esofagicas" id="esofagicas"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.esofagicas, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.esofagicas}} NO Várices  </option>
-                                                                <option value="2"> {{treatmentvhc.esofagicas}} SI Várices Grandes  </option>
-                                                                <option value="3"> {{treatmentvhc.esofagicas}} SI Várices Pequeñas </option>
+                                                                <option value="1"> 1 NO Várices  </option>
+                                                                <option value="2"> 2 SI Várices Grandes  </option>
+                                                                <option value="3"> 3 SI Várices Pequeñas </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -867,8 +867,8 @@
                                                                 [(ngModel)]="treatmentvhc.estado_inicial" id="estado_inicial"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.estado_inicial, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.estado_inicial}} Naïve (virgen al tratamiento)  </option>
-                                                                <option value="2"> {{treatmentvhc.estado_inicial}} Experiencia previa  </option>
+                                                                <option value="1"> 1 Naïve (virgen al tratamiento)  </option>
+                                                                <option value="2"> 2 Experiencia previa  </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -876,9 +876,9 @@
                                                                 [(ngModel)]="treatmentvhc.tipo_tx_previo" id="tipo_tx_previo"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.tipo_tx_previo, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.tipo_tx_previo}} PEG IFN  </option>
-                                                                <option value="2"> {{treatmentvhc.tipo_tx_previo}} PEG + RIBA  </option>
-                                                                <option value="3"> {{treatmentvhc.tipo_tx_previo}} DAA  </option>
+                                                                <option value="1"> 1 PEG IFN  </option>
+                                                                <option value="2"> 2 PEG + RIBA  </option>
+                                                                <option value="3"> 3 DAA  </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -891,11 +891,11 @@
                                                                 [(ngModel)]="treatmentvhc.esquema_tratamiento" id="esquema_tratamiento"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.esquema_tratamiento, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.esquema_tratamiento}} Daclatasavir + Sofosbuvir  </option>
-                                                                <option value="2"> {{treatmentvhc.esquema_tratamiento}} Viekira  </option>
-                                                                <option value="3"> {{treatmentvhc.esquema_tratamiento}} Zepatier  </option>
-                                                                <option value="4"> {{treatmentvhc.esquema_tratamiento}} Epclusa  </option>
-                                                                <option value="5"> {{treatmentvhc.esquema_tratamiento}} Mavyret  </option>
+                                                                <option value="1"> 1 Daclatasavir + Sofosbuvir  </option>
+                                                                <option value="2"> 2 Viekira  </option>
+                                                                <option value="3"> 3 Zepatier  </option>
+                                                                <option value="4"> 4 Epclusa  </option>
+                                                                <option value="5"> 5 Mavyret  </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -908,8 +908,8 @@
                                                                 [(ngModel)]="treatmentvhc.rvs" id="rvs"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.rvs, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.rvs}} SI  </option>
-                                                                <option value="2"> {{treatmentvhc.rvs}} NO  </option>
+                                                                <option value="1"> 1 SI  </option>
+                                                                <option value="2"> 2 NO  </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -1032,8 +1032,8 @@
                                                                 [(ngModel)]="treatmentvhc.efecto_adverso" id="efecto_adverso"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.efecto_adverso, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.efecto_adverso}}  Si </option>
-                                                                <option value="2"> {{treatmentvhc.efecto_adverso}}  No </option>
+                                                                <option value="1"> 1  Si </option>
+                                                                <option value="2"> 2  No </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -1041,11 +1041,11 @@
                                                                 [(ngModel)]="treatmentvhc.descripcion_adverso"
                                                                 id="descripcion_adverso" class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.descripcion_adverso, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.descripcion_adverso}}  Anemia </option>
-                                                                <option value="2"> {{treatmentvhc.descripcion_adverso}}  Leucopenia </option>
-                                                                <option value="3"> {{treatmentvhc.descripcion_adverso}}  Trombocitopenia </option>
-                                                                <option value="4"> {{treatmentvhc.descripcion_adverso}}  Cefalea </option>
-                                                                <option value="5"> {{treatmentvhc.descripcion_adverso}}  Manifestaciones  Gastroentestinales </option>
+                                                                <option value="1"> 1  Anemia </option>
+                                                                <option value="2"> 2  Leucopenia </option>
+                                                                <option value="3"> 3  Trombocitopenia </option>
+                                                                <option value="4"> 4  Cefalea </option>
+                                                                <option value="5"> 5  Manifestaciones  Gastroentestinales </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -1053,8 +1053,8 @@
                                                                 [(ngModel)]="treatmentvhc.accion_tomada" id="accion_tomada"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.accion_tomada, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.accion_tomada}}  Disminución de dosis </option>
-                                                                <option value="2"> {{treatmentvhc.accion_tomada}}  Retiro de tratamiento </option>
+                                                                <option value="1"> 1  Disminución de dosis </option>
+                                                                <option value="2"> 2  Retiro de tratamiento </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -1062,9 +1062,9 @@
                                                                 [(ngModel)]="treatmentvhc.child_final" id="child_final"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.child_final, treatmentvhc, i)">
-                                                                <option value="1"> {{treatmentvhc.child_final}} 1A </option>
-                                                                <option value="2"> {{treatmentvhc.child_final}} 2B </option>
-                                                                <option value="3"> {{treatmentvhc.child_final}} 3C </option>
+                                                                <option value="1"> 1 1A </option>
+                                                                <option value="2"> 2 2B </option>
+                                                                <option value="3"> 3 3C </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">

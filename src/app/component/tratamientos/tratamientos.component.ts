@@ -1643,6 +1643,7 @@ export class TratamientosComponent implements OnInit {
   }
 
   getVHCData(){
+    console.log("Consulta por hospitales: " + this.comboHospital.hospital_id);
     this.progres_spinner_refresh_vhc_treatment = false;
     this.hidden_update_btn  = true;
 
