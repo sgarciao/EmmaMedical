@@ -1,0 +1,149 @@
+<div class="row" [hidden]="">
+    <div class="col-lg-12">
+
+        <div class="card ">
+            <div class = "row">
+                <div class = "col-lg-12">
+                  <div class = "row">
+                    <div class = "col-lg-12">
+                        <div class ="row align-items-center">
+                            <div class = "col-lg-10">
+                               <span class="title_main"> {{user_name}}</span>
+                            </div>
+                            <div class = "col-lg-2 content_back">
+                                <img src="https://img.icons8.com/flat_round/64/000000/circled-left.png"
+                                (click)="regresar()" class="image_back"/>
+                                <span (click)="regresar()"  class="regresar">Regresar</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" [hidden]="">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+
+                            <div class="col-md-6">
+                                <h4 class="card-title">Datos de usuario </h4>
+                                <h5 class="card-subtitle"><span></span> </h5>
+                            </div>
+
+                            <div class="col-md-4">
+                                <ngb-alert *ngIf="!staticAlertClosed2"
+                                    (close)="staticAlertClosed2 = true"
+                                    [type]="alert_2.type" >{{ alert_2.message }}</ngb-alert>
+                            </div>
+
+                            <div class="col-md-2 refresh-button align-items-center">
+
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-md-6 mb-6">
+                                <div class="row ">
+                                    <div class="col-md-4 mb-6">
+                                        <label for="customername">Usuario</label>
+                                        <input
+                                            type="text" [(ngModel)]="datosUsuario.user_name"
+                                            [disabled] = ""
+                                            class="form-control input-sm" id = "customername"
+                                            placeholder=""
+                                            [readonly] = ""
+                                            disabled>
+                                    </div>
+                                    <div class="col-md-1 mb-1"></div>
+                                    <!--<div class="col-md-6 mb-6">
+                                        <div class = "image-content">
+                                            <img src="https://e1-cln-ema-store.s3.amazonaws.com/users/profile.jpg" alt="Perfil" class="photo-profile">
+                                        </div>
+                                    </div>-->
+                                </div>
+                                <br>
+                                <div class="row align-items-center">
+                                    <div class="col-md-12 mb-2">
+                                        <div class = "button-group" >
+                                            <button class="btn btn-sm btn-success"
+                                            [disabled]=""
+                                            [hidden] = ""
+                                            (click)="changePasswordEnable()">
+                                            Cambiar Contraseña
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+
+                                    <div class="col-md-12 mb-3 divisor-titulo">
+
+                                    </div>
+
+                                </div>
+                                <div class="row align-items-center" [hidden] ="change_password">
+                                    <div class="col-md-4 mb-2">
+                                        <label for="password1id" >Nueva Contraseña</label>
+                                        <input type="password"
+                                        [(ngModel)]="password_1"
+                                        (ngModelChange)="validationPassword()"
+                                        class="form-control input-sm folios-format"
+                                        id="passwordinputid" placeholder="" >
+                                    </div>
+                                    <div class="col-md-2 mb-2">
+                                        <label for="customerid" ><span class="{{password_validation_style}}">{{password_validation}}</span></label>
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <label for="password2id" >Cofirmar contraseña</label>
+                                        <input type="password"
+                                        [(ngModel)]="password_2"
+                                        (ngModelChange)="validationPassword()"
+                                        class="form-control input-sm folios-format"
+                                        id="password2inputid" placeholder="" >
+                                    </div>
+                                    <div class="col-md-2 mb-2 icon-tools" [hidden]="validation_check">
+                                        <img src="https://img.icons8.com/emoji/48/000000/check-mark-emoji.png"/>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col-md-6 mb-3 aling-buttons">
+                                        <ngb-alert *ngIf="!staticAlertClosed2"
+                                        (close)="staticAlertClosed2 = true"
+                                        [type]="alert_2.type" >{{ alert_2.message }}</ngb-alert>
+
+                                        <div class="spinner-border text-success icon_tools" role="status"
+                                            [hidden]="progres_spinner_save_password">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3 aling-buttons" [hidden] ="change_password">
+
+
+                                        <div class = "button-group" >
+                                            <button class="btn btn-sm btn-success button-styles"
+                                            [disabled]="disable_guardar"
+                                            [hidden] = ""
+                                            (click)="saveNewPssword()">
+                                            Guardar
+                                            </button>
+
+                                        &nbsp;
+                                            <button class="btn btn-sm btn-warning button-styles"
+                                            [disabled]=""
+                                            (click)="cancelarCambios()">
+                                            Cancelar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

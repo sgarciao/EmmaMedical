@@ -11,7 +11,7 @@ export class AuthService {
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   login(username: string, password: string) {
-   
+
     sessionStorage.setItem('access_token' , 'temporal');
     const params = new HttpParams({
       fromObject: {
@@ -29,8 +29,9 @@ export class AuthService {
     }).do((authResult: any) => {
       sessionStorage.setItem('access_token', authResult.data.access_token);
       sessionStorage.setItem('refresh_token', authResult.data.refresh_token);
-      localStorage.setItem('customer', authResult.data.user_data.user_id);
+      sessionStorage.setItem('user_id', authResult.data.user_data.user_id);
       localStorage.setItem('role_id', authResult.data.user_data.user_detail.role);
+
       if (authResult.code == '200') {
         let i = '';
         this.router.navigate(['/home']);
@@ -66,7 +67,7 @@ export class AuthService {
         user_id: localStorage.getItem('customer')
       }
     });
-    return this.httpClient.post(environment.urlMedical + '/v1/ema-medical/medical/logout', 
+    return this.httpClient.post(environment.urlMedical + '/v1/ema-medical/medical/logout',
               params,
               {
                headers: new HttpHeaders({

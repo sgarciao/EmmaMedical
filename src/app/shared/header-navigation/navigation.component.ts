@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   NgbModal,
   ModalDismissReasons,
@@ -25,6 +26,7 @@ export class NavigationComponent implements AfterViewInit {
   branch_office_name:     string;
   uname_s: string;
   constructor(
+    private routes: Router,
     private modalService: NgbModal,
     private service: AuthService) {}
 
@@ -112,5 +114,8 @@ export class NavigationComponent implements AfterViewInit {
   }
   ngAfterViewInit() {
 
+  }
+  userProfile(){
+    this.routes.navigate(['/user-profile']);
   }
 }

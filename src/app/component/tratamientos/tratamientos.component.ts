@@ -27,6 +27,7 @@ export class TratamientosComponent implements OnInit {
   strDate = '';
   start_date  : string;
   end_date    : string;
+  hospital_description: String;
 
   role_id:number;
   hospital_id:number;
@@ -453,6 +454,12 @@ export class TratamientosComponent implements OnInit {
     }
   }
   changeHospital(){
+    console.log("Hospital id " +  this.comboHospital.hospital_id);
+    if (this.comboHospital.hospital_id == 0){
+      this.hospital_description = "Todos los hospitales";
+    }else{
+      this.hospital_description = this.comboHospital.hospital_name;
+    }
 
   }
   getDataNASH(){
@@ -1002,6 +1009,7 @@ export class TratamientosComponent implements OnInit {
   //      this.comboHospital = hosp[0];
 //>>>>>>> 3c823d24a38d39f4cdadc423b6bff1f7b45b6360
        }
+       this.changeHospital();
       }else{
 
       }
@@ -1060,6 +1068,8 @@ export class TratamientosComponent implements OnInit {
     let entity_id_ = localStorage.getItem("entidad_id");
     this.entity_id = Number(entity_id_);
     this.getHospitalsListApi(entity_id_);
+
+
     ///////////////
     this.title_tab = localStorage.getItem('treatment_code');
     if (localStorage.getItem('treatment_type') == '4'){
@@ -1140,6 +1150,8 @@ export class TratamientosComponent implements OnInit {
       this.hccTableVisible = true;
       this.tohTableVisible = false;
     }
+    this.title_entity = localStorage.getItem("entidad_name");
+    this.changeHospital();
   }
   regresar(){
     console.log("back page");
@@ -1337,33 +1349,33 @@ export class TratamientosComponent implements OnInit {
       });
       this.vhcTreatmentService.saveVHCTreatment(this.data_vhc_).subscribe((resp_data:any)=>{
         if (resp_data.http_code == null){
-        if(resp_data.code == 200){
-          this.VHCRecord = [];
-          this.VHCRecordCreate = [];
-          this.create_flag = false;
-          this.progres_spinner_refresh_vhc_treatment = true;
+          if(resp_data.code == 200){
+            this.VHCRecord = [];
+            this.VHCRecordCreate = [];
+            this.create_flag = false;
+            this.progres_spinner_refresh_vhc_treatment = true;
 
-          this.getVHCData();
+            this.getVHCData();
 
-          this.staticAlertClosed2 = false;
-          this.alert_2.type = 'success';
-          this.alert_2.message = 'Datos guardados correctamente.';
-          this.reset();
-          this.hidden_update_btn  = false;
-          console.log("Disable button for save...");
-          this.save_disabled_vhc = false;
-          this.save_enabled_vhc = true;
-        }else{
-          this.staticAlertClosed2 = false;
-          this.alert_2.type = 'danger';
-          this.alert_2.message = 'No se pudo guardar la información, intente nuevamente.';
-          this.reset();
-          this.progres_spinner_refresh_vhc_treatment = true;
-          this.hidden_update_btn  = false;
+            this.staticAlertClosed2 = false;
+            this.alert_2.type = 'success';
+            this.alert_2.message = 'Datos guardados correctamente.';
+            this.reset();
+            this.hidden_update_btn  = false;
+            console.log("Disable button for save...");
+            this.save_disabled_vhc = false;
+            this.save_enabled_vhc = true;
+          }else{
+            this.staticAlertClosed2 = false;
+            this.alert_2.type = 'danger';
+            this.alert_2.message = 'No se pudo guardar la información, intente nuevamente.';
+            this.reset();
+            this.progres_spinner_refresh_vhc_treatment = true;
+            this.hidden_update_btn  = false;
 
-          this.save_disabled_vhc = false;
-          this.save_enabled_vhc = true;
-        }
+            this.save_disabled_vhc = false;
+            this.save_enabled_vhc = true;
+          }
       }else{
         this.staticAlertClosed2 = false;
         this.alert_2.type = 'danger';
@@ -1529,6 +1541,8 @@ export class TratamientosComponent implements OnInit {
       vhcData.bt_inicial = treatment.bt_inicial;//BT inicial
       vhcData.bt_final = treatment.bt_final;//BT final
       vhcData.efecto_adverso = treatment.efecto_adverso;//Efecto Adverso Si/No
+
+      console.log(">>>>>>>> efecto adverso " + vhcData.efecto_adverso);
       vhcData.descripcion_adverso = treatment.descripcion_adverso;//Cual/describir
       vhcData.accion_tomada = treatment.accion_tomada;//Acción Tomada
       vhcData.child_final = treatment.child_final;//Child Final
@@ -1547,19 +1561,19 @@ export class TratamientosComponent implements OnInit {
       vhcData.status = treatment.status;
       vhcData.row_color = "row_update";// Nuevos" treatment.row_color;"
 
-      console.log("COlor: " + vhcData.row_color);
+      console.log("Color: " + vhcData.row_color);
       this.VHCRecordUpdate[id] = vhcData;
-          //this.NAHSRecord[i] = vhcData;
+      //
+      //this.NAHSRecord[i] = vhcData;
       treatment.row_color = vhcData.row_color;
-          //console.log(this.NAHSRecord[i]);
-          //console.log(this.NAHSRecordUpdate);
-          //console.log("Actualizando.." + id + " " + column_name);
+      //console.log(this.NAHSRecord[i]);
+      //console.log(this.NAHSRecordUpdate);
+      //console.log("Actualizando.." + id + " " + column_name);
       this.save_disabled_vhc = true;
       this.save_enabled_vhc = false;
     }else{
       this.create_flag = true;
       const vhcData = {} as vhcTreatmentModel;
-
 
       vhcData.age = treatment.age; //Edad
       vhcData.gender = treatment.gender;//Género
@@ -1606,6 +1620,8 @@ export class TratamientosComponent implements OnInit {
       vhcData.bt_inicial = treatment.bt_inicial;//BT inicial
       vhcData.bt_final = treatment.bt_final;//BT final
       vhcData.efecto_adverso = treatment.efecto_adverso;//Efecto Adverso Si/No
+      console.log(">>>>>>>> efecto adverso " + vhcData.efecto_adverso);
+
       vhcData.descripcion_adverso = treatment.descripcion_adverso;//Cual/describir
       vhcData.accion_tomada = treatment.accion_tomada;//Acción Tomada
       vhcData.child_final = treatment.child_final;//Child Final
@@ -1662,6 +1678,11 @@ export class TratamientosComponent implements OnInit {
 
             vhcData.age = r.age; //Edad
             if (r.age=="" || r.age==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.birthdate = r.birthdate; //Edad
+            if (r.birthdate=="" || r.birthdate==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }

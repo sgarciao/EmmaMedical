@@ -60,23 +60,27 @@ export const Approutes: Routes = [
       {
         path: 'calendario/:fatherId/:headerId',
         loadChildren: './component/calendario/calendario.module#CalendarioModule'
-      }, 
+      },
       {
         path: 'reportes',
         loadChildren: './component/dashboards/dashboards.module#DashboardsModule'
-      }, 
+      },
       {
         path: 'options',
         loadChildren: './component/entitieoptions/entitieoptions.module#EntitieoptionsModule'
-      }, 
+      },
       {
         path: 'treatments',
         loadChildren: './component/tratamientos/tratamientos/tratamientos.module#TratamientosModule'
       }
-      , 
+      ,
       {
         path: 'treatments-types',
         loadChildren: './component/tratamientostipos/tratamientostipos/tratamientostipos.module#TratamientostiposModule'
+      },
+      {
+        path: 'user-profile',
+        loadChildren: './component/userprofile/userprofile/userprofile.module#UserprofileModule'
       }
     ]
   },

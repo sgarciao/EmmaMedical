@@ -11,7 +11,7 @@ import { MenuService } from 'src/app/services/menu.service';
 @Component({
   selector: 'app-entitieoptions',
   templateUrl: './entitieoptions.component.html',
-  styleUrls: ['./entitieoptions.component.css'], 
+  styleUrls: ['./entitieoptions.component.css'],
   providers:[OptionspageService]
 
 })
@@ -22,20 +22,20 @@ export class EntitieoptionsComponent implements OnInit {
   entity_id: number;
   optionsList: optionsModel[] = [];
 
-  constructor( 
-    private router:         Router, 
+  constructor(
+    private router:         Router,
     private optionsService: OptionspageService,
     ) { }
 
   menuListd: menuModelList[] = [];
 
-  
-  
+
+
   hiddeRegresar = false;
   visibleBUttons = false;
  /* optionsList = [
     { name: "Hospitales", value: 1 },
-    { name: "Especialistas", value: 2 }, 
+    { name: "Especialistas", value: 2 },
     { name: "Tratamientos", value: 3 }
   ]*/
 
@@ -57,7 +57,7 @@ export class EntitieoptionsComponent implements OnInit {
           dato.role_id = r.role_id;
           dato.entity_id = r.entity_id;
           dato.opt_id = r.opt_id;
-          this.optionsList.push(dato);  
+          this.optionsList.push(dato);
         });
       }else{
 

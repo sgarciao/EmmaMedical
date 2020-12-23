@@ -6,7 +6,7 @@
                 <div class = "col-lg-12">
                     <div class ="row align-items-center">
                         <div class = "col-lg-10">
-                           <span class="title_main"> {{title_entity}}</span>
+                           <span class="title_main"> {{title_entity}}</span> <span class="hospital-name-format"> >> {{hospital_description}}</span>
                         </div>
                         <div class = "col-lg-2 content_back">
                             <img src="https://img.icons8.com/flat_round/64/000000/circled-left.png"
@@ -57,7 +57,7 @@
                                                     </select>
                                                 </div>
                                             </div>-->
-                                            <div class="col-md-3" [hidden]="visiblebuttons">
+                                            <div class="col-md-3" [hidden]="">
                                                 <div class="form-group">
                                                     <label for="hospital">Hospital</label>
                                                     <select
@@ -655,7 +655,7 @@
                                                         <th scope="col">MANISFESTACIONES EXTRAHEPÁTICAS</th>
                                                         <th scope="col">GRADO DE FIBROSIS HEPÁTICA</th>
                                                         <th scope="col">CIRROSIS</th>
-                                                        <th scope="col">ESTADO DE LA CIRROSIS COMPENSADA/DESCOMPENSADA</th>
+                                                        <th scope="col">ESTADO DE LA CIRROSIS COMPENSADA / DESCOMPENSADA</th>
                                                         <th scope="col">CIRROSIS DESCOMPENSADA</th>
                                                         <th scope="col">ESTADIO CHILD INICIAL</th>
                                                         <th scope="col">MELD (INICIAL</th>
@@ -883,7 +883,7 @@
                                                         </td>
                                                         <td class = "rows-style">
                                                             <input type="number" class="form-control"
-                                                            [(ngModel)]="treatmentvhc.meld_inicial" id="year_inicio_tx_add"
+                                                            [(ngModel)]="treatmentvhc.year_inicio_tx_add" id="year_inicio_tx_add"
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.year_inicio_tx_add, treatmentvhc, i)">
                                                         </td>
                                                         <td class = "rows-style">
@@ -900,7 +900,7 @@
                                                         </td>
                                                         <td class = "rows-style">
                                                             <input type="number" class="form-control"
-                                                            [(ngModel)]="treatmentvhc.meld_inicial" id="tiempo_tratamiento_meses"
+                                                            [(ngModel)]="treatmentvhc.tiempo_tratamiento_meses" id="tiempo_tratamiento_meses"
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.tiempo_tratamiento_meses, treatmentvhc, i)">
                                                         </td>
                                                         <td class = "rows-style">
@@ -1042,10 +1042,10 @@
                                                                 id="descripcion_adverso" class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.descripcion_adverso, treatmentvhc, i)">
                                                                 <option value="1"> {{treatmentvhc.descripcion_adverso}}  Anemia </option>
-                                                                <option value="1"> {{treatmentvhc.descripcion_adverso}}  Leucopenia </option>
-                                                                <option value="1"> {{treatmentvhc.descripcion_adverso}}  Trombocitopenia </option>
-                                                                <option value="1"> {{treatmentvhc.descripcion_adverso}}  Cefalea </option>
-                                                                <option value="1"> {{treatmentvhc.descripcion_adverso}}  Manifestaciones  Gastroentestinales </option>
+                                                                <option value="2"> {{treatmentvhc.descripcion_adverso}}  Leucopenia </option>
+                                                                <option value="3"> {{treatmentvhc.descripcion_adverso}}  Trombocitopenia </option>
+                                                                <option value="4"> {{treatmentvhc.descripcion_adverso}}  Cefalea </option>
+                                                                <option value="5"> {{treatmentvhc.descripcion_adverso}}  Manifestaciones  Gastroentestinales </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">

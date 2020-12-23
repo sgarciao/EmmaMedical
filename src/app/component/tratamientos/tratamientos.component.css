@@ -1,4 +1,9 @@
 /*_________________________________COLOR TABLES ROWS COLUMNS*/
+.hospital-name-format{
+  font-size: small;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #0B5345;
+}
 .alert_message{
   font-size: small;
   font-family: Arial, Helvetica, sans-serif;
@@ -26,7 +31,7 @@
 .content-general-tools{
   text-align: right;
 }
-figure { 
+figure {
   display: inline-block;
   border-right: gray;
   border-style:  hidden solid hidden hidden;
@@ -67,7 +72,7 @@ th{
 td{
   padding: 0% 0% 0% 5px;
 }
-td > select, input { 
+td > select, input {
         padding-right: 0px;
         margin-bottom: 1px;
         margin-top: 0%;
