@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'; 
 import { HttpClient,HttpHeaders,HttpParams } from '@angular/common/http'; 
-import 'rxjs/add/operator/map' 
+import 'rxjs/add/operator/map';
+import { environment } from '../../environments/environment';
 
 import { Observable } from 'rxjs/Observable';
 import { switchMap } from 'rxjs/operators/switchMap';
@@ -20,7 +21,7 @@ export class NashtreatmentService {
   //{hospital_id}/{role_id}/{entity_id}/{treatment_id}/{status_id}/{start_date}/{end_date}
   getNASHTreatment(hospital_id, role_id,entity_id,treatment_id,status_id, start_date, end_date) {
     return this.httpClient
-    .get('http://emamedical-dev.us-east-2.elasticbeanstalk.com/v1/ema-medical/treatment/nash/' 
+    .get(environment.urlMedical + '/v1/ema-medical/treatment/nash/' 
     + hospital_id 
     + '/' + role_id 
     + '/' + entity_id
@@ -32,7 +33,7 @@ export class NashtreatmentService {
   }
 
   saveNASHTreatment(treatment) {
-    return this.httpClient.post('http://emamedical-dev.us-east-2.elasticbeanstalk.com/v1/ema-medical/treatment/nash',
+    return this.httpClient.post(environment.urlMedical + '/v1/ema-medical/treatment/nash',
       treatment,{
           headers: new HttpHeaders({ 
               'Content-Type':  'application/json',
@@ -43,7 +44,7 @@ export class NashtreatmentService {
 
   
   updateNASHTreatment(treatment) {
-    return this.httpClient.put('http://emamedical-dev.us-east-2.elasticbeanstalk.com/v1/ema-medical/treatment/nash',
+    return this.httpClient.put(environment.urlMedical + '/v1/ema-medical/treatment/nash',
       treatment,{
           headers: new HttpHeaders({ 
               'Content-Type':  'application/json',

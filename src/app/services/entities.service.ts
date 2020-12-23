@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders} from '@angular/common/http';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class EntitiesService {
 
   getEntitiesOptionsInPage(role_id) {
     return this.httpClient
-    .get('http://emamedical-dev.us-east-2.elasticbeanstalk.com/v1/ema-medical/pages-options/entities/'
+    .get(environment.urlMedical + '/v1/ema-medical/pages-options/entities/'
     + role_id)
     .map(data => data);
   }
@@ -19,7 +20,7 @@ export class EntitiesService {
   getStatesByCountry(country_id) {
 
     return this.httpClient
-    .get('http://emamedical-dev.us-east-2.elasticbeanstalk.com/v1/ema-medical/catalogs/states/'
+    .get(environment.urlMedical + '/v1/ema-medical/catalogs/states/'
     +country_id
     ).map(data =>
     data);

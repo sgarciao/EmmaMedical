@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'; 
 import { HttpClient,HttpHeaders,HttpParams } from '@angular/common/http'; 
-import 'rxjs/add/operator/map' 
+import 'rxjs/add/operator/map';
+import { environment } from '../../environments/environment';
 
 import { Observable } from 'rxjs/Observable';
 import { switchMap } from 'rxjs/operators/switchMap';
@@ -17,7 +18,7 @@ export class MenuService {
   constructor(private httpClient : HttpClient) { } 
 
   obtenerMenus() {
-    return this.httpClient.get('http://emamedical-dev.us-east-2.elasticbeanstalk.com/v1/ema-medical/administration/menu2/1').map(data => data);
+    return this.httpClient.get(environment.urlMedical + '/v1/ema-medical/administration/menu2/1').map(data => data);
   }
 
 } 

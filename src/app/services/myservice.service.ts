@@ -3,6 +3,7 @@ import { HttpClient,HttpHeaders,HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import { loginModel } from '../model/loginModel';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class MyserviceService {
@@ -23,7 +24,7 @@ export class MyserviceService {
       } 
     });
 
-    return this.httpClient.post('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/customer-portal/login',params, { 
+    return this.httpClient.post(environment.url + '/v1/ema-system/customer-portal/login',params, { 
       headers: new HttpHeaders({ 
            'Content-Type':  'application/x-www-form-urlencoded', 
          }) 
@@ -38,7 +39,7 @@ export class MyserviceService {
       }
     });
 
-    return this.httpClient.post('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/both/refresh-token', params, {
+    return this.httpClient.post(environment.url + '/v1/ema-system/both/refresh-token', params, {
       headers: new HttpHeaders({
            'Content-Type':  'application/x-www-form-urlencoded',
          })
@@ -53,7 +54,7 @@ export class MyserviceService {
         user_id: localStorage.getItem('customer')
       }
     });
-    return this.httpClient.post('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/both/logout', 
+    return this.httpClient.post(environment.url + '/v1/ema-system/both/logout', 
               params,
               {
                headers: new HttpHeaders({

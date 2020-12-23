@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/shareReplay';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +20,7 @@ export class AuthService {
         language_id: '1'
       }
     });
-    return this.httpClient.post('http://emamedical-dev.us-east-2.elasticbeanstalk.com/v1/ema-medical/medical/login',
+    return this.httpClient.post(environment.urlMedical + '/v1/ema-medical/medical/login',
     params,
     {
       headers: new HttpHeaders({
@@ -45,7 +46,7 @@ export class AuthService {
         refresh_token: refresh_token
       }
     });
-    return this.httpClient.post('http://emamedical-dev.us-east-2.elasticbeanstalk.com/v1/ema-medical/medical/refresh-token',
+    return this.httpClient.post(environment.urlMedical + '/v1/ema-medical/medical/refresh-token',
     params,
     {
       headers: new HttpHeaders({
@@ -65,7 +66,7 @@ export class AuthService {
         user_id: localStorage.getItem('customer')
       }
     });
-    return this.httpClient.post('http://emamedical-dev.us-east-2.elasticbeanstalk.com/v1/ema-medical/medical/logout', 
+    return this.httpClient.post(environment.urlMedical + '/v1/ema-medical/medical/logout', 
               params,
               {
                headers: new HttpHeaders({

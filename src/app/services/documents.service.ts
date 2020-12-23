@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'; 
 import { HttpClient,HttpHeaders} from '@angular/common/http'; 
 import 'rxjs/add/operator/map' 
+import { environment } from '../../environments/environment';
 
 @Injectable() 
 export class DocumentsService { 
@@ -10,7 +11,7 @@ export class DocumentsService {
   obtenerArchivosPorZonaRuta(company_branch_id, zone_id, route_id, file_track_id) { 
     
     return this.httpClient
-    .get('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/customers/documents/zones/routes/'
+    .get(environment.url + '/v1/ema-system/customers/documents/zones/routes/'
     + company_branch_id + '/' + zone_id + '/' + route_id+'/'+file_track_id)
     .map(data => data);
   }
@@ -18,7 +19,7 @@ export class DocumentsService {
   obtenerArchivos(documentos) { 
     //console.log(">>>> folder id " + documentos.folderId);
     return this.httpClient
-    .get('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/customers/documents-list/'
+    .get(environment.url + '/v1/ema-system/customers/documents-list/'
     + localStorage.getItem('customerBranchId') + '/'
     + localStorage.getItem('customerBranch') + '/'
     + documentos.start_date + '/' + documentos.end_date + '/' + documentos.company_id + '/' 
@@ -31,7 +32,7 @@ export class DocumentsService {
   }
 
   obtenerClienteArchivos(documentos,estatus) { 
-    return this.httpClient.get('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/customers/documents-list/'
+    return this.httpClient.get(environment.url + '/v1/ema-system/customers/documents-list/'
      + documentos.start_date + '/'
      + documentos.end_date + '/'
      + documentos.folderId + '/'
@@ -44,7 +45,7 @@ export class DocumentsService {
   obtenerArchivosAprobados(documentos) {
     /**/  
     return this.httpClient
-    .get('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/customers/documents-list/approved/'
+    .get(environment.url + '/v1/ema-system/customers/documents-list/approved/'
     + localStorage.getItem('customerBranchId') + '/'
     + localStorage.getItem('customerBranch') + '/'
     + documentos.start_date+ '/' + documentos.end_date + '/' + documentos.company_id 
@@ -54,7 +55,7 @@ export class DocumentsService {
 
   obtenerArchivosPendientes(documentos) { 
     return this.httpClient
-    .get('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/customers/documents-list/pending/'
+    .get(environment.url + '/v1/ema-system/customers/documents-list/pending/'
     + localStorage.getItem('customerBranchId') + '/'
     + localStorage.getItem('customerBranch') + '/'
     + documentos.start_date + '/' + documentos.end_date + '/' + documentos.company_id 
@@ -63,7 +64,7 @@ export class DocumentsService {
   }
 
   obtenerArchivosRechazados(documentos) { 
-    return this.httpClient.get('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/customers/documents-list/rejected/'
+    return this.httpClient.get(environment.url + '/v1/ema-system/customers/documents-list/rejected/'
     + localStorage.getItem('customerBranchId') + '/'
     + localStorage.getItem('customerBranch') + '/'
     + documentos.start_date + '/' + documentos.end_date + '/' + documentos.company_id + '/' 
@@ -83,7 +84,7 @@ export class DocumentsService {
         }]
       },
     };
-    this.httpClient.delete('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/customers/documents',
+    this.httpClient.delete(environment.url + '/v1/ema-system/customers/documents',
      options).subscribe((s) => {
     });
   }

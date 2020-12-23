@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'; 
 import { HttpClient,HttpHeaders,HttpParams } from '@angular/common/http'; 
 import 'rxjs/add/operator/map' 
+import { environment } from '../../environments/environment';
 
 import { Observable } from 'rxjs/Observable';
 import { switchMap } from 'rxjs/operators/switchMap';
@@ -18,13 +19,13 @@ export class CustomerService {
 
   obtenerClientes() {
     return this.httpClient
-    .get('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/portal/customers/0?from=1&per_page=1000').
+    .get(environment.url + '/v1/ema-system/portal/customers/0?from=1&per_page=1000').
     map(data => data);
   }
 
   guardarArchivo(filesUpload) {
    // console.log('Guardar-->',filesUpload);
-  return this.httpClient.post('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/customers/documents',filesUpload,{
+  return this.httpClient.post(environment.url + '/v1/ema-system/customers/documents',filesUpload,{
         headers: new HttpHeaders({ 
             'Content-Type':  'application/json'
         }) 
@@ -44,7 +45,7 @@ export class CustomerService {
   }
 
   guardarArchivoRechazado(filesUpload) {
-    return this.httpClient.put('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/customers/documents/exist',filesUpload,{
+    return this.httpClient.put(environment.url + '/v1/ema-system/customers/documents/exist',filesUpload,{
           headers: new HttpHeaders({ 
               'Content-Type':  'application/json',
           }) 

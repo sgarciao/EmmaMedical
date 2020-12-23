@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'; 
 import { HttpClient,HttpHeaders,HttpParams } from '@angular/common/http'; 
 import 'rxjs/add/operator/map' 
+import { environment } from '../../environments/environment';
 
 @Injectable() 
 export class StarterService{
@@ -9,7 +10,7 @@ export class StarterService{
   
   autorizarArchivo(documento){
     console.log(documento);
-    return this.httpClient.put('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/customers/documents/approved',documento,{
+    return this.httpClient.put(environment.url + '/v1/ema-system/customers/documents/approved',documento,{
       headers: new HttpHeaders({ 
           'Content-Type':  'application/json', 
           'token':sessionStorage.getItem('access_token') 
@@ -20,7 +21,7 @@ export class StarterService{
 
     rechazarArchivo(documento){
       console.log(documento);
-      return this.httpClient.put('http://adec-authorization.us-east-2.elasticbeanstalk.com/v1/ema-system/customers/documents/reject',documento,{
+      return this.httpClient.put(environment.url + '/v1/ema-system/customers/documents/reject',documento,{
         headers: new HttpHeaders({ 
             'Content-Type':  'application/json', 
             'token':sessionStorage.getItem('access_token') 
