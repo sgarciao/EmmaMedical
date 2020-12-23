@@ -7,5 +7,3 @@ export const environment = {
   urlMedical: 'http://emamedical-dev.us-east-2.elasticbeanstalk.com',
   url: 'http://adec-authorization.us-east-2.elasticbeanstalk.com'
 };
-
-.
