@@ -1062,36 +1062,36 @@ comorbilidadesU = [];
   //////////////////////////////////////////////////
   //////////////////////////////////MULTISELECT
   onItemDeSelect(deselectedSID: any): void {
-    this.selectedComboRutasU = this.selectedComboRutasU.filter(
-        s => s != deselectedSID
-        );
+ //   this.selectedComboRutasU = this.selectedComboRutasU.filter(
+     //   s => s != deselectedSID
+      //  );
 
-    this.selectedComboRutasU.forEach(sid => {
+   // this.selectedComboRutasU.forEach(sid => {
        // this.onItemSelect(sid);
-        this.selectedComboRutasU.splice(sid.route_id);
-        this.notificationData = [];
-    });
+  //      this.selectedComboRutasU.splice(sid.route_id);
+   //     this.notificationData = [];
+   // });
 
-    console.log(this.selectedComboRutasU);
+  //  console.log(this.selectedComboRutasU);
   }
 
   onDeSelectAll(items: any){
     console.log("Deselect all");
     //console.log(items); // items is an empty array
-    console.log( this.selectedComboRutasU);
-    this.notificationData=[];
+   // console.log( this.selectedComboRutasU);
+   // this.notificationData=[];
   }
   onItemSelect(item:  any) {
     console.log("Item length " + JSON.stringify(item));
-    this.selectedComboRutasU.concat(item);
+   // this.selectedComboRutasU.concat(item);
 
     console.log("On item select...");
-    console.log( this.selectedComboRutasU);
-    this.notificationData=[];
+   //console.log( this.selectedComboRutasU);
+    //this.notificationData=[];
   }
   onSelectAll(items: any) {
     console.log("Select all");
-    this.notificationData=[];
+   // this.notificationData=[];
   }
 
   /////////////////////////////////////////////////
