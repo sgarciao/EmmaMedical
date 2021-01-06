@@ -66,7 +66,10 @@ export class vhcTreatmentModel{
 	descripcion_adverso:		number;//IN pi_descripcion_adverso	text,
 	severidad_efecto_adverso:	number;//IN pi_severidad_efecto_adversoint(11),
 	accion_tomada:				number;//IN pi_accion_tomada	int(11),
-	comentarios:				string;//IN pi_comentarios	text,
+  comentarios:				string;//IN pi_comentarios	text,
+  glucosa_inicial:    number;//
+  glucosa_final:      number;
+  genotipo:           number;
 	/////////////////////////////////////////
 	creation_userid:			number	;
 	creation_username:			string	;
@@ -149,7 +152,10 @@ export class vhcTreatmentModelHeader{
 	descripcion_adverso:		string;//IN pi_descripcion_adverso	text,
 	severidad_efecto_adverso:	string;//IN pi_severidad_efecto_adversoint(11),
 	accion_tomada:				string;//IN pi_accion_tomada	int(11),
-	comentarios:				string;//IN pi_comentarios	text,
+  comentarios:				string;//IN pi_comentarios	text,
+  glucosa_inicial:    string;
+  glucosa_final:      string;
+  genotipo:           string;
 	/////////////////////////////////////////
 	creation_userid:			string	;
 	creation_username:			string	;

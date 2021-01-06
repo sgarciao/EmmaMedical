@@ -663,11 +663,12 @@
                                                         <th scope="col">ESTADO INICIAL</th>
                                                         <th scope="col">TIPO DE TX PREVIO</th>
                                                         <th scope="col">AÑO DE INICIO DE TX DE ADD</th>
-                                                        <th scope="col">ESQUEMA DE TRATAMIENTO</th>
-                                                        <th scope="col">TIEMPO DE TRATAMIENTO EN MESES</th>
-                                                        <th scope="col">RVS</th>
                                                         <th scope="col">CV INICIAL</th>
-                                                        <th scope="col">LOG INICIAL</th>
+                                                        <th scope="col">GENOTIPO</th>
+                                                        <th scope="col">ESQUEMA DE TRATAMIENTO</th>
+                                                        <th scope="col">TIEMPO DE TRATAMIENTO EN SEMANAS</th>
+                                                        <th scope="col">RVS</th>
+                                                        <!--<th scope="col">LOG INICIAL</th>-->
                                                         <th scope="col">CV RVS12</th>
                                                         <th scope="col">LOG RVS12</th>
                                                         <th scope="col">FUNCION RENAL (FILTRACIÓN GLOMERULAR) PRETRATAMIENTO</th>
@@ -677,6 +678,8 @@
                                                         <th scope="col">LEUCOCITOS FINAL</th>
                                                         <th scope="col">PLAQUETA INICIAL</th>
                                                         <th scope="col">PLAQUETA FINAl</th>
+                                                        <th scope="col">GLUCOSA INICIAL</th>
+                                                        <th scope="col">GLUCOSA FINAl</th>
                                                         <th scope="col">CREATININA INICIAL</th>
                                                         <th scope="col">CREATININA FINAL</th>
                                                         <th scope="col">TGO INICIAL</th>
@@ -778,9 +781,12 @@
                                                                 <option value="3"> 3  Obesidad </option>
                                                                 <option value="4"> 4  Hipertiroidismo </option>
                                                                 <option value="5"> 5  Sindrome Metabólico </option>
+                                                                <option value="6"> 7  Insuficiencia renal en diálisis peritoneal </option>
+                                                                <option value="6"> 6  Cardiopatía </option>
                                                                 <option value="6"> 6  Cardiopatía </option>
                                                                 <option value="7"> 7  Otros </option>
                                                             </select>
+
                                                         </td>
                                                         <td class = "rows-style">
                                                             <select
@@ -887,22 +893,55 @@
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.year_inicio_tx_add, treatmentvhc, i)">
                                                         </td>
                                                         <td class = "rows-style">
+                                                          <input type="number" class="form-control"
+                                                          [(ngModel)]="treatmentvhc.cv_inicial" id="cv_inicial"
+                                                          (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.cv_inicial, treatmentvhc, i)">
+                                                        </td>
+                                                        <td class = "rows-style">
+                                                          <select
+                                                            [(ngModel)]="treatmentvhc.genotipo" id="genotipo"
+                                                            class="custom-select mr-sm-1 select-style"
+                                                            (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.genotipo, treatmentvhc, i)">
+                                                            <option value="1"> 1 Genotipo 1A </option>
+                                                            <option value="2"> 2 Genotipo 1B </option>
+                                                            <option value="3"> 3 Genotipo 2 </option>
+                                                            <option value="4"> 4 Genotipo 3 </option>
+                                                            <option value="5"> 5 Genotipo 4 </option>
+                                                         </select>
+                                                        </td>
+                                                        <td class = "rows-style">
                                                             <select
                                                                 [(ngModel)]="treatmentvhc.esquema_tratamiento" id="esquema_tratamiento"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.esquema_tratamiento, treatmentvhc, i)">
                                                                 <option value="1"> 1 Daclatasavir + Sofosbuvir  </option>
-                                                                <option value="2"> 2 Viekira  </option>
-                                                                <option value="3"> 3 Zepatier  </option>
-                                                                <option value="4"> 4 Epclusa  </option>
-                                                                <option value="5"> 5 Mavyret  </option>
+                                                                <option value="2"> 2 Daclatasavir + Sofosbuvir+ Rivabirina  </option>
+                                                                <option value="3"> 3 Viekira  </option>
+                                                                <option value="4"> 4 Viekira + Rivabirina  </option>
+                                                                <option value="5"> 5 Jarvoni  </option>
+                                                                <option value="6"> 6 Jarvoni + Rivabirina  </option>
+                                                                <option value="7"> 7 Zepatier  </option>
+                                                                <option value="8"> 8 Zepatier + Rivabirina  </option>
+                                                                <option value="9"> 9 Jarvoni + Rivabirina  </option>
+                                                                <option value="10"> 10 Epclusa  </option>
+                                                                <option value="11"> 11 Epclusa + Rivabirina  </option>
+                                                                <option value="12"> 12 Zepatier  </option>
+                                                                <option value="13"> 13 Zepatier + Rivabirina  </option>
+                                                                <option value="14"> 14 Mavyret  </option>
+                                                                <option value="15"> 15 Mavyret + Rivabirina  </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
-                                                            <input type="number" class="form-control"
-                                                            [(ngModel)]="treatmentvhc.tiempo_tratamiento_meses" id="tiempo_tratamiento_meses"
-                                                            (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.tiempo_tratamiento_meses, treatmentvhc, i)">
-                                                        </td>
+                                                            <select
+                                                                [(ngModel)] = "treatmentvhc.tiempo_tratamiento_meses"
+                                                                id="tiempo_tratamiento_meses" class="custom-select mr-sm-1 select-style"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.tiempo_tratamiento_meses, treatmentvhc, i)">
+                                                                <option value="1"> 8  Semanas </option>
+                                                                <option value="2"> 12 Semanas </option>
+                                                                <option value="3"> 16 Semanas </option>
+                                                                <option value="4"> 24 Semanas </option>
+                                                            </select>
+                                                          </td>
                                                         <td class = "rows-style">
                                                             <select
                                                                 [(ngModel)]="treatmentvhc.rvs" id="rvs"
@@ -912,16 +951,7 @@
                                                                 <option value="2"> 2 NO  </option>
                                                             </select>
                                                         </td>
-                                                        <td class = "rows-style">
-                                                            <input type="number" class="form-control"
-                                                            [(ngModel)]="treatmentvhc.cv_inicial" id="cv_inicial"
-                                                            (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.cv_inicial, treatmentvhc, i)">
-                                                        </td>
-                                                        <td class = "rows-style">
-                                                            <input type="number" class="form-control"
-                                                            [(ngModel)]="treatmentvhc.log_inicial" id="log_inicial"
-                                                            (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.log_inicial, treatmentvhc, i)">
-                                                        </td>
+
                                                         <td class = "rows-style">
                                                             <input type="number" class="form-control"
                                                             [(ngModel)]="treatmentvhc.cv_rvs12" id="cv_rvs12"
@@ -967,6 +997,16 @@
                                                             [(ngModel)]="treatmentvhc.plaquetas_final" id="plaquetas_final"
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.plaquetas_final, treatmentvhc, i)">
                                                         </td>
+                                                        <td class = "rows-style">
+                                                          <input type="number" class="form-control"
+                                                          [(ngModel)]="treatmentvhc.glucosa_inicial" id="glucosa_inicial"
+                                                          (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.glucosa_inicial, treatmentvhc, i)">
+                                                        </td>
+                                                        <td class = "rows-style">
+                                                          <input type="number" class="form-control"
+                                                          [(ngModel)]="treatmentvhc.glucosa_final" id="glucosa_final"
+                                                          (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.glucosa_final, treatmentvhc, i)">
+                                                      </td>
                                                         <td class = "rows-style">
                                                             <input type="number" class="form-control"
                                                             [(ngModel)]="treatmentvhc.creatinina_inicial" id="creatinina_inicial"

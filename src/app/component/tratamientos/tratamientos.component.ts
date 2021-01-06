@@ -1220,9 +1220,9 @@ export class TratamientosComponent implements OnInit {
           vhcData.birthdate = "F. DE NACIMIENTO";
           vhcData.age = "EDAD";
           vhcData.gender = "GENERO";
-          vhcData.state = "ESTADO DE LA REPÚBLICA";
-          vhcData.year = "AÑO DE DX DE VHC";
-          vhcData.transmission_mechanism = "MECANISMO DE TRANSMISIÓN";
+          vhcData.state = "ESTADO DE LA REPUBLICA";
+          vhcData.year = "A. DE DX DE VHC";
+          vhcData.transmission_mechanism = "MECANISMO DE TRANSMISION";
           vhcData.comorbilidades = "COMORBILIDADES"
           vhcData.manif_extrahepaticas = "MANIFESTACIONES EXTRAHEPATICAS";
           vhcData.grado_fibrosis_hepatica="GRADO DE FIBROSIS HEPATICA";
@@ -1231,24 +1231,26 @@ export class TratamientosComponent implements OnInit {
           vhcData.cirrosis_descompensada = "CIRROSIS DESCOMPENSADA";
           vhcData.child_inicial = "ESTADIO CHILD INICIAL (PUNTAJE)";
           vhcData.meld_inicial = "MELD (INICIAL)";
-          vhcData.esofagicas = "V. ESOFÁGICAS";
+          vhcData.esofagicas = "V. ESOFAGICAS";
           vhcData.estado_inicial= "ESTADO INICIAL";
           vhcData.tipo_tx_previo = "TIPO DE TX PREVIO";
-          vhcData.year_inicio_tx_add = "AÑO DE INICIO DE TX DE ADD";
+          vhcData.year_inicio_tx_add = "A. DE INICIO DE TX DE ADD";
           vhcData.esquema_tratamiento = "ESQUEMA DE TRATAMIENTO";
           vhcData.tiempo_tratamiento_meses = "TIEMPO DE TRATAMIENTO EN MESES";
           vhcData.rvs = "RVS";
           vhcData.cv_inicial  = "CV INICIAL";
-          vhcData.log_inicial = "LOG INICIAL";
+          vhcData.genotipo = "GENOTIPO";
           vhcData.cv_rvs12 = "CV RVS12";
           vhcData.log_rvs12 = "LOG RVS12";
-          vhcData.funcion_renal = "FUNCIÓN RENAL (FILTRACIÓN GLOMERULAR) PRETRATAMIENTO";
+          vhcData.funcion_renal = "FUNCION RENAL (FILTRACION GLOMERULAR) PRETRATAMIENTO";
           vhcData.hb_inicial = "HB INICIAL";
           vhcData.hb_final = "HB FINAL";
           vhcData.leucocitos_inicial = "LEUCOCITOS INICIAL";
           vhcData.leucocitos_final = "LEUCOCITOS FINAL";
           vhcData.plaquetas_inicial = "PLAQUETAS INICIAL";
           vhcData.plaquetas_final = "PLAQUETAS FINAL";
+          vhcData.glucosa_inicial = "GLUCOSA INICIAL";
+          vhcData.glucosa_final = "GLUCOSA FINAL";
           vhcData.creatinina_inicial = "CREATININA INICIAL";
           vhcData.creatinina_final = "CREATININA FINAL";
           vhcData.tgo_inicial = "TGO INICIAL";
@@ -1263,14 +1265,14 @@ export class TratamientosComponent implements OnInit {
           vhcData.bt_final = "BT FINAL";
           vhcData.efecto_adverso = "EFECTO ADVERSO";
           vhcData.descripcion_adverso = "CUAL/DESCRIBIR";
-          vhcData.accion_tomada = "ACCIÓN TOMADA";
+          vhcData.accion_tomada = "ACCION TOMADA";
           vhcData.child_final = "CHILD FINAL";
           vhcData.meld_final = "MELD FINAL";
           vhcData.comentarios = "COMENTARIOS";
           ///vhcData.creation_user_id = ;
           //vhcData.creation_user_name = ;
-        //  vhcData.creation_date = "Fecha de registro";
-         // vhcData.creation_time = "Hora de registro";
+          //vhcData.creation_date = "Fecha de registro";
+          //vhcData.creation_time = "Hora de registro";
           //vhcData.modification_user_name = r.modification_user_name;
           //vhcData.modification_date = r.modification_date;
           //vhcData.modification_time = r.modification_time;
@@ -1307,7 +1309,7 @@ export class TratamientosComponent implements OnInit {
     vhcDataExcel.tiempo_tratamiento_meses = vhcData.tiempo_tratamiento_meses==null ? 0: vhcData.tiempo_tratamiento_meses;//Tiempo de tratamiento en meses
     vhcDataExcel.rvs = vhcData.rvs == null ? 0: vhcData.rvs;//RVS (si o no)
     vhcDataExcel.cv_inicial = vhcData.cv_inicial==null ? 0: vhcData.cv_inicial;//CV Inicial
-    vhcDataExcel.log_inicial = vhcData.log_inicial==null? 0: vhcData.log_inicial;//Log Inicial
+    vhcDataExcel.genotipo = vhcData.genotipo == null? 0: vhcData.genotipo;//Log Inicial
     vhcDataExcel.cv_rvs12 = vhcData.cv_rvs12==null ? 0: vhcData.cv_rvs12;//CV RVS12
     vhcDataExcel.log_rvs12 = vhcData.log_rvs12 == null? 0: vhcData.log_rvs12;//Log RVS 12
     vhcDataExcel.funcion_renal = vhcData.funcion_renal== null?0: vhcData.funcion_renal;//Funcion renal (filtracion glomerular) pretratameinto
@@ -1317,6 +1319,8 @@ export class TratamientosComponent implements OnInit {
     vhcDataExcel.leucocitos_final = vhcData.leucocitos_final==null ? 0:vhcData.leucocitos_final;//leucocitos final
     vhcDataExcel.plaquetas_inicial = vhcData.plaquetas_inicial == null? 0: vhcData.plaquetas_inicial;//Plaq Inicial
     vhcDataExcel.plaquetas_final = vhcData.plaquetas_final == null ? 0: vhcData.plaquetas_final;//Plaq Final
+    vhcDataExcel.glucosa_inicial = vhcData.glucosa_inicial == null ? 0: vhcData.glucosa_inicial;//glucosa inicial
+    vhcDataExcel.glucosa_final = vhcData.glucosa_final == null ? 0: vhcData.glucosa_final;//glucosa final
     vhcDataExcel.creatinina_inicial = vhcData.creatinina_inicial==null? 0: vhcData.creatinina_inicial;//creatinia inicial
     vhcDataExcel.creatinina_final = vhcData.creatinina_final==null? 0: vhcData.creatinina_final;//Creatinina final
     vhcDataExcel.tgo_inicial = vhcData.tgo_inicial==null? 0: vhcData.tgo_inicial;//TGO Inicial
@@ -1517,7 +1521,7 @@ export class TratamientosComponent implements OnInit {
       vhcData.tiempo_tratamiento_meses = treatment.tiempo_tratamiento_meses;//Tiempo de tratamiento en meses
       vhcData.rvs = treatment.rvs;//RVS (si o no)
       vhcData.cv_inicial = treatment.cv_inicial;//CV Inicial
-      vhcData.log_inicial = treatment.log_inicial;//Log Inicial
+      vhcData.genotipo = treatment.genotipo;//genotipo
       vhcData.cv_rvs12 = treatment.cv_rvs12;//CV RVS12
       vhcData.log_rvs12 = treatment.log_rvs12;//Log RVS 12
       vhcData.funcion_renal = treatment.funcion_renal;//Funcion renal (filtracion glomerular) pretratameinto
@@ -1527,6 +1531,8 @@ export class TratamientosComponent implements OnInit {
       vhcData.leucocitos_final = treatment.leucocitos_final;//leucocitos final
       vhcData.plaquetas_inicial = treatment.plaquetas_inicial;//Plaq Inicial
       vhcData.plaquetas_final = treatment.plaquetas_final;//Plaq Final
+      vhcData.glucosa_inicial = treatment.glucosa_inicial;//glucosa_inicial
+      vhcData.glucosa_final = treatment.glucosa_final; //glucosa_final
       vhcData.creatinina_inicial = treatment.creatinina_inicial;//creatinia inicial
       vhcData.creatinina_final = treatment.creatinina_final;//Creatinina final
       vhcData.creatinina_final = treatment.creatinina_final;//Creatinina final
@@ -1596,7 +1602,7 @@ export class TratamientosComponent implements OnInit {
       vhcData.tiempo_tratamiento_meses = treatment.tiempo_tratamiento_meses;//Tiempo de tratamiento en meses
       vhcData.rvs = treatment.rvs;//RVS (si o no)
       vhcData.cv_inicial = treatment.cv_inicial;//CV Inicial
-      vhcData.log_inicial = treatment.log_inicial;//Log Inicial
+      vhcData.genotipo = treatment.genotipo;//genotipo
       vhcData.cv_rvs12 = treatment.cv_rvs12;//CV RVS12
       vhcData.log_rvs12 = treatment.log_rvs12;//Log RVS 12
       vhcData.funcion_renal = treatment.funcion_renal;//Funcion renal (filtracion glomerular) pretratameinto
@@ -1606,6 +1612,8 @@ export class TratamientosComponent implements OnInit {
       vhcData.leucocitos_final = treatment.leucocitos_final;//leucocitos final
       vhcData.plaquetas_inicial = treatment.plaquetas_inicial;//Plaq Inicial
       vhcData.plaquetas_final = treatment.plaquetas_final;//Plaq Final
+      vhcData.glucosa_inicial = treatment.glucosa_inicial;//Glucosa Inicial
+      vhcData.glucosa_final = treatment.glucosa_final;//Glucosa Final
       vhcData.creatinina_inicial = treatment.creatinina_inicial;//creatinia inicial
       vhcData.creatinina_final = treatment.creatinina_final;//Creatinina final
       vhcData.creatinina_final = treatment.creatinina_final;//Creatinina final
@@ -1787,8 +1795,8 @@ export class TratamientosComponent implements OnInit {
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
-            vhcData.log_inicial = r.log_inicial;//Log Inicial
-            if (r.log_inicial =="" || r.log_inicial==null){
+            vhcData.genotipo = r.genotipo;//Log Inicial
+            if (r.genotipo =="" || r.genotipo==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
@@ -1837,6 +1845,18 @@ export class TratamientosComponent implements OnInit {
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
+
+            vhcData.glucosa_inicial = r.glucosa_inicial;//Plaq Final
+            if (r.glucosa_inicial =="" || r.glucosa_inicial==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.glucosa_final = r.glucosa_final;//Plaq Final
+            if (r.glucosa_final =="" || r.glucosa_final==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+
             vhcData.creatinina_inicial = r.creatinina_inicial;//creatinia inicial
             if (r.creatinina_inicial =="" || r.creatinina_inicial==null){
               vhcData.active_red_sem = "row_sem_red_visible";
