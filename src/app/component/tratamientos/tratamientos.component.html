@@ -771,7 +771,7 @@
                                                                 <option value="10"> 10  Desconocida </option>
                                                             </select>
                                                         </td>
-                                                        <td class = "rows-style">
+                                                        <td class = "description_long">
                                                             <select
                                                                 [(ngModel)]="treatmentvhc.comorbilidades" id="comorbilidades"
                                                                 class="custom-select mr-sm-1 select-style"
@@ -783,10 +783,21 @@
                                                                 <option value="5"> 5  Sindrome Metabólico </option>
                                                                 <option value="6"> 7  Insuficiencia renal en diálisis peritoneal </option>
                                                                 <option value="6"> 6  Cardiopatía </option>
-                                                                <option value="6"> 6  Cardiopatía </option>
                                                                 <option value="7"> 7  Otros </option>
                                                             </select>
 
+                                                         <!-- <ng-multiselect-dropdown
+                                                              class="mselect-sty"
+                                                              [placeholder]="'Seleccionar...'"
+                                                              [data]="comorbilidadesU"
+                                                              [(ngModel)]="treatmentvhc.comorbilidades_list"
+                                                              [settings]="dropdownSettings"
+                                                              (onSelect)="onItemSelect($event)"
+                                                              (onSelectAll)="onSelectAll($event)"
+                                                              (onDeSelect)="onItemDeSelect($event)"
+                                                              (onDeSelectAll)="onDeSelectAll($event)"
+                                                          >
+                                                          </ng-multiselect-dropdown>-->
                                                         </td>
                                                         <td class = "rows-style">
                                                             <select
@@ -941,7 +952,7 @@
                                                                 <option value="3"> 16 Semanas </option>
                                                                 <option value="4"> 24 Semanas </option>
                                                             </select>
-                                                          </td>
+                                                        </td>
                                                         <td class = "rows-style">
                                                             <select
                                                                 [(ngModel)]="treatmentvhc.rvs" id="rvs"
@@ -951,7 +962,6 @@
                                                                 <option value="2"> 2 NO  </option>
                                                             </select>
                                                         </td>
-
                                                         <td class = "rows-style">
                                                             <input type="number" class="form-control"
                                                             [(ngModel)]="treatmentvhc.cv_rvs12" id="cv_rvs12"

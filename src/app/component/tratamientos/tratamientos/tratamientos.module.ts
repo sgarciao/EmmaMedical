@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { FormsModule } from '@angular/forms';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
     data: {
       title: 'Tratamientos',
       menu: [
-        { 
+        {
           value: 0, title: 'Tratamientos',
           submenu: [
             { value: 2, title: 'Tratamientos', url: '/treatments' }
@@ -27,12 +28,13 @@ const routes: Routes = [
 @NgModule({
   declarations: [TratamientosComponent],
   imports: [
-    CommonModule, 
+    CommonModule,
     NgxDatatableModule,
-    Ng2SmartTableModule, 
-    RouterModule.forChild(routes), 
-    NgbModule, 
-    FormsModule      
+    Ng2SmartTableModule,
+    RouterModule.forChild(routes),
+    NgbModule,
+    FormsModule,
+    NgMultiSelectDropDownModule.forRoot()
   ]
 
 })

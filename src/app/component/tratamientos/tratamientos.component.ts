@@ -13,6 +13,7 @@ import { DatePipe } from '@angular/common';
 import { TagPlaceholder } from '@angular/compiler/src/i18n/i18n_ast';
 import { StatesService } from 'src/app/services/states.service';
 import { EntitiesService } from 'src/app/services/entities.service';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-tratamientos',
@@ -21,6 +22,12 @@ import { EntitiesService } from 'src/app/services/entities.service';
   providers:[StatesService]
 })
 export class TratamientosComponent implements OnInit {
+///////////MULTISELECT
+dropdownSettings:IDropdownSettings;
+
+comorbilidadesU = [];
+/////////////////////////
+
   ////////////////////////
   pipe = new DatePipe('en-US');
   today = new Date();
@@ -1053,6 +1060,41 @@ export class TratamientosComponent implements OnInit {
     }
   }
   //////////////////////////////////////////////////
+  //////////////////////////////////MULTISELECT
+  onItemDeSelect(deselectedSID: any): void {
+    this.selectedComboRutasU = this.selectedComboRutasU.filter(
+        s => s != deselectedSID
+        );
+
+    this.selectedComboRutasU.forEach(sid => {
+       // this.onItemSelect(sid);
+        this.selectedComboRutasU.splice(sid.route_id);
+        this.notificationData = [];
+    });
+
+    console.log(this.selectedComboRutasU);
+  }
+
+  onDeSelectAll(items: any){
+    console.log("Deselect all");
+    //console.log(items); // items is an empty array
+    console.log( this.selectedComboRutasU);
+    this.notificationData=[];
+  }
+  onItemSelect(item:  any) {
+    console.log("Item length " + JSON.stringify(item));
+    this.selectedComboRutasU.concat(item);
+
+    console.log("On item select...");
+    console.log( this.selectedComboRutasU);
+    this.notificationData=[];
+  }
+  onSelectAll(items: any) {
+    console.log("Select all");
+    this.notificationData=[];
+  }
+
+  /////////////////////////////////////////////////
   ngOnInit() {
     this.getStates();
     this.strDate = this.pipe.transform(this.today, 'yyyy-MM-dd');
@@ -1105,7 +1147,32 @@ export class TratamientosComponent implements OnInit {
     if (localStorage.getItem('treatment_type') == '7'){
       this.indiceNash = 0;
       this.getVHCData();
-
+      ////////////load data
+      this.dropdownSettings = {
+        singleSelection: false,
+        idField: 'comorbilidades',
+        textField: 'description',
+        selectAllText: 'Select All',
+        unSelectAllText: 'UnSelect All',
+        itemsShowLimit: 1,
+        allowSearchFilter: true
+      };
+      this.comorbilidadesU= [
+        {comorbilidades:   1, description:      "1 DM"},
+        {comorbilidades:   2, description:      "2 HTA"},
+        {comorbilidades:   3, description:      "3 Obesidad"},
+        {comorbilidades:   4, description:      "4 Hipertiroidismo"},
+        {comorbilidades:   5, description:      "5 Sindrome metabolico"},
+        {comorbilidades:   6, description:      "6 Cardiopatia"},
+        {comorbilidades:   7, description:      "7 IRC en dialisis"},
+        {comorbilidades:   8, description:      "8 IRC en hemodilaisis"},
+        {comorbilidades:   9, description:      "9 IRC sin tx sustiututivo"},
+        {comorbilidades:   10, description:      "10 hipotiroidismo"},
+        {comorbilidades:   11, description:      "11 dislipidemia"},
+        {comorbilidades:   12, description:      "12 VIH"},
+        {comorbilidades:   13, description:      "13  Trasplante hepatico"},
+        {comorbilidades:   14, description:      "14 Trasplante renal"},
+      ];
       this.nashTableVisible = true;
       this.ashTableVisible = true;
       this.vhbTableVisible = true;
@@ -1650,6 +1717,12 @@ export class TratamientosComponent implements OnInit {
     }
   }
 
+  concatenateComorbilidades(lista){
+    console.log(lista.split(","));
+    let d_ = [];
+    let d = lista.split(",");
+    return d_;
+  }
   getVHCData(){
     console.log("Consulta por hospitales: " + this.comboHospital.hospital_id);
     this.progres_spinner_refresh_vhc_treatment = false;
@@ -1720,6 +1793,14 @@ export class TratamientosComponent implements OnInit {
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
+            ////////////////////
+            let dato_ = [];
+            let dato_comorbilidades_list = {comorbilidades: 1}
+            dato_.push(dato_comorbilidades_list);
+            //  this.concatenateComorbilidades("1,2,3,4");
+              vhcData.comorbilidades_list = dato_;
+              console.log(vhcData.comorbilidades_list);
+
             vhcData.manif_extrahepaticas = r.manif_extrahepaticas;//manifesaciones extrahepaticas
             if (r.manif_extrahepaticas =="" || r.manif_extrahepaticas==null){
               vhcData.active_red_sem = "row_sem_red_visible";
@@ -1846,12 +1927,12 @@ export class TratamientosComponent implements OnInit {
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
 
-            vhcData.glucosa_inicial = r.glucosa_inicial;//Plaq Final
+            vhcData.glucosa_inicial = r.glucosa_inicial;//Glucosa Inicial
             if (r.glucosa_inicial =="" || r.glucosa_inicial==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
-            vhcData.glucosa_final = r.glucosa_final;//Plaq Final
+            vhcData.glucosa_final = r.glucosa_final;//Glucosa Final
             if (r.glucosa_final =="" || r.glucosa_final==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";

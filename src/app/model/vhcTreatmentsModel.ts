@@ -70,7 +70,8 @@ export class vhcTreatmentModel{
   glucosa_inicial:    number;//
   glucosa_final:      number;
   genotipo:           number;
-	/////////////////////////////////////////
+  comorbilidades_list: any[];
+  /////////////////////////////////////////
 	creation_userid:			number	;
 	creation_username:			string	;
 	creation_date:				string	;
@@ -156,6 +157,7 @@ export class vhcTreatmentModelHeader{
   glucosa_inicial:    string;
   glucosa_final:      string;
   genotipo:           string;
+
 	/////////////////////////////////////////
 	creation_userid:			string	;
 	creation_username:			string	;
@@ -167,4 +169,9 @@ export class vhcTreatmentModelHeader{
 	modification_time:			string	;
 	status:						string	;
 	/////////ADDITIONAL
+}
+
+export class comorbilidades_list_{
+  comorbilidades: number;
+  description: string;
 }
