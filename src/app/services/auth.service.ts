@@ -64,7 +64,7 @@ export class AuthService {
      // remove user from local storage to log user out
      const params = new HttpParams({
       fromObject: {
-        user_id: localStorage.getItem('customer')
+        user_id: localStorage.getItem('user')
       }
     });
     return this.httpClient.post(environment.urlMedical + '/v1/ema-medical/medical/logout',
