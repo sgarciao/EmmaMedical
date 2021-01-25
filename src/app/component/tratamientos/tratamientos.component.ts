@@ -1615,7 +1615,7 @@ comorbilidadesU = [];
 
   updateRecordVHC(id, column_name, treatment, i){
     if (id != null){
-      console.log("Updating......");
+      console.log("Updating......" + id);
       this.update_flag = true;
       const vhcData = {} as vhcTreatmentModel;
 
