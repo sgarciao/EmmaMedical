@@ -96,12 +96,12 @@ export class NavigationComponent implements AfterViewInit {
   logout(e) {
     e.stopPropagation();
     e.preventDefault();
-    this.service.logout().subscribe();
+    this.service.logout(this.username).subscribe();
     return false;
   }
   ngOnInit(){
     this.uname_s = sessionStorage.getItem("user_name_show");
-    this.username = localStorage.getItem('user');
+    this.username = sessionStorage.getItem('user_id');
     console.log("Usuario.... " + this.username);
     if (this.username != null || this.username == ""){
       if (this.username.length > 23 ){

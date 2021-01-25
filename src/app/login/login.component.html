@@ -1,41 +1,41 @@
 <div class="container-fluid h-100">
   <div class="row h-100">
     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 hidden-xs col-foto h-100">
-		  <div>
-        <div class="derechos"><img src="https://e1-cln-ema-store.s3.amazonaws.com/images/logo_ema_horizontal.png" alt=""/><br><p>Todos los derechos reservados por AION Systems S.A. de C.V.</p></div>
-        <div class="position-img"><img 
-            src="https://e1-cln-ema-store.s3.amazonaws.com/ema_medical/general-icons/login_ema_medical_1.jpg" 
-            alt="ema software" class="img-responsive img-back"/>
-        </div>
-			</div>
+      <div>
+        <div class="derechos"><img
+          class ="image-derechos-aion"
+          src="https://aionsystems.s3-us-west-2.amazonaws.com/logo+AIOS+principal-01.png"
+          alt=""/><br><p>Todos los derechos reservados por AION Systems S.A. de C.V.</p></div>
+        <div class="position-img"><img src="https://e1-cln-ema-store.s3.amazonaws.com/images/img_login2.jpg"  alt="ema software" class="img-responsive img-back"/></div>
+      </div>
 	  </div>
     <div class="col-lg-3 col-lg-3 col-sm-3 col-xs-12 altura-login back_color"  [ngClass]="{'d-none': recoverform}">
 		<div class="row">
         <div class="col-lg-12">
-            
+
               <div class="form-heading text-center">
                     <p class="logo-bco"><img src="https://e1-cln-ema-store.s3.amazonaws.com/images/logo_ema_blanco.png" alt=""/></p>
                     <p class="form-desc tx-sesion">Iniciar Sesión</p>
               </div>
-                <div class="row">	                  
+                <div class="row">
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <input 
-                      class="form-control input-login" 
-                      type="text" 
-                      name="name" 
-                      placeholder="Usuario" 
+                      <input
+                      class="form-control input-login"
+                      type="text"
+                      name="name"
+                      placeholder="Usuario"
                       [disabled]="ennableInputs"
                       #u1>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <input class="form-control input-login" 
-                      (keyup.enter)= "check(u1.value, p2.value)" 
-                      type="password" 
+                      <input class="form-control input-login"
+                      (keyup.enter)= "check(u1.value, p2.value)"
+                      type="password"
                       name="password"
-                       placeholder="Contraseña" 
+                       placeholder="Contraseña"
                        [disabled]="ennableInputs"
                        #p2>
                     </div>
@@ -45,18 +45,21 @@
                             <a href="#" class="tx-blanco">Olvidaste la contraseña</a>
                         </div>
                   <div class="col-lg-12 text-center">
-                            <button type="button" class="btn btn-info mar-ent" 
+                            <button type="button" class="btn btn-info mar-ent"
                             [disabled]="ennableInputs"
                             (click)="check(u1.value, p2.value)">ENTRAR</button>
                         </div>
                   <div class="col-lg-12 text-center">
-                      <div *ngIf="msg" class="alert alert-danger">{{ msg }}</div>
+                    <ngb-alert
+                      *ngIf="!staticAlertClosedLogin"
+                      (close)="staticAlertClosedLogin = true"
+                      [type]="alertLogin.type">{{ alertLogin.message }}</ngb-alert>
                       <div class="loader" [hidden]="ennableSpinner">Loading...</div>
-                  </div>									
-                        
+                  </div>
+
                </div>
-          
-      </div> 
+
+      </div>
 	</div>
 	</div>
   </div>

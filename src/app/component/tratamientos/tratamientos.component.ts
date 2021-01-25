@@ -1283,6 +1283,7 @@ comorbilidadesU = [];
           //vhcData.date_end = "Fecha Fin";
           //vhcData.research_vhc_id = "ID";
           //vhcData.month_execution = "Mes de ejecución";
+          vhcData.expediente_id = "REGISTRO/EXPEDIENTE";//relacionar iniciales
           vhcData.research_vhc_id = "INICIALES";//relacionar iniciales
           vhcData.birthdate = "F. DE NACIMIENTO";
           vhcData.age = "EDAD";
@@ -1290,52 +1291,84 @@ comorbilidadesU = [];
           vhcData.state = "ESTADO DE LA REPUBLICA";
           vhcData.year = "A. DE DX DE VHC";
           vhcData.transmission_mechanism = "MECANISMO DE TRANSMISION";
-          vhcData.comorbilidades = "COMORBILIDADES"
+          vhcData.dm = "DM";
+          vhcData.hta = "HTA";
+          vhcData.obesidad = "OBESIDAD";
+          vhcData.hipertiroidismo = "HIPERTIROIDISMO";
+          vhcData.sindrome_metabolico = "SINDROME METABOLICO";
+          vhcData.cardiopatia_isquemica = "CARDIOPATIA ISQUEMICA";
+          vhcData.irc_dialisis = "IRC EN DIALISIS";
+          vhcData.irc_hemodilaisis = "IRC EN HEMODIALISIS";
+          vhcData.irc_sin_tx_sustiututivo = "IRC SIN TX SUSTITUTIVO";
+          vhcData.hipotiroidismo = "HIPOTIROIDISMO";
+          vhcData.dislipidemia = "DISLIPIDEMIA";
+          vhcData.vih = "VIH";
+          vhcData.trasplante_hepatico = "TRASPLANTE HEPATICO";
+          vhcData.trasplante_renal = "TRASPLANTE RENAL";
+          vhcData.sobre_peso = "SOBRE PESO";
+          vhcData.hepatitis_b = "HEPATITIS B";
+          vhcData.trastorno_consumo_alcohol = "TRASTORNO POR CONSUMO DE ALCOHOL";
+
           vhcData.manif_extrahepaticas = "MANIFESTACIONES EXTRAHEPATICAS";
+
+          vhcData.fibroscan_sw_basal = "FIBROSCAN/SW BASAL (kPa)";
+          vhcData.apri_basal = "APRI BASAL";
+          vhcData.fib4_basal = "FIB-4 BASAL";
+
           vhcData.grado_fibrosis_hepatica="GRADO DE FIBROSIS HEPATICA";
           vhcData.cirrosis = "CIRROSIS";
           vhcData.estado_cirrosis_compensada = "ESTADO DE CIRROSIS COMPENSADA O DESCOMPENSADA";
-          vhcData.cirrosis_descompensada = "CIRROSIS DESCOMPENSADA";
+
+          vhcData.varices_esofagicas = "VARICES ESOFAGICAS";
+          vhcData.hemorragia_variceal = "HEMORRAGIA VARICEAL";
+          vhcData.ascitis = "ASCITIS";
+          vhcData.encefalopatia = "ENCEFALOPATIA";
+          vhcData.sindrome_hepatorenal = "SINDROME HEPATORENAL";
+          vhcData.hepatocarcinoma = "HEPATOCARCINOMA";
+          //vhcData.cirrosis_descompensada = "CIRROSIS DESCOMPENSADA";
+
           vhcData.child_inicial = "ESTADIO CHILD INICIAL (PUNTAJE)";
           vhcData.meld_inicial = "MELD (INICIAL)";
-          vhcData.esofagicas = "V. ESOFAGICAS";
-          vhcData.estado_inicial= "ESTADO INICIAL";
+          vhcData.cv_inicial = "CV INICIAL";
+          vhcData.genotipo = "GENOTIPO";
           vhcData.tipo_tx_previo = "TIPO DE TX PREVIO";
+          //vhcData.esofagicas = "V. ESOFAGICAS";
+          //vhcData.estado_inicial= "ESTADO INICIAL";
           vhcData.year_inicio_tx_add = "A. DE INICIO DE TX DE ADD";
           vhcData.esquema_tratamiento = "ESQUEMA DE TRATAMIENTO";
           vhcData.tiempo_tratamiento_meses = "TIEMPO DE TRATAMIENTO EN MESES";
           vhcData.rvs = "RVS";
-          vhcData.cv_inicial  = "CV INICIAL";
-          vhcData.genotipo = "GENOTIPO";
-          vhcData.cv_rvs12 = "CV RVS12";
-          vhcData.log_rvs12 = "LOG RVS12";
+
           vhcData.funcion_renal = "FUNCION RENAL (FILTRACION GLOMERULAR) PRETRATAMIENTO";
-          vhcData.hb_inicial = "HB INICIAL";
+          vhcData.funcion_renal_post = "FUNCTION RENAL (FILTRACION GLOMERULAR) POSTRATAMIENTO";
+          vhcData.hb_inicial = "HB BASAL";
           vhcData.hb_final = "HB FINAL";
-          vhcData.leucocitos_inicial = "LEUCOCITOS INICIAL";
+          vhcData.leucocitos_inicial = "LEUCOCITOS BASAL";
           vhcData.leucocitos_final = "LEUCOCITOS FINAL";
-          vhcData.plaquetas_inicial = "PLAQUETAS INICIAL";
+          vhcData.plaquetas_inicial = "PLAQUETAS BASAL";
           vhcData.plaquetas_final = "PLAQUETAS FINAL";
-          vhcData.glucosa_inicial = "GLUCOSA INICIAL";
+          vhcData.glucosa_inicial = "GLUCOSA BASAL";
           vhcData.glucosa_final = "GLUCOSA FINAL";
-          vhcData.creatinina_inicial = "CREATININA INICIAL";
+          vhcData.creatinina_inicial = "CREATININA BASAL";
           vhcData.creatinina_final = "CREATININA FINAL";
-          vhcData.tgo_inicial = "TGO INICIAL";
+          vhcData.tgo_inicial = "TGO BASAL";
           vhcData.tgo_final = "TGO FINAL";
-          vhcData.tgp_inicial = "TGP INICIAL";
+          vhcData.tgp_inicial = "TGP BASAL";
           vhcData.tgp_final = "TGP FINAL";
-          vhcData.alumina_inicial = "ALBUMINA INICIAL";
+          vhcData.alumina_inicial = "ALBUMINA BASAL";
           vhcData.alumina_final = "ALBUMINA FINAL";
-          vhcData.inr_inicial = "INR INICIAL";
+          vhcData.inr_inicial = "INR BASAL";
           vhcData.inr_final = "INR FINAL";
-          vhcData.bt_inicial = "BT INICIAL";
+          vhcData.bt_inicial = "BT BASAL";
           vhcData.bt_final = "BT FINAL";
           vhcData.efecto_adverso = "EFECTO ADVERSO";
           vhcData.descripcion_adverso = "CUAL/DESCRIBIR";
           vhcData.accion_tomada = "ACCION TOMADA";
-          vhcData.child_final = "CHILD FINAL";
+          vhcData.child_final = "CHILD-PUGH FINAL";
           vhcData.meld_final = "MELD FINAL";
-          vhcData.comentarios = "COMENTARIOS";
+          vhcData.apri_final = "APRI FINAL";
+          vhcData.fib4_final = "FIB-4 FINAL";
+          vhcData.fibroscan_sw_final = "FIBROSCAN/SW FINAL (kPa)";
           ///vhcData.creation_user_id = ;
           //vhcData.creation_user_name = ;
           //vhcData.creation_date = "Fecha de registro";
@@ -1348,7 +1381,7 @@ comorbilidadesU = [];
   }
   getExcelDataVHC(vhcData: vhcTreatmentModel){
     const vhcDataExcel = {} as vhcTreatmentModel;
-
+    vhcDataExcel.expediente_id = vhcData.expediente_id == null ? "": vhcData.expediente_id;
     vhcDataExcel.research_vhc_id = vhcData.research_vhc_id;//relacionar iniciales
     let birt_D = "";
     if (vhcData.birthdate!=null){
@@ -1360,26 +1393,58 @@ comorbilidadesU = [];
     vhcDataExcel.state = vhcData.state == null ? 0: vhcData.state;//estado de la republica
     vhcDataExcel.year = vhcData.year == null ? 0: vhcData.year;//Año de dx de vhc
     vhcDataExcel.transmission_mechanism = vhcData.transmission_mechanism==null ? 0:vhcData.transmission_mechanism; //mecanismo de trasmision
-    vhcDataExcel.comorbilidades = vhcData.comorbilidades==null ? 0: vhcData.comorbilidades;//Comorbilidades
+    //vhcDataExcel.comorbilidades = vhcData.comorbilidades==null ? 0: vhcData.comorbilidades;//Comorbilidades
+    vhcDataExcel.dm = vhcData.dm == null ? 0:vhcData.dm;
+    vhcDataExcel.hta = vhcData.hta == null ? 0:vhcData.hta;
+    vhcDataExcel.obesidad = vhcData.obesidad==null ? 0:vhcData.obesidad;
+    vhcDataExcel.hipertiroidismo = vhcData.hipertiroidismo == null ? 0:vhcData.hipertiroidismo;
+    vhcDataExcel.sindrome_metabolico= vhcData.sindrome_metabolico==null?0:vhcData.sindrome_metabolico;
+    vhcDataExcel.cardiopatia_isquemica = vhcData.cardiopatia_isquemica == null ? 0:vhcData.cardiopatia_isquemica;
+    vhcDataExcel.irc_dialisis = vhcData.irc_dialisis==null ? 0:vhcData.irc_dialisis;
+    vhcDataExcel.irc_hemodilaisis =vhcData.irc_hemodilaisis==null ? 0:vhcData.irc_hemodilaisis;
+    vhcDataExcel.irc_sin_tx_sustiututivo =vhcData.irc_sin_tx_sustiututivo==null? 0 :  vhcData.irc_sin_tx_sustiututivo;
+    vhcDataExcel.hipotiroidismo = vhcData.hipotiroidismo == null ? 0 : vhcData.hipotiroidismo;
+    vhcDataExcel.dislipidemia = vhcData.dislipidemia==null ? 0: vhcData.dislipidemia;
+    vhcDataExcel.vih = vhcData.vih==null ? 0:vhcData.vih;
+    vhcDataExcel.trasplante_hepatico = vhcData.trasplante_hepatico==null ? 0:vhcData.trasplante_hepatico;
+    vhcDataExcel.trasplante_renal = vhcData.trasplante_renal==null ? 0:vhcData.trasplante_renal;
+    vhcDataExcel.sobre_peso = vhcData.sobre_peso==null?0:vhcData.sobre_peso;
+    vhcDataExcel.hepatitis_b = vhcData.hepatitis_b == null ? 0:vhcData.hepatitis_b;
+    vhcDataExcel.trastorno_consumo_alcohol =vhcData.trastorno_consumo_alcohol==null?0:vhcData.trastorno_consumo_alcohol;
+
     vhcDataExcel.manif_extrahepaticas = vhcData.manif_extrahepaticas == null? 0: vhcData.manif_extrahepaticas;//manifesaciones extrahepaticas
+    vhcDataExcel.fibroscan_sw_basal = vhcData.fibroscan_sw_basal == null ? 0:vhcData.fibroscan_sw_basal;
+    vhcDataExcel.apri_basal = vhcData.apri_basal == null ? 0:vhcData.apri_basal;
+    vhcDataExcel.fib4_final = vhcData.fib4_final==null?0:vhcData.fib4_final;
     vhcDataExcel.grado_fibrosis_hepatica =  vhcData.grado_fibrosis_hepatica == null ? 0: vhcData.grado_fibrosis_hepatica;//grado de fibrosis hepatica
     vhcDataExcel.cirrosis = vhcData.cirrosis == null ? 0: vhcData.cirrosis;//Cirrosis (Si o No)
     vhcDataExcel.estado_cirrosis_compensada = vhcData.estado_cirrosis_compensada == null ? 0: vhcData.estado_cirrosis_compensada;//Estado de la cirrosis compensada o descompensadabgt5-
-    vhcDataExcel.cirrosis_descompensada = vhcData.cirrosis_descompensada == null ?0: vhcData.cirrosis_descompensada;//Cirrosis Descompensada
+
+    vhcDataExcel.varices_esofagicas = vhcData.varices_esofagicas==null?0:vhcData.varices_esofagicas;
+    vhcDataExcel.hemorragia_variceal = vhcData.hemorragia_variceal == null ? 0:vhcData.hemorragia_variceal;
+    vhcDataExcel.ascitis = vhcData.ascitis==null? 0:vhcData.ascitis;
+    vhcDataExcel.encefalopatia = vhcData.encefalopatia == null ? 0:vhcData.encefalopatia;
+    vhcDataExcel.sindrome_hepatorenal = vhcData.sindrome_hepatorenal==null?0:vhcData.sindrome_hepatorenal;
+    vhcDataExcel.hepatocarcinoma = vhcData.hepatocarcinoma == null ? 0:vhcData.hepatocarcinoma;
+    //vhcDataExcel.cirrosis_descompensada = vhcData.cirrosis_descompensada == null ?0: vhcData.cirrosis_descompensada;//Cirrosis Descompensada
     vhcDataExcel.child_inicial = vhcData.child_inicial == null ? 0: vhcData.child_inicial;//Estadio Child Inicial(Puntaje)
     vhcDataExcel.meld_inicial = vhcData.meld_inicial==null ?0: vhcData.meld_inicial;//MELD ( Inicial)
-    vhcDataExcel.esofagicas = vhcData.esofagicas==null? 0: vhcData.esofagicas;//V. Esofágicas (Si o No)
-    vhcDataExcel.estado_inicial = vhcData.estado_inicial==null ? 0: vhcData.estado_inicial;//Estado inicial
+    //vhcDataExcel.esofagicas = vhcData.esofagicas==null? 0: vhcData.esofagicas;//V. Esofágicas (Si o No)
+    //vhcDataExcel.estado_inicial = vhcData.estado_inicial==null ? 0: vhcData.estado_inicial;//Estado inicial
+    vhcDataExcel.cv_inicial = vhcData.cv_inicial==null ? 0: vhcData.cv_inicial;//CV Inicial
+    vhcDataExcel.genotipo = vhcData.genotipo == null? 0: vhcData.genotipo;//Log Inicial
+
     vhcDataExcel.tipo_tx_previo = vhcData.tipo_tx_previo==null ? 0: vhcData.tipo_tx_previo;//Tipo de tx previo
     vhcDataExcel.year_inicio_tx_add = vhcData.year_inicio_tx_add == null ? 0: vhcData.year_inicio_tx_add;//Año de Inicio de tx de ADD
     vhcDataExcel.esquema_tratamiento = vhcData.esquema_tratamiento==null ? 0: vhcData.esquema_tratamiento;//Esquema de-tratamientot5
     vhcDataExcel.tiempo_tratamiento_meses = vhcData.tiempo_tratamiento_meses==null ? 0: vhcData.tiempo_tratamiento_meses;//Tiempo de tratamiento en meses
     vhcDataExcel.rvs = vhcData.rvs == null ? 0: vhcData.rvs;//RVS (si o no)
-    vhcDataExcel.cv_inicial = vhcData.cv_inicial==null ? 0: vhcData.cv_inicial;//CV Inicial
-    vhcDataExcel.genotipo = vhcData.genotipo == null? 0: vhcData.genotipo;//Log Inicial
-    vhcDataExcel.cv_rvs12 = vhcData.cv_rvs12==null ? 0: vhcData.cv_rvs12;//CV RVS12
-    vhcDataExcel.log_rvs12 = vhcData.log_rvs12 == null? 0: vhcData.log_rvs12;//Log RVS 12
+
+    //vhcDataExcel.cv_rvs12 = vhcData.cv_rvs12==null ? 0: vhcData.cv_rvs12;//CV RVS12
+    //vhcDataExcel.log_rvs12 = vhcData.log_rvs12 == null? 0: vhcData.log_rvs12;//Log RVS 12
     vhcDataExcel.funcion_renal = vhcData.funcion_renal== null?0: vhcData.funcion_renal;//Funcion renal (filtracion glomerular) pretratameinto
+    vhcDataExcel.funcion_renal_post = vhcData.funcion_renal_post== null?0: vhcData.funcion_renal_post;//Funcion renal (filtracion glomerular) pretratameinto
+
     vhcDataExcel.hb_inicial = vhcData.hb_inicial == null ?0: vhcData.hb_inicial;//HB Inicial
     vhcDataExcel.hb_final = vhcData.hb_final == null ? 0: vhcData.hb_final;//Hb final
     vhcDataExcel.leucocitos_inicial = vhcData.leucocitos_inicial == null ? 0: vhcData.leucocitos_inicial;//leucocios inicial
@@ -1405,7 +1470,9 @@ comorbilidadesU = [];
     vhcDataExcel.accion_tomada = vhcData.accion_tomada == null ? 0: vhcData.accion_tomada;//Acción Tomada
     vhcDataExcel.child_final = vhcData.child_final==null?0: vhcData.child_final;//Child Final
     vhcDataExcel.meld_final = vhcData.meld_final== null? 0: vhcData.meld_final;//MELD finall
-    vhcDataExcel.comentarios = vhcData.comentarios ==null? "" : vhcData.comentarios;//Comentarios
+    vhcDataExcel.apri_final = vhcData.apri_final ==null? 0: vhcData.apri_final;//
+    vhcDataExcel.fib4_final = vhcData.fib4_final ==null? 0: vhcData.fib4_final;//
+    vhcDataExcel.fibroscan_sw_final = vhcData.fibroscan_sw_final ==null? 0: vhcData.fibroscan_sw_final;//
 
     return vhcDataExcel;
   }
@@ -1465,7 +1532,7 @@ comorbilidadesU = [];
       });
     }
     if (this.update_flag){
-      console.log("Guardando...");
+      console.log("Actualizando...");
       this.data_vhc_.data = this.VHCRecordUpdate.filter(function(e1){
         return e1 != null;
       });
@@ -1475,8 +1542,8 @@ comorbilidadesU = [];
       console.log(resp_data);
 
       if (resp_data.code == 200){
-        this.NAHSRecord = [];
-        this.NAHSRecordUpdate = [];
+        this.VHCRecord = [];
+        this.VHCRecordUpdate = [];
         this.update_flag = false;
         this.progres_spinner_refresh_vhc_treatment = true;
         this.getVHCData();
@@ -1547,8 +1614,8 @@ comorbilidadesU = [];
   }
 
   updateRecordVHC(id, column_name, treatment, i){
-    console.log("Actualizando " + id);
     if (id != null){
+      console.log("Updating......");
       this.update_flag = true;
       const vhcData = {} as vhcTreatmentModel;
 
@@ -1559,38 +1626,68 @@ comorbilidadesU = [];
       vhcData.month_execution = treatment.month_execution;
       vhcData.initials = treatment.initials;
 
-
+      vhcData.expediente_id = treatment.expediente_id; //Expediente id
       if (treatment.birthdate === "null" || treatment.birthdate === null || treatment.birthdate === '' ){
-        console.log("birthday nulo: " + vhcData.birthdate);
+
       }else{
         vhcData.birthdate = treatment.birthdate;
-        console.log("birthday no nulo: " + vhcData.birthdate);
-
       }
       vhcData.age = treatment.age; //Edad
       vhcData.gender = treatment.gender;//Género
       vhcData.state = treatment.state;//estado de la republica
       vhcData.year = treatment.year;//Año de dx de vhc
       vhcData.transmission_mechanism = treatment.transmission_mechanism; //mecanismo de trasmision
-      vhcData.comorbilidades = treatment.comorbilidades;//Comorbilidades
+      //vhcData.comorbilidades = treatment.comorbilidades;//Comorbilidades
+      //////////////////COMORBILIDADES
+      vhcData.dm = treatment.dm;
+      vhcData.hta = treatment.hta;
+      vhcData.obesidad = treatment.obesidad;
+      vhcData.hipertiroidismo = treatment.hipertiroidismo;
+      vhcData.sindrome_metabolico = treatment.sindrome_metabolico;
+      vhcData.cardiopatia_isquemica = treatment.cardiopatia_isquemica
+      vhcData.irc_dialisis = treatment.irc_dialisis;
+      vhcData.irc_hemodilaisis = treatment.irc_hemodilaisis;
+      vhcData.irc_sin_tx_sustiututivo = treatment.irc_sin_tx_sustiututivo;
+      vhcData.hipotiroidismo = treatment.hipotiroidismo;
+      vhcData.dislipidemia = treatment.dislipidemia;
+      vhcData.vih = treatment.vih;
+      vhcData.trasplante_hepatico = treatment.trasplante_hepatico;
+      vhcData.trasplante_renal = treatment.trasplante_renal;
+      vhcData.sobre_peso = treatment.sobre_peso;
+      vhcData.hepatitis_b = treatment.hepatitis_b;
+      vhcData.trastorno_consumo_alcohol = treatment.trastorno_consumo_alcohol;
+      ///////////////////////////////COM
       vhcData.manif_extrahepaticas = treatment.manif_extrahepaticas;//manifesaciones extrahepaticas
+
+      vhcData.fibroscan_sw_basal = treatment.fibroscan_sw_basal;
+      vhcData.apri_basal =  treatment.apri_basal;
+      vhcData.fib4_basal = treatment.fib4_basal;
       vhcData.grado_fibrosis_hepatica =  treatment.grado_fibrosis_hepatica;//grado de fibrosis hepatica
       vhcData.cirrosis = treatment.cirrosis;//Cirrosis (Si o No)
       vhcData.estado_cirrosis_compensada = treatment.estado_cirrosis_compensada//Estado de la cirrosis compensada o descompensadabgt5-
-      vhcData.cirrosis_descompensada = treatment.cirrosis_descompensada;//Cirrosis Descompensada
+
+      vhcData.varices_esofagicas = treatment.varices_esofagicas;
+      vhcData.hemorragia_variceal = treatment.hemorragia_variceal;
+      vhcData.ascitis = treatment.ascitis;
+      vhcData.encefalopatia = treatment.encefalopatia;
+      vhcData.sindrome_hepatorenal = treatment.sindrome_hepatorenal;
+      vhcData.hepatocarcinoma = treatment.hepatocarcinoma;
       vhcData.child_inicial = treatment.child_inicial;//Estadio Child Inicial(Puntaje)
       vhcData.meld_inicial = treatment.meld_inicial;//MELD ( Inicial)
-      vhcData.esofagicas = treatment.esofagicas;//V. Esofágicas (Si o No)
-      vhcData.estado_inicial = treatment.estado_inicial;//Estado inicial
+      vhcData.cv_inicial = treatment.cv_inicial;//CV Inicial
+      vhcData.genotipo = treatment.genotipo;//genotipo
       vhcData.tipo_tx_previo = treatment.tipo_tx_previo;//Tipo de tx previo
       vhcData.year_inicio_tx_add = treatment.year_inicio_tx_add;//Año de Inicio de tx de ADD
+      //vhcData.cirrosis_descompensada = treatment.cirrosis_descompensada;//Cirrosis Descompensada
+      //vhcData.esofagicas = treatment.esofagicas;//V. Esofágicas (Si o No)
+      //vhcData.estado_inicial = treatment.estado_inicial;//Estado inicial
+
       vhcData.esquema_tratamiento = treatment.esquema_tratamiento;//Esquema de-tratamientot5
       vhcData.tiempo_tratamiento_meses = treatment.tiempo_tratamiento_meses;//Tiempo de tratamiento en meses
       vhcData.rvs = treatment.rvs;//RVS (si o no)
-      vhcData.cv_inicial = treatment.cv_inicial;//CV Inicial
-      vhcData.genotipo = treatment.genotipo;//genotipo
-      vhcData.cv_rvs12 = treatment.cv_rvs12;//CV RVS12
-      vhcData.log_rvs12 = treatment.log_rvs12;//Log RVS 12
+
+      //vhcData.cv_rvs12 = treatment.cv_rvs12;//CV RVS12
+      //vhcData.log_rvs12 = treatment.log_rvs12;//Log RVS 12
       vhcData.funcion_renal = treatment.funcion_renal;//Funcion renal (filtracion glomerular) pretratameinto
       vhcData.hb_inicial = treatment.hb_inicial;//HB Inicial
       vhcData.hb_final = treatment.hb_final;//Hb final
@@ -1614,14 +1711,16 @@ comorbilidadesU = [];
       vhcData.bt_inicial = treatment.bt_inicial;//BT inicial
       vhcData.bt_final = treatment.bt_final;//BT final
       vhcData.efecto_adverso = treatment.efecto_adverso;//Efecto Adverso Si/No
-
-      console.log(">>>>>>>> efecto adverso " + vhcData.efecto_adverso);
       vhcData.descripcion_adverso = treatment.descripcion_adverso;//Cual/describir
       vhcData.accion_tomada = treatment.accion_tomada;//Acción Tomada
       vhcData.child_final = treatment.child_final;//Child Final
       vhcData.meld_final = treatment.meld_final;//MELD finall
-      vhcData.comentarios = treatment.comentarios;//Comentarios
 
+      vhcData.apri_final = treatment.apri_final;
+      vhcData.fib4_final = treatment.fib4_final;
+      vhcData.fibroscan_sw_final = treatment.fibroscan_sw_final;
+
+      //vhcData.comentarios = treatment.comentarios;//Comentarios
       vhcData.creation_userid = treatment.creation_userid;
       vhcData.creation_username = treatment.creation_username;
       vhcData.creation_date = treatment.creation_date;
@@ -1634,7 +1733,7 @@ comorbilidadesU = [];
       vhcData.status = treatment.status;
       vhcData.row_color = "row_update";// Nuevos" treatment.row_color;"
 
-      console.log("Color: " + vhcData.row_color);
+     // console.log("Color: " + vhcData.row_color);
       this.VHCRecordUpdate[id] = vhcData;
       //
       //this.NAHSRecord[i] = vhcData;
@@ -1648,30 +1747,71 @@ comorbilidadesU = [];
       this.create_flag = true;
       const vhcData = {} as vhcTreatmentModel;
 
+      vhcData.month_execution = treatment.month_execution;
+      vhcData.initials = treatment.initials;
+
+      vhcData.expediente_id = treatment.expediente_id; //Expediente id
+      if (treatment.birthdate === "null" || treatment.birthdate === null || treatment.birthdate === '' ){
+
+      }else{
+        vhcData.birthdate = treatment.birthdate;
+      }
       vhcData.age = treatment.age; //Edad
       vhcData.gender = treatment.gender;//Género
       vhcData.state = treatment.state;//estado de la republica
       vhcData.year = treatment.year;//Año de dx de vhc
       vhcData.transmission_mechanism = treatment.transmission_mechanism; //mecanismo de trasmision
-      vhcData.comorbilidades = treatment.comorbilidades;//Comorbilidades
+      //vhcData.comorbilidades = treatment.comorbilidades;//Comorbilidades
+      //////////////////COMORBILIDADES
+      vhcData.dm = treatment.dm;
+      vhcData.hta = treatment.hta;
+      vhcData.obesidad = treatment.obesidad;
+      vhcData.hipertiroidismo = treatment.hipertiroidismo;
+      vhcData.sindrome_metabolico = treatment.sindrome_metabolico;
+      vhcData.cardiopatia_isquemica = treatment.cardiopatia_isquemica
+      vhcData.irc_dialisis = treatment.irc_dialisis;
+      vhcData.irc_hemodilaisis = treatment.irc_hemodilaisis;
+      vhcData.irc_sin_tx_sustiututivo = treatment.irc_sin_tx_sustiututivo;
+      vhcData.hipotiroidismo = treatment.hipotiroidismo;
+      vhcData.dislipidemia = treatment.dislipidemia;
+      vhcData.vih = treatment.vih;
+      vhcData.trasplante_hepatico = treatment.trasplante_hepatico;
+      vhcData.trasplante_renal = treatment.trasplante_renal;
+      vhcData.sobre_peso = treatment.sobre_peso;
+      vhcData.hepatitis_b = treatment.hepatitis_b;
+      vhcData.trastorno_consumo_alcohol = treatment.trastorno_consumo_alcohol;
+      ///////////////////////////////COM
       vhcData.manif_extrahepaticas = treatment.manif_extrahepaticas;//manifesaciones extrahepaticas
+
+      vhcData.fibroscan_sw_basal = treatment.fibroscan_sw_basal;
+      vhcData.apri_basal =  treatment.apri_basal;
+      vhcData.fib4_basal = treatment.fib4_basal;
       vhcData.grado_fibrosis_hepatica =  treatment.grado_fibrosis_hepatica;//grado de fibrosis hepatica
       vhcData.cirrosis = treatment.cirrosis;//Cirrosis (Si o No)
       vhcData.estado_cirrosis_compensada = treatment.estado_cirrosis_compensada//Estado de la cirrosis compensada o descompensadabgt5-
-      vhcData.cirrosis_descompensada = treatment.cirrosis_descompensada;//Cirrosis Descompensada
+
+      vhcData.varices_esofagicas = treatment.varices_esofagicas;
+      vhcData.hemorragia_variceal = treatment.hemorragia_variceal;
+      vhcData.ascitis = treatment.ascitis;
+      vhcData.encefalopatia = treatment.encefalopatia;
+      vhcData.sindrome_hepatorenal = treatment.sindrome_hepatorenal;
+      vhcData.hepatocarcinoma = treatment.hepatocarcinoma;
       vhcData.child_inicial = treatment.child_inicial;//Estadio Child Inicial(Puntaje)
       vhcData.meld_inicial = treatment.meld_inicial;//MELD ( Inicial)
-      vhcData.esofagicas = treatment.esofagicas;//V. Esofágicas (Si o No)
-      vhcData.estado_inicial = treatment.estado_inicial;//Estado inicial
+      vhcData.cv_inicial = treatment.cv_inicial;//CV Inicial
+      vhcData.genotipo = treatment.genotipo;//genotipo
       vhcData.tipo_tx_previo = treatment.tipo_tx_previo;//Tipo de tx previo
       vhcData.year_inicio_tx_add = treatment.year_inicio_tx_add;//Año de Inicio de tx de ADD
+      //vhcData.cirrosis_descompensada = treatment.cirrosis_descompensada;//Cirrosis Descompensada
+      //vhcData.esofagicas = treatment.esofagicas;//V. Esofágicas (Si o No)
+      //vhcData.estado_inicial = treatment.estado_inicial;//Estado inicial
+
       vhcData.esquema_tratamiento = treatment.esquema_tratamiento;//Esquema de-tratamientot5
       vhcData.tiempo_tratamiento_meses = treatment.tiempo_tratamiento_meses;//Tiempo de tratamiento en meses
       vhcData.rvs = treatment.rvs;//RVS (si o no)
-      vhcData.cv_inicial = treatment.cv_inicial;//CV Inicial
-      vhcData.genotipo = treatment.genotipo;//genotipo
-      vhcData.cv_rvs12 = treatment.cv_rvs12;//CV RVS12
-      vhcData.log_rvs12 = treatment.log_rvs12;//Log RVS 12
+
+      //vhcData.cv_rvs12 = treatment.cv_rvs12;//CV RVS12
+      //vhcData.log_rvs12 = treatment.log_rvs12;//Log RVS 12
       vhcData.funcion_renal = treatment.funcion_renal;//Funcion renal (filtracion glomerular) pretratameinto
       vhcData.hb_inicial = treatment.hb_inicial;//HB Inicial
       vhcData.hb_final = treatment.hb_final;//Hb final
@@ -1679,8 +1819,8 @@ comorbilidadesU = [];
       vhcData.leucocitos_final = treatment.leucocitos_final;//leucocitos final
       vhcData.plaquetas_inicial = treatment.plaquetas_inicial;//Plaq Inicial
       vhcData.plaquetas_final = treatment.plaquetas_final;//Plaq Final
-      vhcData.glucosa_inicial = treatment.glucosa_inicial;//Glucosa Inicial
-      vhcData.glucosa_final = treatment.glucosa_final;//Glucosa Final
+      vhcData.glucosa_inicial = treatment.glucosa_inicial;//glucosa_inicial
+      vhcData.glucosa_final = treatment.glucosa_final; //glucosa_final
       vhcData.creatinina_inicial = treatment.creatinina_inicial;//creatinia inicial
       vhcData.creatinina_final = treatment.creatinina_final;//Creatinina final
       vhcData.creatinina_final = treatment.creatinina_final;//Creatinina final
@@ -1695,14 +1835,16 @@ comorbilidadesU = [];
       vhcData.bt_inicial = treatment.bt_inicial;//BT inicial
       vhcData.bt_final = treatment.bt_final;//BT final
       vhcData.efecto_adverso = treatment.efecto_adverso;//Efecto Adverso Si/No
-      console.log(">>>>>>>> efecto adverso " + vhcData.efecto_adverso);
-
       vhcData.descripcion_adverso = treatment.descripcion_adverso;//Cual/describir
       vhcData.accion_tomada = treatment.accion_tomada;//Acción Tomada
       vhcData.child_final = treatment.child_final;//Child Final
       vhcData.meld_final = treatment.meld_final;//MELD finall
-      vhcData.comentarios = treatment.comentarios;//Comentarios
 
+      vhcData.apri_final = treatment.apri_final;
+      vhcData.fib4_final = treatment.fib4_final;
+      vhcData.fibroscan_sw_final = treatment.fibroscan_sw_final;
+
+      //vhcData.comentarios = treatment.comentarios;//Comentarios
       vhcData.creation_userid = treatment.creation_userid;
       vhcData.creation_username = treatment.creation_username;
       vhcData.creation_date = treatment.creation_date;
@@ -1711,6 +1853,7 @@ comorbilidadesU = [];
       vhcData.modification_username = treatment.modification_username;
       vhcData.modification_date = treatment.modification_date;
       vhcData.modification_time = treatment.modification_time;
+
       vhcData.status = treatment.status;
       vhcData.row_color = "row_new";// Nuevos" treatment.row_color;"
       this.VHCRecordCreate[i] = this.VHCRecord[i];
@@ -1752,6 +1895,11 @@ comorbilidadesU = [];
             vhcData.research_vhc_id = r.research_vhc_id;
             vhcData.month_execution = r.month_execution;
 
+            vhcData.expediente_id = r.expediente_id; //Iniciales
+            if (r.expediente_id=="" || r.expediente_id==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
             vhcData.initials = r.initials; //Iniciales
             if (r.initials=="" || r.initials==null){
               vhcData.active_red_sem = "row_sem_red_visible";
@@ -1788,24 +1936,170 @@ comorbilidadesU = [];
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
-            vhcData.comorbilidades = r.comorbilidades;//Comorbilidades
-            if (r.comorbilidades =="" || r.comorbilidades==null){
+
+            vhcData.dm = r.dm;//Comorbilidades
+            if (r.dm =="" || r.dm==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+
+            vhcData.hta = r.hta;//
+            if (r.hta =="" || r.hta==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.obesidad = r.obesidad;//
+            if (r.obesidad =="" || r.obesidad == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+
+            vhcData.hipertiroidismo = r.hipertiroidismo;//
+            if (r.hipertiroidismo =="" || r.hipertiroidismo == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+
+            vhcData.sindrome_metabolico = r.sindrome_metabolico;//
+            if (r.sindrome_metabolico =="" || r.sindrome_metabolico == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.cardiopatia_isquemica = r.cardiopatia_isquemica;//
+            if (r.cardiopatia_isquemica =="" || r.cardiopatia_isquemica == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.irc_dialisis = r.irc_dialisis;//
+            if (r.irc_dialisis =="" || r.irc_dialisis == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+
+            vhcData.irc_hemodilaisis = r.irc_hemodilaisis;//
+            if (r.irc_hemodilaisis =="" || r.irc_hemodilaisis == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+
+            vhcData.irc_sin_tx_sustiututivo = r.irc_sin_tx_sustiututivo;//
+            if (r.irc_sin_tx_sustiututivo =="" || r.irc_sin_tx_sustiututivo == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.hipotiroidismo = r.hipotiroidismo;//
+            if (r.hipotiroidismo =="" || r.hipotiroidismo == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.dislipidemia = r.dislipidemia;//
+            if (r.dislipidemia =="" || r.dislipidemia == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.vih = r.vih;//
+            if (r.vih =="" || r.vih == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.trasplante_hepatico = r.trasplante_hepatico;//
+            if (r.trasplante_hepatico =="" || r.trasplante_hepatico == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.trasplante_renal = r.trasplante_renal;//
+            if (r.trasplante_renal =="" || r.trasplante_renal == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+
+            vhcData.sobre_peso = r.sobre_peso;//
+            if (r.sobre_peso =="" || r.sobre_peso == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.hepatitis_b = r.hepatitis_b;//
+            if (r.hepatitis_b =="" || r.hepatitis_b == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.trastorno_consumo_alcohol = r.trastorno_consumo_alcohol;//
+            if (r.trastorno_consumo_alcohol =="" || r.trastorno_consumo_alcohol == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.trastorno_consumo_alcohol = r.trastorno_consumo_alcohol;//
+            if (r.trastorno_consumo_alcohol =="" || r.trastorno_consumo_alcohol == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+
+            vhcData.varices_esofagicas = r.varices_esofagicas;//
+            if (r.varices_esofagicas =="" || r.varices_esofagicas == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.hemorragia_variceal = r.hemorragia_variceal;//
+            if (r.hemorragia_variceal =="" || r.hemorragia_variceal == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.ascitis = r.ascitis;//
+            if (r.ascitis =="" || r.ascitis == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.encefalopatia = r.encefalopatia;//
+            if (r.encefalopatia =="" || r.encefalopatia == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.sindrome_hepatorenal = r.sindrome_hepatorenal;//
+            if (r.sindrome_hepatorenal =="" || r.sindrome_hepatorenal == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.hepatocarcinoma = r.hepatocarcinoma;//
+            if (r.hepatocarcinoma =="" || r.hepatocarcinoma == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+
+            vhcData.funcion_renal = r.funcion_renal;//
+            if (r.funcion_renal =="" || r.funcion_renal == null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.funcion_renal_post = r.funcion_renal_post;//
+            if (r.funcion_renal_post =="" || r.funcion_renal_post == null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
             ////////////////////
-            let dato_ = [];
-            let dato_comorbilidades_list = {comorbilidades: 1}
-            dato_.push(dato_comorbilidades_list);
-            //  this.concatenateComorbilidades("1,2,3,4");
-              vhcData.comorbilidades_list = dato_;
-              console.log(vhcData.comorbilidades_list);
 
             vhcData.manif_extrahepaticas = r.manif_extrahepaticas;//manifesaciones extrahepaticas
             if (r.manif_extrahepaticas =="" || r.manif_extrahepaticas==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
+            vhcData.fibroscan_sw_basal = r.fibroscan_sw_basal;//manifesaciones extrahepaticas
+            if (r.fibroscan_sw_basal =="" || r.fibroscan_sw_basal==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+
+            vhcData.apri_basal = r.apri_basal;//manifesaciones extrahepaticas
+            if (r.apri_basal =="" || r.apri_basal==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+
+            vhcData.fib4_basal = r.fib4_basal;//manifesaciones extrahepaticas
+            if (r.fib4_basal =="" || r.fib4_basal==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+
             vhcData.grado_fibrosis_hepatica =  r.grado_fibrosis_hepatica;//grado de fibrosis hepatica
             if (r.grado_fibrosis_hepatica =="" || r.grado_fibrosis_hepatica==null){
               vhcData.active_red_sem = "row_sem_red_visible";
@@ -1821,8 +2115,15 @@ comorbilidadesU = [];
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
-            vhcData.cirrosis_descompensada = r.cirrosis_descompensada;//Cirrosis Descompensada
-            if (r.cirrosis_descompensada =="" || r.cirrosis_descompensada==null){
+
+            vhcData.hemorragia_variceal = r.hemorragia_variceal;//Cirrosis Descompensada
+            if (r.hemorragia_variceal =="" || r.hemorragia_variceal==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+
+            vhcData.ascitis = r.ascitis;//Cirrosis Descompensada
+            if (r.ascitis =="" || r.ascitis==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
@@ -1836,16 +2137,16 @@ comorbilidadesU = [];
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
-            vhcData.esofagicas = r.esofagicas;//V. Esofágicas (Si o No)
+            /*vhcData.esofagicas = r.esofagicas;//V. Esofágicas (Si o No)
             if (r.esofagicas =="" || r.esofagicas==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
-            }
-            vhcData.estado_inicial = r.estado_inicial;//Estado inicial
+            }*/
+            /*vhcData.estado_inicial = r.estado_inicial;//Estado inicial
             if (r.estado_inicial =="" || r.estado_inicial==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
-            }
+            }*/
             vhcData.tipo_tx_previo = r.tipo_tx_previo;//Tipo de tx previo
             if (r.tipo_tx_previo =="" || r.tipo_tx_previo==null){
               vhcData.active_red_sem = "row_sem_red_visible";
@@ -1881,7 +2182,7 @@ comorbilidadesU = [];
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
-            vhcData.cv_rvs12 = r.cv_rvs12;//CV RVS12
+           /* vhcData.cv_rvs12 = r.cv_rvs12;//CV RVS12
             if (r.cv_rvs12 =="" || r.cv_rvs12==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
@@ -1890,7 +2191,7 @@ comorbilidadesU = [];
             if (r.log_rvs12 =="" || r.log_rvs12==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
-            }
+            }*/
             vhcData.funcion_renal = r.funcion_renal;//Funcion renal (filtracion glomerular) pretratameinto
             if (r.funcion_renal =="" || r.funcion_renal==null){
               vhcData.active_red_sem = "row_sem_red_visible";
@@ -2023,8 +2324,18 @@ comorbilidadesU = [];
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
-            vhcData.comentarios = r.comentarios;//Comentarios
-            if (r.comentarios =="" || r.comentarios==null){
+            vhcData.apri_final = r.apri_final;//Comentarios
+            if (r.apri_final =="" || r.apri_final==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.fib4_final = r.fib4_final;//Comentarios
+            if (r.fib4_final =="" || r.fib4_final==null){
+              vhcData.active_red_sem = "row_sem_red_visible";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
+            vhcData.fibroscan_sw_final = r.fibroscan_sw_final;//Comentarios
+            if (r.fibroscan_sw_final =="" || r.fibroscan_sw_final==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }

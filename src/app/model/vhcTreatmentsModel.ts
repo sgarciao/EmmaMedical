@@ -1,3 +1,5 @@
+import { NumberCardModule } from "@swimlane/ngx-charts";
+
 export interface vhcTreatmentData{
 	data: vhcTreatmentModel[];
 }
@@ -70,7 +72,38 @@ export class vhcTreatmentModel{
   glucosa_inicial:    number;//
   glucosa_final:      number;
   genotipo:           number;
-  comorbilidades_list: any[];
+
+  funcion_renal_post: number;//		funcion_renal_post int(11)
+  fibroscan_sw_basal: number;//		fibroscan_sw_basal int(11)
+  fibroscan_sw_final: number;//		fibroscan_sw_final int(11)
+  apri_basal:         number;//		apri_basal int(11)
+  apri_final:         number;//		apri_final int(11)
+  fib4_basal:         number;//		fib4_basal int(11)
+  fib4_final:         number;//		fib4_final int(11)
+  expediente_id:      string;//		expediente_id varchar(30)
+  dm:                 number;//		DM
+  hta:                number;//		HTA
+  obesidad:           number;//		Obesidad
+  hipertiroidismo:    number;//		Hipertiroidismo
+  sindrome_metabolico:number;//		Sindrome metabolico
+  cardiopatia_isquemica: number;//		Cardiopatia Isquémica
+  irc_dialisis:       number;//		7 IRC en dialisis
+  irc_hemodilaisis:   number;//		8 IRC en hemodilaisis
+  irc_sin_tx_sustiututivo: number;//		9 IRC sin tx sustiututivo
+  hipotiroidismo:     number;//		10 hipotiroidismo
+  dislipidemia:       number;//		11 dislipidemia
+  vih:                number;//		VIH
+  trasplante_hepatico:number;//		13  Trasplante hepatico
+  trasplante_renal:   number;//		14 Trasplante renal
+  sobre_peso:         number;//		Sobre peso
+  hepatitis_b:        number;//		Hepatitis B
+  trastorno_consumo_alcohol:  number;//		Trastorno por consumo de alcohol
+  varices_esofagicas: number;//		varices_esofagicas
+  hemorragia_variceal:number;//		hemorragia_variceal
+  ascitis:            number;//		ascitis
+  encefalopatia:      number;//		encefalopatia
+  sindrome_hepatorenal:number;//		sindrome_hepatorenal
+  hepatocarcinoma:    number;//		hepatocarcinoma
   /////////////////////////////////////////
 	creation_userid:			number	;
 	creation_username:			string	;
@@ -158,6 +191,37 @@ export class vhcTreatmentModelHeader{
   glucosa_final:      string;
   genotipo:           string;
 
+  funcion_renal_post: string;//		funcion_renal_post int(11)
+  fibroscan_sw_basal: string;//		fibroscan_sw_basal int(11)
+  fibroscan_sw_final: string;//		fibroscan_sw_final int(11)
+  apri_basal:         string;//		apri_basal int(11)
+  apri_final:         string;//		apri_final int(11)
+  fib4_basal:         string;//		fib4_basal int(11)
+  fib4_final:         string;//		fib4_final int(11)
+  expediente_id:      string;//		expediente_id varchar(30)
+  dm:                 string;//		DM
+  hta:                string;//		HTA
+  obesidad:           string;//		Obesidad
+  hipertiroidismo:    string;//		Hipertiroidismo
+  sindrome_metabolico:string;//		Sindrome metabolico
+  cardiopatia_isquemica: string;//		Cardiopatia Isquémica
+  irc_dialisis:       string;//		7 IRC en dialisis
+  irc_hemodilaisis:   string;//		8 IRC en hemodilaisis
+  irc_sin_tx_sustiututivo: string;//		9 IRC sin tx sustiututivo
+  hipotiroidismo:     string;//		10 hipotiroidismo
+  dislipidemia:       string;//		11 dislipidemia
+  vih:                string;//		VIH
+  trasplante_hepatico:string;//		13  Trasplante hepatico
+  trasplante_renal:   string;//		14 Trasplante renal
+  sobre_peso:         string;//		Sobre peso
+  hepatitis_b:        string;//		Hepatitis B
+  trastorno_consumo_alcohol:  string;//		Trastorno por consumo de alcohol
+  varices_esofagicas: string;//		varices_esofagicas
+  hemorragia_variceal:string;//		hemorragia_variceal
+  ascitis:            string;//		ascitis
+  encefalopatia:      string;//		encefalopatia
+  sindrome_hepatorenal:string;//		sindrome_hepatorenal
+  hepatocarcinoma:    string;//		hepatocarcinoma
 	/////////////////////////////////////////
 	creation_userid:			string	;
 	creation_username:			string	;

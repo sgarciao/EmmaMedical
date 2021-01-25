@@ -60,11 +60,12 @@ export class AuthService {
     .shareReplay();
   }
 
-  logout() {
+  logout(user_id_) {
      // remove user from local storage to log user out
+
      const params = new HttpParams({
       fromObject: {
-        user_id: localStorage.getItem('user')
+        user_id: user_id_//localStorage.getItem('user')
       }
     });
     return this.httpClient.post(environment.urlMedical + '/v1/ema-medical/medical/logout',

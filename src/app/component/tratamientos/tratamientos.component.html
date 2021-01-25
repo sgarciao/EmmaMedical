@@ -6,7 +6,7 @@
                 <div class = "col-lg-12">
                     <div class ="row align-items-center">
                         <div class = "col-lg-10">
-                           <span class="title_main"> {{title_entity}}</span> <span class="hospital-name-format"> >> {{hospital_description}}</span>
+                           <span class = "title_main"> {{title_entity}}</span> <span class="hospital-name-format"> >> {{hospital_description}}</span>
                         </div>
                         <div class = "col-lg-2 content_back">
                             <img src="https://img.icons8.com/flat_round/64/000000/circled-left.png"
@@ -643,74 +643,104 @@
                                             <table class="table" cellspacing="0" cellpadding = "0" border = "0" width = "325">
                                                 <thead class ="table-titles" >
                                                     <tr>
-                                                        <th scope="col">ESTATUS</th>
-                                                        <th scope="col">INICIALES</th>
-                                                        <th scope="col">FECHA NACIMIENTO</th>
-                                                        <th scope="col">EDAD</th>
-                                                        <th scope="col">GÉNERO</th>
-                                                        <th scope="col">ESTADO DE LA REPÚBLICA</th>
-                                                        <th scope="col">AÑO DE DX DE VHC</th>
-                                                        <th scope="col">MECANISMO DE TRANSMISIÓN</th>
-                                                        <th scope="col">COMORBILIDAD</th>
-                                                        <th scope="col">MANISFESTACIONES EXTRAHEPÁTICAS</th>
-                                                        <th scope="col">GRADO DE FIBROSIS HEPÁTICA</th>
-                                                        <th scope="col">CIRROSIS</th>
-                                                        <th scope="col">ESTADO DE LA CIRROSIS COMPENSADA / DESCOMPENSADA</th>
-                                                        <th scope="col">CIRROSIS DESCOMPENSADA</th>
-                                                        <th scope="col">ESTADIO CHILD INICIAL</th>
-                                                        <th scope="col">MELD (INICIAL</th>
-                                                        <th scope="col">V. ESOFÁGICAS</th>
-                                                        <th scope="col">ESTADO INICIAL</th>
-                                                        <th scope="col">TIPO DE TX PREVIO</th>
-                                                        <th scope="col">AÑO DE INICIO DE TX DE ADD</th>
-                                                        <th scope="col">CV INICIAL</th>
-                                                        <th scope="col">GENOTIPO</th>
-                                                        <th scope="col">ESQUEMA DE TRATAMIENTO</th>
-                                                        <th scope="col">TIEMPO DE TRATAMIENTO EN SEMANAS</th>
-                                                        <th scope="col">RVS</th>
-                                                        <!--<th scope="col">LOG INICIAL</th>-->
-                                                        <th scope="col">CV RVS12</th>
-                                                        <th scope="col">LOG RVS12</th>
-                                                        <th scope="col">FUNCION RENAL (FILTRACIÓN GLOMERULAR) PRETRATAMIENTO</th>
-                                                        <th scope="col">HB INICIAL</th>
-                                                        <th scope="col">HB FINAL</th>
-                                                        <th scope="col">LEUCOCITOS INICIAL</th>
-                                                        <th scope="col">LEUCOCITOS FINAL</th>
-                                                        <th scope="col">PLAQUETA INICIAL</th>
-                                                        <th scope="col">PLAQUETA FINAl</th>
-                                                        <th scope="col">GLUCOSA INICIAL</th>
-                                                        <th scope="col">GLUCOSA FINAl</th>
-                                                        <th scope="col">CREATININA INICIAL</th>
-                                                        <th scope="col">CREATININA FINAL</th>
-                                                        <th scope="col">TGO INICIAL</th>
-                                                        <th scope="col">TGO FINAL</th>
-                                                        <th scope="col">TGP INICIAL</th>
-                                                        <th scope="col">TGP FINAL</th>
-                                                        <th scope="col">ALBUMINA INICIAL</th>
-                                                        <th scope="col">ALBUMINA FINAL</th>
-                                                        <th scope="col">INR INICIAL</th>
-                                                        <th scope="col">INR FINAL</th>
-                                                        <th scope="col">BT INICIAL</th>
-                                                        <th scope="col">BT FINAL</th>
-                                                        <th scope="col">EFECTO ADVERSO</th>
-                                                        <th scope="col">CUAL/DESCRIBIR</th>
-                                                        <th scope="col">ACCIÓN TOMADA</th>
-                                                        <th scope="col">CHILD FINAL</th>
-                                                        <th scope="col">MELD FINAL</th>
-                                                        <th scope="col">COMENTARIOS</th>
-                                                        <th scope="col">HOSPITAL</th>
-                                                        <th scope="col">FECHA REGISTRO</th>
-                                                        <th scope="col">HORA REGISTRO</th>
-                                                        <th scope="col">USUARIO</th>
+                                                      <th scope="col">ESTATUS</th>
+                                                      <th scope="col"># REGISTRO / EXPEDIENTE</th>
+                                                      <th scope="col">INICIALES</th>
+                                                      <th scope="col">FECHA NACIMIENTO</th>
+                                                      <th scope="col">EDAD</th>
+                                                      <th scope="col">GÉNERO</th>
+                                                      <th scope="col">ESTADO DE LA REPÚBLICA</th>
+                                                      <th scope="col">AÑO DE DX DE VHC</th>
+                                                      <th scope="col">MECANISMO DE TRANSMISIÓN</th>
+                                                      <th scope="col">DM</th>
+                                                      <th scope="col">HTA</th>
+                                                      <th scope="col">OBESIDAD</th>
+                                                      <th scope="col">HIPERTEROIDISMO</th>
+                                                      <th scope="col">SINDROME METABÓLICO</th>
+                                                      <th scope="col">CARDIOPATÍA ISQUÉMICA</th>
+                                                      <th scope="col">IRC EN DIALISIS</th>
+                                                      <th scope="col">IRC EN HEMODIALISIS</th>
+                                                      <th scope="col">IRC SIN TX SUSTITUTIVO</th>
+                                                      <th scope="col">HIPOTIROIDISMO</th>
+                                                      <th scope="col">DISLIPIDEMIA</th>
+                                                      <th scope="col">VIH</th>
+                                                      <th scope="col">TRASPLANTE HEPÁTICO</th>
+                                                      <th scope="col">TRASPLANTE RENAL</th>
+                                                      <th scope="col">SOBRE PESO</th>
+                                                      <th scope="col">HEPATITIS B</th>
+                                                      <th scope="col">TRASTORNO POR CONSUMO DE ALCOHOL</th>
+                                                      <th scope="col">MANISFESTACIONES EXTRAHEPÁTICAS</th>
+                                                      <th scope="col">FIBROSCAN SW/BASAL (kPa)</th>
+                                                      <th scope="col">APRI BASAL</th>
+                                                      <th scope="col">FIB - 4 BASAL</th>
+                                                      <th scope="col">GRADO DE FIBROSIS HEPÁTICA</th>
+                                                      <th scope="col">CIRROSIS</th>
+                                                      <th scope="col">ESTADO DE LA CIRROSIS COMPENSADA / DESCOMPENSADA</th>
+                                                      <th scope="col">VARICES ESOFÁGICAS</th>
+                                                      <th scope="col">HEMORRAGIA VARICEAL</th>
+                                                      <th scope="col">ASCITIS</th>
+                                                      <th scope="col">ENCEFALOPATÍA</th>
+                                                      <th scope="col">SÍNDROME HEPATORENAL</th>
+                                                      <th scope="col">HEPATOCARCINOMA</th>
+                                                      <th scope="col">ESTADIO CHILD-PUGH BASAL (Puntaje)</th>
+                                                      <th scope="col">MELD (BASAL)</th>
+                                                      <th scope="col">CV INICIAL</th>
+                                                      <th scope="col">GENOTIPO</th>
+                                                      <th scope="col">TIPO DE TX PREVIO</th>
+                                                      <th scope="col">AÑO DE INICIO DE TX DE ADD</th>
+                                                      <th scope="col">ESQUEMA DE TRATAMIENTO</th>
+                                                      <th scope="col">TIEMPO DE TRATAMIENTO EN SEMANAS</th>
+                                                      <th scope="col">RVS</th>
+                                                      <th scope="col">FUNCION RENAL (FILTRACIÓN GLOMERULAR) PRETRATAMIENTO</th>
+                                                      <th scope="col">FUNCION RENAL (FILTRACIÓN GLOMERULAR) POSTTRATAMIENTO</th>
+                                                      <th scope="col">HB BASAL</th>
+                                                      <th scope="col">HB FINAL</th>
+                                                      <th scope="col">LEUCOCITOS BASAL</th>
+                                                      <th scope="col">LEUCOCITOS FINAL</th>
+                                                      <th scope="col">PLAQUETA BASAL</th>
+                                                      <th scope="col">PLAQUETA FINAl</th>
+                                                      <th scope="col">GLUCOSA BASAL</th>
+                                                      <th scope="col">GLUCOSA FINAl</th>
+                                                      <th scope="col">CREATININA BASAL</th>
+                                                      <th scope="col">CREATININA FINAL</th>
+                                                      <th scope="col">TGO BASAL</th>
+                                                      <th scope="col">TGO FINAL</th>
+                                                      <th scope="col">TGP BASAL</th>
+                                                      <th scope="col">TGP FINAL</th>
+                                                      <th scope="col">ALBUMINA BASAL</th>
+                                                      <th scope="col">ALBUMINA FINAL</th>
+                                                      <th scope="col">INR BASAL</th>
+                                                      <th scope="col">INR FINAL</th>
+                                                      <th scope="col">BT BASAL</th>
+                                                      <th scope="col">BT FINAL</th>
+                                                      <th scope="col">EFECTO ADVERSO</th>
+                                                      <th scope="col">CUAL/DESCRIBIR</th>
+                                                      <th scope="col">ACCIÓN TOMADA</th>
+                                                      <th scope="col">CHILD-PUGH FINAL</th>
+                                                      <th scope="col">MELD FINAL</th>
+                                                      <th scope="col">APRI FINAL</th>
+                                                      <th scope="col">FIB - 4 FINAl</th>
+                                                      <th scope="col">FIBROSCAN / SW Final (kPa)</th>
+                                                      <th scope="col">HOSPITAL</th>
+                                                      <th scope="col">FECHA REGISTRO</th>
+                                                      <th scope="col">HORA REGISTRO</th>
+                                                      <th scope="col">USUARIO</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr  *ngFor="let treatmentvhc of VHCRecord; let i = index" class="{{treatmentvhc.row_color}}">
+
                                                         <td class = "rows-style">
                                                             <img src="https://img.icons8.com/emoji/48/000000/green-circle-emoji.png"
                                                             class="tools {{treatmentvhc.active_green_sem}}" title="Ok..."/>
                                                             <img src="https://img.icons8.com/emoji/48/000000/red-circle-emoji.png"
                                                             class="tools {{treatmentvhc.active_red_sem}}" title="Campos vacíos..."/>
+                                                        </td>
+                                                        <td class = "rows-style">
+                                                          <input type="text" class="form-control"
+                                                            [(ngModel)]="treatmentvhc.expediente_id" id="expediente_id"
+                                                            (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.expediente_id, treatmentvhc, i)"
+                                                            >
                                                         </td>
                                                         <td class = "rows-style">
                                                             <input type="text" class="form-control"
@@ -760,7 +790,7 @@
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.transmission_mechanism, treatmentvhc, i)">
                                                                 <option value="1"> 1  Trasfusion de Sangre o Hemoderivados </option>
-                                                                <option value="2"> 2  Drogas IV </option>
+                                                                <option value="2"> 2  Drogas IV / inhaladas </option>
                                                                 <option value="3"> 3  Hemodiálisis </option>
                                                                 <option value="4"> 4  Perinatal</option>
                                                                 <option value="5"> 5  Transmisión Sexual </option>
@@ -769,42 +799,164 @@
                                                                 <option value="8"> 8  Cirugías </option>
                                                                 <option value="9"> 9  Procedimientos Odontológicos </option>
                                                                 <option value="10"> 10  Desconocida </option>
+                                                                <option value="10"> 11  Trabajadores de la salud </option>
                                                             </select>
                                                         </td>
-                                                        <td class = "description_long">
-                                                            <select
-                                                                [(ngModel)]="treatmentvhc.comorbilidades" id="comorbilidades"
-                                                                class="custom-select mr-sm-1 select-style"
-                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.comorbilidades, treatmentvhc, i)">
-                                                                <option value="1"> 1 DM </option>
-                                                                <option value="2"> 2 HTA </option>
-                                                                <option value="3"> 3 Obesidad </option>
-                                                                <option value="4"> 4 Hipertiroidismo </option>
-                                                                <option value="5"> 5 Sindrome metabolico </option>
-                                                                <option value="6"> 6 Cardiopatia </option>
-                                                                <option value="7"> 7 IRC en dialisis </option>
-                                                                <option value="8"> 8 IRC en hemodilaisis </option>
-                                                                <option value="9"> 9 IRC sin tx sustiututivo </option>
-                                                                <option value="10"> 10 hipotiroidismo </option>
-                                                                <option value="11"> 11 dislipidemia </option>
-                                                                <option value="12"> 12 VIH </option>
-                                                                <option value="13"> 13  Trasplante hepatico </option>
-                                                                <option value="14"> 14 Trasplante renal </option>
-                                                            </select>
-
-                                                         <!-- <ng-multiselect-dropdown
-                                                              class="mselect-sty"
-                                                              [placeholder]="'Seleccionar...'"
-                                                              [data]="comorbilidadesU"
-                                                              [(ngModel)]="treatmentvhc.comorbilidades_list"
-                                                              [settings]="dropdownSettings"
-                                                              (onSelect)="onItemSelect($event)"
-                                                              (onSelectAll)="onSelectAll($event)"
-                                                              (onDeSelect)="onItemDeSelect($event)"
-                                                              (onDeSelectAll)="onDeSelectAll($event)"
-                                                          >
-                                                          </ng-multiselect-dropdown>-->
+                                                        <!--COMORBILIDADES-->
+                                                        <td class = "row-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.dm" id="dm"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.dm, treatmentvhc, i)">
+                                                              <option value="1"> 1 SI </option>
+                                                              <option value="2"> 2 NO </option>
+                                                          </select>
                                                         </td>
+                                                        <td class = "row-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.hta" id="hta"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.hta, treatmentvhc, i)">
+                                                              <option value="1"> 1 SI </option>
+                                                              <option value="2"> 2 NO </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "row-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.obesidad" id="obesidad"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.obesidad, treatmentvhc, i)">
+                                                              <option value="1"> 1 SI </option>
+                                                              <option value="2"> 2 NO </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "row-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.hipertiroidismo" id="hipertiroidismo"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.hipertiroidismo, treatmentvhc, i)">
+                                                              <option value="1"> 1 SI </option>
+                                                              <option value="2"> 2 NO </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "row-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.sindrome_metabolico" id="sindrome_metabolico"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.sindrome_metabolico, treatmentvhc, i)">
+                                                              <option value="1"> 1 SI </option>
+                                                              <option value="2"> 2 NO </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "row-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.cardiopatia_isquemica" id="cardiopatia_isquemica"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.cardiopatia_isquemica, treatmentvhc, i)">
+                                                              <option value="1"> 1 SI </option>
+                                                              <option value="2"> 2 NO </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "row-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.irc_dialisis" id="irc_dialisis"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.irc_dialisis, treatmentvhc, i)">
+                                                              <option value="1"> 1 SI </option>
+                                                              <option value="2"> 2 NO </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "row-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.irc_hemodilaisis" id="irc_hemodilaisis"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.irc_hemodilaisis, treatmentvhc, i)">
+                                                              <option value="1"> 1 SI </option>
+                                                              <option value="2"> 2 NO </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "row-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.irc_sin_tx_sustiututivo" id="irc_sin_tx_sustiututivo"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.irc_sin_tx_sustiututivo, treatmentvhc, i)">
+                                                              <option value="1"> 1 SI </option>
+                                                              <option value="2"> 2 NO </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "row-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.hipotiroidismo" id="hipotiroidismo"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.hipotiroidismo, treatmentvhc, i)">
+                                                              <option value="1"> 1 SI </option>
+                                                              <option value="2"> 2 NO </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "row-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.dislipidemia" id="dislipidemia"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.dislipidemia, treatmentvhc, i)">
+                                                              <option value="1"> 1 SI </option>
+                                                              <option value="2"> 2 NO </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "row-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.vih" id="vih"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.vih, treatmentvhc, i)">
+                                                              <option value="1"> 1 SI </option>
+                                                              <option value="2"> 2 NO </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "row-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.trasplante_hepatico" id="trasplante_hepatico"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.trasplante_hepatico, treatmentvhc, i)">
+                                                              <option value="1"> 1 SI </option>
+                                                              <option value="2"> 2 NO </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "row-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.trasplante_renal" id="trasplante_renal"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.trasplante_renal, treatmentvhc, i)">
+                                                              <option value="1"> 1 SI </option>
+                                                              <option value="2"> 2 NO </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "row-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.sobre_peso" id="sobre_peso"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.sobre_peso, treatmentvhc, i)">
+                                                              <option value="1"> 1 SI </option>
+                                                              <option value="2"> 2 NO </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "row-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.hepatitis_b" id="hepatitis_b"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.hepatitis_b, treatmentvhc, i)">
+                                                              <option value="1"> 1 SI </option>
+                                                              <option value="2"> 2 NO </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "row-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.trastorno_consumo_alcohol" id="trastorno_consumo_alcohol"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.trastorno_consumo_alcohol, treatmentvhc, i)">
+                                                              <option value="1"> 1 SI </option>
+                                                              <option value="2"> 2 NO </option>
+                                                          </select>
+                                                        </td>
+                                                        <!--COMORBILIDADES------------------------>
                                                         <td class = "rows-style">
                                                             <select
                                                                 [(ngModel)]="treatmentvhc.manif_extrahepaticas" id="manif_extrahepaticas"
@@ -818,6 +970,23 @@
                                                                 <option value="6"> 6  Linfoma </option>
                                                             </select>
                                                         </td>
+                                                        <!------------------------------->
+                                                        <td class = "rows-style">
+                                                          <input type="number" step="any" class="form-control"
+                                                          [(ngModel)]="treatmentvhc.fibroscan_sw_basal" id="fibroscan_sw_basal"
+                                                          (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.fibroscan_sw_basal, treatmentvhc, i)">
+                                                        </td>
+                                                        <td class = "rows-style">
+                                                          <input type="number" step="any" class="form-control"
+                                                          [(ngModel)]="treatmentvhc.apri_basal" id="apri_basal"
+                                                          (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.apri_basal, treatmentvhc, i)">
+                                                        </td>
+                                                        <td class = "rows-style">
+                                                          <input type="number" step="any" class="form-control"
+                                                          [(ngModel)]="treatmentvhc.fib4_basal" id="fib4_basal"
+                                                          (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.fib4_basal, treatmentvhc, i)">
+                                                        </td>
+                                                        <!------------------------------->
                                                         <td class = "rows-style">
                                                             <select
                                                                 [(ngModel)]="treatmentvhc.grado_fibrosis_hepatica" id="grado_fibrosis_hepatica"
@@ -849,6 +1018,61 @@
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
+                                                          <select
+                                                                [(ngModel)]="treatmentvhc.varices_esofagicas" id="varices_esofagicas"
+                                                                class="custom-select mr-sm-1 select-style"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.varices_esofagicas, treatmentvhc, i)">
+                                                                <option value="1"> 1  Si </option>
+                                                                <option value="2"> 2  No </option>
+                                                            </select>
+                                                        </td>
+                                                        <td class = "rows-style">
+                                                          <select
+                                                            [(ngModel)]="treatmentvhc.hemorragia_variceal" id="hemorragia_variceal"
+                                                            class="custom-select mr-sm-1 select-style"
+                                                            (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.hemorragia_variceal, treatmentvhc, i)">
+                                                            <option value="1"> 1  Si </option>
+                                                            <option value="2"> 2  No </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "rows-style">
+                                                          <select
+                                                            [(ngModel)]="treatmentvhc.ascitis" id="ascitis"
+                                                            class="custom-select mr-sm-1 select-style"
+                                                            (ngModelChange)="updateRecordVHC(treatmentvhc.ascitis, treatmentvhc.ascitis, treatmentvhc, i)">
+                                                            <option value="1"> 1  Si </option>
+                                                            <option value="2"> 2  No </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "rows-style">
+                                                          <select
+                                                            [(ngModel)]="treatmentvhc.encefalopatia" id="encefalopatia"
+                                                            class="custom-select mr-sm-1 select-style"
+                                                            (ngModelChange)="updateRecordVHC(treatmentvhc.ascitis, treatmentvhc.encefalopatia, treatmentvhc, i)">
+                                                            <option value="1"> 1  Si </option>
+                                                            <option value="2"> 2  No </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "rows-style">
+                                                          <select
+                                                            [(ngModel)]="treatmentvhc.sindrome_hepatorenal" id="sindrome_hepatorenal"
+                                                            class="custom-select mr-sm-1 select-style"
+                                                            (ngModelChange)="updateRecordVHC(treatmentvhc.ascitis, treatmentvhc.sindrome_hepatorenal, treatmentvhc, i)">
+                                                            <option value="1"> 1  Si </option>
+                                                            <option value="2"> 2  No </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "rows-style">
+                                                          <select
+                                                            [(ngModel)]="treatmentvhc.hepatocarcinoma" id="hepatocarcinoma"
+                                                            class="custom-select mr-sm-1 select-style"
+                                                            (ngModelChange)="updateRecordVHC(treatmentvhc.ascitis, treatmentvhc.hepatocarcinoma, treatmentvhc, i)">
+                                                            <option value="1"> 1  Si </option>
+                                                            <option value="2"> 2  No </option>
+                                                          </select>
+                                                        </td>
+                                                        <!--
+                                                        <td class = "rows-style">
                                                             <select
                                                                 [(ngModel)]="treatmentvhc.cirrosis_descompensada" id="cirrosis_descompensada"
                                                                 class="custom-select mr-sm-1 select-style"
@@ -859,7 +1083,8 @@
                                                                 <option value="4"> 4 Sindrome Hepatorenal </option>
                                                                 <option value="5"> 5 Hepatocarcinoma </option>
                                                             </select>
-                                                        </td>
+                                                        </td>-->
+
                                                         <td class = "rows-style">
                                                             <select
                                                                 [(ngModel)]="treatmentvhc.child_inicial" id="child_inicial"
@@ -875,6 +1100,7 @@
                                                             [(ngModel)]="treatmentvhc.meld_inicial" id="meld_inicial"
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.meld_inicial, treatmentvhc, i)">
                                                         </td>
+                                                        <!--
                                                         <td class = "rows-style">
                                                             <select
                                                                 [(ngModel)]="treatmentvhc.esofagicas" id="esofagicas"
@@ -885,6 +1111,7 @@
                                                                 <option value="3"> 3 SI Várices Pequeñas </option>
                                                             </select>
                                                         </td>
+
                                                         <td class = "rows-style">
                                                             <select
                                                                 [(ngModel)]="treatmentvhc.estado_inicial" id="estado_inicial"
@@ -893,22 +1120,7 @@
                                                                 <option value="1"> 1 Naïve (virgen al tratamiento)  </option>
                                                                 <option value="2"> 2 Experiencia previa  </option>
                                                             </select>
-                                                        </td>
-                                                        <td class = "rows-style">
-                                                            <select
-                                                                [(ngModel)]="treatmentvhc.tipo_tx_previo" id="tipo_tx_previo"
-                                                                class="custom-select mr-sm-1 select-style"
-                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.tipo_tx_previo, treatmentvhc, i)">
-                                                                <option value="1"> 1 PEG IFN  </option>
-                                                                <option value="2"> 2 PEG + RIBA  </option>
-                                                                <option value="3"> 3 ADD  </option>
-                                                            </select>
-                                                        </td>
-                                                        <td class = "rows-style">
-                                                            <input type="number" class="form-control"
-                                                            [(ngModel)]="treatmentvhc.year_inicio_tx_add" id="year_inicio_tx_add"
-                                                            (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.year_inicio_tx_add, treatmentvhc, i)">
-                                                        </td>
+                                                        </td>-->
                                                         <td class = "rows-style">
                                                           <input type="number" class="form-control"
                                                           [(ngModel)]="treatmentvhc.cv_inicial" id="cv_inicial"
@@ -927,25 +1139,37 @@
                                                          </select>
                                                         </td>
                                                         <td class = "rows-style">
+                                                          <select
+                                                              [(ngModel)]="treatmentvhc.tipo_tx_previo" id="tipo_tx_previo"
+                                                              class="custom-select mr-sm-1 select-style"
+                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.tipo_tx_previo, treatmentvhc, i)">
+                                                              <option value="1"> 1 PEG IFN  </option>
+                                                              <option value="2"> 2 PEG + RIBA  </option>
+                                                              <option value="3"> 3 ADD  </option>
+                                                              <option value="4"> 4 NAIVE  </option>
+                                                          </select>
+                                                        </td>
+                                                        <td class = "rows-style">
+                                                          <input type="number" class="form-control"
+                                                          [(ngModel)]="treatmentvhc.year_inicio_tx_add" id="year_inicio_tx_add"
+                                                          (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.year_inicio_tx_add, treatmentvhc, i)">
+                                                        </td>
+                                                        <td class = "rows-style">
                                                             <select
                                                                 [(ngModel)]="treatmentvhc.esquema_tratamiento" id="esquema_tratamiento"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.esquema_tratamiento, treatmentvhc, i)">
                                                                 <option value="1"> 1 Daclatasavir + Sofosbuvir  </option>
                                                                 <option value="2"> 2 Daclatasavir + Sofosbuvir+ Rivabirina  </option>
-                                                                <option value="3"> 3 Viekira  </option>
-                                                                <option value="4"> 4 Viekira + Rivabirina  </option>
+                                                                <option value="3"> 3 Jarvoni + Rivabirina  </option>
+                                                                <option value="4"> 4 Zepatier + Rivabirina  </option>
                                                                 <option value="5"> 5 Jarvoni  </option>
                                                                 <option value="6"> 6 Jarvoni + Rivabirina  </option>
-                                                                <option value="7"> 7 Zepatier  </option>
-                                                                <option value="8"> 8 Zepatier + Rivabirina  </option>
-                                                                <option value="9"> 9 Jarvoni + Rivabirina  </option>
-                                                                <option value="10"> 10 Epclusa  </option>
-                                                                <option value="11"> 11 Epclusa + Rivabirina  </option>
-                                                                <option value="12"> 12 Zepatier  </option>
-                                                                <option value="13"> 13 Zepatier + Rivabirina  </option>
-                                                                <option value="14"> 14 Mavyret  </option>
-                                                                <option value="15"> 15 Mavyret + Rivabirina  </option>
+                                                                <option value="7"> 7 Epclusa  </option>
+                                                                <option value="8"> 8 Epclusa + Rivabirina  </option>
+                                                                <option value="9"> 9 Zepatier  </option>
+                                                                <option value="10"> 10 Zepatier + Rivabirina  </option>
+                                                                <option value="11"> 11 Mavyret  </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -968,6 +1192,7 @@
                                                                 <option value="2"> 2 NO  </option>
                                                             </select>
                                                         </td>
+                                                        <!--
                                                         <td class = "rows-style">
                                                             <input type="number" class="form-control"
                                                             [(ngModel)]="treatmentvhc.cv_rvs12" id="cv_rvs12"
@@ -977,17 +1202,23 @@
                                                             <input type="number" class="form-control"
                                                             [(ngModel)]="treatmentvhc.log_rvs12" id="log_rvs12"
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.log_rvs12, treatmentvhc, i)">
-                                                        </td>
+                                                        </td>-->
                                                         <td class = "rows-style">
                                                             <input type="number" class="form-control"
                                                             [(ngModel)]="treatmentvhc.funcion_renal" id="funcion_renal"
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.funcion_renal, treatmentvhc, i)">
                                                         </td>
                                                         <td class = "rows-style">
+                                                          <input type="number" class="form-control"
+                                                          [(ngModel)]="treatmentvhc.funcion_renal_post" id="funcion_renal_post"
+                                                          (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.funcion_renal_post, treatmentvhc, i)">
+                                                        </td>
+                                                        <td class = "rows-style">
                                                             <input type="number" class="form-control"
                                                             [(ngModel)]="treatmentvhc.hb_inicial" id="hb_inicial"
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.hb_inicial, treatmentvhc, i)">
                                                         </td>
+
                                                         <td class = "rows-style">
                                                             <input type="number" class="form-control"
                                                             [(ngModel)]="treatmentvhc.hb_final" id="hb_final"
@@ -1102,6 +1333,10 @@
                                                                 <option value="3"> 3  Trombocitopenia </option>
                                                                 <option value="4"> 4  Cefalea </option>
                                                                 <option value="5"> 5  Manifestaciones  Gastroentestinales </option>
+                                                                <option value="6"> 6  Astenia </option>
+                                                                <option value="7"> 7  Adinamia </option>
+                                                                <option value="8"> 8  Otros </option>
+                                                                <option value="9"> 9  Ninguna </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -1129,10 +1364,27 @@
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.meld_final, treatmentvhc, i)">
                                                         </td>
                                                         <td class = "rows-style">
+                                                          <input type="number" class="form-control"
+                                                          [(ngModel)]="treatmentvhc.apri_final" id="apri_final"
+                                                          (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.apri_final, treatmentvhc, i)">
+                                                        </td>
+                                                        <td class = "rows-style">
+                                                          <input type="number" class="form-control"
+                                                          [(ngModel)]="treatmentvhc.fib4_final" id="fib4_final"
+                                                          (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.fib4_final, treatmentvhc, i)">
+                                                        </td>
+                                                        <td class = "rows-style">
+                                                          <input type="number" class="form-control"
+                                                          [(ngModel)]="treatmentvhc.fibroscan_sw_final" id="fibroscan_sw_final"
+                                                          (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.fibroscan_sw_final, treatmentvhc, i)">
+                                                        </td>
+                                                        <!--
+                                                        <td class = "rows-style">
                                                             <input type="text" class="form-control"
                                                             [(ngModel)]="treatmentvhc.comentarios" id="comentarios"
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.comentarios, treatmentvhc, i)">
                                                         </td>
+                                                      -->
                                                         <!-------------------------------->
 
                                                         <td class = "rows-style">
@@ -1149,10 +1401,12 @@
                                                             <input type="date" class="form-control"	[(ngModel)]="treatmentvhc.creation_date" id="creation_date" disabled>
                                                         </td>
                                                         <td class = "rows-style">
-                                                            <input type="time" class="form-control"	[(ngModel)]="treatmentvhc.creation_time" id="creation_time" disabled>
+                                                            <input type="time" class="form-control"
+                                                            [(ngModel)]="treatmentvhc.creation_time" id="creation_time" disabled>
                                                         </td>
                                                         <td class = "rows-style">	<input type="bumber" class="form-control"
-                                                            [(ngModel)]="treatmentvhc.creation_username" id="creation_username" disabled>		</td>
+                                                            [(ngModel)]="treatmentvhc.creation_username"
+                                                            id="creation_username" disabled>		</td>
                                                             <!---////////////////////-->
                                                     </tr>
                                                 </tbody>

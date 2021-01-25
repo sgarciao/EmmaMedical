@@ -10,7 +10,7 @@ declare var $: any;
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss'], 
+  styleUrls: ['./sidebar.component.scss'],
   providers: [AuthService]
 })
 export class SidebarComponent implements OnInit {
@@ -25,14 +25,14 @@ export class SidebarComponent implements OnInit {
 
   public sidebarnavItems: any[];
   sidebarnavItemsTemp: any[];
-  
+
   constructor(
     private modalService: NgbModal,
     private router: Router,
     private route: ActivatedRoute,
     private service: AuthService
   ) {}
-  
+
   // this is for the open close
   addExpandClass(element: any) {
      if (element === this.showMenu) {
@@ -57,7 +57,8 @@ export class SidebarComponent implements OnInit {
   logout(e) {
     e.stopPropagation();
     e.preventDefault();
-    this.service.logout().subscribe();
+    let user_id = sessionStorage.getItem('user_id');
+    this.service.logout(user_id).subscribe();
     return false;
   }
   // End open close

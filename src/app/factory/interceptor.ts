@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core'; 
+import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
 import { Observable, throwError, BehaviorSubject} from 'rxjs';
@@ -18,7 +18,7 @@ export class BasicAuthInterceptor implements HttpInterceptor {
     constructor(private authService: AuthService,
         private router: Router) { }
 
-    
+
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       this.token = sessionStorage.getItem('access_token');
@@ -47,8 +47,9 @@ export class BasicAuthInterceptor implements HttpInterceptor {
                 ) {
                     //en caso de que falle el refresh token, cerramos la sesion
                     if (request.url.includes('refresh-token')) {
-                        console.log('fallo refreshToken,  logout');
-                        this.authService.logout().subscribe();
+                        //console.log('fallo refreshToken,  logout');
+                        let user_id = sessionStorage.getItem('user_id');
+                        this.authService.logout(user_id).subscribe();
                     }
                     return throwError(error);
                 }
@@ -84,14 +85,15 @@ export class BasicAuthInterceptor implements HttpInterceptor {
                         catchError((err: any) => {
                             console.log('Error al intentar hacer refresh Token', err);
                             this.refreshTokenInProgress = false;
-                            this.authService.logout().subscribe();
+                            let user_id = sessionStorage.getItem('user_id');
+                            this.authService.logout(user_id).subscribe();
                             return throwError(error);
                         })
                     )
                 }
             })
         );
-        
+
     }
     addAuthenticationToken(request) {
         const accessToken = sessionStorage.getItem('access_token');

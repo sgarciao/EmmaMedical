@@ -25,6 +25,8 @@
 }
 
 .row_new{
+  font-size: smaller;
+  font-family: Arial, Helvetica, sans-serif;
   background-color: cadetblue;
 }
 /*__________________________________________________________*/
@@ -81,7 +83,7 @@ td > select, input {
         min-width: 100px;
       }
 .description_long{
-  padding-right: 0px;
+        padding-right: 0px;
         margin-bottom: 1px;
         margin-top: 0px;
         margin-right: 0px;

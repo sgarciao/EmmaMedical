@@ -10,12 +10,20 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent {
   msg = '';
-  constructor(private authService: AuthService, private routes: Router) { }
+  staticAlertClosedLogin= true;
+  constructor(private authService: AuthService, private routes: Router) {
+    this.alertLogin = {
+      id: 1,
+      type: 'danger',
+      message: 'Se requiere seleccionar todos los campos..'
+    };
+   }
 
   loginform = true;
   recoverform = false;
   ennableInputs = false;
   ennableSpinner = true;
+  alertLogin:IAlert;
 
   showRecoverForm() {
     this.loginform = !this.loginform;
@@ -28,24 +36,51 @@ export class LoginComponent {
     this.ennableSpinner = false;
     if(uname.length > 0 && p.length > 0) {
           const output = this.authService.login(uname, p).subscribe( (res: any) => {
-            if (res.code  != '200') {
-
-              this.msg = 'Usuario o contraseña incorrecto';
+            if (res.code === undefined){
               this.ennableSpinner = true;
+              this.staticAlertClosedLogin = false;
+              this.alertLogin.type = 'danger';
+              this.alertLogin.message = 'Error de usuario o contraseña.';
+              this.resetLogin();
+
+              this.ennableInputs = false;
+            }
+            if (res.code  != '200') {
+              this.ennableSpinner = true;
+              this.staticAlertClosedLogin = false;
+              this.alertLogin.type = 'danger';
+              this.alertLogin.message = 'Error de usuario o contraseña.';
+              this.resetLogin();
+
               this.ennableInputs = false;
             }
           },
           (err: any) => {
-            this.msg = 'Usuario o contraseña incorrecto';
+            this.staticAlertClosedLogin = false;
+            this.alertLogin.type = 'danger';
+            this.alertLogin.message = 'Usuario o contraseña incorrecto.';
             this.ennableSpinner = true;
             this.ennableInputs = false;
-            console.error(err);
+            this.resetLogin();
           }
         );
     } else {
-      this.msg = 'Se requiere usuario y contraseña';
+      this.staticAlertClosedLogin = false;
+      this.alertLogin.type = 'danger';
+      this.alertLogin.message = 'Se requiere usuario y contraseña.';
+      this.resetLogin();
       this.ennableSpinner = true;
       this.ennableInputs = false;
     }
   }
+  resetLogin(){
+    setTimeout(() => {this.staticAlertClosedLogin = true}, 1500);
+  }
+}
+
+
+export interface IAlert {
+  id: number;
+  type: string;
+  message: string;
 }
