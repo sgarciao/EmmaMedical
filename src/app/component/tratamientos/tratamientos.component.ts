@@ -331,7 +331,7 @@ comorbilidadesU = [];
 
       var csv = this.convertToCSV(jsonObject);
 
-      var exportedFilenmae = fileTitle + '.csv' || 'export.csv';
+      var exportedFilenmae = fileTitle + '.xlsx' || 'export.xlsx';
 
       var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       if (navigator.msSaveBlob) { // IE 10+
@@ -369,6 +369,7 @@ comorbilidadesU = [];
 }
 
   exportExcel(){
+    console.log("Exportar.....");
     this.createHeader();
     this.exportCSVFile(this.NAHSRecordHeader, this.NAHSRecordExcel, "Nash Treatment");
   }
