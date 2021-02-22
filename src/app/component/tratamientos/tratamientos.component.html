@@ -645,6 +645,7 @@
                                                 <thead class ="table-titles" >
                                                     <tr>
                                                       <th scope="col">ESTATUS</th>
+                                                      <th scope="col">Record ID</th>
                                                       <th scope="col"># REGISTRO / EXPEDIENTE</th>
                                                       <th scope="col">INICIALES</th>
                                                       <th scope="col">FECHA NACIMIENTO</th>
@@ -736,6 +737,10 @@
                                                             class="tools {{treatmentvhc.active_green_sem}}" title="Ok..."/>
                                                             <img src="https://img.icons8.com/emoji/48/000000/red-circle-emoji.png"
                                                             class="tools {{treatmentvhc.active_red_sem}}" title="Campos vacíos..."/>
+                                                        </td>
+                                                        <td class = "rows-style">
+                                                          <input type="number" class="form-control"
+                                                          [(ngModel)]="treatmentvhc.research_vhc_id" id="research_vhc_id" disabled>
                                                         </td>
                                                         <td class = "rows-style">
                                                           <input type="text" class="form-control"
