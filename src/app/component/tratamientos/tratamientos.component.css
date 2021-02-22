@@ -87,7 +87,14 @@ td > select, input {
         margin-bottom: 1px;
         margin-top: 0px;
         margin-right: 0px;
-        min-width: 200px;
+        min-width: 230px;
+}
+.description_long_hospital{
+  padding-right: 0px;
+  margin-bottom: 1px;
+  margin-top: 0px;
+  margin-right: 0px;
+  min-width: 250px;
 }
 /*td{
   white-space: nowrap;

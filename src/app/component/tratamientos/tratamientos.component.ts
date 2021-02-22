@@ -438,6 +438,7 @@ comorbilidadesU = [];
     this.end_date = this.strDate;
     nashData.date_begin = this.strDate;
     nashData.date_end = this.strDate;
+
     if (this.comboHospital.hospital_id == 0){
       this.minimizeScreen();
       this.staticAlertClosed2 = false;
@@ -989,20 +990,15 @@ comorbilidadesU = [];
           console.log(this.NAHSRecordCreate);
     }
   }
-
+  selected_hospital=0;
   getHospitalsListApi(entity_id){
     console.log("Get hospitals... ");
     this.hospitalsService.getHospitalsList(this.role_id, entity_id).subscribe((res_data:any)=>{
       if (res_data.code == 200){
-        let hosp = res_data.data.map((r)=>{
-          const dato = {} as hospitalsModel;
-          dato.hospital_id = r.hospital_id;
-          dato.hospital_name = r.hospital_name;
-          return dato;
-        });
+
 
         this.optionsHospitalsSelected = res_data.data;
-        this.optionsHospitals = hosp;
+        this.optionsHospitals = this.optionsHospitalsSelected;
 
        if (res_data.data.length > 1 ){
         const dato = {} as hospitalsModel;
@@ -1012,12 +1008,24 @@ comorbilidadesU = [];
         this.comboHospital = dato;
        }else{
 //<<<<<<< HEAD
-        this.comboHospital = hosp;
-//=======
+        let hosp = res_data.data;/*.map((r)=>{
+          const dato = {} as hospitalsModel;
+          dato.hospital_id = r.hospital_id;
+          dato.hospital_name = r.hospital_name;
+          return dato;
+        });*/
+        console.log(hosp);
+        this.optionsHospitals = hosp;
+        console.log(this.optionsHospitals);
+       // this.selected_hospital = this.optionsHospitals[0].hospital_id;
+       this.comboHospital = this.optionsHospitals[0];
+
+        this.changeHospital();
+        //=======
   //      this.comboHospital = hosp[0];
 //>>>>>>> 3c823d24a38d39f4cdadc423b6bff1f7b45b6360
        }
-       this.changeHospital();
+
       }else{
 
       }
@@ -1096,12 +1104,14 @@ comorbilidadesU = [];
   }
 
   /////////////////////////////////////////////////
+  date_:any;
   ngOnInit() {
     this.getStates();
     this.strDate = this.pipe.transform(this.today, 'yyyy-MM-dd');
-    this.start_date = this.strDate;
+    this.date_ = new Date(this.today.getFullYear(), -12 , 0);
+    this.start_date = this.pipe.transform(this.date_, 'yyyy-MM-dd');
     this.end_date = this.strDate;
-    console.log("date " + this.strDate);
+    //console.log("date " + this.strDate);
     ///////
     this.role_id = Number(localStorage.getItem('role_id'));
     this.create_flag = false;

@@ -64,7 +64,8 @@
                                                     [(ngModel)] = "comboHospital"
                                                     id="hospital" class="custom-select mr-sm-1 select-style"
                                                     (ngModelChange)="changeHospital()">
-                                                        <option [ngValue]="o3" *ngFor="let o3 of optionsHospitals" >{{o3.hospital_name}}</option>
+                                                        <option
+                                                        [ngValue]="o3" *ngFor="let o3 of optionsHospitals" >{{o3.hospital_name}}</option>
                                                     </select>
 
                                                 </div>
@@ -769,7 +770,7 @@
                                                                 <option value="3"> 3  Otro </option>
                                                             </select>
                                                         </td>
-                                                        <td class = "rows-style">
+                                                        <td class = "rows-style description_long">
                                                             <select
                                                             [(ngModel)]="treatmentvhc.state"
                                                                     (change) ="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.state, treatmentvhc, i)"
@@ -784,7 +785,7 @@
                                                             [(ngModel)]="treatmentvhc.year" id="year"
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.year, treatmentvhc, i)">
                                                         </td>
-                                                        <td class = "rows-style">
+                                                        <td class = "rows-style description_long">
                                                             <select
                                                                 [(ngModel)]="treatmentvhc.transmission_mechanism" id="transmission_mechanism"
                                                                 class="custom-select mr-sm-1 select-style"
@@ -1154,7 +1155,7 @@
                                                           [(ngModel)]="treatmentvhc.year_inicio_tx_add" id="year_inicio_tx_add"
                                                           (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.year_inicio_tx_add, treatmentvhc, i)">
                                                         </td>
-                                                        <td class = "rows-style">
+                                                        <td class = "rows-style description_long">
                                                             <select
                                                                 [(ngModel)]="treatmentvhc.esquema_tratamiento" id="esquema_tratamiento"
                                                                 class="custom-select mr-sm-1 select-style"
@@ -1324,7 +1325,7 @@
                                                                 <option value="2"> 2  No </option>
                                                             </select>
                                                         </td>
-                                                        <td class = "rows-style">
+                                                        <td class = "rows-style description_long">
                                                             <select
                                                                 [(ngModel)]="treatmentvhc.descripcion_adverso"
                                                                 id="descripcion_adverso" class="custom-select mr-sm-1 select-style"
@@ -1340,7 +1341,7 @@
                                                                 <option value="9"> 9  Ninguna </option>
                                                             </select>
                                                         </td>
-                                                        <td class = "rows-style">
+                                                        <td class = "rows-style description_long">
                                                             <select
                                                                 [(ngModel)]="treatmentvhc.accion_tomada" id="accion_tomada"
                                                                 class="custom-select mr-sm-1 select-style"
@@ -1388,7 +1389,7 @@
                                                       -->
                                                         <!-------------------------------->
 
-                                                        <td class = "rows-style">
+                                                        <td class = "rows-style description_long_hospital">
                                                             <select
                                                                 [(ngModel)]="treatmentvhc.MD_hospital_id"
                                                                         (change) ="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.MD_hospital, treatmentvhc, i)"
@@ -1405,7 +1406,7 @@
                                                             <input type="time" class="form-control"
                                                             [(ngModel)]="treatmentvhc.creation_time" id="creation_time" disabled>
                                                         </td>
-                                                        <td class = "rows-style">	<input type="bumber" class="form-control"
+                                                        <td class = "rows-style description_long">	<input type="bumber" class="form-control"
                                                             [(ngModel)]="treatmentvhc.creation_username"
                                                             id="creation_username" disabled>		</td>
                                                             <!---////////////////////-->
