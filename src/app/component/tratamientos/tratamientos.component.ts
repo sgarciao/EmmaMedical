@@ -1543,7 +1543,7 @@ comorbilidadesU = [];
       });
     }
     if (this.update_flag){
-      console.log("Actualizando...");
+
       this.data_vhc_.data = this.VHCRecordUpdate.filter(function(e1){
         return e1 != null;
       });
@@ -1626,7 +1626,7 @@ comorbilidadesU = [];
 
   updateRecordVHC(id, column_name, treatment, i){
     if (id != null){
-      console.log("Updating......" + id);
+
       this.update_flag = true;
       const vhcData = {} as vhcTreatmentModel;
 
@@ -1870,7 +1870,45 @@ comorbilidadesU = [];
       this.VHCRecordCreate[i] = this.VHCRecord[i];
     }
   }
+  status_changed = 0;
+  updateStatusVHC(id, status, treatment, i){
+    console.log("Updating......" + id);
+    console.log("------>> Status " + treatment.checkbox_value);
 
+    this.update_flag = true;
+    const vhcData = {} as vhcTreatmentModel;
+
+    vhcData.MD_hospital_id = treatment.MD_hospital_id;
+    vhcData.MD_entity_id = this.entity_id;
+    vhcData.research_vhc_id = id;
+
+    vhcData.month_execution = treatment.month_execution;
+    if (!treatment.checkbox_value){
+      treatment.checkbox_value = false;
+      vhcData.checkbox_value = false;//enabled
+      vhcData.status = 0;
+      treatment.status = vhcData.status;
+      vhcData.row_color = "row_disabled";// Nuevos" treatment.row_color;
+      treatment.row_color = vhcData.row_color;
+      treatment.disabled_row = true;
+      vhcData.active_gray_sem = "row_sem_gray_visible";
+    }else{
+      console.log("------>>  " + treatment.checkbox_value);
+      treatment.checkbox_value = true;
+      vhcData.checkbox_value = true;//disabled
+      vhcData.status = 1;
+      treatment.status = vhcData.status;
+      vhcData.row_color = "row_enabled";// Nuevos" treatment.row_color;"
+      treatment.row_color = vhcData.row_color;
+      treatment.disabled_row = false;
+      vhcData.active_gray_sem = "row_sem_gray_hidden";
+    }
+    // console.log("Color: " + vhcData.row_color);
+    this.status_changed = 1;
+    console.log("Check sttus  "+ vhcData.checkbox_value);
+    this.VHCRecordUpdate[id] = vhcData;
+    this.guardarRegistroVHC();
+  }
   concatenateComorbilidades(lista){
     console.log(lista.split(","));
     let d_ = [];
@@ -2359,8 +2397,23 @@ comorbilidadesU = [];
             vhcData.modification_date = r.modification_date;
             vhcData.modification_time = r.modification_time;
             vhcData.status = r.status;
+            if (vhcData.status == 1){
+              console.log(">> Status: " + vhcData.status);
+              vhcData.checkbox_value = true;//enabled
+              vhcData.disabled_row = false;
+              vhcData.row_color = "row_get";// Nuevos" treatment.row_color;"
+              vhcData.active_gray_sem = "row_sem_gray_hidden";
+            }else{
+              console.log("Status: " + vhcData.status);
+              vhcData.checkbox_value = false;//disabled
+              vhcData.disabled_row = true;
+              vhcData.row_color = "row_disabled";// Nuevos" treatment.row_color;"
+              vhcData.active_gray_sem = "row_sem_gray_visible";
+              vhcData.active_red_sem = "row_sem_red";
+              vhcData.active_green_sem = "row_sem_green_hidden";
+            }
 
-            vhcData.row_color = "row_get";// Nuevos" treatment.row_color;"
+
             this.VHCRecordEstilo.push(vhcData);
             this.VHCRecord = this.VHCRecordEstilo;
             this.VHCRecordEstiloExcel.push(this.getExcelDataVHC(vhcData));

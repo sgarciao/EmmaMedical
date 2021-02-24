@@ -119,6 +119,10 @@ export class vhcTreatmentModel{
 	column_color: 			string;
 	active_red_sem: 		string;
 	active_green_sem: 		string;
+  active_gray_sem: string;
+  checkbox_status: boolean;
+  checkbox_value:boolean;
+  disabled_row: boolean;
 }
 
 

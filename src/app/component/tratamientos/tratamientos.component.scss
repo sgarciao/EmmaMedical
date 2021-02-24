@@ -16,6 +16,14 @@
   cursor: pointer;
 }
 ////////////////////////////////
+:host /deep/ .row_enabled{
+  background-color: white;
+}
+:host /deep/ .row_disabled{
+  background-color: #D8D6D6;
+}
+
+
 :host /deep/ .row_update{
     background-color: cadetblue;
   }
@@ -42,3 +50,11 @@
   :host /deep/ .row_sem_green_visible{
     visibility: visible;
   }
+
+  :host /deep/ .row_sem_gray_hidden{
+    visibility: hidden;
+  }
+  :host /deep/ .row_sem_gray_visible{
+    visibility: visible;
+  }
+
