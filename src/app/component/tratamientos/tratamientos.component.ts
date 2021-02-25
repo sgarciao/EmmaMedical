@@ -1874,11 +1874,19 @@ comorbilidadesU = [];
   }
   status_filter = 1;
   statusFilter(){
-
+    if (this.status_filter == 1){
+      this.status_id=1;
+    }
+    if (this.status_filter == 2){
+      this.status_id=0;
+    }
+    if (this.status_filter == 3){
+      this.status_id = 3;
+    }
+    this.getVHCData();
   }
+
   updateStatusVHC(id, status, treatment, i){
-    console.log("Updating......" + id);
-    console.log("------>> Status " + treatment.checkbox_value);
 
     this.update_flag = true;
     const vhcData = {} as vhcTreatmentModel;
@@ -1898,7 +1906,6 @@ comorbilidadesU = [];
       treatment.disabled_row = true;
       vhcData.active_gray_sem = "row_sem_gray_visible";
     }else{
-      console.log("------>>  " + treatment.checkbox_value);
       treatment.checkbox_value = true;
       vhcData.checkbox_value = true;//disabled
       vhcData.status = 1;
@@ -1909,7 +1916,6 @@ comorbilidadesU = [];
       vhcData.active_gray_sem = "row_sem_gray_hidden";
     }
     // console.log("Color: " + vhcData.row_color);
-    console.log("Check sttus  "+ vhcData.checkbox_value);
     this.VHCRecordUpdate[id] = vhcData;
     this.guardarRegistroVHC();
   }
@@ -1919,6 +1925,7 @@ comorbilidadesU = [];
     let d = lista.split(",");
     return d_;
   }
+
   getVHCData(){
     console.log("Consulta por hospitales: " + this.comboHospital.hospital_id);
     this.progres_spinner_refresh_vhc_treatment = false;
