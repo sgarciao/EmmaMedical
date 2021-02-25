@@ -294,3 +294,7 @@ td > select, input {
 .content_back{
   text-align: right;
 }
+.select-style-status{
+  margin-top: 3px;
+  width: 100px;
+}

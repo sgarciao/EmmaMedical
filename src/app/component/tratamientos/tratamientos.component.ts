@@ -1700,6 +1700,7 @@ comorbilidadesU = [];
       //vhcData.cv_rvs12 = treatment.cv_rvs12;//CV RVS12
       //vhcData.log_rvs12 = treatment.log_rvs12;//Log RVS 12
       vhcData.funcion_renal = treatment.funcion_renal;//Funcion renal (filtracion glomerular) pretratameinto
+      vhcData.funcion_renal_post = treatment.funcion_renal_post;
       vhcData.hb_inicial = treatment.hb_inicial;//HB Inicial
       vhcData.hb_final = treatment.hb_final;//Hb final
       vhcData.leucocitos_inicial = treatment.leucocitos_inicial;//leucocios inicial
@@ -1824,6 +1825,7 @@ comorbilidadesU = [];
       //vhcData.cv_rvs12 = treatment.cv_rvs12;//CV RVS12
       //vhcData.log_rvs12 = treatment.log_rvs12;//Log RVS 12
       vhcData.funcion_renal = treatment.funcion_renal;//Funcion renal (filtracion glomerular) pretratameinto
+      vhcData.funcion_renal_post = treatment.funcion_renal_post;
       vhcData.hb_inicial = treatment.hb_inicial;//HB Inicial
       vhcData.hb_final = treatment.hb_final;//Hb final
       vhcData.leucocitos_inicial = treatment.leucocitos_inicial;//leucocios inicial
@@ -1870,7 +1872,10 @@ comorbilidadesU = [];
       this.VHCRecordCreate[i] = this.VHCRecord[i];
     }
   }
-  status_changed = 0;
+  status_filter = 1;
+  statusFilter(){
+
+  }
   updateStatusVHC(id, status, treatment, i){
     console.log("Updating......" + id);
     console.log("------>> Status " + treatment.checkbox_value);

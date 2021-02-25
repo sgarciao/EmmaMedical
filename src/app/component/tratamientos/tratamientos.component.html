@@ -604,6 +604,17 @@
                                                          class="tools"/>
                                                         <figcaption class="tool-text">Exportar</figcaption>
                                                     </figure>
+                                                    <figure class="content-tools">
+                                                      <select
+                                                                [(ngModel)]="status_filter" id="grado_fibrosis_hepatica"
+                                                                class="custom-select mr-sm-1 select-style-status"
+                                                                (ngModelChange)="statusFilter()">
+                                                                <option value="1"> 1  Activos</option>
+                                                                <option value="2"> 2  Inactivos </option>
+                                                                <option value="3"> 3  Todos </option>
+                                                      </select>
+                                                      <figcaption class="tool-text">Status</figcaption>
+                                                  </figure>
                                                 </div>
                                                 <div class="col-md-6 content-general-tools">
 
@@ -645,7 +656,7 @@
                                                 <thead class ="table-titles" >
                                                     <tr>
                                                       <th scope="col">ESTATUS</th>
-                                                      <th scope="col">Record ID</th>
+                                                      <th scope="col">REGISTRO ID</th>
                                                       <th scope="col"># REGISTRO / EXPEDIENTE</th>
                                                       <th scope="col">INICIALES</th>
                                                       <th scope="col">FECHA NACIMIENTO</th>
@@ -1224,13 +1235,13 @@
                                                           (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.funcion_renal_post, treatmentvhc, i)">
                                                         </td>
                                                         <td class = "rows-style">
-                                                            <input type="number" class="form-control" [disabled]="treatmentvhc.disabled_row"
+                                                            <input type="number" step="any" class="form-control" [disabled]="treatmentvhc.disabled_row"
                                                             [(ngModel)]="treatmentvhc.hb_inicial" id="hb_inicial"
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.hb_inicial, treatmentvhc, i)">
                                                         </td>
 
                                                         <td class = "rows-style">
-                                                            <input type="number" class="form-control" [disabled]="treatmentvhc.disabled_row"
+                                                            <input type="number" step="any" class="form-control" [disabled]="treatmentvhc.disabled_row"
                                                             [(ngModel)]="treatmentvhc.hb_final" id="hb_final"
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.hb_final, treatmentvhc, i)">
                                                         </td>
@@ -1265,12 +1276,12 @@
                                                           (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.glucosa_final, treatmentvhc, i)">
                                                       </td>
                                                         <td class = "rows-style">
-                                                            <input type="number" class="form-control" [disabled]="treatmentvhc.disabled_row"
+                                                            <input type="number" step="any" class="form-control" [disabled]="treatmentvhc.disabled_row"
                                                             [(ngModel)]="treatmentvhc.creatinina_inicial" id="creatinina_inicial"
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.creatinina_inicial, treatmentvhc, i)">
                                                         </td>
                                                         <td class = "rows-style">
-                                                            <input type="number" class="form-control" [disabled]="treatmentvhc.disabled_row"
+                                                            <input type="number" step="any" class="form-control" [disabled]="treatmentvhc.disabled_row"
                                                             [(ngModel)]="treatmentvhc.creatinina_final" id="creatinina_final"
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.creatinina_final, treatmentvhc, i)">
                                                         </td>
