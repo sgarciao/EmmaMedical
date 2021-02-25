@@ -1909,7 +1909,6 @@ comorbilidadesU = [];
       vhcData.active_gray_sem = "row_sem_gray_hidden";
     }
     // console.log("Color: " + vhcData.row_color);
-    this.status_changed = 1;
     console.log("Check sttus  "+ vhcData.checkbox_value);
     this.VHCRecordUpdate[id] = vhcData;
     this.guardarRegistroVHC();
