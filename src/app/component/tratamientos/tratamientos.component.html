@@ -613,7 +613,7 @@
                                                                 <option value="2"> Inactivos </option>
                                                                 <option value="3"> Todos </option>
                                                       </select>
-                                                      <figcaption class="tool-text">Status</figcaption>
+                                                      <figcaption class="tool-text">Estatus</figcaption>
                                                   </figure>
                                                 </div>
                                                 <div class="col-md-6 content-general-tools">
@@ -738,7 +738,7 @@
                                                       <th scope="col">FECHA REGISTRO</th>
                                                       <th scope="col">HORA REGISTRO</th>
                                                       <th scope="col">USUARIO</th>
-                                                      <th scope="col">CONTROLES</th>
+                                                      <th scope="col">ESTATUS</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -1432,7 +1432,7 @@
                                                           </td>
 
                                                           <td class = "rows-style ">
-                                                            <label class = "switch">
+                                                            <label class = "switch" [hidden]="treatmentvhc.disable_checkbox">
                                                               <input class = "switch-input" type = "checkbox"
                                                               [(ngModel)]="treatmentvhc.checkbox_value"
 

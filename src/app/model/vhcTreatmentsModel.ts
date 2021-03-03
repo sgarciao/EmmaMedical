@@ -122,6 +122,7 @@ export class vhcTreatmentModel{
   active_gray_sem: string;
   checkbox_status: boolean;
   checkbox_value:boolean;
+  disable_checkbox:boolean;
   disabled_row: boolean;
 }
 

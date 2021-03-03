@@ -1615,7 +1615,8 @@ comorbilidadesU = [];
       vhcData.status = 1;
       vhcData.active_red_sem = "row_sem_red_visible";
       vhcData.active_green_sem = "row_sem_green_hidden";
-
+      vhcData.checkbox_value = true;
+      vhcData.disable_checkbox = true;
       this.VHCRecord.push(vhcData);
       this.progres_spinner_refresh_vhc_treatment = true;
       this.hidden_update_btn  = false;
@@ -1768,6 +1769,7 @@ comorbilidadesU = [];
       }else{
         vhcData.birthdate = treatment.birthdate;
       }
+
       vhcData.age = treatment.age; //Edad
       vhcData.gender = treatment.gender;//Género
       vhcData.state = treatment.state;//estado de la republica
@@ -2414,10 +2416,12 @@ comorbilidadesU = [];
               vhcData.disabled_row = false;
               vhcData.row_color = "row_get";// Nuevos" treatment.row_color;"
               vhcData.active_gray_sem = "row_sem_gray_hidden";
+              vhcData.checkbox_status = true;
             }else{
               console.log("Status: " + vhcData.status);
               vhcData.checkbox_value = false;//disabled
               vhcData.disabled_row = true;
+              vhcData.checkbox_status = true;
               vhcData.row_color = "row_disabled";// Nuevos" treatment.row_color;"
               vhcData.active_gray_sem = "row_sem_gray_visible";
               vhcData.active_red_sem = "row_sem_red";
