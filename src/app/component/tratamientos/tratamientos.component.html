@@ -1179,8 +1179,8 @@
                                                                 [(ngModel)]="treatmentvhc.esquema_tratamiento" id="esquema_tratamiento" [disabled]="treatmentvhc.disabled_row"
                                                                 class="custom-select mr-sm-1 select-style"
                                                                 (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.esquema_tratamiento, treatmentvhc, i)">
-                                                                <option value="1"> 1 Daclatasavir + Sofosbuvir  </option>
-                                                                <option value="2"> 2 Daclatasavir + Sofosbuvir+ Rivabirina  </option>
+                                                                <option value="1"> 1 Daclatasvir + Sofosbuvir  </option>
+                                                                <option value="2"> 2 Daclatasvir + Sofosbuvir+ Rivabirina  </option>
                                                                 <option value="3"> 3 Jarvoni + Rivabirina  </option>
                                                                 <option value="4"> 4 Zepatier + Rivabirina  </option>
                                                                 <option value="5"> 5 Jarvoni  </option>
@@ -1191,6 +1191,8 @@
                                                                 <option value="10"> 10 Zepatier + Rivabirina  </option>
                                                                 <option value="11"> 11 Mavyret  </option>
                                                                 <option value="12"> 12 Viekira  </option>
+                                                                <option value="13"> 13 Daclatasvir + INF PEGA + RIBA  </option>
+                                                                <option value="14"> 14 Daclatasvir + Ledipasvir  </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
@@ -1326,12 +1328,12 @@
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.inr_final, treatmentvhc, i)">
                                                         </td>
                                                         <td class = "rows-style">
-                                                            <input type="number" class="form-control" [disabled]="treatmentvhc.disabled_row"
+                                                            <input type="number" step="any" class="form-control" [disabled]="treatmentvhc.disabled_row"
                                                             [(ngModel)]="treatmentvhc.bt_inicial" id="bt_inicial"
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.bt_inicial, treatmentvhc, i)">
                                                         </td>
                                                         <td class = "rows-style">
-                                                            <input type="number" class="form-control" [disabled]="treatmentvhc.disabled_row"
+                                                            <input type="number" step="any" class="form-control" [disabled]="treatmentvhc.disabled_row"
                                                             [(ngModel)]="treatmentvhc.bt_final" id="bt_final"
                                                             (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.bt_final, treatmentvhc, i)">
                                                         </td>
