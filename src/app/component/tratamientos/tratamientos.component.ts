@@ -1488,6 +1488,7 @@ comorbilidadesU = [];
     return vhcDataExcel;
   }
   guardarRegistroVHC(){
+   // this.minimizeScreen();
     this.progres_spinner_refresh_vhc_treatment = false;
     this.hidden_update_btn  = true;
 
@@ -1590,10 +1591,13 @@ comorbilidadesU = [];
     this.hidden_update_btn  = true;
     //this.indiceNash = (Number(this.indiceNash) + 1);
     const vhcData = {} as vhcTreatmentModel;
+    this.date_ = new Date(this.today.getFullYear(), -12 , 0);
+    //this.start_date = this.pipe.transform(this.date_, 'yyyy-MM-dd');
+    //this.strDate = this.pipe.transform(this.date_, 'yyyy-MM-dd');//this.pipe.transform(this.today, 'yyyy-MM-dd');
 
-    this.strDate = this.pipe.transform(this.today, 'yyyy-MM-dd');
-    this.start_date = this.strDate;
-    this.end_date = this.strDate;
+    this.start_date;// = this.strDate;
+    this.end_date;// = this.strDate;
+
     if (this.comboHospital.hospital_id == 0){
       this.minimizeScreen();
       this.staticAlertClosed2 = false;
@@ -1929,7 +1933,9 @@ comorbilidadesU = [];
   }
 
   getVHCData(){
-    console.log("Consulta por hospitales: " + this.comboHospital.hospital_id);
+
+    console.log("Consulta por hospitales: " + this.comboHospital.hospital_id + " -- " + this.start_date);
+
     this.progres_spinner_refresh_vhc_treatment = false;
     this.hidden_update_btn  = true;
 

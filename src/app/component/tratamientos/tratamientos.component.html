@@ -615,8 +615,16 @@
                                                       </select>
                                                       <figcaption class="tool-text">Estatus</figcaption>
                                                   </figure>
+
                                                 </div>
-                                                <div class="col-md-6 content-general-tools">
+                                                <div class="col-md-3 content-general-tools">
+                                                  <ngb-alert *ngIf="!staticAlertClosed2"
+                                                    (close)="staticAlertClosed2 = true"
+                                                    class="alert_message"
+                                                    [type]="alert_2.type" >{{ alert_2.message }}
+                                                  </ngb-alert>
+                                                </div>
+                                                <div class="col-md-3 content-general-tools">
 
                                                     <figure class="content-tools">
                                                         <div class="spinner-border text-success icon_tools" role="status"
