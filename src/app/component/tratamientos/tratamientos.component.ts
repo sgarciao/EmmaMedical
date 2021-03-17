@@ -1488,6 +1488,7 @@ comorbilidadesU = [];
     return vhcDataExcel;
   }
   guardarRegistroVHC(){
+
    // this.minimizeScreen();
     this.progres_spinner_refresh_vhc_treatment = false;
     this.hidden_update_btn  = true;
@@ -1630,6 +1631,10 @@ comorbilidadesU = [];
   }
 
   updateRecordVHC(id, column_name, treatment, i){
+
+    let element = document.getElementById("gender");
+
+    
     if (id != null){
 
       this.update_flag = true;

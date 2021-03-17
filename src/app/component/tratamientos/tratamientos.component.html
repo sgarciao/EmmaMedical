@@ -254,7 +254,7 @@
                                                                     <td class = "rows-style">
                                                                         <select
                                                                             [(ngModel)] = "treatment.gender"
-                                                                            id="hospital" class="custom-select mr-sm-1 select-style"
+                                                                            id="gender" class="custom-select mr-sm-1 select-style"
                                                                             (ngModelChange)="updateRecordNASH(treatment.research_nash_id, treatment.short_name, treatment, i)">
                                                                             <option value="1"> {{treatment.gender}}  Hombre </option>
                                                                             <option value="2"> {{treatment.gender}}  Mujer </option>
@@ -1201,6 +1201,9 @@
                                                                 <option value="12"> 12 Viekira  </option>
                                                                 <option value="13"> 13 Daclatasvir + INF PEGA + RIBA  </option>
                                                                 <option value="14"> 14 Daclatasvir + Ledipasvir  </option>
+                                                                <option value="15"> 15 Sofosbuvir + Rivabarina  </option>
+                                                                <option value="16"> 16 Sofosbuvir / Velpatasvir / Voxilaprevir  </option>
+                                                                <option value="17"> 17 Boceprevir  </option>
                                                             </select>
                                                         </td>
                                                         <td class = "rows-style">
