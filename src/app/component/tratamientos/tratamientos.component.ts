@@ -1588,8 +1588,6 @@ comorbilidadesU = [];
     }
   }
   agregarNuevoRegistroVHC(event){
-
-
     this.progres_spinner_refresh_vhc_treatment = false;
     this.hidden_update_btn  = true;
     //this.indiceNash = (Number(this.indiceNash) + 1);
@@ -1630,6 +1628,7 @@ comorbilidadesU = [];
       this.save_disabled_vhc = true;
       this.save_enabled_vhc = false;
     }
+    this.scroll('body-table');
     this.scroll('body-table');
   }
 
@@ -2485,7 +2484,6 @@ comorbilidadesU = [];
   ///////////////////////////////////////____________________________________END VHC
 
   scroll(id) {
-    console.log(`scrolling to ${id}`);
     let el = document.getElementById(id);
     el.scrollIntoView({behavior: 'smooth', block: 'end', inline: 'nearest'});//({block: "end", behavior: "smooth"});
   }

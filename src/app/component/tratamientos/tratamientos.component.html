@@ -614,8 +614,25 @@
                                                                 <option value="3"> Todos </option>
                                                       </select>
                                                       <figcaption class="tool-text">Estatus</figcaption>
-                                                  </figure>
-
+                                                    </figure>
+                                                    <figure class="content-tools">
+                                                      <select
+                                                      [(ngModel)] = "comboHospital"
+                                                      id="hospital" class="custom-select mr-sm-1 select-style"
+                                                      (ngModelChange)="changeHospital()">
+                                                          <option
+                                                          [ngValue]="o3" *ngFor="let o3 of optionsHospitals" >{{o3.hospital_name}}</option>
+                                                      </select>
+                                                      <figcaption class="tool-text">Hospital</figcaption>
+                                                    </figure>
+                                                    <figure class="content-tools">
+                                                      <input type="date" [(ngModel)]="start_date" class="form-control" (change)="serchByHospitalIDAndDate()">
+                                                      <figcaption class="tool-text">Fecha inicio</figcaption>
+                                                    </figure>
+                                                    <figure class="content-tools">
+                                                        <input type="date" [(ngModel)]="end_date" class="form-control" (change)="serchByHospitalIDAndDate()">
+                                                        <figcaption class="tool-text">Fecha fin</figcaption>
+                                                    </figure>
                                                 </div>
                                                 <div class="col-md-3 content-general-tools">
                                                   <ngb-alert *ngIf="!staticAlertClosed2"
@@ -639,7 +656,7 @@
                                                         <figcaption class="tool-text">Actualizar</figcaption>
                                                     </figure>
 
-                                                    <figure class="content-tools" [hidden]="hidden_maximize">
+                                                    <!--<figure class="content-tools" [hidden]="hidden_maximize">
                                                         <img src="https://img.icons8.com/ios-filled/50/000000/full-screen.png"
                                                         title="Maximizar"
                                                         (click)="maximizeScreen()"
@@ -653,7 +670,7 @@
                                                         (click)="minimizeScreen()"
                                                          class="tools"/>
                                                         <figcaption class="tool-text">Minimizar</figcaption>
-                                                    </figure>
+                                                    </figure>-->
 
                                                 </div>
                                             </div>
