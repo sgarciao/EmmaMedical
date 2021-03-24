@@ -469,7 +469,7 @@ comorbilidadesU = [];
     }else{
       this.hospital_description = this.comboHospital.hospital_name;
     }
-
+    this.serchByHospitalIDAndDate();
   }
   getDataNASH(){
     this.progres_spinner_refresh_nash_treatment = false;
@@ -1063,6 +1063,7 @@ comorbilidadesU = [];
     }else if(localStorage.getItem('treatment_type') == '6'){
 
     }else if(localStorage.getItem('treatment_type') == '7'){
+      console.log("buscando vhc ");
       this.getVHCData();
     }else if(localStorage.getItem('treatment_type') == '8'){
 
@@ -1628,7 +1629,6 @@ comorbilidadesU = [];
       this.save_disabled_vhc = true;
       this.save_enabled_vhc = false;
     }
-    this.scroll('body-table');
     this.scroll('body-table');
   }
 
