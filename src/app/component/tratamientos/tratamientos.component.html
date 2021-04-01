@@ -1428,8 +1428,9 @@
                                                           (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.fib4_final, treatmentvhc, i)">
                                                         </td>
                                                         <td class = "rows-style">
+                                                          <!--<input type="checkbox" id="cbox1"  class="form-control check-b" value="first_checkbox">-->
                                                           <input type="number" step="any" class="form-control" [disabled]="treatmentvhc.disabled_row"
-                                                          [(ngModel)]="treatmentvhc.fibroscan_sw_final" id="fibroscan_sw_final"
+                                                          [(ngModel)]="treatmentvhc.fibroscan_sw_final" id = "fibroscan_sw_final"
                                                           (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.fibroscan_sw_final, treatmentvhc, i)">
                                                         </td>
                                                         <!--

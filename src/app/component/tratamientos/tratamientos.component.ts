@@ -2409,7 +2409,8 @@ comorbilidadesU = [];
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
-            vhcData.fibroscan_sw_final = r.fibroscan_sw_final;//Comentarios
+
+            vhcData.fibroscan_sw_final = r.fibroscan_sw_final == -101010101010? "": r.fibroscan_sw_final;//Comentarios
             if (r.fibroscan_sw_final =="" || r.fibroscan_sw_final==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
