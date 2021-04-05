@@ -1742,7 +1742,7 @@ comorbilidadesU = [];
 
       vhcData.apri_final = treatment.apri_final;
       vhcData.fib4_final = treatment.fib4_final;
-      vhcData.fibroscan_sw_final = treatment.fibroscan_sw_final == "" ? -101010101010.0:treatment.fibroscan_sw_basal;
+      vhcData.fibroscan_sw_final = treatment.fibroscan_sw_final == "" ? -101010101010.0:treatment.fibroscan_sw_final;
 
       //vhcData.comentarios = treatment.comentarios;//Comentarios
       vhcData.creation_userid = treatment.creation_userid;
