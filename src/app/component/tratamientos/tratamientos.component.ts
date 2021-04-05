@@ -1682,7 +1682,7 @@ comorbilidadesU = [];
       ///////////////////////////////COM
       vhcData.manif_extrahepaticas = treatment.manif_extrahepaticas;//manifesaciones extrahepaticas
 
-      vhcData.fibroscan_sw_basal = treatment.fibroscan_sw_basal;
+      vhcData.fibroscan_sw_basal = treatment.fibroscan_sw_basal == "" ? -101010101010.0: treatment.fibroscan_sw_basal;
       vhcData.apri_basal =  treatment.apri_basal;
       vhcData.fib4_basal = treatment.fib4_basal;
       vhcData.grado_fibrosis_hepatica =  treatment.grado_fibrosis_hepatica;//grado de fibrosis hepatica
@@ -1742,7 +1742,7 @@ comorbilidadesU = [];
 
       vhcData.apri_final = treatment.apri_final;
       vhcData.fib4_final = treatment.fib4_final;
-      vhcData.fibroscan_sw_final = treatment.fibroscan_sw_final;
+      vhcData.fibroscan_sw_final = treatment.fibroscan_sw_final == "" ? -101010101010.0:treatment.fibroscan_sw_basal;
 
       //vhcData.comentarios = treatment.comentarios;//Comentarios
       vhcData.creation_userid = treatment.creation_userid;
