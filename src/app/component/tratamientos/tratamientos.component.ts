@@ -858,7 +858,7 @@ comorbilidadesU = [];
   }
 
   updateRecordNASH(id, column_name, treatment, i){
-    console.log("Hospital id " + treatment.hospital_id);
+    console.log("Comentario de Mario Hospital id " + treatment.hospital_id);
     if (id != null){
       this.update_flag = true;
       const nashData = {} as nashTratment;
