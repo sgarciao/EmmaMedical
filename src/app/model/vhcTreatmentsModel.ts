@@ -124,6 +124,7 @@ export class vhcTreatmentModel{
   checkbox_value:boolean;
   disable_checkbox:boolean;
   disabled_row: boolean;
+  style_input_date: string;
 }
 
 

@@ -1589,6 +1589,7 @@ comorbilidadesU = [];
     }
   }
   agregarNuevoRegistroVHC(event){
+    //this.regexValidation("2019-02-02");
     this.progres_spinner_refresh_vhc_treatment = false;
     this.hidden_update_btn  = true;
     //this.indiceNash = (Number(this.indiceNash) + 1);
@@ -1631,8 +1632,33 @@ comorbilidadesU = [];
     }
     this.scroll('body-table');
   }
+  regexValidation(str){
+    //str = "2021-12-21";
+    //console.log(">>> " + str);
+    let er = new RegExp('((?:19|20)\\d\\d)-(0?[1-9]|1[012])-([12][0-9]|3[01]|0?[1-9])');
+    //console.log(str.match(er));
+    if (str.match(er) != null){
+      return "OK."
+      //console.log("--> Ok.");
+    }else{
+      //console.log("--> Error en fecha");
+      return "ERROR.";
+    }
 
+  }
+  message_notification = "";
   updateRecordVHC(id, column_name, treatment, i){
+    ///DATE VALIDATION
+    if (treatment.birthdate === "null" || treatment.birthdate === null || treatment.birthdate === '' ){
+
+    }else{
+      if (this.regexValidation(treatment.birthdate) == "OK."){
+     //   vhcData.birthdate = treatment.birthdate;
+        console.log("Fecha de Nacimiento correcta.");
+        this.save_disabled_vhc = true;
+        this.save_enabled_vhc = false;
+        this.message_notification = "";
+        treatment.style_input_date="control-date-ok";
 
     let element = document.getElementById("gender");
 
@@ -1650,11 +1676,7 @@ comorbilidadesU = [];
       vhcData.initials = treatment.initials;
 
       vhcData.expediente_id = treatment.expediente_id; //Expediente id
-      if (treatment.birthdate === "null" || treatment.birthdate === null || treatment.birthdate === '' ){
 
-      }else{
-        vhcData.birthdate = treatment.birthdate;
-      }
       vhcData.age = treatment.age; //Edad
       vhcData.gender = treatment.gender;//Género
       vhcData.state = treatment.state;//estado de la republica
@@ -1765,8 +1787,19 @@ comorbilidadesU = [];
       //console.log(this.NAHSRecord[i]);
       //console.log(this.NAHSRecordUpdate);
       //console.log("Actualizando.." + id + " " + column_name);
-      this.save_disabled_vhc = true;
-      this.save_enabled_vhc = false;
+      if (treatment.birthdate === "null" || treatment.birthdate === null || treatment.birthdate === '' ){
+
+      }else{
+        if (this.regexValidation(treatment.birthdate) == "OK."){
+          vhcData.birthdate = treatment.birthdate;
+          //console.log("Fecha correcta.");
+          this.save_disabled_vhc = true;
+          this.save_enabled_vhc = false;
+        }else{
+          //console.log("Error en formato de la Fecha de Nacimiento.");
+        }
+      }
+
     }else{
       this.create_flag = true;
       const vhcData = {} as vhcTreatmentModel;
@@ -1884,6 +1917,14 @@ comorbilidadesU = [];
       vhcData.row_color = "row_new";// Nuevos" treatment.row_color;"
       this.VHCRecordCreate[i] = this.VHCRecord[i];
     }
+  }else{
+    console.log("Error en formato de la Fecha de Nacimiento.");
+    this.message_notification = "Error en el formato de fecha. Formato correcto YYYY-MM-DD";
+    treatment.style_input_date="control-date-error";
+    this.save_disabled_vhc = false;
+    this.save_enabled_vhc = true;
+  }
+}
   }
   status_filter = 1;
   statusFilter(){
@@ -1986,10 +2027,13 @@ comorbilidadesU = [];
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
-            vhcData.birthdate = r.birthdate; //Edad
+
+
             if (r.birthdate=="" || r.birthdate==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
+            }else{
+              vhcData.birthdate = r.birthdate; //Edad
             }
             vhcData.gender = r.gender;//Género
             if (r.gender=="" || r.gender==null){

@@ -1,3 +1,18 @@
+.control-date-error{
+  font-size: smaller;
+  color: red;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.control-date-ok{
+  font-size: smaller;
+  color: cadetblue;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.notification-format{
+  color: red;
+  font-size: 9px;
+  font-family: Arial, Helvetica, sans-serif;
+}
 .check-b{
   height: 10px;
   display: block;

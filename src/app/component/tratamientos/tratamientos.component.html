@@ -634,13 +634,18 @@
                                                       <figcaption class="tool-text">Fecha fin</figcaption>
                                                   </figure>
                                               </div>
-                                              <div class="col-md-2 content-general-tools">
+                                              <div>
+                                                <span class="notification-format">{{message_notification}}</span>
+                                              </div>
+                                              <div class="col-md-2 content-general-tools" >
                                                 <ngb-alert *ngIf="!staticAlertClosed2"
                                                   (close)="staticAlertClosed2 = true"
                                                   class="alert_message"
                                                   [type]="alert_2.type" >{{ alert_2.message }}
                                                 </ngb-alert>
+
                                               </div>
+
                                               <div class="col-md-2 content-general-tools">
 
                                                   <figure class="content-tools">
@@ -794,8 +799,11 @@
                                                           >
                                                       </td>
                                                       <td class = "rows-style">
-                                                          <input type="date" class="form-control" [disabled]="treatmentvhc.disabled_row"
-                                                          [(ngModel)]="treatmentvhc.birthdate" id="birthdate"
+                                                          <input type="date" class="form-control {{treatmentvhc.style_input_date}}"
+                                                          [disabled]="treatmentvhc.disabled_row"
+                                                          [(ngModel)]="treatmentvhc.birthdate"
+                                                          id="birthdate"
+                                                          placeholder="YYYY-MM-DD"
                                                           (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.birthdate, treatmentvhc, i)">
                                                       </td>
                                                       <td class = "rows-style">
