@@ -2028,7 +2028,6 @@ comorbilidadesU = [];
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
 
-
             if (r.birthdate=="" || r.birthdate==null){
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";

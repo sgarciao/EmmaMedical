@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core'; 
-import { HttpClient,HttpHeaders,HttpParams } from '@angular/common/http'; 
+import { Injectable } from '@angular/core';
+import { HttpClient,HttpHeaders,HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { environment } from '../../environments/environment';
 
@@ -18,38 +18,36 @@ import { of } from 'rxjs/observable/of';
 export class NashtreatmentService {
 
   constructor(private httpClient : HttpClient) { }
-  //{hospital_id}/{role_id}/{entity_id}/{treatment_id}/{status_id}/{start_date}/{end_date}
-  getNASHTreatment(hospital_id, role_id,entity_id,treatment_id,status_id, start_date, end_date) {
-    return this.httpClient
-    .get(environment.urlMedical + '/v1/ema-medical/treatment/nash/' 
-    + hospital_id 
-    + '/' + role_id 
+  //{hospital_id}/{role_id}/{entity_id}/{treatment_id}/{status_id}/{start_date}/{end_date}    v1/ema-medical/treatment/nash/
+  getNASHTreatment(hospital_id, role_id, entity_id, treatment_id, status_id, start_date, end_date) {
+    return this.httpClient.get(environment.urlMedical + '/v1/ema-medical/treatment/nash/'
+    + hospital_id
+    + '/' + role_id
     + '/' + entity_id
     + '/' + treatment_id
     + '/' + status_id
-    + '/' + start_date 
-    + '/' + end_date).
-    map(data => data);
+    + '/' + start_date
+    + '/' + end_date).map(data => data);
   }
 
   saveNASHTreatment(treatment) {
     return this.httpClient.post(environment.urlMedical + '/v1/ema-medical/treatment/nash',
       treatment,{
-          headers: new HttpHeaders({ 
+          headers: new HttpHeaders({
               'Content-Type':  'application/json',
-          }) 
-        }).map(data=> 
-          data);  
+          })
+        }).map(data=>
+          data);
   }
 
-  
+
   updateNASHTreatment(treatment) {
     return this.httpClient.put(environment.urlMedical + '/v1/ema-medical/treatment/nash',
       treatment,{
-          headers: new HttpHeaders({ 
+          headers: new HttpHeaders({
               'Content-Type':  'application/json',
-          }) 
-        }).map(data=> 
-          data);  
+          })
+        }).map(data=>
+          data);
   }
 }

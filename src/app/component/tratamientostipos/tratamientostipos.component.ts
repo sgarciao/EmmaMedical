@@ -6,7 +6,7 @@ import { TreatmentsoptionsService } from 'src/app/services/treatmentsoptions.ser
 @Component({
   selector: 'app-tratamientostipos',
   templateUrl: './tratamientostipos.component.html',
-  styleUrls: ['./tratamientostipos.component.css'], 
+  styleUrls: ['./tratamientostipos.component.css'],
   providers:[TreatmentsoptionsService]
 })
 export class TratamientostiposComponent implements OnInit {
@@ -18,14 +18,14 @@ export class TratamientostiposComponent implements OnInit {
   constructor(
     private router:         Router,
     private treatmentsOptService: TreatmentsoptionsService) { }
-  
+
   selectTreatment(type_id, treatments_code){
     localStorage.setItem('treatment_type', type_id);
     localStorage.setItem('treatment_code', treatments_code);
     this.router.navigate(['/treatments']);
   }
   backPage(){
-    
+
   }
   treatmentsList = [
     { name: "NASH", description: "Tratamientos NASH", value: 1 },
@@ -60,6 +60,7 @@ export class TratamientostiposComponent implements OnInit {
 	        dato.entity_id = r.entity_id;
           dato.hospital_id = r.hospital_id;
           this.treatmentsOptions.push(dato);
+
         });
       }else{
 
