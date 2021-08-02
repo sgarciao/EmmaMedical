@@ -1766,89 +1766,101 @@
                                                               <option value="2"> 2 Experiencia previa  </option>
                                                           </select>
                                                       </td>-->
-                                                      <td class = "rows-style">
-                                                        <input type="number" class="form-control" [disabled]="treatmentvhc.disabled_row"
-                                                        [(ngModel)]="treatmentvhc.cv_inicial" id="cv_inicial"
-                                                        (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.cv_inicial, treatmentvhc, i)">
-                                                      </td>
-                                                      <td class = "rows-style">
-                                                        <select
-                                                          [(ngModel)]="treatmentvhc.genotipo" id="genotipo" [disabled]="treatmentvhc.disabled_row"
-                                                          class="custom-select mr-sm-1 select-style"
-                                                          (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.genotipo, treatmentvhc, i)">
-                                                          <option value="1"> 1 Genotipo 1A </option>
-                                                          <option value="2"> 2 Genotipo 1B </option>
-                                                          <option value="3"> 3 Genotipo 2 </option>
-                                                          <option value="4"> 4 Genotipo 3 </option>
-                                                          <option value="5"> 5 Genotipo 4 </option>
-                                                          <option value="6"> 6 No Tiene Genotipo </option>
-                                                       </select>
-                                                      </td>
-                                                      <td class = "rows-style">
-                                                        <select
-                                                            [(ngModel)]="treatmentvhc.tipo_tx_previo" id="tipo_tx_previo" [disabled]="treatmentvhc.disabled_row"
-                                                            class="custom-select mr-sm-1 select-style"
-                                                            (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.tipo_tx_previo, treatmentvhc, i)">
-                                                            <option value="1"> 1 PEG IFN  </option>
-                                                            <option value="2"> 2 PEG + RIBA  </option>
-                                                            <option value="3"> 3 ADD  </option>
-                                                            <option value="4"> 4 NAIVE  </option>
-                                                        </select>
-                                                      </td>
-                                                      <td class = "rows-style">
-                                                        <input type="number" class="form-control"
-                                                        [(ngModel)]="treatmentvhc.year_inicio_tx_add" id="year_inicio_tx_add" [disabled]="treatmentvhc.disabled_row"
-                                                        (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.year_inicio_tx_add, treatmentvhc, i)">
-                                                      </td>
-                                                      <td class = "rows-style description_long">
-                                                          <select
-                                                              [(ngModel)]="treatmentvhc.esquema_tratamiento" id="esquema_tratamiento" [disabled]="treatmentvhc.disabled_row"
-                                                              class="custom-select mr-sm-1 select-style"
-                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.esquema_tratamiento, treatmentvhc, i)">
-                                                              <option value="1"> 1 Daclatasvir + Sofosbuvir  </option>
-                                                              <option value="2"> 2 Daclatasvir + Sofosbuvir+ Rivabirina  </option>
-                                                              <option value="3"> 3 Jarvoni + Rivabirina  </option>
-                                                              <option value="4"> 4 Zepatier + Rivabirina  </option>
-                                                              <option value="5"> 5 Jarvoni  </option>
-                                                              <!-- <option value="6">  Jarvoni + Rivabirina  </option> -->
-                                                              <option value="6"> 6 Epclusa  </option>
-                                                              <option value="7"> 7 Epclusa + Rivabirina  </option>
-                                                              <option value="8"> 8 Zepatier  </option>
-                                                              <!-- <option value="10">  Zepatier + Rivabirina  </option> -->
-                                                              <option value="9"> 9 Mavyret  </option>
-                                                              <option value="10"> 10 Viekira  </option>
-                                                              <option value="11"> 11 Daclatasvir + INF PEGA + RIBA  </option>
-                                                              <option value="12"> 12 Daclatasvir + Ledipasvir  </option>
-                                                              <option value="13"> 13 Sofosbuvir + Rivabarina  </option>
-                                                              <option value="14"> 14 Sofosbuvir / Velpatasvir / Voxilaprevir  </option>
-                                                              <option value="15"> 15 Boceprevir  </option>
-                                                              <option value="16"> 16 Daclatasvir + Asunaprevir  </option>
-                                                              <option value="17"> 17 Sofosbuvir + Simeprivir </option>
-                                                              <option value="18"> 18 Sofosbuvir + Simeprivir + Rivabirina </option>
-                                                              <option value="19"> 19 Viekira + Rivabirina </option>
-                                                          </select>
-                                                      </td>
-                                                      <td class = "rows-style">
-                                                          <select
-                                                              [(ngModel)] = "treatmentvhc.tiempo_tratamiento_meses" [disabled]="treatmentvhc.disabled_row"
-                                                              id="tiempo_tratamiento_meses" class="custom-select mr-sm-1 select-style"
-                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.tiempo_tratamiento_meses, treatmentvhc, i)">
-                                                              <option value="1"> 8  Semanas </option>
-                                                              <option value="2"> 12 Semanas </option>
-                                                              <option value="3"> 16 Semanas </option>
-                                                              <option value="4"> 24 Semanas </option>
-                                                          </select>
-                                                      </td>
-                                                      <td class = "rows-style">
-                                                          <select
-                                                              [(ngModel)]="treatmentvhc.rvs" id="rvs"
-                                                              class="custom-select mr-sm-1 select-style" [disabled]="treatmentvhc.disabled_row"
-                                                              (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.rvs, treatmentvhc, i)">
-                                                              <option value="1"> 1 SI  </option>
-                                                              <option value="2"> 2 NO  </option>
-                                                          </select>
-                                                      </td>
-                                                      <!--
+                                                        <td class="rows-style">
+                                                            <input type="number" class="form-control"
+                                                                [disabled]="treatmentvhc.disabled_row"
+                                                                [(ngModel)]="treatmentvhc.cv_inicial" id="cv_inicial"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.cv_inicial, treatmentvhc, i)">
+                                                        </td>
+                                                        <td class="rows-style">
+                                                            <select [(ngModel)]="treatmentvhc.genotipo" id="genotipo"
+                                                                [disabled]="treatmentvhc.disabled_row"
+                                                                class="custom-select mr-sm-1 select-style"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.genotipo, treatmentvhc, i)">
+                                                                <option value="1"> 1 Genotipo 1A </option>
+                                                                <option value="2"> 2 Genotipo 1B </option>
+                                                                <option value="3"> 3 Genotipo 2 </option>
+                                                                <option value="4"> 4 Genotipo 3 </option>
+                                                                <option value="5"> 5 Genotipo 4 </option>
+                                                                <option value="6"> 6 No Tiene Genotipo </option>
+                                                            </select>
+                                                        </td>
+                                                        <td class="rows-style">
+                                                            <select [(ngModel)]="treatmentvhc.tipo_tx_previo"
+                                                                id="tipo_tx_previo"
+                                                                [disabled]="treatmentvhc.disabled_row"
+                                                                class="custom-select mr-sm-1 select-style"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.tipo_tx_previo, treatmentvhc, i)">
+                                                                <option value="1"> 1 PEG IFN </option>
+                                                                <option value="2"> 2 PEG + RIBA </option>
+                                                                <option value="3"> 3 ADD </option>
+                                                                <option value="4"> 4 NAIVE </option>
+                                                            </select>
+                                                        </td>
+                                                        <td class="rows-style">
+                                                            <input type="number" class="form-control"
+                                                                [(ngModel)]="treatmentvhc.year_inicio_tx_add"
+                                                                id="year_inicio_tx_add"
+                                                                [disabled]="treatmentvhc.disabled_row"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.year_inicio_tx_add, treatmentvhc, i)">
+                                                        </td>
+                                                        <td class="rows-style description_long">
+                                                            <select [(ngModel)]="treatmentvhc.esquema_tratamiento"
+                                                                id="esquema_tratamiento"
+                                                                [disabled]="treatmentvhc.disabled_row"
+                                                                class="custom-select mr-sm-1 select-style"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.esquema_tratamiento, treatmentvhc, i)">
+                                                                <option value="1"> 1 Daclatasvir + Sofosbuvir </option>
+                                                                <option value="2"> 2 Daclatasvir + Sofosbuvir+
+                                                                    Rivabirina </option>
+                                                                <option value="3"> 3 Jarvoni + Rivabirina </option>
+                                                                <option value="4"> 4 Zepatier + Rivabirina </option>
+                                                                <option value="5"> 5 Jarvoni </option>
+                                                                <option value="6"> 6 Jarvoni + Rivabirina </option>
+                                                                <option value="7"> 7 Epclusa </option>
+                                                                <option value="8"> 8 Epclusa + Rivabirina </option>
+                                                                <option value="9"> 9 Zepatier </option>
+                                                                <option value="10"> 10 Zepatier + Rivabirina </option>
+                                                                <option value="11"> 11 Mavyret </option>
+                                                                <option value="12"> 12 Viekira </option>
+                                                                <option value="13"> 13 Daclatasvir + INF PEGA + RIBA
+                                                                </option>
+                                                                <option value="14"> 14 Daclatasvir + Ledipasvir
+                                                                </option>
+                                                                <option value="15"> 15 Sofosbuvir + Rivabarina </option>
+                                                                <option value="16"> 16 Sofosbuvir / Velpatasvir /
+                                                                    Voxilaprevir </option>
+                                                                <option value="17"> 17 Boceprevir </option>
+                                                                <option value="18"> 18 Daclatasvir + Asunaprevir
+                                                                </option>
+                                                                <option value="19"> 19 Sofosbuvir + Simeprivir </option>
+                                                                <option value="20"> 20 Sofosbuvir + Simeprivir +
+                                                                    Ribavirina </option>
+                                                                <option value="21"> 21 Viekira + Ribavirina </option>
+                                                            </select>
+                                                        </td>
+                                                        <td class="rows-style">
+                                                            <select [(ngModel)]="treatmentvhc.tiempo_tratamiento_meses"
+                                                                [disabled]="treatmentvhc.disabled_row"
+                                                                id="tiempo_tratamiento_meses"
+                                                                class="custom-select mr-sm-1 select-style"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.tiempo_tratamiento_meses, treatmentvhc, i)">
+                                                                <option value="1"> 8 Semanas </option>
+                                                                <option value="2"> 12 Semanas </option>
+                                                                <option value="3"> 16 Semanas </option>
+                                                                <option value="4"> 24 Semanas </option>
+                                                            </select>
+                                                        </td>
+                                                        <td class="rows-style">
+                                                            <select [(ngModel)]="treatmentvhc.rvs" id="rvs"
+                                                                class="custom-select mr-sm-1 select-style"
+                                                                [disabled]="treatmentvhc.disabled_row"
+                                                                (ngModelChange)="updateRecordVHC(treatmentvhc.research_vhc_id, treatmentvhc.rvs, treatmentvhc, i)">
+                                                                <option value="1"> 1 SI </option>
+                                                                <option value="2"> 2 NO </option>
+                                                            </select>
+                                                        </td>
+                                                        <!--
                                                       <td class = "rows-style">
                                                           <input type="number" class="form-control"
                                                           [(ngModel)]="treatmentvhc.cv_rvs12" id="cv_rvs12"
