@@ -106,6 +106,9 @@ export class nashTreatmentModel {
     cenicriviroc: number;
     liraglutide: number;
     resmetirom: number;
+    metformin: number;
+    puntaje_nas: number;
+    evolucion_post_tratamiento: number;
     /////////////////////////////////////////
     creation_userid: number;
     creation_username: string;
@@ -225,6 +228,9 @@ export class nashTreatmentModelHeader {
     cenicriviroc: string;
     liraglutide: string;
     resmetirom: string;
+    metformin: string;
+    puntaje_nas: string;
+    evolucion_post_tratamiento: string;
     /////////////////////////////////////////
     creation_userid: string;
     creation_username: string;

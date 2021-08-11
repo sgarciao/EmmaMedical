@@ -1,3 +1,18 @@
+﻿import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import 'rxjs/add/operator/map';
+import { environment } from '../../environments/environment';
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class GenericCatalogService {
+
+  constructor(private httpClient: HttpClient) { }
+
+/*
+
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders} from '@angular/common/http';
 import 'rxjs/add/operator/map';
@@ -25,3 +40,17 @@ export class EntitiesService {
     data);
   }
 }
+*/
+
+  getDataCatalogGeneric(param1, param2, param3){
+    return this.httpClient.get(environment.urlMedical + '/v1/ema-medical/catalogs-generic/'
+      + param1
+      + '/'
+      + param2
+      + '/'
+      + param3).map(data => data);
+  }
+
+
+}
+

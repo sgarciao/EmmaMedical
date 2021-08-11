@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 
 import { nashTreatmentModel, nashTreatmentModelHeader, nashTreatmentData } from 'src/app/model/nashTreatmentsModel';
 import { NashtreatmentService } from 'src/app/services/nashtreatment.service';
+import { GenericCatalogService } from 'src/app/services/generic_catalog.service';
 
 import { NotifierService } from 'angular-notifier';
 import { HospitalsService } from 'src/app/services/hospitals.service';
@@ -26,7 +27,7 @@ import { TreeMapModule } from '@swimlane/ngx-charts';
   selector: 'app-tratamientos',
   templateUrl: './tratamientos.component.html',
   styleUrls: ['./tratamientos.component.css', './tratamientos.component.scss'],
-  providers: [StatesService]
+  providers: [StatesService, GenericCatalogService]
 })
 export class TratamientosComponent implements OnInit {
 
@@ -135,6 +136,12 @@ export class TratamientosComponent implements OnInit {
   optionsHospitals = [];
   optionsHospitalsSelected = [];
   statesList = [];
+  listaHipoglucemiantesOrales = [];
+  listaClaseAntihipertensivo = [];
+  listaClaseEstatina = [];
+  listaClaseFibrato = [];
+
+
   optionsHospitalesPEMEX = [
     { name: "Hospital Central Nacional Pemex Norte", value: 1 },
     { name: "Hospital Central Nacional Sur de Alta Especialidad Pemex Picacho", value: 2 }
@@ -222,19 +229,19 @@ export class TratamientosComponent implements OnInit {
 
 
 
-
   constructor(
-    private router: Router,
-    private nashTreatmentService: NashtreatmentService, //REVISAR SERVICIO
-    private vhcTreatmentService: VhctreatmentService,
-    private hospitalsService: HospitalsService,
-    private statesService: EntitiesService
+      private router: Router,
+      private nashTreatmentService: NashtreatmentService, //REVISAR SERVICIO
+      private vhcTreatmentService: VhctreatmentService,
+      private hospitalsService: HospitalsService,
+      private statesService: EntitiesService,
+      private genericCatalogService: GenericCatalogService
   ) {
-    this.alert_2 = {
-      id: 1,
-      type: 'success',
-      message: 'This is an success alert'
-    };
+      this.alert_2 = {
+        id: 1,
+        type: 'success',
+        message: 'This is an success alert'
+      };
   }
 
   settingsListTreatmentsNASH = tableData.settingsListTreatmentsNASH;
@@ -275,6 +282,62 @@ export class TratamientosComponent implements OnInit {
       }
     });
   }
+
+  //Método para obtener los Hipoglucemiantes orales (1-7) dataCatalogList
+  getCatalogosGenericos(param1, param2, param3){
+
+    console.log('Hipoglucemiantes: ' + param1 + ' - ' + param2 + ' - ' + param3);
+
+    // this.genericCatalogService.getDataCatalogGeneric(param1,param2,param3).subscribe((resp_data_get: any) => {
+    //   console.log("--- Lista Catalogo Generico ---");
+    //   console.log(resp_data_get);
+    //   if (resp_data_get.code == 200) {
+    //     this.listaHipoglucemiantesOrales = resp_data_get.data;
+    //     console.log("Hipoglucemiantes orales: ");
+    //     console.log(this.listaHipoglucemiantesOrales);
+    //   }
+    // });   listaClaseFibrato
+
+
+    if(param1==4 && param2==1 && param3==3){
+      this.listaClaseAntihipertensivo = [
+        { description_column: "Calcioantagonista", value_column: 1 },
+        { description_column: "Betabloqueador", value_column: 2 },
+        { description_column: "Bloqueador Selectivo AT-1", value_column: 3 },
+        { description_column: "Bloqueador Selectivo AT-2", value_column: 4 },
+        { description_column: "Bloqueador Alfa Adrenergico", value_column: 5 }
+      ]
+    } else if(param1==4 && param2==1 && param3==4){
+        this.listaHipoglucemiantesOrales = [
+          { description_column: "Sulfonilureas", value_column: 1 },
+          { description_column: "Analogos de Metigldinas", value_column: 2 },
+          { description_column: "Biguanidas", value_column: 3 },
+          { description_column: "Inhibidor de Alfaglucosilasas", value_column: 4 },
+          { description_column: "Glitazonas", value_column: 5 },
+          { description_column: "Analogos de Receptores GLP-1", value_column: 6 },
+          { description_column: "Inhibidores de SGLT-2", value_column: 7 }
+        ]
+    } else if(param1==4 && param2==1 && param3==5){
+        this.listaClaseEstatina = [
+          { description_column: "Atorvastatina", value_column: 1 },
+          { description_column: "Fluvastatina", value_column: 2 },
+          { description_column: "Lovastatina", value_column: 3 },
+          { description_column: "Pravastatina", value_column: 4 },
+          { description_column: "Simvastatina", value_column: 5 }
+        ]
+    } else if(param1==4 && param2==1 && param3==6){
+      this.listaClaseFibrato = [
+        { description_column: "Gemfibrozilo", value_column: 1 },
+        { description_column: "Fenofibrato", value_column: 2 },
+        { description_column: "Clofibrate", value_column: 3 }
+      ]
+    }
+
+
+
+
+  }
+
 
   exportCSVFile(headers, items, fileTitle) {
     console.log("--------------headers");
@@ -523,6 +586,10 @@ export class TratamientosComponent implements OnInit {
     //NASH
     if (localStorage.getItem('treatment_type') == '4') {
       this.indiceNash = 0; //Verificar para que se inicializa esta variable
+      this.getCatalogosGenericos(4,1,4);
+      this.getCatalogosGenericos(4,1,3);
+      this.getCatalogosGenericos(4,1,5);
+      this.getCatalogosGenericos(4,1,6);
       this.getNASHData();
       ////////////load data
       this.dropdownSettings = {
@@ -2076,6 +2143,9 @@ export class TratamientosComponent implements OnInit {
     nashData.cenicriviroc = "CENICRIVIROC";
     nashData.resmetirom = "RESMETIROM";
     nashData.liraglutide = "LIRAGLUTIDE";
+    nashData.metformin = "METFORMIN";
+    nashData.puntaje_nas = "PUNTAJE NAS";
+    nashData.evolucion_post_tratamiento = "EVOLUCIÓN POST TRATAMIENTO";
     nashData.MD_hospital_id = "HOSPITAL";
     nashData.creation_date = "FECHA REGISTRO";
     nashData.creation_time = "HORA REGISTRO";
@@ -2338,6 +2408,15 @@ export class TratamientosComponent implements OnInit {
     //LIRAGLUTIDE
     nashDataExcel.liraglutide = nashData.liraglutide == null ? 0 : nashData.liraglutide;
 
+    //METFORMIN
+    nashDataExcel.metformin = nashData.metformin == null ? 0 : nashData.metformin;
+
+    //PUNTAJE NAS
+    nashDataExcel.puntaje_nas = nashData.puntaje_nas == null ? 0 : nashData.puntaje_nas;
+
+    //EVOLUCIÓN POST TRATAMIENTO
+    nashDataExcel.evolucion_post_tratamiento = nashData.evolucion_post_tratamiento == null ? 0 : nashData.evolucion_post_tratamiento;
+
     //HOSPITAL
     nashDataExcel.MD_hospital_id = nashData.MD_hospital_id == null ? 0 : nashData.MD_hospital_id;
 
@@ -2553,7 +2632,11 @@ export class TratamientosComponent implements OnInit {
           nashData.state = treatment.state;
 
           //FECHA DIAGNOSTICO
-          nashData.diagnostic_date = treatment.diagnostic_date;
+          if (treatment.diagnostic_date === "null" || treatment.diagnostic_date === null || treatment.diagnostic_date === ''){
+            nashData.diagnostic_date = "1900-01-01";
+          }else{
+            nashData.diagnostic_date = treatment.diagnostic_date;
+          }
 
           //PESO
           nashData.peso = treatment.peso;
@@ -2757,7 +2840,11 @@ export class TratamientosComponent implements OnInit {
           nashData.tratamiento_nash = treatment.tratamiento_nash;
 
           //INICIO DEL TRATAMIENTO
-          nashData.inicio_tratamiento = treatment.inicio_tratamiento;
+          if (treatment.inicio_tratamiento === "null" || treatment.inicio_tratamiento === null || treatment.inicio_tratamiento === ''){
+            nashData.inicio_tratamiento = "1900-01-01";
+          }else{
+            nashData.inicio_tratamiento = treatment.inicio_tratamiento;
+          }
 
           //DURACION DEL TRATAMIENTO
           nashData.duracion_tratamiento = treatment.duracion_tratamiento;
@@ -2780,11 +2867,22 @@ export class TratamientosComponent implements OnInit {
           //LIRAGLUTIDE
           nashData.liraglutide = treatment.liraglutide;
 
+          //METFORMIN
+          nashData.metformin = treatment.metformin;
+
+          //PUNTAJE NAS
+          nashData.puntaje_nas = treatment.puntaje_nas;
+
+          //EVOLUCIÓN POST TRATAMIENTO
+          nashData.evolucion_post_tratamiento = treatment.evolucion_post_tratamiento;
+
           //vhcData.comentarios = treatment.comentarios;//Comentarios
-          nashData.creation_userid = treatment.creation_userid;
-          nashData.creation_username = treatment.creation_username;
-          nashData.creation_date = treatment.creation_date;
-          nashData.creation_time = treatment.creation_time;
+
+          //nashData.creation_userid = treatment.creation_userid;
+          //nashData.creation_username = treatment.creation_username;
+          //nashData.creation_date = treatment.creation_date;
+          //nashData.creation_time = treatment.creation_time;
+
           nashData.modification_userid = treatment.modification_userid;
           nashData.modification_username = treatment.modification_username;
           nashData.modification_date = treatment.modification_date;
@@ -2842,7 +2940,11 @@ export class TratamientosComponent implements OnInit {
           nashData.state = treatment.state;
 
           //FECHA DIAGNOSTICO
-          nashData.diagnostic_date = treatment.diagnostic_date;
+          if (treatment.diagnostic_date === "null" || treatment.diagnostic_date === null || treatment.diagnostic_date === ''){
+            nashData.diagnostic_date = "1900-01-01";
+          }else{
+            nashData.diagnostic_date = treatment.diagnostic_date;
+          }
 
           //PESO
           nashData.peso = treatment.peso;
@@ -3046,7 +3148,11 @@ export class TratamientosComponent implements OnInit {
           nashData.tratamiento_nash = treatment.tratamiento_nash;
 
           //INICIO DEL TRATAMIENTO
-          nashData.inicio_tratamiento = treatment.inicio_tratamiento;
+          if (treatment.inicio_tratamiento === "null" || treatment.inicio_tratamiento === null || treatment.inicio_tratamiento === ''){
+            nashData.inicio_tratamiento = "1900-01-01";
+          }else{
+            nashData.inicio_tratamiento = treatment.inicio_tratamiento;
+          }
 
           //DURACION DEL TRATAMIENTO
           nashData.duracion_tratamiento = treatment.duracion_tratamiento;
@@ -3068,6 +3174,16 @@ export class TratamientosComponent implements OnInit {
 
           //LIRAGLUTIDE
           nashData.liraglutide = treatment.liraglutide;
+
+          //METFORMIN
+          nashData.metformin = treatment.metformin;
+
+          //PUNTAJE NAS
+          nashData.puntaje_nas = treatment.puntaje_nas;
+
+          //EVOLUCIÓN POST TRATAMIENTO
+          nashData.evolucion_post_tratamiento = treatment.evolucion_post_tratamiento;
+
 
           nashData.creation_userid = treatment.creation_userid;
           nashData.creation_username = treatment.creation_username;
@@ -3721,6 +3837,27 @@ export class TratamientosComponent implements OnInit {
             //LIRAGLUTIDE
             nashData.liraglutide = r.liraglutide;
             if (r.liraglutide == "" || r.liraglutide == null) {
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+
+            //METFORMIN
+            nashData.metformin = r.metformin;
+            if (r.metformin == "" || r.metformin == null) {
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+
+            //PUNTAJE NAS
+            nashData.puntaje_nas = r.puntaje_nas;
+            if (r.puntaje_nas == "" || r.puntaje_nas == null) {
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+
+            //EVOLUCION POST TRATAMIENTO
+            nashData.evolucion_post_tratamiento = r.evolucion_post_tratamiento;
+            if (r.evolucion_post_tratamiento == "" || r.evolucion_post_tratamiento == null) {
               nashData.active_red_sem = "row_sem_red_visible";
               nashData.active_green_sem = "row_sem_green_hidden";
             }

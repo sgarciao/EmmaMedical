@@ -11,6 +11,7 @@ import { catchError } from 'rxjs/operators/catchError';
 import { _throw } from 'rxjs/observable/throw';
 import { retry } from 'rxjs/operators/retry';
 import { of } from 'rxjs/observable/of';
+import { json } from 'd3';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,8 @@ export class NashtreatmentService {
 
 
   updateNASHTreatment(treatment) {
+    console.log("JSON Update: " +  JSON.stringify(treatment));
+
     return this.httpClient.put(environment.urlMedical + '/v1/ema-medical/treatment/nash',
       treatment,{
           headers: new HttpHeaders({

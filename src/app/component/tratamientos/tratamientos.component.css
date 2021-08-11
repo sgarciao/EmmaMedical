@@ -1,19 +1,19 @@
-.control-date-error{
+.control-date-error {
   font-size: smaller;
   color: red;
   font-family: Arial, Helvetica, sans-serif;
 }
-.control-date-ok{
+.control-date-ok {
   font-size: smaller;
   color: cadetblue;
   font-family: Arial, Helvetica, sans-serif;
 }
-.notification-format{
+.notification-format {
   color: red;
   font-size: 9px;
   font-family: Arial, Helvetica, sans-serif;
 }
-.check-b{
+.check-b {
   height: 10px;
   display: block;
 }
@@ -21,64 +21,10 @@
 .table-cont-fixed {
   max-width: 100%;
   max-height: 400px;
-  overflow: scroll;
+  background-color: red;
+  /*overflow: scroll;*/
 }
 
-
-/* Use position: sticky to have it stick to the edge
- * and top, right, or left to choose which edge to stick to: */
-
-thead th {
-  position: -webkit-sticky; /* for Safari */
-  position: sticky;
-  top: 0;
-}
-
-tbody th {
-  position: -webkit-sticky; /* for Safari */
-  position: sticky;
-  left: 0;
-
-}
-
-
-/* To have the header in the first column stick to the left: */
-
-thead th:first-child {
-  left: 0;
-  z-index: 2;
-  background: #F3F5F5;
-}
-
-
-/* Just to display it nicely: */
-
-thead th {
-  background: #F3F5F5;
-  border-bottom: #DDEFEE;
-  border-width: thin;
-
-  /*color: #FFF;*/
-  /* Ensure this stays above the emulated border right in tbody th {}: */
-  z-index: 1;
-}
-
-tbody th {
-  background: #FFF;
-  /* Browsers tend to drop borders on sticky elements, so we emulate the border-right using a box-shadow to ensure it stays: */
-
-}
-
-table {
-  border-collapse: collapse;
-  padding-bottom: 20px;
-}
-
-td, th {
-  /*padding: 0.5em;*/
-}
-
-/*____________________________________*/
 /*//////////////////////////////*/
 input:invalid {
   border: 2px dashed red;
@@ -88,149 +34,153 @@ input:invalid {
 /*--------------------------------*/
 /*------------------------------------switch*/
 .switch {
-	position: relative;
-	display: block;
-	vertical-align: top;
-	width: 90px;
-	height: 19px;
-	padding: 0px;
-	margin: 0 0px 0px 0;
-	background: linear-gradient(to bottom, #eeeeee, #FFFFFF 25px);
-	background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF 25px);
-	border-radius: 18px;
-	box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);
-	cursor: pointer;
-	box-sizing:content-box;
+  position: relative;
+  display: block;
+  vertical-align: top;
+  width: 90px;
+  height: 19px;
+  padding: 0px;
+  margin: 0 0px 0px 0;
+  background: linear-gradient(to bottom, #eeeeee, #ffffff 25px);
+  background-image: -webkit-linear-gradient(top, #eeeeee, #ffffff 25px);
+  border-radius: 18px;
+  box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  box-sizing: content-box;
 }
 .switch-input {
-	position: absolute;
-	top: 0;
-	left: 0;
-	opacity: 0;
-	box-sizing:content-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  box-sizing: content-box;
 }
 .switch-label {
-	position: relative;
-	display: block;
-	height: inherit;
-	font-size: 10px;
-	text-transform: uppercase;
-	background: #eceeef;
-	border-radius: inherit;
-	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.15);
-	box-sizing:content-box;
+  position: relative;
+  display: block;
+  height: inherit;
+  font-size: 10px;
+  text-transform: uppercase;
+  background: #eceeef;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12),
+    inset 0 0 2px rgba(0, 0, 0, 0.15);
+  box-sizing: content-box;
 }
-.switch-label:before, .switch-label:after {
-	position: absolute;
-	top: 50%;
-	margin-top: -.5em;
-	line-height: 1;
-	-webkit-transition: inherit;
-	-moz-transition: inherit;
-	-o-transition: inherit;
-	transition: inherit;
-	box-sizing:content-box;
+.switch-label:before,
+.switch-label:after {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  line-height: 1;
+  -webkit-transition: inherit;
+  -moz-transition: inherit;
+  -o-transition: inherit;
+  transition: inherit;
+  box-sizing: content-box;
 }
 .switch-label:before {
-	content: attr(data-off);
-	right: 11px;
-	color: #aaaaaa;
-	text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+  content: attr(data-off);
+  right: 11px;
+  color: #aaaaaa;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.5);
 }
 .switch-label:after {
-	content: attr(data-on);
-	left: 11px;
-	color: #FFFFFF;
-	text-shadow: 0 1px rgba(0, 0, 0, 0.2);
-	opacity: 0;
+  content: attr(data-on);
+  left: 11px;
+  color: #ffffff;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+  opacity: 0;
 }
 .switch-input:checked ~ .switch-label {
-	background: #E1B42B;
-	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
+  background: #e1b42b;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15),
+    inset 0 0 3px rgba(0, 0, 0, 0.2);
 }
 .switch-input:checked ~ .switch-label:before {
-	opacity: 0;
+  opacity: 0;
 }
 .switch-input:checked ~ .switch-label:after {
-	opacity: 1;
+  opacity: 1;
 }
 .switch-handle {
-	position: absolute;
-	top: 1.5px;
-	left: 4px;
-	width: 15px;
-	height: 15px;
-	background: linear-gradient(to bottom, #FFFFFF 40%, #f0f0f0);
-	background-image: -webkit-linear-gradient(top, #FFFFFF 40%, #f0f0f0);
-	border-radius: 100%;
-	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 1.5px;
+  left: 4px;
+  width: 15px;
+  height: 15px;
+  background: linear-gradient(to bottom, #ffffff 40%, #f0f0f0);
+  background-image: -webkit-linear-gradient(top, #ffffff 40%, #f0f0f0);
+  border-radius: 100%;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
 }
 .switch-handle:before {
-	content: "";
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin: -6px 0 0 -6px;
-	width: 12px;
-	height: 12px;
-	background: linear-gradient(to bottom, #eeeeee, #FFFFFF);
-	background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF);
-	border-radius: 6px;
-	box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -6px 0 0 -6px;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(to bottom, #eeeeee, #ffffff);
+  background-image: -webkit-linear-gradient(top, #eeeeee, #ffffff);
+  border-radius: 6px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
 }
 .switch-input:checked ~ .switch-handle {
-	left: 74px;
-	box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
+  left: 74px;
+  box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Transition
 ========================== */
-.switch-label, .switch-handle {
-	transition: All 0.3s ease;
-	-webkit-transition: All 0.3s ease;
-	-moz-transition: All 0.3s ease;
-	-o-transition: All 0.3s ease;
+.switch-label,
+.switch-handle {
+  transition: All 0.3s ease;
+  -webkit-transition: All 0.3s ease;
+  -moz-transition: All 0.3s ease;
+  -o-transition: All 0.3s ease;
 }
 /*------------------------------------------*/
 /*_________________________________COLOR TABLES ROWS COLUMNS*/
-.hospital-name-format{
+.hospital-name-format {
   font-size: small;
   font-family: Arial, Helvetica, sans-serif;
-  color: #0B5345;
+  color: #0b5345;
 }
-.alert_message{
+.alert_message {
   font-size: small;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.save_disabled_btn{
+.save_disabled_btn {
   opacity: 0.5;
-  cursor:  not-allowed;
+  cursor: not-allowed;
   width: 20px;
   height: 20px;
 }
 
-.tools{
+.tools {
   width: 20px;
   height: 20px;
   /*margin-left: 5px;*/
   cursor: pointer;
 }
 
-.row_new{
+.row_new {
   font-size: smaller;
   font-family: Arial, Helvetica, sans-serif;
   background-color: cadetblue;
 }
 /*__________________________________________________________*/
 /*//////////////////////////CONTROLS*/
-.content-general-tools{
+.content-general-tools {
   text-align: right;
 }
 figure {
   display: inline-block;
   border-right: gray;
-  border-style:  hidden solid hidden hidden;
+  border-style: hidden solid hidden hidden;
   border-width: 1px;
   padding-left: 4px;
   padding-right: 4px;
@@ -238,17 +188,18 @@ figure {
   width: max-content;
   margin-bottom: 0%;
 }
-.table-controls{
+.table-controls {
   background-color: rgb(216, 224, 224);
 }
-.tool-text{
+.tool-text {
   color: black;
   font-size: 8px;
   font-family: Arial, Helvetica, sans-serif;
 }
 /*///////////////////////////////////*/
 
-select, input{
+select,
+input {
   padding: 0% 0% 0% 0%;
   height: 20px;
   margin-top: 0px;
@@ -257,32 +208,33 @@ select, input{
   color: cadetblue;
   font-family: Arial, Helvetica, sans-serif;
 }
-th{
+th {
   padding-top: 1px;
   padding-bottom: 1px;
   vertical-align: middle;
   text-align: center;
-  color: #0B5345;
+  color: #0b5345;
   font-family: Arial, Helvetica, sans-serif;
 }
-td{
+td {
   padding: 0% 0% 0% 5px;
 }
-td > select, input {
-        padding-right: 0px;
-        margin-bottom: 1px;
-        margin-top: 0%;
-        margin-right: 0px;
-        min-width: 100px;
-      }
-.description_long{
-        padding-right: 0px;
-        margin-bottom: 1px;
-        margin-top: 0px;
-        margin-right: 0px;
-        min-width: 230px;
+td > select,
+input {
+  padding-right: 0px;
+  margin-bottom: 1px;
+  margin-top: 0%;
+  margin-right: 0px;
+  min-width: 100px;
 }
-.description_long_hospital{
+.description_long {
+  padding-right: 0px;
+  margin-bottom: 1px;
+  margin-top: 0px;
+  margin-right: 0px;
+  min-width: 230px;
+}
+.description_long_hospital {
   padding-right: 0px;
   margin-bottom: 1px;
   margin-top: 0px;
@@ -296,93 +248,122 @@ td > select, input {
   overflow: hidden;
   width: auto;
 }*/
-.special-rows-style{
+.special-rows-style {
   padding-top: 0px;
   margin-top: 0px;
   white-space: nowrap;
   /*background-color: #0B5345;*/
 }
-.table-titles{
+.table-titles {
   font-size: 11px;
   font-family: Arial, Helvetica, sans-serif;
 }
-.table-content{
+.table-content {
   margin-left: 0%;
   padding-left: 0%;
   display: flex;
   width: 100%;
   overflow-x: auto;
-  background-color:white;
+  background-color: white;
 }
 
 .sts-container {
-    overflow-y: scroll;
-    position: relative;
-    /* scroll container also needs a fixed/defined height */
-  }
-  .sts-container .sts-row {
-    position: absolute;
-  }
-  .sts-container .sts-bottom-anchor {
-    position: absolute;
-    height: 1px;
-    width: 1px;
-  }
+  overflow-y: scroll;
+  position: relative;
+  /* scroll container also needs a fixed/defined height */
+}
+.sts-container .sts-row {
+  position: absolute;
+}
+.sts-container .sts-bottom-anchor {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+}
 
-  .width-smart-table{
-      width: 1000px;
-      background-color: teal;
-  }
+.width-smart-table {
+  width: 1000px;
+  background-color: teal;
+}
 
-.col-custom{
+.col-custom {
   width: 50%;
   overflow-x: hidden;
 }
-.table-container{
+.table-container {
   width: 1500px;
   height: 500px;
   overflow-y: scroll;
   overflow-x: scroll;
 }
 
-.tools-align{
+.tools-align {
   text-align: right;
   display: block;
 }
-.tools-content{
+.tools-content {
   border-style: none none solid none;
   border-width: 1px;
   border-bottom: teal;
   background-color: rgb(216, 224, 224);
   padding-bottom: 1px;
 }
-.content-table{
+.content-table {
   margin-top: 2px;
 }
-.title_main{
+.title_main {
   font-size: medium;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: black;
 }
 
-.regresar{
+.regresar {
   color: blue;
   font-size: small;
   cursor: pointer;
 }
 
-.image_back{
+.image_back {
   width: 25px;
   height: 25px;
   margin-right: 2px;
   cursor: pointer;
 }
 
-.content_back{
+.content_back {
   text-align: right;
 }
-.select-style-status{
+.select-style-status {
   margin-top: 3px;
   width: 100px;
 }
+/*___________________________SCROLL*/
+/* Fix table head */
+.tableFixHead {
+  overflow: auto;
+  height: 350px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.tableFixHead th {
+  position: sticky;
+  top: 0;
+}
+
+/* Just common table stuff. */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  background: #eee;
+}
+.padding-config {
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+/*----------------------------------*/
