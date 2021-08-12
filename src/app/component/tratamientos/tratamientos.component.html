@@ -1979,7 +1979,7 @@
                                 <input
                                   type="number"
                                   step="any"
-                                  class="form-control"
+                                  class="custom-select mr-sm-1 select-style"
                                   [disabled]="treatmentnash.disabled_row"
                                   [(ngModel)]="
                                     treatmentnash.duracion_tratamiento
@@ -1997,10 +1997,10 @@
                               </td>
                               <!-- Columna METFORMIN SGO-->
                               <td class="rows-style">
-                                <input
+                                <select
                                   type="number"
                                   step="any"
-                                  class="form-control"
+                                  class="custom-select mr-sm-1 select-style"
                                   [disabled]="treatmentnash.disabled_row"
                                   [(ngModel)]="treatmentnash.metformin"
                                   id="metformin"
@@ -2012,14 +2012,17 @@
                                       i
                                     )
                                   "
-                                />
+                                >
+                                  <option value="1">1 SI</option>
+                                  <option value="2">2 NO</option>
+                                </select>
                               </td>
                               <!-- Columna PIOGLITAZONA SGO-->
                               <td class="rows-style">
-                                <input
+                                <select
                                   type="number"
                                   step="any"
-                                  class="form-control"
+                                  class="custom-select mr-sm-1 select-style"
                                   [disabled]="treatmentnash.disabled_row"
                                   [(ngModel)]="treatmentnash.pioglitazona"
                                   id="pioglitazona"
@@ -2030,34 +2033,37 @@
                                       treatmentnash,
                                       i
                                     )
-                                  "
-                                />
+                                  "                                >
+                                    <option value="1">1 SI</option>
+                                    <option value="2">2 NO</option>
+                                  </select>
                               </td>
                               <!-- Columna SELONSERTIB SGO-->
                               <td class="rows-style">
-                                <input
-                                  type="number"
-                                  step="any"
-                                  class="form-control"
-                                  [disabled]="treatmentnash.disabled_row"
-                                  [(ngModel)]="treatmentnash.selonsertib"
-                                  id="selonsertib"
-                                  (ngModelChange)="
-                                    updateRecordNASH(
-                                      treatmentnash.research_nash_id,
-                                      treatmentnash.selonsertib,
-                                      treatmentnash,
-                                      i
-                                    )
-                                  "
-                                />
+                                <select
+                                    type="number"
+                                    step="any"
+                                    class="custom-select mr-sm-1 select-style"
+                                    [disabled]="treatmentnash.disabled_row"
+                                    [(ngModel)]="treatmentnash.selonsertib"
+                                    id="selonsertib"
+                                    (ngModelChange)="
+                                      updateRecordNASH(
+                                        treatmentnash.research_nash_id,
+                                        treatmentnash.selonsertib,
+                                        treatmentnash,
+                                        i
+                                      )
+                                    "                                >
+                                    <option value="1">1 SI</option>
+                                    <option value="2">2 NO</option>
+                                  </select>
                               </td>
                               <!-- Columna ELAFIBRANOR SGO-->
                               <td class="rows-style">
-                                <input
+                                <select
                                   type="number"
-                                  step="any"
-                                  class="form-control"
+                                  class="custom-select mr-sm-1 select-style"
                                   [disabled]="treatmentnash.disabled_row"
                                   [(ngModel)]="treatmentnash.elafibranor"
                                   id="elafibranor"
@@ -2068,34 +2074,38 @@
                                       treatmentnash,
                                       i
                                     )
-                                  "
-                                />
+                                  "                                >
+                                    <option value="1">1 SI</option>
+                                    <option value="2">2 NO</option>
+                                  </select>
                               </td>
                               <!-- Columna CENICRIVIROC SGO-->
                               <td class="rows-style">
-                                <input
-                                  type="number"
-                                  step="any"
-                                  class="form-control"
-                                  [disabled]="treatmentnash.disabled_row"
-                                  [(ngModel)]="treatmentnash.cenicriviroc"
-                                  id="cenicriviroc"
-                                  (ngModelChange)="
-                                    updateRecordNASH(
-                                      treatmentnash.research_nash_id,
-                                      treatmentnash.cenicriviroc,
-                                      treatmentnash,
-                                      i
-                                    )
-                                  "
-                                />
+                                <select
+                                type="number"
+                                step="any"
+                                class="custom-select mr-sm-1 select-style"
+                                [disabled]="treatmentnash.disabled_row"
+                                [(ngModel)]="treatmentnash.cenicriviroc"
+                                id="cenicriviroc"
+                                (ngModelChange)="
+                                  updateRecordNASH(
+                                    treatmentnash.research_nash_id,
+                                    treatmentnash.cenicriviroc,
+                                    treatmentnash,
+                                    i
+                                  )
+                                " >
+                                    <option value="1">1 SI</option>
+                                    <option value="2">2 NO</option>
+                                  </select>
                               </td>
                               <!-- Columna RESMETIROM SGO-->
                               <td class="rows-style">
-                                <input
-                                  type="number"
+                                <select
+                                type="number"
                                   step="any"
-                                  class="form-control"
+                                  class="custom-select mr-sm-1 select-style"
                                   [disabled]="treatmentnash.disabled_row"
                                   [(ngModel)]="treatmentnash.resmetirom"
                                   id="resmetirom"
@@ -2106,15 +2116,17 @@
                                       treatmentnash,
                                       i
                                     )
-                                  "
-                                />
+                                  " >
+                                    <option value="1">1 SI</option>
+                                    <option value="2">2 NO</option>
+                                  </select>
                               </td>
                               <!-- Columna LIRAGLUTIDE SGO-->
                               <td class="rows-style">
-                                <input
-                                  type="number"
+                                <select
+                                type="number"
                                   step="any"
-                                  class="form-control"
+                                  class="custom-select mr-sm-1 select-style"
                                   [disabled]="treatmentnash.disabled_row"
                                   [(ngModel)]="treatmentnash.liraglutide"
                                   id="liraglutide"
@@ -2125,8 +2137,10 @@
                                       treatmentnash,
                                       i
                                     )
-                                  "
-                                />
+                                  " >
+                                    <option value="1">1 SI</option>
+                                    <option value="2">2 NO</option>
+                                  </select>
                               </td>
                               <!-- Columna EVOLUCION POST TRATAMIENTO SGO-->
                               <td class="rows-style">
