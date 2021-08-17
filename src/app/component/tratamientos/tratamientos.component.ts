@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import * as tableData from './smart-data-table';
 import { Router } from '@angular/router';
 
-//Eliminar linea abajo
-//import { nashTratment, nashTratmentHeader } from 'src/app/model/nashTreatment';
-
 import { nashTreatmentModel, nashTreatmentModelHeader, nashTreatmentData } from 'src/app/model/nashTreatmentsModel';
 import { NashtreatmentService } from 'src/app/services/nashtreatment.service';
 import { GenericCatalogService } from 'src/app/services/generic_catalog.service';
@@ -133,6 +130,8 @@ export class TratamientosComponent implements OnInit {
     { name: "Zacatecas", value: 32 }
 
   ]
+
+  //Catalogos
   optionsHospitals = [];
   optionsHospitalsSelected = [];
   statesList = [];
@@ -140,7 +139,13 @@ export class TratamientosComponent implements OnInit {
   listaClaseAntihipertensivo = [];
   listaClaseEstatina = [];
   listaClaseFibrato = [];
-
+  listaClaseAntioxidante = [];
+  listaGradoEsteatosis = [];
+  listaGradoFibrosis = [];
+  listaGradoActividadBiopsiaHepatica = [];
+  listaGradoFibrosisBiopsiaHepatica = [];
+  listaGradoEsteatosisBiopsiaHepatica = [];
+  listaEvolucionPostTratamiento = [];
 
   optionsHospitalesPEMEX = [
     { name: "Hospital Central Nacional Pemex Norte", value: 1 },
@@ -286,55 +291,73 @@ export class TratamientosComponent implements OnInit {
   //Método para obtener los Hipoglucemiantes orales (1-7) dataCatalogList
   getCatalogosGenericos(param1, param2, param3){
 
-    console.log('Hipoglucemiantes: ' + param1 + ' - ' + param2 + ' - ' + param3);
-
-    // this.genericCatalogService.getDataCatalogGeneric(param1,param2,param3).subscribe((resp_data_get: any) => {
-    //   console.log("--- Lista Catalogo Generico ---");
-    //   console.log(resp_data_get);
-    //   if (resp_data_get.code == 200) {
-    //     this.listaHipoglucemiantesOrales = resp_data_get.data;
-    //     console.log("Hipoglucemiantes orales: ");
-    //     console.log(this.listaHipoglucemiantesOrales);
-    //   }
-    // });   listaClaseFibrato
-
-
     if(param1==4 && param2==1 && param3==3){
-      this.listaClaseAntihipertensivo = [
-        { description_column: "Calcioantagonista", value_column: 1 },
-        { description_column: "Betabloqueador", value_column: 2 },
-        { description_column: "Bloqueador Selectivo AT-1", value_column: 3 },
-        { description_column: "Bloqueador Selectivo AT-2", value_column: 4 },
-        { description_column: "Bloqueador Alfa Adrenergico", value_column: 5 }
-      ]
+      this.genericCatalogService.getDataCatalogGeneric2(param1,param2,param3).subscribe((resp_data_get: any) => {
+          if (resp_data_get.code == 200) {
+            this.listaClaseAntihipertensivo = resp_data_get.data;
+          }
+      });
     } else if(param1==4 && param2==1 && param3==4){
-        this.listaHipoglucemiantesOrales = [
-          { description_column: "Sulfonilureas", value_column: 1 },
-          { description_column: "Analogos de Metigldinas", value_column: 2 },
-          { description_column: "Biguanidas", value_column: 3 },
-          { description_column: "Inhibidor de Alfaglucosilasas", value_column: 4 },
-          { description_column: "Glitazonas", value_column: 5 },
-          { description_column: "Analogos de Receptores GLP-1", value_column: 6 },
-          { description_column: "Inhibidores de SGLT-2", value_column: 7 }
-        ]
+        this.genericCatalogService.getDataCatalogGeneric2(param1,param2,param3).subscribe((resp_data_get: any) => {
+          if (resp_data_get.code == 200) {
+            this.listaHipoglucemiantesOrales = resp_data_get.data;
+          }
+        });
     } else if(param1==4 && param2==1 && param3==5){
-        this.listaClaseEstatina = [
-          { description_column: "Atorvastatina", value_column: 1 },
-          { description_column: "Fluvastatina", value_column: 2 },
-          { description_column: "Lovastatina", value_column: 3 },
-          { description_column: "Pravastatina", value_column: 4 },
-          { description_column: "Simvastatina", value_column: 5 }
-        ]
+        this.genericCatalogService.getDataCatalogGeneric2(param1,param2,param3).subscribe((resp_data_get: any) => {
+          if (resp_data_get.code == 200) {
+            this.listaClaseEstatina = resp_data_get.data;
+          }
+        });
     } else if(param1==4 && param2==1 && param3==6){
-      this.listaClaseFibrato = [
-        { description_column: "Gemfibrozilo", value_column: 1 },
-        { description_column: "Fenofibrato", value_column: 2 },
-        { description_column: "Clofibrate", value_column: 3 }
-      ]
+        this.genericCatalogService.getDataCatalogGeneric2(param1,param2,param3).subscribe((resp_data_get: any) => {
+            if (resp_data_get.code == 200) {
+              this.listaClaseFibrato = resp_data_get.data;
+            }
+        });
+    } else if(param1==4 && param2==1 && param3==7){
+      this.genericCatalogService.getDataCatalogGeneric2(param1,param2,param3).subscribe((resp_data_get: any) => {
+          if (resp_data_get.code == 200) {
+            this.listaClaseAntioxidante = resp_data_get.data;
+          }
+      });
+    } else if(param1==4 && param2==1 && param3==8){
+      this.genericCatalogService.getDataCatalogGeneric2(param1,param2,param3).subscribe((resp_data_get: any) => {
+          if (resp_data_get.code == 200) {
+            this.listaGradoEsteatosis = resp_data_get.data;
+          }
+      });
+    } else if(param1==4 && param2==1 && param3==9){
+      this.genericCatalogService.getDataCatalogGeneric2(param1,param2,param3).subscribe((resp_data_get: any) => {
+          if (resp_data_get.code == 200) {
+            this.listaGradoFibrosis = resp_data_get.data;
+          }
+      });
+    } else if(param1==4 && param2==1 && param3==11){
+      this.genericCatalogService.getDataCatalogGeneric2(param1,param2,param3).subscribe((resp_data_get: any) => {
+          if (resp_data_get.code == 200) {
+            this.listaGradoActividadBiopsiaHepatica = resp_data_get.data;
+          }
+      });
+    } else if(param1==4 && param2==1 && param3==12){
+      this.genericCatalogService.getDataCatalogGeneric2(param1,param2,param3).subscribe((resp_data_get: any) => {
+          if (resp_data_get.code == 200) {
+            this.listaGradoFibrosisBiopsiaHepatica = resp_data_get.data;
+          }
+      });
+    } else if(param1==4 && param2==1 && param3==13){
+      this.genericCatalogService.getDataCatalogGeneric2(param1,param2,param3).subscribe((resp_data_get: any) => {
+          if (resp_data_get.code == 200) {
+            this.listaGradoEsteatosisBiopsiaHepatica = resp_data_get.data;
+          }
+      });
+    } else if(param1==4 && param2==1 && param3==14){
+      this.genericCatalogService.getDataCatalogGeneric2(param1,param2,param3).subscribe((resp_data_get: any) => {
+          if (resp_data_get.code == 200) {
+            this.listaEvolucionPostTratamiento = resp_data_get.data;
+          }
+      });
     }
-
-
-
 
   }
 
@@ -586,10 +609,40 @@ export class TratamientosComponent implements OnInit {
     //NASH
     if (localStorage.getItem('treatment_type') == '4') {
       this.indiceNash = 0; //Verificar para que se inicializa esta variable
-      this.getCatalogosGenericos(4,1,4);
+
+      //Clase de antihipertensivo
       this.getCatalogosGenericos(4,1,3);
+
+      //Hipoglucemiantes orales
+      this.getCatalogosGenericos(4,1,4);
+
+      //Clase de Estatinas
       this.getCatalogosGenericos(4,1,5);
+
+      //Clase de fibrato
       this.getCatalogosGenericos(4,1,6);
+
+      //Clase Antioxidantes
+      this.getCatalogosGenericos(4,1,7);
+
+      //Grado de Esteatosis
+      this.getCatalogosGenericos(4,1,8);
+
+      //Grado de Fibrosis
+      this.getCatalogosGenericos(4,1,9);
+
+      //Grado de actividad por Biopsia Hepatica
+      this.getCatalogosGenericos(4,1,11);
+
+      //Grado de fibrosis por Biopsia Hepatica
+      this.getCatalogosGenericos(4,1,12);
+
+      //Grado de esteatosis por Biopsia Hepatica
+      this.getCatalogosGenericos(4,1,13);
+
+      //Evolución post tratamiento
+      this.getCatalogosGenericos(4,1,14);
+
       this.getNASHData();
       ////////////load data
       this.dropdownSettings = {

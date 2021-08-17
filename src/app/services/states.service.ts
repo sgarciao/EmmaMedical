@@ -13,11 +13,7 @@ export class StatesService {
 
   getStatesByCountry(country_id) {
 
-    return this.httpClient
-    .get(environment.urlMedical + '/v1/ema-medical/catalogs/states/'
-    +country_id
-    ).map(data =>
-    data);
+    return this.httpClient.get(environment.urlMedical + '/v1/ema-medical/catalogs/states/'+country_id).map(data => data);
   }
 }
 

@@ -42,7 +42,22 @@ export class EntitiesService {
 }
 */
 
+
+/*
+    rechazarArchivo(documento){
+      console.log(documento);
+      return this.httpClient.put
+      (
+          environment.url + '/v1/ema-system/customers/documents/reject',documento,
+          { headers: new HttpHeaders({'Content-Type':  'application/json', 'token':sessionStorage.getItem('access_token') }) }
+      )
+      .map(data=>data);
+    }
+*/
   getDataCatalogGeneric(param1, param2, param3){
+    var ligaCatalogo = environment.urlMedical + '/v1/ema-medical/catalogs-generic/' + param1 + '/' + param2 + '/' + param3;
+    console.log('Liga resultante: ' + ligaCatalogo);
+
     return this.httpClient.get(environment.urlMedical + '/v1/ema-medical/catalogs-generic/'
       + param1
       + '/'
@@ -51,6 +66,16 @@ export class EntitiesService {
       + param3).map(data => data);
   }
 
+  getDataCatalogGeneric2(param1, param2, param3){
+    return this.httpClient.get(environment.urlMedical + '/v1/ema-medical/catalogs-generic/'
+      + param1
+      + '/'
+      + param2
+      + '/'
+      + param3,
+      { headers: new HttpHeaders({'Content-Type':  'application/json', 'token':sessionStorage.getItem('access_token') }) }
+      ).map(data => data);
+  }
 
 }
 
