@@ -428,16 +428,21 @@
                                     (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.gramos_alcohol,treatmentnash,i)" />
                                 </td>
                                 <!-- Columna DIABETES MELLITUS TIPO 2 SGO-->
-                                <td class="rows-style">
-                                  <input type="number" step="any" class="form-control" [disabled]="treatmentnash.disabled_row" [(ngModel)]="treatmentnash.diabetes_mellitus"
-                                    id="diabetes_mellitus"
-                                    (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.diabetes_mellitus,treatmentnash,i)" />
+                                <td class="row-style">
+                                  <select [(ngModel)]="treatmentnash.diabetes_mellitus" id="diabetes_mellitus" [disabled]="treatmentnash.disabled_row" class="custom-select mr-sm-1 select-style"
+                                    (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.diabetes_mellitus,treatmentnash,i)">
+                                    <option value="1">1 SI</option>
+                                    <option value="2">2 NO</option>
+                                  </select>
                                 </td>
                                 <!-- Columna HIPERTENSION ARTERIAL SISTEMICA SGO-->
-                                <td class="rows-style">
-                                  <input type="number" step="any" class="form-control" [disabled]="treatmentnash.disabled_row" [(ngModel)]="treatmentnash.hipertension_arterial"
-                                    id="hipertension_arterial"
-                                    (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.hipertension_arterial,treatmentnash,i)" />
+                                <td class="row-style">
+                                  <select [(ngModel)]="treatmentnash.hipertension_arterial" id="hipertension_arterial" [disabled]="treatmentnash.disabled_row"
+                                    class="custom-select mr-sm-1 select-style"
+                                    (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.hipertension_arterial,treatmentnash,i)">
+                                    <option value="1">1 SI</option>
+                                    <option value="2">2 NO</option>
+                                  </select>
                                 </td>
                                 <!-- Columna HIPERCOLESTEROLEMIA SGO-->
                                 <td class="row-style">
@@ -467,22 +472,16 @@
                                   </select>
                                 </td>
                                 <!-- Columna PRESIÓN ARTERIAL SISTÓLICA SGO-->
-                                <td class="row-style">
-                                  <select [(ngModel)]="treatmentnash.presion_sistolica" id="presion_sistolica" [disabled]="treatmentnash.disabled_row"
-                                  class="custom-select mr-sm-1 select-style"
-                                    (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.presion_sistolica,treatmentnash,i)">
-                                    <option value="1">1 SI</option>
-                                    <option value="2">2 NO</option>
-                                  </select>
+                                <td class="rows-style">
+                                  <input type="number" step="any" class="form-control" [disabled]="treatmentnash.disabled_row" [(ngModel)]="treatmentnash.presion_sistolica"
+                                    id="presion_sistolica"
+                                    (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.presion_sistolica,treatmentnash,i)" />
                                 </td>
                                 <!-- Columna PRESIÓN ARTERIAL DIASTÓLICA SGO-->
-                                <td class="row-style">
-                                  <select [(ngModel)]="treatmentnash.presion_diastolica" id="presion_diastolica"
-                                    [disabled]="treatmentnash.disabled_row" class="custom-select mr-sm-1 select-style"
-                                    (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.presion_diastolica,treatmentnash,i)">
-                                    <option value="1">1 SI</option>
-                                    <option value="2">2 NO</option>
-                                  </select>
+                                <td class="rows-style">
+                                  <input type="number" step="any" class="form-control" [disabled]="treatmentnash.disabled_row" [(ngModel)]="treatmentnash.presion_diastolica"
+                                    id="presion_diastolica"
+                                    (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.presion_diastolica,treatmentnash,i)" />
                                 </td>
                                 <!-- Columna ANTIHIPERTENSIVOS SGO-->
                                 <td class="row-style">
@@ -529,10 +528,13 @@
                                     (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.uso_insulina,treatmentnash,i)" />
                                 </td>
                                 <!-- Columna ESTATINAS SGO-->
-                                <td class="rows-style">
-                                  <input type="number" step="any" class="form-control"
-                                    [disabled]="treatmentnash.disabled_row" [(ngModel)]="treatmentnash.estatinas" id="estatinas"
-                                    (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.estatinas,treatmentnash,i)" />
+                                <td class="row-style">
+                                  <select [(ngModel)]="treatmentnash.estatinas" id="estatinas" [disabled]="treatmentnash.disabled_row"
+                                    class="custom-select mr-sm-1 select-style"
+                                    (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.estatinas,treatmentnash,i)">
+                                    <option value="1">1 SI</option>
+                                    <option value="2">2 NO</option>
+                                  </select>
                                 </td>
                                 <!-- Columna CLASE DE ESTATINA SGO-->
                                 <td class="rows-style">
@@ -563,10 +565,12 @@
                                   </select>
                                 </td>
                                 <!-- Columna ANTIOXIDANTES SGO-->
-                                <td class="rows-style">
-                                  <input type="number" step="any" class="form-control" [disabled]="treatmentnash.disabled_row" [(ngModel)]="treatmentnash.antioxidantes"
-                                    id="antioxidantes"
-                                    (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.antioxidantes,treatmentnash,i)" />
+                                <td class="row-style">
+                                  <select [(ngModel)]="treatmentnash.antioxidantes" id="antioxidantes" [disabled]="treatmentnash.disabled_row" class="custom-select mr-sm-1 select-style"
+                                    (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.antioxidantes,treatmentnash,i)">
+                                    <option value="1">1 SI</option>
+                                    <option value="2">2 NO</option>
+                                  </select>
                                 </td>
                                 <!-- COLUMNA CLASE ANTIOXIDANTES-->
                                 <td class="rows-style">
@@ -925,16 +929,25 @@
                                     </option>
                                   </select>
                                 </td>
-                                <!-- Columna HOSPITAL SGO-->
+                                <!-- Columna HOSPITAL SGO change-->
                                 <td class="rows-style description_long_hospital">
-                                  <select [(ngModel)]="treatmentnash.MD_hospital_id"
-                                  (change)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.MD_hospital_id,treatmentnash,i)"
-                                  class="custom-select mr-sm-1 select-style" disabled>
+                                  <select [(ngModel)]="treatmentnash.MD_hospital_id" id="MD_hospital_id"
+                                    class="custom-select mr-sm-1 select-style"
+                                    (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.MD_hospital_id,treatmentnash,i)" disabled>
+                                    <option *ngFor="let datos of optionsHospitalsSelected" value="{{ datos.hospital_id }}">
+                                      {{ datos.hospital_name }}
+                                    </option>
+                                  </select>
+                                </td>
+                                <!-- <td class="rows-style description_long_hospital">
+                                  <select [(ngModel)]="treatmentnash.MD_hospital_id" [disabled]="treatmentnash.disabled_row" id="MD_hospital_id"
+                                  class="custom-select mr-sm-1 select-style description_long_hospital" disabled
+                                  (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.MD_hospital_id,treatmentnash,i)">
                                     <option *ngFor="let hospitales_ of optionsHospitalsSelected" value="{{ hospitales_.hospital_id }}">
                                         {{ hospitales_.hospital_name }}
                                     </option>
                                   </select>
-                                </td>
+                                </td> -->
                                 <!-- Columna FECHA DE REGISTRO SGO-->
                                 <td class="rows-style">
                                   <input type="date" class="form-control" [(ngModel)]="treatmentnash.creation_date" id="creation_date" disabled />

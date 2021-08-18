@@ -240,6 +240,7 @@ input {
   margin-top: 0px;
   margin-right: 0px;
   min-width: 250px;
+  z-index: -2px;
 }
 /*td{
   white-space: nowrap;
