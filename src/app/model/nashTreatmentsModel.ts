@@ -53,6 +53,7 @@ export class nashTreatmentModel {
     hipoglucemiante: number;
     hipoglucemiantes_orales: number;
     uso_insulina: number;
+    unidades_insulina: number;
     estatinas: number;
     clase_estatina: number;
     fibratos: number;
@@ -175,6 +176,7 @@ export class nashTreatmentModelHeader {
     hipoglucemiante: string;
     hipoglucemiantes_orales: string;
     uso_insulina: string;
+    unidades_insulina: string;
     estatinas: string;
     clase_estatina: string;
     fibratos: string;

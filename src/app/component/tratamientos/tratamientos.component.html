@@ -157,6 +157,7 @@
                                 <th scope="col">HIPOGLUCEMIANTE</th>
                                 <th scope="col">HIPOGLUCEMIANTES ORALES</th>
                                 <th scope="col">USO DE INSULINA</th>
+                                <th scope="col">UNIDADES INSULINA</th>
                                 <th scope="col">ESTATINAS</th>
                                 <th scope="col">CLASE DE ESTATINA</th>
                                 <th scope="col">FIBRATOS</th>
@@ -447,9 +448,19 @@
                                   </select>
                                 </td>
                                 <!-- Columna USO DE INSULINA SGO-->
+                                <td class="row-style">
+                                  <select [(ngModel)]="treatmentnash.uso_insulina" id="uso_insulina" [disabled]="treatmentnash.disabled_row"
+                                    class="custom-select mr-sm-1 select-style"
+                                    (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.uso_insulina,treatmentnash,i)">
+                                    <option value="1">1 SI</option>
+                                    <option value="2">2 NO</option>
+                                  </select>
+                                </td>
+                                <!-- Columna UNIDADES INSULINA -->
                                 <td class="rows-style">
-                                  <input type="number" class="form-control" [disabled]="treatmentnash.disabled_row"  [(ngModel)]="treatmentnash.uso_insulina"
-                                    id="uso_insulina" (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.uso_insulina,treatmentnash,i)" />
+                                  <input type="number" step="any" class="form-control" [disabled]="treatmentnash.disabled_row" [(ngModel)]="treatmentnash.unidades_insulina"
+                                    id="unidades_insulina"
+                                    (ngModelChange)="updateRecordNASH(treatmentnash.research_nash_id,treatmentnash.unidades_insulina,treatmentnash,i)" />
                                 </td>
                                 <!-- Columna ESTATINAS SGO-->
                                 <td class="row-style">
