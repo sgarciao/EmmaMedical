@@ -2060,6 +2060,7 @@ export class TratamientosComponent implements OnInit {
     nashData.hipoglucemiante = "HIPOGLUCEMIANTE";
     nashData.hipoglucemiantes_orales = "HIPOGLUCEMIANTE ORALES";
     nashData.uso_insulina = "USO INSULINA";
+    nashData.unidades_insulina =  "UNIDADES INSULINA";
     nashData.estatinas = "ESTATINAS";
     nashData.clase_estatina = "CLASE ESTATINAS";
     nashData.fibratos = "FIBRATOS";
@@ -2218,6 +2219,9 @@ export class TratamientosComponent implements OnInit {
 
     //USO INSULINA
     nashDataExcel.uso_insulina = nashData.uso_insulina == null ? 0 : nashData.uso_insulina;
+
+    //UNIDADES INSULINA
+    nashDataExcel.unidades_insulina = nashData.unidades_insulina == null ? 0 : nashData.unidades_insulina;
 
     //ESTATINAS
     nashDataExcel.estatinas = nashData.estatinas == null ? 0 : nashData.estatinas;
@@ -2682,6 +2686,9 @@ export class TratamientosComponent implements OnInit {
           //USO INSULINA
           nashData.uso_insulina = treatment.uso_insulina;
 
+          //UNIDADES INSULINA
+          nashData.unidades_insulina = treatment.unidades_insulina;
+
           //ESTATINAS
           nashData.estatinas = treatment.estatinas;
 
@@ -2986,6 +2993,9 @@ export class TratamientosComponent implements OnInit {
           //USO INSULINA
           nashData.uso_insulina = treatment.uso_insulina;
 
+          //UNIDADES INSULINA
+          nashData.unidades_insulina = treatment.unidades_insulina;
+
           //ESTATINAS
           nashData.estatinas = treatment.estatinas;
 
@@ -3158,7 +3168,6 @@ export class TratamientosComponent implements OnInit {
           //EVOLUCIÓN POST TRATAMIENTO
           nashData.evolucion_post_tratamiento = treatment.evolucion_post_tratamiento;
 
-
           nashData.creation_userid = treatment.creation_userid;
           nashData.creation_username = treatment.creation_username;
           nashData.creation_date = treatment.creation_date;
@@ -3319,6 +3328,9 @@ export class TratamientosComponent implements OnInit {
 
         //USO INSULINA
         nashData.uso_insulina = treatment.uso_insulina;
+
+        //UNIDADES INSULINA
+        nashData.unidades_insulina = treatment.unidades_insulina;
 
         //ESTATINAS
         nashData.estatinas = treatment.estatinas;
@@ -3670,6 +3682,9 @@ export class TratamientosComponent implements OnInit {
 
         //USO INSULINA
         nashData.uso_insulina = treatment.uso_insulina;
+
+        //UNIDADES INSULINA
+        nashData.unidades_insulina = treatment.unidades_insulina;
 
         //ESTATINAS
         nashData.estatinas = treatment.estatinas;
@@ -4127,6 +4142,13 @@ export class TratamientosComponent implements OnInit {
             //Uso insulina
             nashData.uso_insulina = r.uso_insulina;
             if (r.uso_insulina == "" || r.uso_insulina == null) {
+              nashData.active_red_sem = "row_sem_red_visible";
+              nashData.active_green_sem = "row_sem_green_hidden";
+            }
+
+            //Unidades insulina
+            nashData.unidades_insulina = r.unidades_insulina;
+            if (r.unidades_insulina == "" || r.unidades_insulina == null) {
               nashData.active_red_sem = "row_sem_red_visible";
               nashData.active_green_sem = "row_sem_green_hidden";
             }
