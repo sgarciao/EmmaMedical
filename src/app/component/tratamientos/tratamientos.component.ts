@@ -52,6 +52,7 @@ export class TratamientosComponent implements OnInit {
   alert_2: IAlert;
   hidden_update_btn = false;
   staticAlertClosed2 = true;
+
   progres_spinner_refresh_nash_treatment = true;
   save_enabled_nash = true;///not visible   -    SGO modificado
   save_disabled_nash = false;/////button visible   -  SGO modificado
@@ -280,8 +281,8 @@ export class TratamientosComponent implements OnInit {
   getStates() {
     let country_id = 1;
     this.statesService.getStatesByCountry(country_id).subscribe((resp_data_get: any) => {
-      console.log("----------States");
-      console.log(resp_data_get);
+      //console.log("---States---");
+      //console.log(resp_data_get);
       if (resp_data_get.code == 200) {
         this.statesList = resp_data_get.data;
       }
@@ -290,8 +291,7 @@ export class TratamientosComponent implements OnInit {
 
   //Método para obtener los Hipoglucemiantes orales (1-7) dataCatalogList
   getCatalogosGenericos(param1, param2, param3){
-
-    if(param1==4 && param2==1 && param3==3){
+     if(param1==4 && param2==1 && param3==3){
       this.genericCatalogService.getDataCatalogGeneric2(param1,param2,param3).subscribe((resp_data_get: any) => {
           if (resp_data_get.code == 200) {
             this.listaClaseAntihipertensivo = resp_data_get.data;
@@ -363,8 +363,9 @@ export class TratamientosComponent implements OnInit {
 
 
   exportCSVFile(headers, items, fileTitle) {
-    console.log("--------------headers");
-    console.log(headers);
+    //console.log("--------------headers");
+    //console.log(headers);
+
     if (headers) {
       items.unshift(headers);
     }
@@ -378,6 +379,7 @@ export class TratamientosComponent implements OnInit {
     var exportedFilenmae = fileTitle + '.xlsx' || 'export.xlsx';
 
     var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+
     if (navigator.msSaveBlob) { // IE 10+
       navigator.msSaveBlob(blob, exportedFilenmae);
     } else {
@@ -426,7 +428,8 @@ export class TratamientosComponent implements OnInit {
   selected_hospital = 0;
 
   getHospitalsListApi(entity_id) {
-    console.log("Get hospitals... ");
+    //console.log("Get hospitals... ");
+
     this.hospitalsService.getHospitalsList(this.role_id, entity_id).subscribe((res_data: any) => {
       if (res_data.code == 200) {
 
@@ -442,13 +445,10 @@ export class TratamientosComponent implements OnInit {
           this.comboHospital = dato;
         } else {
           //<<<<<<< HEAD
-          let hosp = res_data.data;/*.map((r)=>{
-          const dato = {} as hospitalsModel;
-          dato.hospital_id = r.hospital_id;
-          dato.hospital_name = r.hospital_name;
-          return dato;
-        });*/
-          console.log(hosp);
+          let hosp = res_data.data;
+
+          //console.log(hosp);
+
           this.optionsHospitals = hosp;
           console.log(this.optionsHospitals);
           // this.selected_hospital = this.optionsHospitals[0].hospital_id;
@@ -467,7 +467,8 @@ export class TratamientosComponent implements OnInit {
   }
 
   getHospitalsList(entity_id) {
-    console.log("Id de entidad " + entity_id);
+
+    //console.log("Id de entidad " + entity_id);
     if (entity_id == 1) {
       this.optionsHospitals = this.optionsHospitalesPEMEX;
     } else if (entity_id == 2) {
@@ -566,7 +567,6 @@ export class TratamientosComponent implements OnInit {
 
   }
 
-
   concatenateComorbilidades(lista) {
     console.log(lista.split(","));
     let d_ = [];
@@ -608,7 +608,7 @@ export class TratamientosComponent implements OnInit {
 
     //NASH
     if (localStorage.getItem('treatment_type') == '4') {
-      this.indiceNash = 0; //Verificar para que se inicializa esta variable
+      this.indiceNash = 0; //Verificar para que se inicializa esta variable AL PARECER NO SE UTILIZA (ELIMINAR VARIABLE)
 
       //Clase de antihipertensivo
       this.getCatalogosGenericos(4,1,3);
@@ -711,7 +711,7 @@ export class TratamientosComponent implements OnInit {
         { comorbilidades: 13, description: "13  Trasplante hepatico" },
         { comorbilidades: 14, description: "14 Trasplante renal" },
       ];
-      this.nashTableVisible = true;  //estaba eb false la asigno a true
+      this.nashTableVisible = true;  //estaba en false la asigno a true
       this.ashTableVisible = true;
       this.vhbTableVisible = true;
       this.vhcTableVisible = false;
@@ -758,65 +758,19 @@ export class TratamientosComponent implements OnInit {
 
     this.title_entity = localStorage.getItem("entidad_name");
     this.changeHospital();
-  }
+
+  }  //Fin ngOnInit
 
 
 //#region "Tratamiento VHC"
 
-  //VHC 1 sgo
-  exportCSVFileVHC(headers, items, fileTitle) {
-    if (headers) {
-      items.unshift(headers);
-    }
-    // Convert Object to JSON
-
-    var jsonObject = JSON.stringify(items);
-    var csv = this.convertToCSV(jsonObject);
-    var exportedFilenmae = fileTitle + '.csv' || 'export.csv';
-    var blob = new Blob([csv], { type: 'text/csv;charset=unicode;' });
-    if (navigator.msSaveBlob) { // IE 10+
-      navigator.msSaveBlob(blob, exportedFilenmae);
-    } else {
-      var link = document.createElement("a");
-      if (link.download !== undefined) { // feature detection
-        // Browsers that support HTML5 download attribute
-        var url = URL.createObjectURL(blob);
-        link.setAttribute("href", url);
-        link.setAttribute("download", exportedFilenmae);
-        link.style.visibility = 'hidden';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }
-    }
-  }
-
-  //VHC 2 sgo
-  convertToCSVVHC(objArray) {
-    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
-    var str = '';
-
-    for (var i = 0; i < array.length; i++) {
-      var line = '';
-      for (var index in array[i]) {
-        if (line != '') line += ','
-
-        line += array[i][index];
-      }
-
-      str += line + '\r\n';
-    }
-
-    return str;
-  }
-
-  //VHC 3 sgo
+  //VHC
   exportExcelVHC() {
     this.createHeaderVHC();
-    this.exportCSVFileVHC(this.VHCRecordHeader, this.VHCRecordExcel, "VHC Treatment");
+    this.exportCSVFile(this.VHCRecordHeader, this.VHCRecordExcel, "VHC Treatment");
   }
 
-  //VHC 4 sgo
+  //VHC
   createHeaderVHC() {
     this.VHCRecordHeader = {} as vhcTreatmentModelHeader;
     const vhcData = {} as vhcTreatmentModelHeader;
@@ -921,7 +875,7 @@ export class TratamientosComponent implements OnInit {
     this.VHCRecordHeader = vhcData;
   }
 
-  //VHC 5 sgo
+  //VHC
   getExcelDataVHC(vhcData: vhcTreatmentModel) {
     const vhcDataExcel = {} as vhcTreatmentModel;
     vhcDataExcel.expediente_id = vhcData.expediente_id == null ? "" : vhcData.expediente_id;
@@ -1020,7 +974,7 @@ export class TratamientosComponent implements OnInit {
     return vhcDataExcel;
   }
 
-  //VHC 6 sgo
+  //VHC
   guardarRegistroVHC() {
 
     // this.minimizeScreen();
@@ -1050,6 +1004,7 @@ export class TratamientosComponent implements OnInit {
             console.log("Disable button for save...");
             this.save_disabled_vhc = false;
             this.save_enabled_vhc = true;
+
           } else {
             this.staticAlertClosed2 = false;
             this.alert_2.type = 'danger';
@@ -1079,13 +1034,13 @@ export class TratamientosComponent implements OnInit {
       });
     }
     if (this.update_flag) {
-
+      console.log("Modificando...");
       this.data_vhc_.data = this.VHCRecordUpdate.filter(function (e1) {
         return e1 != null;
       });
 
       this.vhcTreatmentService.updateVHCTreatment(this.data_vhc_).subscribe((resp_data: any) => {
-        console.log(resp_data);
+        //console.log(resp_data);
 
         if (resp_data.code == 200) {
           this.VHCRecord = [];
@@ -1102,6 +1057,7 @@ export class TratamientosComponent implements OnInit {
 
           this.save_disabled_vhc = false;
           this.save_enabled_vhc = true;
+
         } else {
           this.staticAlertClosed2 = false;
           this.alert_2.type = 'danger';
@@ -1121,7 +1077,7 @@ export class TratamientosComponent implements OnInit {
     }
   }
 
-  //VHC 7 sgo
+  //VHC
   agregarNuevoRegistroVHC(event) {
     //this.regexValidation("2019-02-02");
     this.progres_spinner_refresh_vhc_treatment = false;
@@ -1169,11 +1125,12 @@ export class TratamientosComponent implements OnInit {
 
   message_notification = "";
 
-  //VHC 8 sgo
+  //VHC
   updateRecordVHC(id, column_name, treatment, i) {
     ///DATE VALIDATION
     if (treatment.birthdate === "null" || treatment.birthdate === null || treatment.birthdate === '') {
-
+      this.message_notification = "Favor de capturar la fecha de nacimiento";
+      this.progres_spinner_refresh_nash_treatment = true;
     } else {
       if (this.regexValidation(treatment.birthdate) == "OK.") {
         //   vhcData.birthdate = treatment.birthdate;
@@ -1311,7 +1268,9 @@ export class TratamientosComponent implements OnInit {
           //console.log(this.NASHRecordUpdate);
           //console.log("Actualizando.." + id + " " + column_name);
           if (treatment.birthdate === "null" || treatment.birthdate === null || treatment.birthdate === '') {
-
+            this.message_notification = "Favor de capturar la fecha de nacimiento";
+            this.progres_spinner_refresh_nash_treatment = true;
+            vhcData.birthdate = "1800-01-01";
           } else {
             if (this.regexValidation(treatment.birthdate) == "OK.") {
               vhcData.birthdate = treatment.birthdate;
@@ -1332,7 +1291,9 @@ export class TratamientosComponent implements OnInit {
 
           vhcData.expediente_id = treatment.expediente_id; //Expediente id
           if (treatment.birthdate === "null" || treatment.birthdate === null || treatment.birthdate === '') {
-
+            this.message_notification = "Favor de capturar la fecha de nacimiento";
+            this.progres_spinner_refresh_nash_treatment = true;
+            vhcData.birthdate = "1800-01-01";
           } else {
             vhcData.birthdate = treatment.birthdate;
           }
@@ -1450,7 +1411,7 @@ export class TratamientosComponent implements OnInit {
     }
   }
 
-  //VHC 9 sgo
+  //VHC
   updateStatusVHC(id, status, treatment, i) {
 
     this.update_flag = true;
@@ -1485,7 +1446,7 @@ export class TratamientosComponent implements OnInit {
     this.guardarRegistroVHC();
   }
 
-  //VHC 10 sgo
+  //VHC
   getVHCData() {
 
     console.log("Consulta por hospitales: " + this.comboHospital.hospital_id + " -- " + this.start_date);
@@ -1499,6 +1460,7 @@ export class TratamientosComponent implements OnInit {
 
       this.VHCRecordEstilo = [];
       this.VHCRecordEstiloExcel = [];
+
       if (resp_data_get.code == 200) {
         if (resp_data_get.data.data.length > 0) {
           resp_data_get.data.data.map((r) => {
@@ -1573,6 +1535,7 @@ export class TratamientosComponent implements OnInit {
               vhcData.active_red_sem = "row_sem_red_visible";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
+
             vhcData.obesidad = r.obesidad;//
             if (r.obesidad == "" || r.obesidad == null) {
               vhcData.active_red_sem = "row_sem_red_visible";
@@ -1974,6 +1937,7 @@ export class TratamientosComponent implements OnInit {
             vhcData.modification_username = r.modification_username;
             vhcData.modification_date = r.modification_date;
             vhcData.modification_time = r.modification_time;
+
             vhcData.status = r.status;
             if (vhcData.status == 1) {
               console.log(">> Status: " + vhcData.status);
@@ -1992,16 +1956,15 @@ export class TratamientosComponent implements OnInit {
               vhcData.active_red_sem = "row_sem_red";
               vhcData.active_green_sem = "row_sem_green_hidden";
             }
-
-
             this.VHCRecordEstilo.push(vhcData);
             this.VHCRecord = this.VHCRecordEstilo;
             this.VHCRecordEstiloExcel.push(this.getExcelDataVHC(vhcData));
             this.hidden_update_btn = false;
             this.progres_spinner_refresh_vhc_treatment = true;
           });
+
         } else {
-          console.log("Minimizar");
+          //console.log("Minimizar");
           this.minimizeScreen();
           this.staticAlertClosed2 = false;
           this.alert_2.type = 'Warning';
@@ -2055,57 +2018,11 @@ export class TratamientosComponent implements OnInit {
 
 //#region "Tratamiento Nash"
 
-  //NASH 1 sgo REVISAR ESTE METODO AL PARECER SE PUEDE REUTILIZARA PARA TODOS LOS TRATAMIENTOS
-  exportCSVFileNASH(headers, items, fileTitle) {
-    if (headers) {
-      items.unshift(headers);
-    }
-    // Convert Object to JSON
-
-    var jsonObject = JSON.stringify(items);
-    var csv = this.convertToCSV(jsonObject);
-    var exportedFilenmae = fileTitle + '.csv' || 'export.csv';
-    var blob = new Blob([csv], { type: 'text/csv;charset=unicode;' });
-    if (navigator.msSaveBlob) { // IE 10+
-      navigator.msSaveBlob(blob, exportedFilenmae);
-    } else {
-      var link = document.createElement("a");
-      if (link.download !== undefined) { // feature detection
-        // Browsers that support HTML5 download attribute
-        var url = URL.createObjectURL(blob);
-        link.setAttribute("href", url);
-        link.setAttribute("download", exportedFilenmae);
-        link.style.visibility = 'hidden';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }
-    }
-  }
-
-  //NASH 2 sgo REVISAR ESTE METODO AL PARECER SE PUEDE REUTILIZARA PARA TODOS LOS TRATAMIENTOS
-  convertToCSVNASH(objArray) {
-    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
-    var str = '';
-
-    for (var i = 0; i < array.length; i++) {
-      var line = '';
-      for (var index in array[i]) {
-        if (line != '') line += ','
-
-        line += array[i][index];
-      }
-
-      str += line + '\r\n';
-    }
-
-    return str;
-  }
 
   //NASH 3 sgo REVISAR ESTE METODO AL PARECER SE PUEDE REUTILIZARA PARA TODOS LOS TRATAMIENTOS SOLO ENVIANDO COMO PARAMETRO EL NUMERO DE TRATAMIENTO
   exportExcelNASH() {
     this.createHeaderNASH();
-    this.exportCSVFileNASH(this.NASHRecordHeader, this.NASHRecordExcel, "NASH Treatment");
+    this.exportCSVFile(this.NASHRecordHeader, this.NASHRecordExcel, "NASH Treatment");
   }
 
   //NASH 4 sgo  REVISAR CAMPOS SOBRE TODO EL DE REGISTRO EXPEDIENTE
@@ -2209,7 +2126,7 @@ export class TratamientosComponent implements OnInit {
 
   }
 
-  //NASH 5 sgo
+  //NASH 5
   getExcelDataNASH(nashData: nashTreatmentModel) {
     const nashDataExcel = {} as nashTreatmentModel;
     //nashDataExcel.expediente_id = nashData.expediente_id == null ? "" : nashData.expediente_id;
@@ -2486,7 +2403,7 @@ export class TratamientosComponent implements OnInit {
 
   }
 
-  //NASH 6 sgo
+  //NASH 6
   guardarRegistroNASH() {
 
     // this.minimizeScreen();
@@ -2587,7 +2504,7 @@ export class TratamientosComponent implements OnInit {
     }
   }
 
-  //NASH 7 sgo
+  //NASH 7
   agregarNuevoRegistroNASH(event) {
     //this.regexValidation("2019-02-02");
     this.progres_spinner_refresh_nash_treatment = false;
@@ -2634,11 +2551,19 @@ export class TratamientosComponent implements OnInit {
   }
 
 
-  //NASH 8 sgo
-  updateRecordNASH(id, column_name, treatment, i) {
+  //NASH 8 - CORREGIDO EL CAMPO DE FECHA Y EL SPINNER, LA LOGICA FUE NO HABILITAR EL BOTON DE GUARDAR
+  updateRecordNASH_COPIA_ELIMINAR(id, column_name, treatment, i) {
     ///DATE VALIDATION
-    if (treatment.birthdate === "null" || treatment.birthdate === null || treatment.birthdate === '') {
+    if (treatment.birthdate == "null" || treatment.birthdate == null || treatment.birthdate == '') {
+      // this.staticAlertClosed2 = false;
+      // this.alert_2.type = 'danger';
+      // this.alert_2.message = 'Favor de capturar una fecha de nacimiento correcta!!!';
+      // this.reset();
+      // this.progres_spinner_refresh_nash_treatment = true;
 
+      this.hidden_update_btn = false;
+      this.save_disabled_nash = false;
+      this.save_enabled_nash = true;
     } else {
       if (this.regexValidation(treatment.birthdate) == "OK.") {
         //   vhcData.birthdate = treatment.birthdate;
@@ -2672,8 +2597,8 @@ export class TratamientosComponent implements OnInit {
           //INICIALES
           nashData.initials = treatment.initials;
 
-          //FECHA DE NACIMIENTO
-          nashData.birthdate = treatment.birthdate;
+          //FECHA DE NACIMIENTO   NO SE CONTEMPLA EN VHC LA FECHA DE NACIMIENTO
+          //nashData.birthdate = treatment.birthdate;
 
           //EDAD
           nashData.edad = treatment.age;
@@ -2684,12 +2609,12 @@ export class TratamientosComponent implements OnInit {
           //ESTADO
           nashData.state = treatment.state;
 
-          //FECHA DIAGNOSTICO
-          if (treatment.diagnostic_date === "null" || treatment.diagnostic_date === null || treatment.diagnostic_date === ''){
-            nashData.diagnostic_date = "1900-01-01";
-          }else{
-            nashData.diagnostic_date = treatment.diagnostic_date;
-          }
+          //FECHA DIAGNOSTICO  -- REVISAR YA QUE EN VHC NO CONTEMPLA LA FECHA DE DIAGNOSTICO
+          // if (treatment.diagnostic_date === "null" || treatment.diagnostic_date === null || treatment.diagnostic_date === ''){
+          //   nashData.diagnostic_date = "1900-01-01";
+          // }else{
+          //   nashData.diagnostic_date = treatment.diagnostic_date;
+          // }
 
           //PESO
           nashData.peso = treatment.peso;
@@ -2892,12 +2817,12 @@ export class TratamientosComponent implements OnInit {
           //TRATAMIENTO NASH
           nashData.tratamiento_nash = treatment.tratamiento_nash;
 
-          //INICIO DEL TRATAMIENTO
-          if (treatment.inicio_tratamiento === "null" || treatment.inicio_tratamiento === null || treatment.inicio_tratamiento === ''){
-            nashData.inicio_tratamiento = "1900-01-01";
-          }else{
-            nashData.inicio_tratamiento = treatment.inicio_tratamiento;
-          }
+          //INICIO DEL TRATAMIENTO -- REVISAR YA QUE EN VHC NO CONTEMPLA LA FECHA DE INCIO DEL TRATAMIENTO
+          // if (treatment.inicio_tratamiento === "null" || treatment.inicio_tratamiento === null || treatment.inicio_tratamiento === ''){
+          //   nashData.inicio_tratamiento = "1900-01-01";
+          // }else{
+          //   nashData.inicio_tratamiento = treatment.inicio_tratamiento;
+          // }
 
           //DURACION DEL TRATAMIENTO
           nashData.duracion_tratamiento = treatment.duracion_tratamiento;
@@ -2931,11 +2856,6 @@ export class TratamientosComponent implements OnInit {
 
           //vhcData.comentarios = treatment.comentarios;//Comentarios
 
-          //nashData.creation_userid = treatment.creation_userid;
-          //nashData.creation_username = treatment.creation_username;
-          //nashData.creation_date = treatment.creation_date;
-          //nashData.creation_time = treatment.creation_time;
-
           nashData.modification_userid = treatment.modification_userid;
           nashData.modification_username = treatment.modification_username;
           nashData.modification_date = treatment.modification_date;
@@ -2953,7 +2873,7 @@ export class TratamientosComponent implements OnInit {
           //console.log(this.NASHRecordUpdate);
           //console.log("Actualizando.." + id + " " + column_name);
           if (treatment.birthdate === "null" || treatment.birthdate === null || treatment.birthdate === '') {
-
+            nashData.birthdate = "1800-01-01";  //Asignamos una fecha nula
           } else {
             if (this.regexValidation(treatment.birthdate) == "OK.") {
               nashData.birthdate = treatment.birthdate;
@@ -2978,7 +2898,8 @@ export class TratamientosComponent implements OnInit {
           //nashData.expediente_id = treatment.expediente_id; //Expediente id
 
           if (treatment.birthdate === "null" || treatment.birthdate === null || treatment.birthdate === '') {
-
+            //this.message_notification = "Error en el formato de fecha. Formato correcto YYYY-MM-DD";
+            nashData.birthdate = "1800-01-01";  //Asignamos una fecha nula
           } else {
             nashData.birthdate = treatment.birthdate;
           }
@@ -2987,17 +2908,17 @@ export class TratamientosComponent implements OnInit {
           nashData.edad = treatment.age;
 
           //GENERO
-          nashData.gender = treatment.gender;//Género
+          nashData.gender = treatment.gender; //Género
 
           //ESTADO
           nashData.state = treatment.state;
 
-          //FECHA DIAGNOSTICO
-          if (treatment.diagnostic_date === "null" || treatment.diagnostic_date === null || treatment.diagnostic_date === ''){
-            nashData.diagnostic_date = "1900-01-01";
-          }else{
-            nashData.diagnostic_date = treatment.diagnostic_date;
-          }
+          //FECHA DIAGNOSTICO --  REVISAR YA QUE EN VHC NO CONTEMPLA LA FECHA DE DIAGNOSTICO
+          // if (treatment.diagnostic_date === "null" || treatment.diagnostic_date === null || treatment.diagnostic_date === ''){
+          //   nashData.diagnostic_date = "1900-01-01";
+          // }else{
+          //   nashData.diagnostic_date = treatment.diagnostic_date;
+          // }
 
           //PESO
           nashData.peso = treatment.peso;
@@ -3200,12 +3121,12 @@ export class TratamientosComponent implements OnInit {
           //TRATAMIENTO NASH
           nashData.tratamiento_nash = treatment.tratamiento_nash;
 
-          //INICIO DEL TRATAMIENTO
-          if (treatment.inicio_tratamiento === "null" || treatment.inicio_tratamiento === null || treatment.inicio_tratamiento === ''){
-            nashData.inicio_tratamiento = "1900-01-01";
-          }else{
-            nashData.inicio_tratamiento = treatment.inicio_tratamiento;
-          }
+          //INICIO DEL TRATAMIENTO  -- REVISAR YA QUE EN VHC NO CONTEMPLA LA FECHA DE INICIO DEL TRATAMIENTO
+          // if (treatment.inicio_tratamiento === "null" || treatment.inicio_tratamiento === null || treatment.inicio_tratamiento === ''){
+          //   nashData.inicio_tratamiento = "1900-01-01";
+          // }else{
+          //   nashData.inicio_tratamiento = treatment.inicio_tratamiento;
+          // }
 
           //DURACION DEL TRATAMIENTO
           nashData.duracion_tratamiento = treatment.duracion_tratamiento;
@@ -3261,6 +3182,693 @@ export class TratamientosComponent implements OnInit {
     }
   }
 
+  //NASH 8
+  updateRecordNASH(id, column_name, treatment, i) {
+      this.save_disabled_nash = true;
+      this.save_enabled_nash = false;
+      this.message_notification = "";
+      treatment.style_input_date = "control-date-ok";
+
+      let element = document.getElementById("gender");
+
+
+      if (id != null) {
+
+        this.update_flag = true;
+        const nashData = {} as nashTreatmentModel;
+
+        nashData.MD_entity_id = this.entity_id;
+        nashData.MD_hospital_id = treatment.MD_hospital_id;
+        nashData.research_nash_id = id;
+        nashData.month_execution = treatment.month_execution;
+
+
+        //nashData.expediente_id = treatment.expediente_id; //Expediente id
+        //nashData.year = treatment.year;//Año de dx de nash
+        //nashData.transmission_mechanism = treatment.transmission_mechanism; //mecanismo de trasmision
+
+        //REVISAR CAMPOS QUE SEAN CORRECTOS - SGO
+        //ORDEN COMENZANDO CON INICIALES
+
+        //INICIALES
+        nashData.initials = treatment.initials;
+
+        //FECHA DE NACIMIENTO   NO SE CONTEMPLA EN VHC LA FECHA DE NACIMIENTO
+        //nashData.birthdate = treatment.birthdate;
+
+        //Eliminar
+        if (treatment.birthdate == "null" || treatment.birthdate == null || treatment.birthdate == '') {
+          //nashData.birthdate = "1800-01-01";  //Asignamos una fecha nula
+        } else {
+          if (this.regexValidation(treatment.birthdate) == "OK.") {
+            nashData.birthdate = treatment.birthdate;
+          } else {
+            //console.log("Error en formato de la Fecha de Nacimiento.");
+          }
+        }
+
+        //EDAD
+        nashData.edad = treatment.age;
+
+        //GENERO
+        nashData.gender = treatment.gender;
+
+        //ESTADO
+        nashData.state = treatment.state;
+
+        //FECHA DIAGNOSTICO  -- REVISAR YA QUE EN VHC NO CONTEMPLA LA FECHA DE DIAGNOSTICO
+        // if (treatment.diagnostic_date === "null" || treatment.diagnostic_date === null || treatment.diagnostic_date === ''){
+        //   nashData.diagnostic_date = "1900-01-01";
+        // }else{
+        //   nashData.diagnostic_date = treatment.diagnostic_date;
+        // }
+
+        //Eliminar
+        if (treatment.diagnostic_date == "null" || treatment.diagnostic_date == null || treatment.diagnostic_date == '') {
+          //nashData.diagnostic_date = "1800-01-01";  //Asignamos una fecha nula
+        } else {
+          if (this.regexValidation(treatment.diagnostic_date) == "OK.") {
+            nashData.diagnostic_date = treatment.diagnostic_date;
+          } else {
+            //console.log("Error en formato de la Fecha de Nacimiento.");
+          }
+        }
+
+        //PESO
+        nashData.peso = treatment.peso;
+
+        //TALLA
+        nashData.talla = treatment.talla;
+
+        //IMC
+        nashData.imc = treatment.imc;
+
+        //OBESIDAD
+        nashData.obesidad = treatment.obesidad;
+
+        //SOBREPESO
+        nashData.sobrepeso = treatment.sobrepeso;
+
+        //CIRCUNFERENCIA CINTURA
+        nashData.circunferencia_cintura = treatment.circunferencia_cintura;
+
+        //CIRCUNFERENCIA CADERA
+        nashData.circunferencia_cadera = treatment.circunferencia_cadera;
+
+        //INDICE CINTURA CADERA
+        nashData.indice_cintura_cadera = treatment.indice_cintura_cadera;
+
+        //CONSUMO ALCOHOL
+        nashData.consumo_alcohol = treatment.consumo_alcohol;
+
+        //GRAMOS DE ALCOHOL
+        nashData.gramos_alcohol = treatment.gramos_alcohol;
+
+        //DIABETES MELLITUS
+        nashData.diabetes_mellitus = treatment.diabetes_mellitus;
+
+        //HIPERTENSION ARTERIAL
+        nashData.hipertension_arterial = treatment.hipertension_arterial;
+
+        //HIPERCOLESTEROLEMIA
+        nashData.hipercolesterolemia = treatment.hipercolesterolemia;
+
+        //HIPERTRIGLICERIDEMIA
+        nashData.hipertrigliceridemia = treatment.hipertrigliceridemia;
+
+        //HIPOTIROIDISMO
+        nashData.hipotiroidismo = treatment.hipotiroidismo;
+
+        //PRESION SISTOLICA
+        nashData.presion_sistolica = treatment.presion_sistolica;
+
+        //PRESION DIASTOLICA
+        nashData.presion_diastolica = treatment.presion_diastolica;
+
+        //ANTIHIPERTENSIVOS
+        nashData.antihipertensivos = treatment.antihipertensivos;
+
+        //CLASE ANTIHIPERTENSIVOS
+        nashData.clase_antihipertensivos = treatment.clase_antihipertensivos;
+
+        //HIPOGLUCEMIANTE
+        nashData.hipoglucemiante = treatment.hipoglucemiante;
+
+        //HIPOGLUCEMIANTES ORALES
+        nashData.hipoglucemiantes_orales = treatment.hipoglucemiantes_orales;
+
+        //USO INSULINA
+        nashData.uso_insulina = treatment.uso_insulina;
+
+        //ESTATINAS
+        nashData.estatinas = treatment.estatinas;
+
+        //CLASE ESTATINAS
+        nashData.clase_estatina = treatment.clase_estatina;
+
+        //FIBRATOS
+        nashData.fibratos = treatment.fibratos;
+
+        //CLASE FIBRATOS
+        nashData.clase_fibratos = treatment.clase_fibratos;
+
+        //ANTIOXIDANTES
+        nashData.antioxidantes = treatment.antioxidantes;
+
+        //CLASE ANTIOXIDANTES
+        nashData.clase_antioxidantes = treatment.clase_antioxidantes;
+
+        //HEMOGLOBINA
+        nashData.hemoglobina = treatment.hemoglobina;
+
+        //PLAQUETAS
+        nashData.plaquetas = treatment.plaquetas;
+
+        //GLUCOSA
+        nashData.glucosa = treatment.glucosa;
+
+        //CREATININA
+        nashData.creatinina = treatment.creatinina;
+
+        //COLESTEROL
+        nashData.colesterol = treatment.colesterol;
+
+        //HDL
+        nashData.hdl = treatment.hdl;
+
+        //LDL
+        nashData.ldl = treatment.ldl;
+
+        //VLDL
+        nashData.vldl = treatment.vldl;
+
+        //INDICE ATEROGENICO
+        nashData.indice_aterogenico = treatment.indice_aterogenico;
+
+        //TRIGLICERIDOS
+        nashData.trigliceridos = treatment.trigliceridos;
+
+        //BT
+        nashData.bt = treatment.bt;
+
+        //BD
+        nashData.bd = treatment.bd;
+
+        //BI
+        nashData.bi = treatment.bi;
+
+        //AST
+        nashData.ast = treatment.ast;
+
+        //ALT
+        nashData.alt = treatment.alt;
+
+        //FAL
+        nashData.fal = treatment.fal;
+
+        //GGT
+        nashData.ggt = treatment.ggt;
+
+        //ALBUMINA
+        nashData.albumina = treatment.albumina;
+
+        //INSULINA SERICA
+        nashData.insulina_serica = treatment.insulina_serica;
+
+        //HOMA IR
+        nashData.homa_ir = treatment.homa_ir;
+
+        //PCR ULTRASENSIBLE
+        nashData.pcr_ultrasensible = treatment.pcr_ultrasensible;
+
+        //ELASTOGRAFIA TRANSITORIA (CAP)
+        nashData.elastrografia_cap = treatment.elastrografia_cap;
+
+        //GRADO DE ESTEATOSIS
+        nashData.grado_esteatosis = treatment.grado_esteatosis;
+
+        //ELASTOGRAFIA TRANSITORIA (KPa)
+        nashData.elastrografia_kpa = treatment.elastrografia_kpa;
+
+        //Grado fibrosis
+        nashData.grado_fibrosis = treatment.grado_fibrosis;
+
+        //NAFLD FIBROSIS
+        nashData.nafld_fibrosis = treatment.nafld_fibrosis;
+
+        //FIB-4 SCORE
+        nashData.fib_4 = treatment.fib_4;
+
+        //APRI
+        nashData.apri = treatment.apri;
+
+        //HBsAg
+        nashData.hbsag = treatment.hbsag;
+
+        //HBeAg
+        nashData.hbeag = treatment.hbeag;
+
+        //ANTICUERPOS ANTI HBs
+        nashData.anticuerpos_hbs = treatment.anticuerpos_hbs;
+
+        //ANTICUERPOS ANTI HBe
+        nashData.anticuerpos_hbe = treatment.anticuerpos_hbe;
+
+        //ANTICUERPOS ANTI VHC
+        nashData.anticuerpos_vhc = treatment.anticuerpos_vhc;
+
+        //BIOPSIA HEPATICA
+        nashData.biopsia_hepatica = treatment.biopsia_hepatica;
+
+        //INDICACIONES DE LA BIOPSIA
+        nashData.indicaciones_biopsia = treatment.indicaciones_biopsia;
+
+        //GRADO DE ACTIVIDAD POR BIOPSIA HEPATICA
+        nashData.grado_actividad_bh = treatment.grado_actividad_bh;
+
+        //GRADO DE FIBROSIS POR BIOPSIA HEPATICA
+        nashData.grado_fibrosis_bh = treatment.grado_fibrosis_bh;
+
+        // GRADO DE ESTEATOSIS POR BIOPSIA HEPATICA
+        nashData.grado_esteatosis_bh = treatment.grado_esteatosis_bh;
+
+        //TRATAMIENTO NASH
+        nashData.tratamiento_nash = treatment.tratamiento_nash;
+
+        //INICIO DEL TRATAMIENTO -- REVISAR YA QUE EN VHC NO CONTEMPLA LA FECHA DE INCIO DEL TRATAMIENTO
+        // if (treatment.inicio_tratamiento === "null" || treatment.inicio_tratamiento === null || treatment.inicio_tratamiento === ''){
+        //   nashData.inicio_tratamiento = "1900-01-01";
+        // }else{
+        //   nashData.inicio_tratamiento = treatment.inicio_tratamiento;
+        // }
+
+        //Eliminar
+        if (treatment.inicio_tratamiento == "null" || treatment.inicio_tratamiento == null || treatment.inicio_tratamiento == '') {
+          //nashData.inicio_tratamiento = "1800-01-01";  //Asignamos una fecha nula
+        } else {
+          if (this.regexValidation(treatment.inicio_tratamiento) == "OK.") {
+            nashData.inicio_tratamiento = treatment.inicio_tratamiento;
+          } else {
+            //console.log("Error en formato de la Fecha de Nacimiento.");
+          }
+        }
+
+        //DURACION DEL TRATAMIENTO
+        nashData.duracion_tratamiento = treatment.duracion_tratamiento;
+
+        //PIOGLITAZONA
+        nashData.pioglitazona = treatment.pioglitazona;
+
+        //SELONSERTIB
+        nashData.selonsertib = treatment.selonsertib;
+
+        //ELAFIBRANOR
+        nashData.elafibranor = treatment.elafibranor;
+
+        //CENICRIVIROC
+        nashData.cenicriviroc = treatment.cenicriviroc;
+
+        //RESMETIROM
+        nashData.resmetirom = treatment.resmetirom;
+
+        //LIRAGLUTIDE
+        nashData.liraglutide = treatment.liraglutide;
+
+        //METFORMIN
+        nashData.metformin = treatment.metformin;
+
+        //PUNTAJE NAS
+        nashData.puntaje_nas = treatment.puntaje_nas;
+
+        //EVOLUCIÓN POST TRATAMIENTO
+        nashData.evolucion_post_tratamiento = treatment.evolucion_post_tratamiento;
+
+        //vhcData.comentarios = treatment.comentarios;//Comentarios
+
+        nashData.modification_userid = treatment.modification_userid;
+        nashData.modification_username = treatment.modification_username;
+        nashData.modification_date = treatment.modification_date;
+        nashData.modification_time = treatment.modification_time;
+
+        nashData.status = treatment.status;
+        nashData.row_color = "row_update";// Nuevos" treatment.row_color;"
+
+        // console.log("Color: " + nashData.row_color);
+        this.NASHRecordUpdate[id] = nashData;
+        //
+        //this.NASHRecord[i] = nashData;
+        treatment.row_color = nashData.row_color;
+        //console.log(this.NASHRecord[i]);
+        //console.log(this.NASHRecordUpdate);
+        //console.log("Actualizando.." + id + " " + column_name);
+
+        //REVISAR
+        // if (treatment.birthdate === "null" || treatment.birthdate === null || treatment.birthdate === '') {
+        //   //nashData.birthdate = "1800-01-01";  //Asignamos una fecha nula
+        // } else {
+        //   if (this.regexValidation(treatment.birthdate) == "OK.") {
+        //     nashData.birthdate = treatment.birthdate;
+        //     //console.log("Fecha correcta.");
+        //     this.save_disabled_nash = true;
+        //     this.save_enabled_nash = false;
+        //   } else {
+        //     //console.log("Error en formato de la Fecha de Nacimiento.");
+        //   }
+        // }
+
+        // //Eliminar
+        // if (treatment.birthdate === "null" || treatment.birthdate === null || treatment.birthdate === '') {
+        //   //nashData.birthdate = "1800-01-01";  //Asignamos una fecha nula
+        // } else {
+        //   if (this.regexValidation(treatment.birthdate) == "OK.") {
+        //     nashData.birthdate = treatment.birthdate;
+        //   } else {
+        //     //console.log("Error en formato de la Fecha de Nacimiento.");
+        //   }
+        // }
+
+      } else {
+        this.create_flag = true;
+        const nashData = {} as nashTreatmentModel;
+
+        //MES
+        nashData.month_execution = treatment.month_execution;
+
+        //INICIALES
+        nashData.initials = treatment.initials;
+
+        //nashData.expediente_id = treatment.expediente_id; //Expediente id
+
+        //REVISAR
+        // if (treatment.birthdate === "null" || treatment.birthdate === null || treatment.birthdate === '') {
+        //   //this.message_notification = "Error en el formato de fecha. Formato correcto YYYY-MM-DD";
+        //   //nashData.birthdate = "1800-01-01";  //Asignamos una fecha nula
+        // } else {
+        //   nashData.birthdate = treatment.birthdate;
+        // }
+
+        //Eliminar
+        if (treatment.birthdate == "null" || treatment.birthdate == null || treatment.birthdate == '') {
+          //nashData.birthdate = "1800-01-01";  //Asignamos una fecha nula
+        } else {
+          if (this.regexValidation(treatment.birthdate) == "OK.") {
+            nashData.birthdate = treatment.birthdate;
+          } else {
+            //console.log("Error en formato de la Fecha de Nacimiento.");
+          }
+        }
+
+        //EDAD
+        nashData.edad = treatment.age;
+
+        //GENERO
+        nashData.gender = treatment.gender;//Género
+
+        //ESTADO
+        nashData.state = treatment.state;
+
+        //FECHA DIAGNOSTICO --  REVISAR YA QUE EN VHC NO CONTEMPLA LA FECHA DE DIAGNOSTICO
+        // if (treatment.diagnostic_date === "null" || treatment.diagnostic_date === null || treatment.diagnostic_date === ''){
+        //   nashData.diagnostic_date = "1900-01-01";
+        // }else{
+        //   nashData.diagnostic_date = treatment.diagnostic_date;
+        // }
+
+        //Eliminar
+        if (treatment.diagnostic_date == "null" || treatment.diagnostic_date == null || treatment.diagnostic_date == '') {
+          //nashData.diagnostic_date = "1800-01-01";  //Asignamos una fecha nula
+        } else {
+          if (this.regexValidation(treatment.diagnostic_date) == "OK.") {
+            nashData.diagnostic_date = treatment.diagnostic_date;
+          } else {
+            //console.log("Error en formato de la Fecha de Nacimiento.");
+          }
+        }
+
+        //PESO
+        nashData.peso = treatment.peso;
+
+        //TALLA
+        nashData.talla = treatment.talla;
+
+        //IMC
+        nashData.imc = treatment.imc;
+
+        //OBESIDAD
+        nashData.obesidad = treatment.obesidad;
+
+        //SOBREPESO
+        nashData.sobrepeso = treatment.sobrepeso;
+
+        //CIRCUNFERENCIA CINTURA
+        nashData.circunferencia_cintura = treatment.circunferencia_cintura;
+
+        //CIRCUNFERENCIA CADERA
+        nashData.circunferencia_cadera = treatment.circunferencia_cadera;
+
+        //INDICE CINTURA CADERA
+        nashData.indice_cintura_cadera = treatment.indice_cintura_cadera;
+
+        //CONSUMO ALCOHOL
+        nashData.consumo_alcohol = treatment.consumo_alcohol;
+
+        //GRAMOS DE ALCOHOL
+        nashData.gramos_alcohol = treatment.gramos_alcohol;
+
+        //DIABETES MELLITUS
+        nashData.diabetes_mellitus = treatment.diabetes_mellitus;
+
+        //HIPERTENSION ARTERIAL
+        nashData.hipertension_arterial = treatment.hipertension_arterial;
+
+        //HIPERCOLESTEROLEMIA
+        nashData.hipercolesterolemia = treatment.hipercolesterolemia;
+
+        //HIPERTRIGLICERIDEMIA
+        nashData.hipertrigliceridemia = treatment.hipertrigliceridemia;
+
+        //HIPOTIROIDISMO
+        nashData.hipotiroidismo = treatment.hipotiroidismo;
+
+        //PRESION SISTOLICA
+        nashData.presion_sistolica = treatment.presion_sistolica;
+
+        //PRESION DIASTOLICA
+        nashData.presion_diastolica = treatment.presion_diastolica;
+
+        //ANTIHIPERTENSIVOS
+        nashData.antihipertensivos = treatment.antihipertensivos;
+
+        //CLASE ANTIHIPERTENSIVOS
+        nashData.clase_antihipertensivos = treatment.clase_antihipertensivos;
+
+        //HIPOGLUCEMIANTE
+        nashData.hipoglucemiante = treatment.hipoglucemiante;
+
+        //HIPOGLUCEMIANTES ORALES
+        nashData.hipoglucemiantes_orales = treatment.hipoglucemiantes_orales;
+
+        //USO INSULINA
+        nashData.uso_insulina = treatment.uso_insulina;
+
+        //ESTATINAS
+        nashData.estatinas = treatment.estatinas;
+
+        //CLASE ESTATINAS
+        nashData.clase_estatina = treatment.clase_estatina;
+
+        //FIBRATOS
+        nashData.fibratos = treatment.fibratos;
+
+        //CLASE FIBRATOS
+        nashData.clase_fibratos = treatment.clase_fibratos;
+
+        //ANTIOXIDANTES
+        nashData.antioxidantes = treatment.antioxidantes;
+
+        //CLASE ANTIOXIDANTES
+        nashData.clase_antioxidantes = treatment.clase_antioxidantes;
+
+        //HEMOGLOBINA
+        nashData.hemoglobina = treatment.hemoglobina;
+
+        //PLAQUETAS
+        nashData.plaquetas = treatment.plaquetas;
+
+        //GLUCOSA
+        nashData.glucosa = treatment.glucosa;
+
+        //CREATININA
+        nashData.creatinina = treatment.creatinina;
+
+        //COLESTEROL
+        nashData.colesterol = treatment.colesterol;
+
+        //HDL
+        nashData.hdl = treatment.hdl;
+
+        //LDL
+        nashData.ldl = treatment.ldl;
+
+        //VLDL
+        nashData.vldl = treatment.vldl;
+
+        //INDICE ATEROGENICO
+        nashData.indice_aterogenico = treatment.indice_aterogenico;
+
+        //TRIGLICERIDOS
+        nashData.trigliceridos = treatment.trigliceridos;
+
+        //BT
+        nashData.bt = treatment.bt;
+
+        //BD
+        nashData.bd = treatment.bd;
+
+        //BI
+        nashData.bi = treatment.bi;
+
+        //AST
+        nashData.ast = treatment.ast;
+
+        //ALT
+        nashData.alt = treatment.alt;
+
+        //FAL
+        nashData.fal = treatment.fal;
+
+        //GGT
+        nashData.ggt = treatment.ggt;
+
+        //ALBUMINA
+        nashData.albumina = treatment.albumina;
+
+        //INSULINA SERICA
+        nashData.insulina_serica = treatment.insulina_serica;
+
+        //HOMA IR
+        nashData.homa_ir = treatment.homa_ir;
+
+        //PCR ULTRASENSIBLE
+        nashData.pcr_ultrasensible = treatment.pcr_ultrasensible;
+
+        //ELASTOGRAFIA TRANSITORIA (CAP)
+        nashData.elastrografia_cap = treatment.elastrografia_cap;
+
+        //GRADO DE ESTEATOSIS
+        nashData.grado_esteatosis = treatment.grado_esteatosis;
+
+        //ELASTOGRAFIA TRANSITORIA (KPa)
+        nashData.elastrografia_kpa = treatment.elastrografia_kpa;
+
+        //Grado fibrosis
+        nashData.grado_fibrosis = treatment.grado_fibrosis;
+
+        //NAFLD FIBROSIS
+        nashData.nafld_fibrosis = treatment.nafld_fibrosis;
+
+        //FIB-4 SCORE
+        nashData.fib_4 = treatment.fib_4;
+
+        //APRI
+        nashData.apri = treatment.apri;
+
+        //HBsAg
+        nashData.hbsag = treatment.hbsag;
+
+        //HBeAg
+        nashData.hbeag = treatment.hbeag;
+
+        //ANTICUERPOS ANTI HBs
+        nashData.anticuerpos_hbs = treatment.anticuerpos_hbs;
+
+        //ANTICUERPOS ANTI HBe
+        nashData.anticuerpos_hbe = treatment.anticuerpos_hbe;
+
+        //ANTICUERPOS ANTI VHC
+        nashData.anticuerpos_vhc = treatment.anticuerpos_vhc;
+
+        //BIOPSIA HEPATICA
+        nashData.biopsia_hepatica = treatment.biopsia_hepatica;
+
+        //INDICACIONES DE LA BIOPSIA
+        nashData.indicaciones_biopsia = treatment.indicaciones_biopsia;
+
+        //GRADO DE ACTIVIDAD POR BIOPSIA HEPATICA
+        nashData.grado_actividad_bh = treatment.grado_actividad_bh;
+
+        //GRADO DE FIBROSIS POR BIOPSIA HEPATICA
+        nashData.grado_fibrosis_bh = treatment.grado_fibrosis_bh;
+
+        // GRADO DE ESTEATOSIS POR BIOPSIA HEPATICA
+        nashData.grado_esteatosis_bh = treatment.grado_esteatosis_bh;
+
+        //TRATAMIENTO NASH
+        nashData.tratamiento_nash = treatment.tratamiento_nash;
+
+        //INICIO DEL TRATAMIENTO  -- REVISAR YA QUE EN VHC NO CONTEMPLA LA FECHA DE INICIO DEL TRATAMIENTO
+        // if (treatment.inicio_tratamiento === "null" || treatment.inicio_tratamiento === null || treatment.inicio_tratamiento === ''){
+        //   nashData.inicio_tratamiento = "1900-01-01";
+        // }else{
+        //   nashData.inicio_tratamiento = treatment.inicio_tratamiento;
+        // }
+
+        //Eliminar
+        if (treatment.inicio_tratamiento == "null" || treatment.inicio_tratamiento == null || treatment.inicio_tratamiento == '') {
+          //nashData.inicio_tratamiento = "1800-01-01";  //Asignamos una fecha nula
+        } else {
+          if (this.regexValidation(treatment.inicio_tratamiento) == "OK.") {
+            nashData.inicio_tratamiento = treatment.inicio_tratamiento;
+          } else {
+            //console.log("Error en formato de la Fecha de Nacimiento.");
+          }
+        }
+
+        //DURACION DEL TRATAMIENTO
+        nashData.duracion_tratamiento = treatment.duracion_tratamiento;
+
+        //PIOGLITAZONA
+        nashData.pioglitazona = treatment.pioglitazona;
+
+        //SELONSERTIB
+        nashData.selonsertib = treatment.selonsertib;
+
+        //ELAFIBRANOR
+        nashData.elafibranor = treatment.elafibranor;
+
+        //CENICRIVIROC
+        nashData.cenicriviroc = treatment.cenicriviroc;
+
+        //RESMETIROM
+        nashData.resmetirom = treatment.resmetirom;
+
+        //LIRAGLUTIDE
+        nashData.liraglutide = treatment.liraglutide;
+
+        //METFORMIN
+        nashData.metformin = treatment.metformin;
+
+        //PUNTAJE NAS
+        nashData.puntaje_nas = treatment.puntaje_nas;
+
+        //EVOLUCIÓN POST TRATAMIENTO
+        nashData.evolucion_post_tratamiento = treatment.evolucion_post_tratamiento;
+
+        nashData.creation_userid = treatment.creation_userid;
+        nashData.creation_username = treatment.creation_username;
+        nashData.creation_date = treatment.creation_date;
+        nashData.creation_time = treatment.creation_time;
+        nashData.modification_userid = treatment.modification_userid;
+        nashData.modification_username = treatment.modification_username;
+        nashData.modification_date = treatment.modification_date;
+        nashData.modification_time = treatment.modification_time;
+
+        nashData.status = treatment.status;
+        nashData.row_color = "row_new";// Nuevos" treatment.row_color;"
+        this.NASHRecordCreate[i] = this.NASHRecord[i];
+      }
+
+  }
 
   //NASH 9 sgo
   updateStatusNASH(id, status, treatment, i) {
@@ -3997,7 +4605,7 @@ export class TratamientosComponent implements OnInit {
   }
 
 
-  //Creada SGO
+  //NASH
   statusFilterNASH() {
     if (this.status_filter == 1) {
       this.status_id = 1;
