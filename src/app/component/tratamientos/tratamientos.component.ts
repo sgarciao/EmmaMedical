@@ -3237,7 +3237,7 @@ export class TratamientosComponent implements OnInit {
         }
 
         //EDAD
-        nashData.edad = treatment.age;
+        nashData.edad = treatment.edad;
 
         //GENERO
         nashData.gender = treatment.gender;
